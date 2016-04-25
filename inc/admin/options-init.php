@@ -101,6 +101,28 @@
      */
 
     /*
+     * ---> OTHER VARIABLE
+     */
+
+    $entry_meta_choices = array(
+        'date'       => esc_html__( 'Date', 'redux-framework-wpsp' ),
+        'author'     => esc_html__( 'Author', 'redux-framework-wpsp' ),
+        'categories' => esc_html__( 'Categories', 'redux-framework-wpsp' ),
+        'comments'   => esc_html__( 'Comments', 'redux-framework-wpsp' ),
+        );
+
+    $sites_sharing = array( 
+        'twitter'       => esc_html__( 'Twitter', 'redux-framework-wpsp' ),
+        'facebook'      => esc_html__( 'Facebook', 'redux-framework-wpsp' ),
+        'google_plus'   => esc_html__( 'Google+', 'redux-framework-wpsp' ),
+        'pinterest'     => esc_html__( 'Pinterest', 'redux-framework-wpsp' ),
+        );
+
+    /*
+     * ---> END OTHER VARIABLE
+     */
+
+    /*
      * ---> START HELP TABS
      */
 
@@ -134,59 +156,73 @@
      *
      */
 
+    // General section
     Redux::setSection( $opt_name, array(
-        'title'  => __( 'Basic Field', 'redux-framework-demo' ),
-        'id'     => 'basic',
-        'desc'   => __( 'Basic field with no subsections.', 'redux-framework-demo' ),
-        'icon'   => 'el el-home',
-        'fields' => array(
-            array(
-                'id'       => 'opt-text',
-                'type'     => 'text',
-                'title'    => __( 'Example Text', 'redux-framework-demo' ),
-                'desc'     => __( 'Example description.', 'redux-framework-demo' ),
-                'subtitle' => __( 'Example subtitle.', 'redux-framework-demo' ),
-            )
-        )
+        'title'            => __( 'General', 'wpsp-redux-framework' ),
+        'id'               => 'general-options',
+        'desc'             => __( '', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-cog'
     ) );
-
     Redux::setSection( $opt_name, array(
-        'title' => __( 'Basic Fields', 'redux-framework-demo' ),
-        'id'    => 'basic',
-        'desc'  => __( 'Basic fields as subsections.', 'redux-framework-demo' ),
-        'icon'  => 'el el-home'
-    ) );
-
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Text', 'redux-framework-demo' ),
-        'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/text/" target="_blank">http://docs.reduxframework.com/core/fields/text/</a>',
-        'id'         => 'opt-text-subsection',
+        'title'      => __( 'Social Sharing', 'wpsp-redux-framework' ),
+        'id'         => 'social-sharing',
         'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
         'fields'     => array(
             array(
-                'id'       => 'text-example',
-                'type'     => 'text',
-                'title'    => __( 'Text Field', 'redux-framework-demo' ),
-                'subtitle' => __( 'Subtitle', 'redux-framework-demo' ),
-                'desc'     => __( 'Field Description', 'redux-framework-demo' ),
-                'default'  => 'Default Text',
+                'id'       => 'social-share-sites',
+                'type'     => 'checkbox',
+                //'multi'    => true,
+                'title'    => __( 'Meta', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'checked meta filed to be display', 'wpsp-redux-framework' ),
+                'options'  => $sites_sharing
             ),
-        )
-    ) );
-
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Text Area', 'redux-framework-demo' ),
-        'desc'       => __( 'For full documentation on this field, visit: ', 'redux-framework-demo' ) . '<a href="http://docs.reduxframework.com/core/fields/textarea/" target="_blank">http://docs.reduxframework.com/core/fields/textarea/</a>',
-        'id'         => 'opt-textarea-subsection',
-        'subsection' => true,
-        'fields'     => array(
             array(
-                'id'       => 'textarea-example',
-                'type'     => 'textarea',
-                'title'    => __( 'Text Area Field', 'redux-framework-demo' ),
-                'subtitle' => __( 'Subtitle', 'redux-framework-demo' ),
-                'desc'     => __( 'Field Description', 'redux-framework-demo' ),
-                'default'  => 'Default Text',
+                'id'       => 'social-share-position',
+                'type'     => 'select',
+                'title'    => __( 'Position', 'wpsp-redux-framework' ),
+                'options'  => array(
+                        'horizontal'   => esc_html__( 'Horizontal', 'wpsp-redux-framework' ),
+                        'vertical'   => esc_html__( 'Vertical', 'wpsp-redux-framework' ),
+                    ),
+                'default' => 'horizontal',
+            ),
+             array(
+                'id'       => 'is-social-share-heading',
+                'type'     => 'switch',
+                'title'    => __( 'Enable/disable heading', 'wpsp-redux-framework' ),
+                'default'  => true,
+            ),
+            array(
+                'id'       => 'social-share-heading',
+                'type'     => 'text',
+                'title'    => __( 'Heading on Posts', 'wpsp-redux-framework' ),
+                'default'  => __( 'Please Share This', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'social-share-style',
+                'type'     => 'select',
+                'title'    => __( 'Style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                        'flat'   => esc_html__( 'Flat', 'wpsp-redux-framework' ),
+                        'minimal'   => esc_html__( 'Minimal', 'wpsp-redux-framework' ),
+                        'three-d'   => esc_html__( '3D', 'wpsp-redux-framework' ),
+                    ),
+                'default' => 'flat',
+            ),
+            array(
+                'id'       => 'social-share-twitter-handle',
+                'type'     => 'text',
+                'title'    => __( 'Twitter Handle', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Twitter user name/id', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'social-share-pages',
+                'type'     => 'checkbox',
+                'title'    => __( 'Enable for Pages', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enable/disable for page', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
             ),
         )
     ) );

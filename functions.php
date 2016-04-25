@@ -39,15 +39,22 @@ class WPSP_Theme_Setup {
 		// Define constant
 		add_action( 'after_setup_theme', array( $this , 'constants' ), 0 );
 
+		// Load all core theme function files
+		// Load Before classes and addons so we can make use of them
+		add_action( 'after_setup_theme', array( $this, 'wpsp_include_functions' ), 1 );
+
 		// Setup theme => add_theme_support, register_nav_menus, load_theme_textdomain, etc
 		// Must run on 10 priority or else child theme locale will be overritten
 		add_action( 'after_setup_theme', array( $this, 'theme_setup' ), 10 );
 
 		// Load the scripts in WP Admin
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'wpsp_admin_scripts' ) );
 
 		// Load theme style
 		add_action( 'wp_enqueue_scripts', array( $this, 'wpsp_theme_css') );
+
+		// register sidebar widget areas
+		//add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 	}
 
 	/**
@@ -61,6 +68,7 @@ class WPSP_Theme_Setup {
 	public static function constants(){
 		// Theme branding
 		define( 'WPSP_THEME_BRANDING', 'WPSP Blog' );
+		define( 'WPSP_THEME_BRANDING_PREFIX', 'WPSP' );
 		define( 'WPSP_THEME_VERSION', '1.0.0' );
 
 		// Paths to the parent theme directory
@@ -74,6 +82,16 @@ class WPSP_Theme_Setup {
 		// INC path
 		define( 'WPSP_INC_DIR', WPSP_THEME_DIR.'/inc/' );
 		define( 'WPSP_INC_DIR_URL', WPSP_THEME_DIR.'/inc/');
+	}
+
+	/**
+	 * Framework functions
+	 * Load before Classes & Addons so we can use them
+	 *
+	 * @since 1.0.0
+	 */
+	public static function wpsp_include_functions() {
+		require_once( WPSP_INC_DIR .'core-functions.php' );
 	}
 
 	/**
@@ -133,7 +151,7 @@ class WPSP_Theme_Setup {
 	 * @since 1.0.0 
 	 *
 	 */
-	public static function admin_scripts( $hook ){
+	public static function wpsp_admin_scripts( $hook ){
 		if ( !in_array($hook, array('post.php','post-new.php')) )
 		return;
 		wp_enqueue_script( 'admin-scripts', get_template_directory_uri() . '/js/admin-scripts.js', array( 'jquery' ) );
@@ -159,154 +177,129 @@ class WPSP_Theme_Setup {
 		wp_enqueue_style( 'local-fonts-english', get_template_directory_uri() . '/fonts/custom-fonts.css' );
 		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/fonts/font-awesome/css/font-awesome.min.css' );
 	}
+
+	/**
+	 * Registers the theme sidebars (widget areas)
+	 *
+	 * @since 1.1.0
+	 */
+	public static function register_sidebars() {
+		// Heading element type
+		$sidebar_headings = wpsp_get_redux( 'sidebar_headings', 'div' );
+		$sidebar_headings = $sidebar_headings ? $sidebar_headings : 'div';
+		$footer_headings  = wpsp_get_redux( 'footer_headings', 'div' );
+		$footer_headings  = $footer_headings ? $footer_headings : 'div';
+
+		// Main Sidebar
+		register_sidebar( array(
+			'name'          => esc_html__( 'Main Sidebar', 'wpsp-blog-textdomain' ),
+			'id'            => 'sidebar',
+			'before_widget' => '<div class="sidebar-box %2$s clr">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
+			'after_title'   => '</'. $sidebar_headings .'>',
+		) );
+
+		// Pages Sidebar
+		if ( wpsp_get_redux( 'pages_custom_sidebar', true ) ) {
+			register_sidebar( array(
+				'name'          => esc_html__( 'Pages Sidebar', 'wpsp-blog-textdomain' ),
+				'id'            => 'pages_sidebar',
+				'before_widget' => '<div class="sidebar-box %2$s clr">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
+				'after_title'   => '</'. $sidebar_headings .'>',
+			) );
+		}
+
+		// Search Results Sidebar
+		if ( wpsp_get_redux( 'search_custom_sidebar', true ) ) {
+			register_sidebar( array(
+				'name'          => esc_html__( 'Search Results Sidebar', 'wpsp-blog-textdomain' ),
+				'id'            => 'search_sidebar',
+				'before_widget' => '<div class="sidebar-box %2$s clr">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
+				'after_title'   => '</'. $sidebar_headings .'>',
+			) );
+		}
+
+		// Check if footer widgets are enabled
+		$footer_widgets = wpsp_get_redux( 'footer_widgets', true );
+		$footer_widgets = apply_filters( 'wpex_register_footer_sidebars', $footer_widgets );
+
+		// Register footer widgets if enabled
+		if ( $footer_widgets ) {
+
+			// Footer widget columns
+			$footer_columns = wpsp_get_redux( 'footer_widgets_columns', '4' );
+			
+			// Footer 1
+			register_sidebar( array(
+				'name'          => esc_html__( 'Footer Column 1', 'wpsp-blog-textdomain' ),
+				'id'            => 'footer_one',
+				'before_widget' => '<div class="footer-widget %2$s clr">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<'. $footer_headings .' class="widget-title">',
+				'after_title'   => '</'. $footer_headings .'>',
+			) );
+			
+			// Footer 2
+			if ( $footer_columns > '1' ) {
+				register_sidebar( array(
+					'name'          => esc_html__( 'Footer Column 2', 'wpsp-blog-textdomain' ),
+					'id'            => 'footer_two',
+					'before_widget' => '<div class="footer-widget %2$s clr">',
+					'after_widget'  => '</div>',
+					'before_title'  => '<'. $footer_headings .' class="widget-title">',
+					'after_title'   => '</'. $footer_headings .'>'
+				) );
+			}
+			
+			// Footer 3
+			if ( $footer_columns > '2' ) {
+				register_sidebar( array(
+					'name'          => esc_html__( 'Footer Column 3', 'wpsp-blog-textdomain' ),
+					'id'            => 'footer_three',
+					'before_widget' => '<div class="footer-widget %2$s clr">',
+					'after_widget'  => '</div>',
+					'before_title'  => '<'. $footer_headings .' class="widget-title">',
+					'after_title'   => '</'. $footer_headings .'>',
+				) );
+			}
+			
+			// Footer 4
+			if ( $footer_columns > '3' ) {
+				register_sidebar( array(
+					'name'          => esc_html__( 'Footer Column 4', 'wpsp-blog-textdomain' ),
+					'id'            => 'footer_four',
+					'before_widget' => '<div class="footer-widget %2$s clr">',
+					'after_widget'  => '</div>',
+					'before_title'  => '<'. $footer_headings .' class="widget-title">',
+					'after_title'   => '</'. $footer_headings .'>',
+				) );
+			}
+
+			// Footer 5
+			if ( $footer_columns > '4' ) {
+				register_sidebar( array(
+					'name'          => esc_html__( 'Footer Column 5', 'wpsp-blog-textdomain' ),
+					'id'            => 'footer_five',
+					'before_widget' => '<div class="footer-widget %2$s clr">',
+					'after_widget'  => '</div>',
+					'before_title'  => '<'. $footer_headings .' class="widget-title">',
+					'after_title'   => '</'. $footer_headings .'>',
+				) );
+			}
+
+		}
+	}
+
 }
 $wpsp_theme_setup = new WPSP_Theme_Setup;
 
-
-
-
-
-
-if ( ! function_exists( 'wpspblog_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
-function wpspblog_setup() {
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on WPSP Blog, use a find and replace
-	 * to change 'wpspblog' to the name of your theme in all the template files.
-	 */
-	load_theme_textdomain( 'wpspblog', get_template_directory() . '/languages' );
-
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
-
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
-	add_theme_support( 'title-tag' );
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
-	add_theme_support( 'post-thumbnails' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'wpspblog' ),
-	) );
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support( 'html5', array(
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	) );
-
-	/*
-	 * Enable support for Post Formats.
-	 * See https://developer.wordpress.org/themes/functionality/post-formats/
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside',
-		'image',
-		'video',
-		'quote',
-		'link',
-	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'wpspblog_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
-}
-endif;
-add_action( 'after_setup_theme', 'wpspblog_setup' );
-
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function wpspblog_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'wpspblog_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'wpspblog_content_width', 0 );
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function wpspblog_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'wpspblog' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'wpspblog' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-}
-add_action( 'widgets_init', 'wpspblog_widgets_init' );
-
-/**
- * Enqueue scripts and styles.
- */
-function wpspblog_scripts() {
-	wp_enqueue_style( 'wpspblog-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'wpspblog-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-	wp_enqueue_script( 'wpspblog-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'wpspblog_scripts' );
-
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-require get_template_directory() . '/inc/jetpack.php';
