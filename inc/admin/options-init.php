@@ -105,18 +105,35 @@
      */
 
     $entry_meta_choices = array(
-        'date'       => esc_html__( 'Date', 'redux-framework-wpsp' ),
-        'author'     => esc_html__( 'Author', 'redux-framework-wpsp' ),
-        'categories' => esc_html__( 'Categories', 'redux-framework-wpsp' ),
-        'comments'   => esc_html__( 'Comments', 'redux-framework-wpsp' ),
+        'date'       => esc_html__( 'Date', 'wpsp-redux-framework' ),
+        'author'     => esc_html__( 'Author', 'wpsp-redux-framework' ),
+        'categories' => esc_html__( 'Categories', 'wpsp-redux-framework' ),
+        'comments'   => esc_html__( 'Comments', 'wpsp-redux-framework' ),
         );
 
     $sites_sharing = array( 
-        'twitter'       => esc_html__( 'Twitter', 'redux-framework-wpsp' ),
-        'facebook'      => esc_html__( 'Facebook', 'redux-framework-wpsp' ),
-        'google_plus'   => esc_html__( 'Google+', 'redux-framework-wpsp' ),
-        'pinterest'     => esc_html__( 'Pinterest', 'redux-framework-wpsp' ),
+        'twitter'       => esc_html__( 'Twitter', 'wpsp-redux-framework' ),
+        'facebook'      => esc_html__( 'Facebook', 'wpsp-redux-framework' ),
+        'google_plus'   => esc_html__( 'Google+', 'wpsp-redux-framework' ),
+        'pinterest'     => esc_html__( 'Pinterest', 'wpsp-redux-framework' ),
         );
+
+    $widget_tags = array(
+        'h2' => 'H2',
+        'h3' => 'H3',
+        'h4' => 'H4',
+        'h5' => 'H5',
+        'h6' => 'H6',
+        'div' => 'div',
+    );
+
+    $el_columns = array(
+        '1' => '1', 
+        '2' => '2', 
+        '3' => '3', 
+        '4' => '4', 
+        '5' => '5', 
+    );
 
     /*
      * ---> END OTHER VARIABLE
@@ -227,6 +244,175 @@
         )
     ) );
 
+    // Pages
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Pages', 'wpsp-redux-framework' ),
+        'id'               => 'pages-options',
+        'desc'             => __( '', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-file'
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Layout', 'wpsp-redux-framework' ),
+        'id'         => 'page-layout-tab',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'page-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Pages layout', 'wpsp-redux-framework' ),
+                'subtitle' => __( '', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
+                //Must provide key => value(array:title|img) pairs for radio options
+                'options'  => array(
+                    'col-1c' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'col-2cl' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'col-2cr' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'col-1c',
+            ),
+            array(
+                'id'       => 'is-pages-custom-sidebar',
+                'type'     => 'checkbox',
+                'title'    => __( 'Enable/Disable page sidebar', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Show page sidebar on/off', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-page-comments',
+                'type'     => 'checkbox',
+                'title'    => __( 'Enable/Disable comment on pages', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-page-featured-image',
+                'type'     => 'checkbox',
+                'title'    => __( 'Display Featured Images', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+        )
+    ) );
+
+    // Search
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Search', 'wpsp-redux-framework' ),
+        'id'               => 'search-options',
+        'desc'             => __( '', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-search'
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Layout', 'wpsp-redux-framework' ),
+        'id'         => 'search-layout-tab',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'search-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Search layout', 'wpsp-redux-framework' ),
+                'subtitle' => __( '', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
+                //Must provide key => value(array:title|img) pairs for radio options
+                'options'  => array(
+                    'col-1c' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'col-2cl' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'col-2cr' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'col-1c',
+            ),
+            array(
+                'id'       => 'search-posts-per-page',
+                'type'     => 'text',
+                'title'    => __( 'Posts Per Page', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => '10',
+            ),
+            array(
+                'id'       => 'is-search-custom-sidebar',
+                'type'     => 'checkbox',
+                'title'    => __( 'Enable/Disable search sidebar', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Show search sidebar on/off', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+        )
+    ) );
+
+    // Sidebar
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Sidebar', 'wpsp-redux-framework' ),
+        'id'               => 'sidebar-options',
+        'desc'             => __( '', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-website'
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Default', 'wpsp-redux-framework' ),
+        'id'         => 'default-sidebar',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'sidebar-headings',
+                'type'     => 'select',
+                'title'    => __( 'Sidebar Widget Title Headings', 'wpsp-redux-framework' ),
+                'options'  => $widget_tags,
+                'default'  => 'div'
+            ),
+        )
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Footer Widget', 'wpsp-redux-framework' ),
+        'id'         => 'footer-widget',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'is-footer-widgets',
+                'type'     => 'checkbox',
+                'title'    => __( 'Footer Widgets', 'wpsp-redux-framework' ),
+                'desc'     => __( 'If you disable this option we recommend you go to the Customizer Manager and disable the section as well so the next time you work with the Customizer it will load faster.', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'footer-headings',
+                'type'     => 'select',
+                'title'    => __( 'Footer Widget Title Headings', 'wpsp-redux-framework' ),
+                'options'  => $widget_tags,
+                'default'  => 'div'
+            ),
+            array(
+                'id'       => 'footer-widgets-columns',
+                'type'     => 'select',
+                'title'    => __( 'Columns', 'wpsp-redux-framework' ),
+                'options'  => $el_columns,
+                'default'  => '4',
+            ),
+        )
+    ) );
     /*
      * <--- END SECTIONS
      */

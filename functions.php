@@ -54,7 +54,7 @@ class WPSP_Theme_Setup {
 		add_action( 'wp_enqueue_scripts', array( $this, 'wpsp_theme_css') );
 
 		// register sidebar widget areas
-		//add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
+		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 	}
 
 	/**
@@ -91,6 +91,7 @@ class WPSP_Theme_Setup {
 	 * @since 1.0.0
 	 */
 	public static function wpsp_include_functions() {
+		require_once( WPSP_INC_DIR .'aq_resizer.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
 	}
 
@@ -185,9 +186,9 @@ class WPSP_Theme_Setup {
 	 */
 	public static function register_sidebars() {
 		// Heading element type
-		$sidebar_headings = wpsp_get_redux( 'sidebar_headings', 'div' );
+		$sidebar_headings = wpsp_get_redux( 'sidebar-headings', 'div' );
 		$sidebar_headings = $sidebar_headings ? $sidebar_headings : 'div';
-		$footer_headings  = wpsp_get_redux( 'footer_headings', 'div' );
+		$footer_headings  = wpsp_get_redux( 'footer-headings', 'div' );
 		$footer_headings  = $footer_headings ? $footer_headings : 'div';
 
 		// Main Sidebar
@@ -201,7 +202,7 @@ class WPSP_Theme_Setup {
 		) );
 
 		// Pages Sidebar
-		if ( wpsp_get_redux( 'pages_custom_sidebar', true ) ) {
+		if ( wpsp_get_redux( 'pages-custom-sidebar', true ) ) {
 			register_sidebar( array(
 				'name'          => esc_html__( 'Pages Sidebar', 'wpsp-blog-textdomain' ),
 				'id'            => 'pages_sidebar',
@@ -213,7 +214,7 @@ class WPSP_Theme_Setup {
 		}
 
 		// Search Results Sidebar
-		if ( wpsp_get_redux( 'search_custom_sidebar', true ) ) {
+		if ( wpsp_get_redux( 'is-search-custom-sidebar', true ) ) {
 			register_sidebar( array(
 				'name'          => esc_html__( 'Search Results Sidebar', 'wpsp-blog-textdomain' ),
 				'id'            => 'search_sidebar',
@@ -225,14 +226,14 @@ class WPSP_Theme_Setup {
 		}
 
 		// Check if footer widgets are enabled
-		$footer_widgets = wpsp_get_redux( 'footer_widgets', true );
-		$footer_widgets = apply_filters( 'wpex_register_footer_sidebars', $footer_widgets );
+		$footer_widgets = wpsp_get_redux( 'is-footer-widgets', true );
+		$footer_widgets = apply_filters( 'wpsp_register_footer_sidebars', $footer_widgets );
 
 		// Register footer widgets if enabled
 		if ( $footer_widgets ) {
 
 			// Footer widget columns
-			$footer_columns = wpsp_get_redux( 'footer_widgets_columns', '4' );
+			$footer_columns = wpsp_get_redux( 'footer-widgets-columns', '4' );
 			
 			// Footer 1
 			register_sidebar( array(
