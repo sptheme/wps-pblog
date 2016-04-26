@@ -34,6 +34,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Accessibility
 # Alignments
 # Clearings
+# Layout
 # Widgets
 # Content
 	## Posts and pages
@@ -799,6 +800,33 @@ a:active {
 .site-content:after,
 .site-footer:after {
 	clear: both;
+}
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@media only screen and (min-width: 992px) {
+	.container {
+		width: 960px;
+	}
+	.content-area {
+	    width: 65%;
+	    overflow: hidden;
+	}
+	.widget-area {
+	    width: 32%;
+	    margin-top: 0;
+	}
+	.col-2cr .content-area,
+	.col-2cl .widget-area { float: left; }
+	.col-2cr .widget-area,
+	.col-2cl .content-area { float: right; }
+
+	.col-1c .content-area,
+	.col-1c .widget-area { 
+		/*width: 750px; */
+		width: 100%;
+	}
 }
 
 /*--------------------------------------------------------------

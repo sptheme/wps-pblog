@@ -137,9 +137,9 @@ function wpsp_sidebar_primary() {
 	if ( is_single() && wpsp_get_redux('sidebar-single') ) $sidebar = wpsp_get_redux('sidebar-single');
 	if ( is_archive() && wpsp_get_redux('sidebar-archive') ) $sidebar = wpsp_get_redux('sidebar-archive');
 	if ( is_category() && wpsp_get_redux('sidebar-category') ) $sidebar = wpsp_get_redux('sidebar-category');
-	if ( is_search() && wpsp_get_redux('sidebar-search') ) $sidebar = $redux_wpsp['sidebar-search'];
-	if ( is_404() && wpsp_get_redux('sidebar-404') ) $sidebar = $redux_wpsp['sidebar-404'];
-	if ( is_page() && wpsp_get_redux('sidebar-page') ) $sidebar = $redux_wpsp['sidebar-page'];
+	if ( is_search() && wpsp_get_redux('sidebar-search') ) $sidebar = wpsp_get_redux('sidebar-search');
+	if ( is_404() && wpsp_get_redux('sidebar-404') ) $sidebar = wpsp_get_redux('sidebar-404');
+	if ( is_page() && wpsp_get_redux('sidebar-page') ) $sidebar = wpsp_get_redux('sidebar-page');
 
 	// Check for page/post specific sidebar
 	if ( is_page() || is_single() ) {
