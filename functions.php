@@ -44,6 +44,9 @@ class WPSP_Theme_Setup {
 		// Load Before classes and addons so we can make use of them
 		add_action( 'after_setup_theme', array( $this, 'wpsp_include_functions' ), 1 );
 
+		// Load all the theme addons - must run on this hook!!!
+		add_action( 'after_setup_theme', array( $this, 'wpsp_addons' ), 2 );
+
 		// Setup theme => add_theme_support, register_nav_menus, load_theme_textdomain, etc
 		// Must run on 10 priority or else child theme locale will be overritten
 		add_action( 'after_setup_theme', array( $this, 'theme_setup' ), 10 );
@@ -95,6 +98,15 @@ class WPSP_Theme_Setup {
 		require_once( WPSP_INC_DIR .'aq_resizer.php' );
 		require_once( WPSP_INC_DIR .'wpml.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
+	}
+
+	/**
+	 * Addon functions
+	 *
+	 * @since 1.0.0
+	 */
+	public static function wpsp_addons() {
+		require_once( WPSP_INC_DIR .'addon/widget-areas.php' );
 	}
 
 	/**
