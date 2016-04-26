@@ -102,6 +102,6 @@ $summary = wpsp_get_excerpt( array(
 				</li>
 
 			<?php } ?>
-	<?php $site_count++; endforeach; ?>
+	<?php endforeach; ?>
 	</ul>
 </div> <!-- .wpsp-social-share-wrap .clear -->

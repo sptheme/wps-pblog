@@ -13,6 +13,7 @@
 * @version 1.0.0
 *
 */
+
 class WPSP_Theme_Setup {
 	private $template_dir;
 
@@ -92,6 +93,7 @@ class WPSP_Theme_Setup {
 	 */
 	public static function wpsp_include_functions() {
 		require_once( WPSP_INC_DIR .'aq_resizer.php' );
+		require_once( WPSP_INC_DIR .'wpml.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
 	}
 
@@ -185,120 +187,11 @@ class WPSP_Theme_Setup {
 	 * @since 1.1.0
 	 */
 	public static function register_sidebars() {
-		// Heading element type
-		$sidebar_headings = wpsp_get_redux( 'sidebar-headings', 'div' );
-		$sidebar_headings = $sidebar_headings ? $sidebar_headings : 'div';
-		$footer_headings  = wpsp_get_redux( 'footer-headings', 'div' );
-		$footer_headings  = $footer_headings ? $footer_headings : 'div';
-
-		// Main Sidebar
-		register_sidebar( array(
-			'name'          => esc_html__( 'Main Sidebar', 'wpsp-blog-textdomain' ),
-			'id'            => 'sidebar',
-			'before_widget' => '<div class="sidebar-box %2$s clr">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
-			'after_title'   => '</'. $sidebar_headings .'>',
-		) );
-
-		// Pages Sidebar
-		if ( wpsp_get_redux( 'pages-custom-sidebar', true ) ) {
-			register_sidebar( array(
-				'name'          => esc_html__( 'Pages Sidebar', 'wpsp-blog-textdomain' ),
-				'id'            => 'pages_sidebar',
-				'before_widget' => '<div class="sidebar-box %2$s clr">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
-				'after_title'   => '</'. $sidebar_headings .'>',
-			) );
-		}
-
-		// Search Results Sidebar
-		if ( wpsp_get_redux( 'is-search-custom-sidebar', true ) ) {
-			register_sidebar( array(
-				'name'          => esc_html__( 'Search Results Sidebar', 'wpsp-blog-textdomain' ),
-				'id'            => 'search_sidebar',
-				'before_widget' => '<div class="sidebar-box %2$s clr">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
-				'after_title'   => '</'. $sidebar_headings .'>',
-			) );
-		}
-
-		// Check if footer widgets are enabled
-		$footer_widgets = wpsp_get_redux( 'is-footer-widgets', true );
-		$footer_widgets = apply_filters( 'wpsp_register_footer_sidebars', $footer_widgets );
-
-		// Register footer widgets if enabled
-		if ( $footer_widgets ) {
-
-			// Footer widget columns
-			$footer_columns = wpsp_get_redux( 'footer-widgets-columns', '4' );
-			
-			// Footer 1
-			register_sidebar( array(
-				'name'          => esc_html__( 'Footer Column 1', 'wpsp-blog-textdomain' ),
-				'id'            => 'footer_one',
-				'before_widget' => '<div class="footer-widget %2$s clr">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<'. $footer_headings .' class="widget-title">',
-				'after_title'   => '</'. $footer_headings .'>',
-			) );
-			
-			// Footer 2
-			if ( $footer_columns > '1' ) {
-				register_sidebar( array(
-					'name'          => esc_html__( 'Footer Column 2', 'wpsp-blog-textdomain' ),
-					'id'            => 'footer_two',
-					'before_widget' => '<div class="footer-widget %2$s clr">',
-					'after_widget'  => '</div>',
-					'before_title'  => '<'. $footer_headings .' class="widget-title">',
-					'after_title'   => '</'. $footer_headings .'>'
-				) );
-			}
-			
-			// Footer 3
-			if ( $footer_columns > '2' ) {
-				register_sidebar( array(
-					'name'          => esc_html__( 'Footer Column 3', 'wpsp-blog-textdomain' ),
-					'id'            => 'footer_three',
-					'before_widget' => '<div class="footer-widget %2$s clr">',
-					'after_widget'  => '</div>',
-					'before_title'  => '<'. $footer_headings .' class="widget-title">',
-					'after_title'   => '</'. $footer_headings .'>',
-				) );
-			}
-			
-			// Footer 4
-			if ( $footer_columns > '3' ) {
-				register_sidebar( array(
-					'name'          => esc_html__( 'Footer Column 4', 'wpsp-blog-textdomain' ),
-					'id'            => 'footer_four',
-					'before_widget' => '<div class="footer-widget %2$s clr">',
-					'after_widget'  => '</div>',
-					'before_title'  => '<'. $footer_headings .' class="widget-title">',
-					'after_title'   => '</'. $footer_headings .'>',
-				) );
-			}
-
-			// Footer 5
-			if ( $footer_columns > '4' ) {
-				register_sidebar( array(
-					'name'          => esc_html__( 'Footer Column 5', 'wpsp-blog-textdomain' ),
-					'id'            => 'footer_five',
-					'before_widget' => '<div class="footer-widget %2$s clr">',
-					'after_widget'  => '</div>',
-					'before_title'  => '<'. $footer_headings .' class="widget-title">',
-					'after_title'   => '</'. $footer_headings .'>',
-				) );
-			}
-
-		}
+		require_once( WPSP_INC_DIR .'widgets/widgets.php' );
 	}
 
 }
 $wpsp_theme_setup = new WPSP_Theme_Setup;
-
 
 /**
  * Custom template tags for this theme.

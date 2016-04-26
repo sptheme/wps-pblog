@@ -378,6 +378,57 @@ if ( is_admin() && apply_filters( 'wpsp_dashboard_thumbnails', true ) ) :
 	}
 endif;
 
+/*-------------------------------------------------------------------------------*/
+/* [ Social Share ]
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Returns social sharing template part
+ *
+ * @since 1.0.0
+ */
+function wpsp_social_share_sites() {
+    $sites = wpsp_get_redux( 'social-share-sites' );
+    $sites = apply_filters( 'wpsp_social_share_sites', $sites );
+    if ( $sites && ! is_array( $sites ) ) {
+        $sites  = explode( ',', $sites );
+    }
+    return $sites;
+}
+
+/**
+ * Returns correct social share position
+ *
+ * @since 1.0.0
+ */
+function wpsp_social_share_position() {
+    $position = wpsp_get_redux( 'social-share-position' );
+    $position = $position ? $position : 'horizontal';
+    return apply_filters( 'wpsp_social_share_position', $position );
+}
+
+/**
+ * Returns correct social share style
+ *
+ * @since 1.0.0
+ */
+function wpsp_social_share_style() {
+    $style = wpsp_get_redux( 'social-share-style' );
+    $style = $style ? $style : 'flat';
+    return apply_filters( 'wpsp_social_share_style', $style );
+}
+
+/**
+ * Returns the social share heading
+ *
+ * @since 1.0.0
+ */
+function wpsp_social_share_heading() {
+    $heading = wpsp_get_translated_theme_mod( 'social_share_heading' );
+    $heading = $heading ? $heading : esc_html__( 'Please Share This', 'wpsp-blog-text-textdomain' );
+    return apply_filters( 'wpsp_social_share_heading', $heading );
+}
+
 
 /*-------------------------------------------------------------------------------*/
 /* [ Image ]
@@ -663,16 +714,16 @@ endif;
 if ( ! function_exists('wpsp_image_crop_locations') ) :
 function wpsp_image_crop_locations() {
 	return array(
-		''              => esc_html__( 'Default', 'hfhcambodia' ),
-		'left-top'      => esc_html__( 'Top Left', 'hfhcambodia' ),
-		'right-top'     => esc_html__( 'Top Right', 'hfhcambodia' ),
-		'center-top'    => esc_html__( 'Top Center', 'hfhcambodia' ),
-		'left-center'   => esc_html__( 'Center Left', 'hfhcambodia' ),
-		'right-center'  => esc_html__( 'Center Right', 'hfhcambodia' ),
-		'center-center' => esc_html__( 'Center Center', 'hfhcambodia' ),
-		'left-bottom'   => esc_html__( 'Bottom Left', 'hfhcambodia' ),
-		'right-bottom'  => esc_html__( 'Bottom Right', 'hfhcambodia' ),
-		'center-bottom' => esc_html__( 'Bottom Center', 'hfhcambodia' ),
+		''              => esc_html__( 'Default', 'wpsp-blog-text-textdomain' ),
+		'left-top'      => esc_html__( 'Top Left', 'wpsp-blog-text-textdomain' ),
+		'right-top'     => esc_html__( 'Top Right', 'wpsp-blog-text-textdomain' ),
+		'center-top'    => esc_html__( 'Top Center', 'wpsp-blog-text-textdomain' ),
+		'left-center'   => esc_html__( 'Center Left', 'wpsp-blog-text-textdomain' ),
+		'right-center'  => esc_html__( 'Center Right', 'wpsp-blog-text-textdomain' ),
+		'center-center' => esc_html__( 'Center Center', 'wpsp-blog-text-textdomain' ),
+		'left-bottom'   => esc_html__( 'Bottom Left', 'wpsp-blog-text-textdomain' ),
+		'right-bottom'  => esc_html__( 'Bottom Right', 'wpsp-blog-text-textdomain' ),
+		'center-bottom' => esc_html__( 'Bottom Center', 'wpsp-blog-text-textdomain' ),
 	);
 }
 endif;

@@ -38,7 +38,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div><!-- .entry-content -->
 
 	<?php
-	// Get social sharing template part
 	if ( wpsp_get_redux('social-share-pages', true) ) {
 		get_template_part( 'partials/social', 'share' ); 
 	} ?>
