@@ -50,7 +50,7 @@
 				this.parent_area.on('click', 'a.wpsp-widget-area-delete-confirm', $.proxy( this.delete_widget_area, this));
 				//this.parent_area.on('click', '.addWidgetArea-button', $.proxy( this.add_widget_area, this));
 				$( "#addWidgetAreaForm" ).submit(function() {
-						$.proxy( this.add_widget_area, this)
+						$.proxy( this.add_widget_area, this);
 				});
 			},
 

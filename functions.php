@@ -85,7 +85,7 @@ class WPSP_Theme_Setup {
 
 		// INC path
 		define( 'WPSP_INC_DIR', WPSP_THEME_DIR.'/inc/' );
-		define( 'WPSP_INC_DIR_URL', WPSP_THEME_DIR.'/inc/');
+		define( 'WPSP_INC_DIR_URL', WPSP_THEME_URI.'/inc/');
 	}
 
 	/**
@@ -96,6 +96,7 @@ class WPSP_Theme_Setup {
 	 */
 	public static function wpsp_include_functions() {
 		require_once( WPSP_INC_DIR .'aq_resizer.php' );
+		require_once( WPSP_INC_DIR .'sanitize-data.php' );
 		require_once( WPSP_INC_DIR .'wpml.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
 	}
@@ -106,7 +107,7 @@ class WPSP_Theme_Setup {
 	 * @since 1.0.0
 	 */
 	public static function wpsp_addons() {
-		require_once( WPSP_INC_DIR .'addon/widget-areas.php' );
+		require_once( WPSP_INC_DIR .'addons/widget-areas.php' );
 	}
 
 	/**

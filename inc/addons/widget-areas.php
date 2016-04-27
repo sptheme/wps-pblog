@@ -211,7 +211,7 @@ if ( ! class_exists( 'WPSP_Custom_Sidebars' ) ) {
 			wp_enqueue_style( 'dashicons' );
 			wp_enqueue_script(
 				'wpsp-widget-areas',
-				WPSP_INC_DIR .'addons/assets/widget_areas.js', 
+				WPSP_INC_DIR_URL .'addons/assets/widget_areas.js', 
 				array('jquery'),
 				time(),
 				true
