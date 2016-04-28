@@ -809,3 +809,4 @@ function wpsp_image_crop_locations() {
 	);
 }
 endif;
+

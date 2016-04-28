@@ -127,12 +127,31 @@
         'div' => 'div',
     );
 
-    $el_columns = array(
+    $el_number = array(
         '1' => '1', 
         '2' => '2', 
         '3' => '3', 
         '4' => '4', 
         '5' => '5', 
+    );
+
+    $wpsp_overlay_styles_array = array(
+        ''                              => esc_html__( 'None', 'wpsp_admin' ),
+        'hover-button'                  => esc_html__( 'Hover Button', 'wpsp_admin' ),
+        'magnifying-hover'              => esc_html__( 'Magnifying Glass Hover', 'wpsp_admin' ),
+        'plus-hover'                    => esc_html__( 'Plus Icon Hover', 'wpsp_admin' ),
+        'plus-two-hover'                => esc_html__( 'Plus Icon #2 Hover', 'wpsp_admin' ),
+        'plus-three-hover'              => esc_html__( 'Plus Icon #3 Hover', 'wpsp_admin' ),
+        'title-bottom'                  => esc_html__( 'Title Bottom', 'wpsp_admin' ),
+        'title-bottom-see-through'      => esc_html__( 'Title Bottom See Through', 'wpsp_admin' ),
+        'title-excerpt-hover'           => esc_html__( 'Title + Excerpt Hover', 'wpsp_admin' ),
+        'title-category-hover'          => esc_html__( 'Title + Category Hover', 'wpsp_admin' ),
+        'title-category-visible'        => esc_html__( 'Title + Category Visible', 'wpsp_admin' ),
+        'title-date-hover'              => esc_html__( 'Title + Date Hover', 'wpsp_admin' ),
+        'title-date-visible'            => esc_html__( 'Title + Date Visible', 'wpsp_admin' ),
+        'slideup-title-white'           => esc_html__( 'Slide-Up Title White', 'wpsp_admin' ),
+        'slideup-title-black'           => esc_html__( 'Slide-Up Title Black', 'wpsp_admin' ),
+        'category-tag'                  => esc_html__( 'Category Tag', 'wpsp_admin' ),
     );
 
     /*
@@ -280,6 +299,123 @@
         )
     ) );
 
+    // Blog section
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Blog', 'wpsp-redux-framework' ),
+        'id'               => 'blog-options',
+        'desc'             => __( '', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-file-edit'
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Single', 'wpsp-redux-framework' ),
+        'id'         => 'blog-single-option',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'blog-single-header',
+                'type'     => 'select',
+                'title'    => __( 'Header Displays', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'custom_text' => 'Custom Text',
+                    'post_title' => 'Post title',
+                    'first_category' => 'First Category',
+                ),
+                'default'  => 'custom_text'
+            ),
+            array(
+                'id'       => 'is-featured-image-lightbox',
+                'type'     => 'checkbox',
+                'title'    => __( 'Featured image lightbox', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'Enable/disable featured image lightbox', 'redux-framework-wpsp' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-featured-image-caption',
+                'type'     => 'checkbox',
+                'title'    => __( 'Featured image caption', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'Enable/disable featured image caption', 'redux-framework-wpsp' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-featured-image-caption',
+                'type'     => 'checkbox',
+                'title'    => __( 'Featured image caption', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'Enable/disable featured image caption', 'redux-framework-wpsp' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-blog-next-prev',
+                'type'     => 'checkbox',
+                'title'    => __( 'Next & Previous Links', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'Enable/disable Next & Previous Post Links', 'redux-framework-wpsp' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-post-meta-sections',
+                'type'     => 'checkbox',
+                'title'    => __( 'Meta', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'checked meta filed to be display', 'redux-framework-wpsp' ),
+                'options'  => $entry_meta_choices
+            ),
+            array(
+                'id'       => 'is-related-blog-post',
+                'type'     => 'switch',
+                'title'    => __( 'Enable/disable related posts', 'redux-framework-wpsp' ),
+                'default'  => false,
+            ),
+            array(
+                'id'       => 'related-post-title',
+                'type'     => 'text',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Title', 'redux-framework-wpsp' ),
+                'default'  => __( 'Related Posts', 'redux-framework-wpsp' ),
+            ),
+            array(
+                'id'       => 'related-blog-post-count',
+                'type'     => 'select',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Count', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'set number of related post', 'redux-framework-wpsp' ),
+                'options'  => $el_number,
+                'default'  => '3'
+            ),
+            array(
+                'id'       => 'related-blog-post-columns',
+                'type'     => 'select',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Columns', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'set number of column to display related post', 'redux-framework-wpsp' ),
+                'options'  => $el_number,
+                'default'  => '3'
+            ),
+            array(
+                'id'       => 'blog-related-overlay',
+                'type'     => 'select',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Image Overlay', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'set overlay style for each posts', 'redux-framework-wpsp' ),
+                'options'  => $wpsp_overlay_styles_array,
+            ),
+            array(
+                'id'       => 'is-blog-related-excerpt',
+                'type'     => 'checkbox',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Excerpt', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'Show/hide post excerpt', 'redux-framework-wpsp' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-related-excerpt-length',
+                'type'     => 'text',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Excerpt Length', 'redux-framework-wpsp' ),
+                'default'  => '15'// 1 = on | 0 = off
+            ),
+        )
+    ) );
+
     // Search
     Redux::setSection( $opt_name, array(
         'title'            => __( 'Search', 'wpsp-redux-framework' ),
@@ -385,7 +521,7 @@
                 'id'       => 'footer-widgets-columns',
                 'type'     => 'select',
                 'title'    => __( 'Columns', 'wpsp-redux-framework' ),
-                'options'  => $el_columns,
+                'options'  => $el_number,
                 'default'  => '4',
             ),
         )

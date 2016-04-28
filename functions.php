@@ -30,13 +30,6 @@ class WPSP_Theme_Setup {
 		// define template directory
 		$this->template_dir = get_template_directory();
 
-		// Add redux framework as Theme Options
-		require_once( $this->template_dir . '/inc/admin/admin-init.php' );
-
-		// Included Metabox.io framework as meta boxes of theme core
-		require_once( $this->template_dir . '/inc/meta-box/meta-box.php' );
-		require_once( $this->template_dir . '/inc/meta-box/meta-config.php' );
-
 		// Define constant
 		add_action( 'after_setup_theme', array( $this , 'constants' ), 0 );
 
@@ -59,6 +52,13 @@ class WPSP_Theme_Setup {
 
 		// register sidebar widget areas
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
+
+		// Add redux framework as Theme Options
+		require_once( $this->template_dir . '/inc/admin/admin-init.php' );
+
+		// Included Metabox.io framework as meta boxes of theme core
+		require_once( $this->template_dir . '/inc/meta-box/meta-box.php' );
+		require_once( $this->template_dir . '/inc/meta-box/meta-config.php' );
 	}
 
 	/**
@@ -99,6 +99,7 @@ class WPSP_Theme_Setup {
 		require_once( WPSP_INC_DIR .'sanitize-data.php' );
 		require_once( WPSP_INC_DIR .'wpml.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
+		require_once( WPSP_INC_DIR .'overlay.php' );
 	}
 
 	/**

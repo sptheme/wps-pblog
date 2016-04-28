@@ -8,12 +8,43 @@
  * @package Habitat Cambodia
  */
 
+
+/**
+ * Returns single blog post blocks
+ *
+ * @since 2.0.0
+ * @return array
+ */
+if ( ! function_exists( 'wpsp_blog_single_meta_sections' ) ) :
+function wpsp_blog_single_meta_sections() {
+
+	// Default sections
+	$sections = array( 'date' => 1, 'author' => 1, 'categories' => 1, 'comments' => 1 );
+
+	// Get Sections from Customizer
+	$sections = wpsp_get_redux( 'blog-post-meta-sections', $sections );
+
+	// Apply filters for easy modification
+	$sections = apply_filters( 'wpsp_blog_single_meta_sections', $sections );
+
+	// Turn into array if string
+	if ( $sections && ! is_array( $sections ) ) {
+		$sections = explode( ',', $sections );
+	}
+
+	// Return sections
+	return $sections;
+
+}
+endif;
+
 /**
  * Returns single blog post blocks
  *
  * @since 1.0.0
  * @return array
  */
+if ( ! function_exists( 'wpsp_blog_single_layout_blocks' ) ) :
 function wpsp_blog_single_layout_blocks() {
 
 	// Get layout blocks
@@ -37,3 +68,4 @@ function wpsp_blog_single_layout_blocks() {
 	return $blocks;
 
 }
+endif;
