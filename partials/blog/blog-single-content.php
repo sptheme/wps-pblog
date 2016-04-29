@@ -2,9 +2,9 @@
 /**
  * Single blog post content
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.0.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -12,8 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } ?>
 
-<div class="entry clr"<?php wpex_schema_markup( 'entry_content' ); ?>>
+<div class="entry clear"<?php wpsp_schema_markup( 'entry_content' ); ?>>
 	<?php the_content(); ?>
 </div><!-- .entry -->
 
-<?php get_template_part( 'partials/link-pages' ); ?>
+<?php get_template_part( 'partials/next-prev' ); ?>

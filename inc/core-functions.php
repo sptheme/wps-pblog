@@ -517,13 +517,36 @@ function wpsp_social_share_heading() {
 /*-------------------------------------------------------------------------------*/
 
 /**
+ * Echo post thumbnail url
+ *
+ * @since 2.0.0
+ */
+if ( ! function_exists('wpsp_post_thumbnail_url') ) :
+function wpsp_post_thumbnail_url( $args = array() ) {
+	echo wpsp_get_post_thumbnail_url( $args );
+}
+endif;
+
+/**
+ * Return post thumbnail url
+ *
+ * @since 2.0.0
+ */
+if ( ! function_exists('wpsp_get_post_thumbnail_url') ) :
+function wpsp_get_post_thumbnail_url( $args = array() ) {
+	$args['return'] = 'url';
+	return wpsp_get_post_thumbnail( $args );
+}
+endif;
+
+/**
  * Outputs the img HTMl thubmails used in the Total VC modules
  *
  * @since 1.0.0
  */
 if ( ! function_exists('wpsp_post_thumbnail') ) :
 function wpsp_post_thumbnail( $args = array() ) {
-	echo wpsp_get_post_thumbnail_total( $args );
+	echo wpsp_get_post_thumbnail( $args );
 }
 endif;
 
@@ -532,8 +555,8 @@ endif;
  *
  * @since 1.0.0
  */
-if ( ! function_exists('wpsp_get_post_thumbnail_total') ) :
-function wpsp_get_post_thumbnail_total( $args = array() ) {
+if ( ! function_exists('wpsp_get_post_thumbnail') ) :
+function wpsp_get_post_thumbnail( $args = array() ) {
 
 	$attr       = array();
 
@@ -713,6 +736,20 @@ function wpsp_image_hover_classes( $style = '' ) {
 		$classes[] = $style;
 		return esc_attr( implode( ' ', $classes ) );
 	}
+}
+endif;
+
+
+
+/**
+ * Checks if a featured image has a caption
+ *
+ * @since 2.0.0
+ */
+if ( ! function_exists('wpsp_featured_image_caption') ) :
+function wpsp_featured_image_caption( $post_id = '' ) {
+	$post_id = $post_id ? $post_id : get_the_ID();
+	return get_post_field( 'post_excerpt', get_post_thumbnail_id( $post_id ) );
 }
 endif;
 

@@ -136,23 +136,47 @@
     );
 
     $wpsp_overlay_styles_array = array(
-        ''                              => esc_html__( 'None', 'wpsp_admin' ),
-        'hover-button'                  => esc_html__( 'Hover Button', 'wpsp_admin' ),
-        'magnifying-hover'              => esc_html__( 'Magnifying Glass Hover', 'wpsp_admin' ),
-        'plus-hover'                    => esc_html__( 'Plus Icon Hover', 'wpsp_admin' ),
-        'plus-two-hover'                => esc_html__( 'Plus Icon #2 Hover', 'wpsp_admin' ),
-        'plus-three-hover'              => esc_html__( 'Plus Icon #3 Hover', 'wpsp_admin' ),
-        'title-bottom'                  => esc_html__( 'Title Bottom', 'wpsp_admin' ),
-        'title-bottom-see-through'      => esc_html__( 'Title Bottom See Through', 'wpsp_admin' ),
-        'title-excerpt-hover'           => esc_html__( 'Title + Excerpt Hover', 'wpsp_admin' ),
-        'title-category-hover'          => esc_html__( 'Title + Category Hover', 'wpsp_admin' ),
-        'title-category-visible'        => esc_html__( 'Title + Category Visible', 'wpsp_admin' ),
-        'title-date-hover'              => esc_html__( 'Title + Date Hover', 'wpsp_admin' ),
-        'title-date-visible'            => esc_html__( 'Title + Date Visible', 'wpsp_admin' ),
-        'slideup-title-white'           => esc_html__( 'Slide-Up Title White', 'wpsp_admin' ),
-        'slideup-title-black'           => esc_html__( 'Slide-Up Title Black', 'wpsp_admin' ),
-        'category-tag'                  => esc_html__( 'Category Tag', 'wpsp_admin' ),
+        ''                              => esc_html__( 'None', 'wpsp-redux-framework' ),
+        'hover-button'                  => esc_html__( 'Hover Button', 'wpsp-redux-framework' ),
+        'magnifying-hover'              => esc_html__( 'Magnifying Glass Hover', 'wpsp-redux-framework' ),
+        'plus-hover'                    => esc_html__( 'Plus Icon Hover', 'wpsp-redux-framework' ),
+        'plus-two-hover'                => esc_html__( 'Plus Icon #2 Hover', 'wpsp-redux-framework' ),
+        'plus-three-hover'              => esc_html__( 'Plus Icon #3 Hover', 'wpsp-redux-framework' ),
+        'title-bottom'                  => esc_html__( 'Title Bottom', 'wpsp-redux-framework' ),
+        'title-bottom-see-through'      => esc_html__( 'Title Bottom See Through', 'wpsp-redux-framework' ),
+        'title-excerpt-hover'           => esc_html__( 'Title + Excerpt Hover', 'wpsp-redux-framework' ),
+        'title-category-hover'          => esc_html__( 'Title + Category Hover', 'wpsp-redux-framework' ),
+        'title-category-visible'        => esc_html__( 'Title + Category Visible', 'wpsp-redux-framework' ),
+        'title-date-hover'              => esc_html__( 'Title + Date Hover', 'wpsp-redux-framework' ),
+        'title-date-visible'            => esc_html__( 'Title + Date Visible', 'wpsp-redux-framework' ),
+        'slideup-title-white'           => esc_html__( 'Slide-Up Title White', 'wpsp-redux-framework' ),
+        'slideup-title-black'           => esc_html__( 'Slide-Up Title Black', 'wpsp-redux-framework' ),
+        'category-tag'                  => esc_html__( 'Category Tag', 'wpsp-redux-framework' ),
     );
+    
+    // Entry Blocks
+    $entry_blocks = apply_filters( 'wpsp_blog_entry_blocks', array(
+        'featured_media'  => esc_html__( 'Media', 'wpsp-redux-framework' ),
+        'title'           => esc_html__( 'Title', 'wpsp-redux-framework' ),
+        'meta'            => esc_html__( 'Meta', 'wpsp-redux-framework' ),
+        'excerpt_content' => esc_html__( 'Excerpt', 'wpsp-redux-framework' ),
+        'readmore'        => esc_html__( 'Read More', 'wpsp-redux-framework' ),
+        'social_share'    => esc_html__( 'Social Share', 'wpsp-redux-framework' ),
+    ) );
+
+    // Single Blocks
+    $single_blocks = apply_filters( 'wpsp_blog_single_blocks', array(
+        'featured_media' => esc_html__( 'Featured Media','wpsp-redux-framework' ),
+        'title' => esc_html__( 'Title', 'wpsp-redux-framework' ),
+        'meta' => esc_html__( 'Meta', 'wpsp-redux-framework' ),
+        'post_series' => esc_html__( 'Post Series','wpsp-redux-framework' ),
+        'the_content' => esc_html__( 'Content','wpsp-redux-framework' ),
+        'post_tags' => esc_html__( 'Post Tags','wpsp-redux-framework' ),
+        'social_share' => esc_html__( 'Social Share','wpsp-redux-framework' ),
+        'author_bio' => esc_html__( 'Author Bio','wpsp-redux-framework' ),
+        'related_posts' => esc_html__( 'Related Posts','wpsp-redux-framework' ),
+        'comments' => esc_html__( 'Comments','wpsp-redux-framework' ),
+    ) );
 
     /*
      * ---> END OTHER VARIABLE
@@ -327,57 +351,50 @@
             array(
                 'id'       => 'is-featured-image-lightbox',
                 'type'     => 'checkbox',
-                'title'    => __( 'Featured image lightbox', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'Enable/disable featured image lightbox', 'redux-framework-wpsp' ),
-                'default'  => '0'// 1 = on | 0 = off
+                'title'    => __( 'Featured image lightbox', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enable/disable featured image lightbox', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
             ),
             array(
-                'id'       => 'is-featured-image-caption',
+                'id'       => 'is-blog-thumbnail-caption',
                 'type'     => 'checkbox',
-                'title'    => __( 'Featured image caption', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'Enable/disable featured image caption', 'redux-framework-wpsp' ),
-                'default'  => '0'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'is-featured-image-caption',
-                'type'     => 'checkbox',
-                'title'    => __( 'Featured image caption', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'Enable/disable featured image caption', 'redux-framework-wpsp' ),
-                'default'  => '0'// 1 = on | 0 = off
+                'title'    => __( 'Featured image caption', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enable/disable featured image caption', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
             ),
             array(
                 'id'       => 'is-blog-next-prev',
                 'type'     => 'checkbox',
-                'title'    => __( 'Next & Previous Links', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'Enable/disable Next & Previous Post Links', 'redux-framework-wpsp' ),
+                'title'    => __( 'Next & Previous Links', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enable/disable Next & Previous Post Links', 'wpsp-redux-framework' ),
                 'default'  => '0'// 1 = on | 0 = off
             ),
             array(
                 'id'       => 'blog-post-meta-sections',
                 'type'     => 'checkbox',
-                'title'    => __( 'Meta', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'checked meta filed to be display', 'redux-framework-wpsp' ),
+                'title'    => __( 'Meta', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'checked meta filed to be display', 'wpsp-redux-framework' ),
                 'options'  => $entry_meta_choices
             ),
             array(
                 'id'       => 'is-related-blog-post',
                 'type'     => 'switch',
-                'title'    => __( 'Enable/disable related posts', 'redux-framework-wpsp' ),
+                'title'    => __( 'Enable/disable related posts', 'wpsp-redux-framework' ),
                 'default'  => false,
             ),
             array(
                 'id'       => 'related-post-title',
                 'type'     => 'text',
                 'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Title', 'redux-framework-wpsp' ),
-                'default'  => __( 'Related Posts', 'redux-framework-wpsp' ),
+                'title'    => __( 'Related Posts Title', 'wpsp-redux-framework' ),
+                'default'  => __( 'Related Posts', 'wpsp-redux-framework' ),
             ),
             array(
                 'id'       => 'related-blog-post-count',
                 'type'     => 'select',
                 'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Count', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'set number of related post', 'redux-framework-wpsp' ),
+                'title'    => __( 'Related Posts Count', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set number of related post', 'wpsp-redux-framework' ),
                 'options'  => $el_number,
                 'default'  => '3'
             ),
@@ -385,8 +402,8 @@
                 'id'       => 'related-blog-post-columns',
                 'type'     => 'select',
                 'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Columns', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'set number of column to display related post', 'redux-framework-wpsp' ),
+                'title'    => __( 'Related Posts Columns', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set number of column to display related post', 'wpsp-redux-framework' ),
                 'options'  => $el_number,
                 'default'  => '3'
             ),
@@ -394,24 +411,40 @@
                 'id'       => 'blog-related-overlay',
                 'type'     => 'select',
                 'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Image Overlay', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'set overlay style for each posts', 'redux-framework-wpsp' ),
+                'title'    => __( 'Related Posts Image Overlay', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set overlay style for each posts', 'wpsp-redux-framework' ),
                 'options'  => $wpsp_overlay_styles_array,
             ),
             array(
                 'id'       => 'is-blog-related-excerpt',
                 'type'     => 'checkbox',
                 'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Excerpt', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'Show/hide post excerpt', 'redux-framework-wpsp' ),
+                'title'    => __( 'Related Posts Excerpt', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Show/hide post excerpt', 'wpsp-redux-framework' ),
                 'default'  => '1'// 1 = on | 0 = off
             ),
             array(
                 'id'       => 'blog-related-excerpt-length',
                 'type'     => 'text',
                 'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Excerpt Length', 'redux-framework-wpsp' ),
+                'title'    => __( 'Related Posts Excerpt Length', 'wpsp-redux-framework' ),
                 'default'  => '15'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-featured-image',
+                'type'     => 'checkbox',
+                'title'    => __( 'Featured image', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enable/disable featured image', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'opt-sortable',
+                'type'     => 'sortable',
+                'mode'     => 'checkbox', // checkbox or text
+                'title'    => __( 'Single layout element', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Click and drag and drop elements to re-order them.', 'wpsp-redux-framework' ),
+                'label'    => true,
+                'options'  => $single_blocks,
             ),
         )
     ) );

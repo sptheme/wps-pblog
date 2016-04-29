@@ -10,7 +10,11 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-} ?>
+} 
+
+// Get single blog layout blocks
+$post_format       = get_post_format();
+$password_required = post_password_required(); ?>
 
 <article class="single-blog-article clear"<?php wpsp_schema_markup( 'blog_post' ); ?>>
 	<?php // Loop through post detail
@@ -23,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			get_template_part( 'partials/blog/media/blog-single', $post_format );
 
 		}
-		get_template_part( 'partials/blog/blog-single-series' );
+		//get_template_part( 'partials/blog/blog-single-series' );
 		get_template_part( 'partials/blog/blog-single-content' );
 		get_template_part( 'partials/blog/blog-single-tags' );
 		get_template_part( 'partials/social-share' );
