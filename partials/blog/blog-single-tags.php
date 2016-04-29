@@ -2,9 +2,9 @@
 /**
  * Single blog tags
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.0.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -13,4 +13,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Display tags
-the_tags( '<div class="post-tags clr">','','</div>' );
+the_tags( '<div class="post-tags clear">','','</div>' );

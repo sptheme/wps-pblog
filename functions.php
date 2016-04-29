@@ -30,6 +30,13 @@ class WPSP_Theme_Setup {
 		// define template directory
 		$this->template_dir = get_template_directory();
 
+		// Add redux framework as Theme Options
+		require_once( $this->template_dir . '/inc/admin/admin-init.php' );
+
+		// Included Metabox.io framework as meta boxes of theme core
+		require_once( $this->template_dir . '/inc/meta-box/meta-box.php' );
+		require_once( $this->template_dir . '/inc/meta-box/meta-config.php' );
+
 		// Define constant
 		add_action( 'after_setup_theme', array( $this , 'constants' ), 0 );
 
@@ -53,12 +60,15 @@ class WPSP_Theme_Setup {
 		// register sidebar widget areas
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 
-		// Add redux framework as Theme Options
-		require_once( $this->template_dir . '/inc/admin/admin-init.php' );
+		// Exclude categories from the blog page
+		add_filter( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
 
-		// Included Metabox.io framework as meta boxes of theme core
-		require_once( $this->template_dir . '/inc/meta-box/meta-box.php' );
-		require_once( $this->template_dir . '/inc/meta-box/meta-config.php' );
+		// Add new social profile fields to the user dashboard
+		add_filter( 'user_contactmethods', array( $this, 'add_user_social_fields' ) );
+
+		// Allow for the use of shortcodes in the WordPress excerpt
+		add_filter( 'the_excerpt', 'shortcode_unautop' );
+		add_filter( 'the_excerpt', 'do_shortcode' );
 	}
 
 	/**
@@ -202,6 +212,87 @@ class WPSP_Theme_Setup {
 	 */
 	public static function register_sidebars() {
 		require_once( WPSP_INC_DIR .'widgets/widgets.php' );
+	}
+
+	/**
+	 * This function runs before the main query.
+	 *
+	 * @since 1.0.0
+	 */
+	public static function pre_get_posts( $query ) {
+
+		// Lets not break stuff
+		if ( is_admin() || ! $query->is_main_query() ) {
+			return;
+		}
+
+		// Search pagination
+		if ( is_search() ) {
+			$query->set( 'posts_per_page', wpsp_get_redux( 'search-posts-per-page', '10' ) );
+			return;
+		}
+
+		// Exclude categories from the main blog
+		if ( ( is_home() || is_page_template( 'templates/blog.php' ) ) && $cats = wpsp_blog_exclude_categories() ) {
+			set_query_var( 'category__not_in', $cats );
+			return;
+		}
+
+		// Category pagination
+		$terms = get_terms( 'category' );
+		if ( ! empty( $terms ) ) {
+			foreach ( $terms as $term ) {
+				if ( is_category( $term->slug ) ) {
+					$term_id    = $term->term_id;
+					$term_data  = get_option( "category_$term_id" );
+					if ( $term_data ) {
+						if ( ! empty( $term_data['wpsp_term_posts_per_page'] ) ) {
+							$query->set( 'posts_per_page', $term_data['wpsp_term_posts_per_page'] );
+							return;
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * Add new user fields / user meta
+	 *
+	 * @since 1.0.0
+	 */
+	public static function add_user_social_fields( $contactmethods ) {
+
+		$branding = wpsp_get_theme_branding();
+		$branding = $branding ? $branding .' - ' : '';
+
+		if ( ! isset( $contactmethods['wpsp_twitter'] ) ) {
+			$contactmethods['wpsp_twitter'] = $branding .'Twitter';
+		}
+
+		if ( ! isset( $contactmethods['wpsp_facebook'] ) ) {
+			$contactmethods['wpsp_facebook'] = $branding .'Facebook';
+		}
+
+		if ( ! isset( $contactmethods['wpsp_googleplus'] ) ) {
+			$contactmethods['wpsp_googleplus'] = $branding .'Google+';
+		}
+
+		if ( ! isset( $contactmethods['wpsp_linkedin'] ) ) {
+			$contactmethods['wpsp_linkedin'] = $branding .'LinkedIn';
+		}
+
+		if ( ! isset( $contactmethods['wpsp_pinterest'] ) ) {
+			$contactmethods['wpsp_pinterest'] = $branding .'Pinterest';
+		}
+		
+		if ( ! isset( $contactmethods['wpsp_instagram'] ) ) {
+			$contactmethods['wpsp_instagram'] = $branding .'Instagram';
+		}
+
+		return $contactmethods;
+
 	}
 
 }

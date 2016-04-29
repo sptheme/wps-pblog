@@ -10,6 +10,37 @@
 
 
 /**
+ * Exclude categories from the blog
+ * This function runs on pre_get_posts
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists( 'wpsp_blog_exclude_categories' ) ) :
+	function wpsp_blog_exclude_categories( $deprecated = true ) {
+
+		// Don't run in these places
+		if ( is_admin()
+			|| is_search()
+			|| is_tag()
+			|| is_category()
+		) {
+			return;
+		}
+
+		// Get Cat id's to exclude
+		if ( $cats = wpsp_get_redux( 'blog-cats-exclude' ) ) {
+			if ( ! is_array( $cats ) ) {
+				$cats = explode( ',', $cats ); // Convert to array
+			}
+		}
+
+		// Return ID's
+		return $cats;
+		
+	}
+endif;
+
+/**
  * Displays the blog post thumbnail
  *
  * @since Total 1.0
@@ -157,7 +188,7 @@ function wpsp_get_post_type_cat_tax( $post_type = '' ) {
 	}
 
 	// Apply filters & return
-	return apply_filters( 'wpex_get_post_type_cat_tax', $tax );
+	return apply_filters( 'wpsp_get_post_type_cat_tax', $tax );
 
 }
 endif; 
@@ -236,6 +267,48 @@ function wpsp_has_term_description_above_loop( $return = false ) {
 
 	// Return
 	return $return;
+
+}
+endif;
+
+/*-------------------------------------------------------------------------------*/
+/* [ Authors ]
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Check if current user has social profiles defined.
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists( 'wpsp_author_has_social' ) ) :
+function wpsp_author_has_social() {
+
+	// Get global post object
+	global $post;
+
+	// Get post author
+	$post_author = ! empty( $post->post_author ) ? $post->post_author : '';
+
+	// Return if there isn't any post author
+	if ( ! $post_author ) {
+		return;
+	}
+
+	if ( get_the_author_meta( 'wpsp_twitter', $post_author ) ) {
+		return true;
+	} elseif ( get_the_author_meta( 'wpsp_facebook', $post_author ) ) {
+		return true;
+	} elseif ( get_the_author_meta( 'wpsp_googleplus', $post_author ) ) {
+		return true;
+	} elseif ( get_the_author_meta( 'wpsp_linkedin', $post_author ) ) {
+		return true;
+	} elseif ( get_the_author_meta( 'wpsp_pinterest', $post_author ) ) {
+		return true;
+	} elseif ( get_the_author_meta( 'wpsp_instagram', $post_author ) ) {
+		return true;
+	} else {
+		return false;
+	}
 
 }
 endif;

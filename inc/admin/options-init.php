@@ -331,6 +331,28 @@
         'customizer_width' => '400px',
         'icon'             => 'el el-file-edit'
     ) );
+    // blog > general
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'General', 'wpsp-redux-framework' ),
+        'id'         => 'blog-general-option',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'blog-page',
+                'type'     => 'select',
+                'data'     => 'pages',
+                'title'    => __( 'Main Page', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'blog-cats-exclude',
+                'type'     => 'text',
+                'title'    => __( 'Exclude Categories From Blog', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter the ID of categories to exclude from the blog template or homepage blog seperated by a comma (no spaces).', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );
+    // blog > single 
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Single', 'wpsp-redux-framework' ),
         'id'         => 'blog-single-option',
@@ -464,27 +486,14 @@
         //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
         'fields'     => array(
             array(
-                'id'       => 'search-layout',
-                'type'     => 'image_select',
-                'title'    => __( 'Search layout', 'wpsp-redux-framework' ),
-                'subtitle' => __( '', 'wpsp-redux-framework' ),
-                'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
-                //Must provide key => value(array:title|img) pairs for radio options
+                'id'       => 'search-style',
+                'type'     => 'select',
+                'title'    => __( 'Style', 'wpsp-redux-framework' ),
                 'options'  => array(
-                    'col-1c' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                    ),
-                    'col-2cl' => array(
-                        'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                    ),
-                    'col-2cr' => array(
-                        'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                    )
+                    'default' => 'Left Thumbnail',
+                    'blog' => 'Inherit From Blog',
                 ),
-                'default'  => 'col-1c',
+                'default'  => 'default'
             ),
             array(
                 'id'       => 'search-posts-per-page',

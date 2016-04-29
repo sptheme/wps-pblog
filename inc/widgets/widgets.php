@@ -8,11 +8,6 @@
  */
 
 
-/**
- * Add shortcode support to text widget
- */
-add_filter( 'widget_text', 'do_shortcode' );
-
 // Heading element type
 $sidebar_headings = wpsp_get_redux( 'sidebar-headings', 'div' );
 $sidebar_headings = $sidebar_headings ? $sidebar_headings : 'div';

@@ -10,6 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } 
 
+// Disabled if post is password protected or if disabled
+if ( post_password_required() ) {
+	return;
+}
+
 // Get sharing sites
 $sites = wpsp_social_share_sites();
 
