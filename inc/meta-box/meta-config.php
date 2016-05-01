@@ -47,10 +47,22 @@
 
 		'fields'		=> array(
 			array(
-				'name'  => __( 'Video URL', 'wpsp-meta-box' ), 
-				'id'    => $prefix . "post_video_embed",
-				'desc'  => __( 'Enter Video Embed URL from youtube, vimeo or dailymotion', 'wpsp-meta-box'),
+				'name'  => __( 'oEmbed URL', 'wpsp-meta-box' ), 
+				'id'    => $prefix . "post_self_hosted_media",
+				'desc'  => __( 'Enter a URL that is compatible with WPs built-in oEmbed feature. This setting is used for your video and audio post formats. <a href="http://codex.wordpress.org/Embeds" target="_blank">Learn More →</a>', 'wpsp-meta-box'),
 				'type'  => 'text',
+			),
+			array(
+				'name'  => __( 'Self Hosted', 'wpsp-meta-box' ), 
+				'id'    => $prefix . "post_self_hosted_media",
+				'desc'  => __( 'Insert your self hosted video or audio url here. <a href="http://make.wordpress.org/core/2013/04/08/audio-video-support-in-core/" target="_blank">Learn More →</a>', 'wpsp-meta-box'),
+				'type'  => 'file',
+			),
+			array(
+				'name'  => __( 'Embed Code', 'wpsp-meta-box' ), 
+				'id'    => $prefix . "post_video_embed",
+				'desc'  => __( 'Insert your embed/iframe code.', 'wpsp-meta-box'),
+				'type'  => 'oembed',
 			),
 		)
     );

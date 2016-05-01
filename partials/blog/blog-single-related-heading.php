@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Output heading
-wpex_heading( array(
-	'content'		=> wpex_blog_related_heading(),
+wpsp_heading( array(
+	'content'		=> wpsp_blog_related_heading(),
 	'tag'			=> 'div',
 	'classes'		=> array( 'related-posts-title' ),
 	'apply_filters'	=> 'blog_related',

@@ -27,12 +27,10 @@ $password_required = post_password_required(); ?>
 			get_template_part( 'partials/blog/media/blog-single', $post_format );
 
 		}
-		//get_template_part( 'partials/blog/blog-single-series' );
 		get_template_part( 'partials/blog/blog-single-content' );
 		get_template_part( 'partials/blog/blog-single-tags' );
 		get_template_part( 'partials/social-share' );
 		get_template_part( 'author-bio' );
 		get_template_part( 'partials/blog/blog-single-related' );
-		comments_template();
 	?>
 </article>

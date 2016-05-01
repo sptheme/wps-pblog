@@ -2,9 +2,9 @@
 /**
  * Single related posts
  *
- * @package Total WordPress Theme
- * @subpackage Partials
- * @version 3.0.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -13,23 +13,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Return if disabled
-if ( ! wpex_get_mod( 'blog_related', true ) ) {
+if ( ! wpsp_get_redux( 'is-related-blog-post', true ) ) {
 	return;
 }
 
 // Number of columns for entries
-$wpex_columns = apply_filters( 'wpex_related_blog_posts_columns', wpex_get_mod( 'blog_related_columns', '3' ) );
+$wpsp_columns = apply_filters( 'wpsp_related_blog_posts_columns', wpsp_get_redux( 'related-blog-post-columns', '3' ) );
 
 // Create an array of current category ID's
 $cats     = wp_get_post_terms( get_the_ID(), 'category' );
 $cats_ids = array();
-foreach( $cats as $wpex_related_cat ) {
-	$cats_ids[] = $wpex_related_cat->term_id;
+foreach( $cats as $wpsp_related_cat ) {
+	$cats_ids[] = $wpsp_related_cat->term_id;
 }
 
 // Query args
 $args = array(
-	'posts_per_page' => wpex_get_mod( 'blog_related_count', '3' ),
+	'posts_per_page' => wpsp_get_redux( 'related-blog-post-count', '3' ),
 	'orderby'        => 'rand',
 	'category__in'   => $cats_ids,
 	'post__not_in'   => array( get_the_ID() ),
@@ -44,32 +44,29 @@ $args = array(
 		),
 	),
 );
-$args = apply_filters( 'wpex_blog_post_related_query_args', $args );
+$args = apply_filters( 'wpsp_blog_post_related_query_args', $args );
 
 // Related query arguments
-$wpex_related_query = new wp_query( $args );
+$wpsp_related_query = new wp_query( $args );
 
 // If the custom query returns post display related posts section
-if ( $wpex_related_query->have_posts() ) :
+if ( $wpsp_related_query->have_posts() ) :
 
 	// Wrapper classes
-	$classes = 'related-posts clr';
-	if ( 'full-screen' == wpex_global_obj( 'post_layout' ) ) {
-		$classes .= ' container';
-	} ?>
+	$classes = 'related-posts clear'; ?>
 
 	<div class="<?php echo $classes; ?>">
 
 		<?php get_template_part( 'partials/blog/blog-single-related', 'heading' ); ?>
 
-		<div class="wpex-row clr">
-			<?php $wpex_count = 0; ?>
-			<?php foreach( $wpex_related_query->posts as $post ) : setup_postdata( $post ); ?>
-				<?php $wpex_count++; ?>
+		<div class="wpsp-row clear">
+			<?php $wpsp_count = 0; ?>
+			<?php foreach( $wpsp_related_query->posts as $post ) : setup_postdata( $post ); ?>
+				<?php $wpsp_count++; ?>
 				<?php include( locate_template( 'partials/blog/blog-single-related-entry.php' ) ); ?>
-				<?php if ( $wpex_columns == $wpex_count ) $wpex_count=0; ?>
+				<?php if ( $wpsp_columns == $wpsp_count ) $wpsp_count=0; ?>
 			<?php endforeach; ?>
-		</div><!-- .wpex-row -->
+		</div><!-- .wpsp-row -->
 
 	</div><!-- .related-posts -->
 

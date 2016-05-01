@@ -2,9 +2,9 @@
 /**
  * Blog single post related entry
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.0.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -13,29 +13,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Disable embeds
-$show_embeds = apply_filters( 'wpex_related_blog_posts_embeds', false );
+$show_embeds = apply_filters( 'wpsp_related_blog_posts_embeds', false );
 
 // Check if experts are enabled
-$has_excerpt = wpex_get_mod( 'blog_related_excerpt', true );
+$has_excerpt = wpsp_get_redux( 'is-blog-related-excerpt', true );
 
 // Get post format
 $format = get_post_format();
 
 // Get featured image
-$thumbnail = wpex_get_post_thumbnail( array(
+$thumbnail = wpsp_get_post_thumbnail( array(
 	'size' => 'blog_related',
 ) );
 
 // Add classes
-$classes	= array( 'related-post', 'clr', 'nr-col' );
-$classes[]	= wpex_grid_class( $wpex_columns );
-$classes[]	= 'col-'. $wpex_count; ?>
+$classes	= array( 'related-post', 'clear', 'nr-col' );
+$classes[]	= wpsp_grid_class( $wpsp_columns );
+$classes[]	= 'col-'. $wpsp_count; ?>
 
 <article <?php post_class( $classes ); ?>>
 
 	<?php
 	// Display post video
-	if ( $show_embeds && 'video' == $format && $video = wpex_get_post_video_html() ) : ?>
+	if ( $show_embeds && 'video' == $format && $video = wpsp_get_post_video_html() ) : ?>
 
 		<div class="related-post-video">
 			<?php echo $video; ?>
@@ -43,7 +43,7 @@ $classes[]	= 'col-'. $wpex_count; ?>
 
 	<?php
 	// Display post audio
-	elseif ( $show_embeds && 'audio' == $format && $audio = wpex_get_post_audio_html() ) : ?>
+	elseif ( $show_embeds && 'audio' == $format && $audio = wpsp_get_post_audio_html() ) : ?>
 
 		<div class="related-post-video">
 			<?php echo $audio; ?>
@@ -54,15 +54,15 @@ $classes[]	= 'col-'. $wpex_count; ?>
 	elseif ( $thumbnail ) :
 
 		// Overlay style
-		$overlay = wpex_get_mod( 'blog_related_overlay' ); ?>
+		$overlay = wpsp_get_redux( 'blog-related-overlay' ); ?>
 
-		<figure class="related-post-figure clr <?php echo wpex_overlay_classes( $overlay ); ?>">
+		<figure class="related-post-figure clear <?php echo wpsp_overlay_classes( $overlay ); ?>">
 
-			<a href="<?php the_permalink(); ?>" title="<?php wpex_esc_title(); ?>" rel="bookmark" class="related-post-thumb<?php wpex_entry_image_animation_classes(); ?>">
+			<a href="<?php the_permalink(); ?>" title="<?php wpsp_esc_title(); ?>" rel="bookmark" class="related-post-thumb<?php wpsp_entry_image_animation_classes(); ?>">
 				<?php echo $thumbnail; ?>
-				<?php wpex_overlay( 'inside_link', $overlay ); ?>
+				<?php wpsp_overlay( 'inside_link', $overlay ); ?>
 			</a><!-- .related-post-thumb -->
-			<?php wpex_overlay( 'outside_link', $overlay ); ?>
+			<?php wpsp_overlay( 'outside_link', $overlay ); ?>
 		</figure>
 
 	<?php endif; ?>
@@ -71,13 +71,13 @@ $classes[]	= 'col-'. $wpex_count; ?>
 	// Display post excerpt
 	if ( $has_excerpt ) : ?>
 
-		<div class="related-post-content equal-height-content clr">
+		<div class="related-post-content equal-height-content clear">
 			<h4 class="related-post-title">
-				<a href="<?php wpex_permalink(); ?>" title="<?php wpex_esc_title(); ?>" rel="bookmark"><?php the_title(); ?></a>
+				<a href="<?php wpsp_permalink(); ?>" title="<?php wpsp_esc_title(); ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h4><!-- .related-post-title -->
-			<div class="related-post-excerpt clr">
-				<?php wpex_excerpt( array(
-					'length' => wpex_get_mod( 'blog_related_excerpt_length', '15' ),
+			<div class="related-post-excerpt clear">
+				<?php wpsp_excerpt( array(
+					'length' => wpsp_get_redux( 'blog-related-excerpt-length', '15' ),
 				) ); ?>
 			</div><!-- related-post-excerpt -->
 		</div><!-- .related-post-content -->

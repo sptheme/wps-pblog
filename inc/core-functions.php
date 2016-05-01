@@ -127,18 +127,6 @@ function wpsp_get_esc_title() {
 endif;
 
 /**
- * Returns the correct classname for any specific column grid
- *
- * @since 1.0.0
- */
-if ( ! function_exists('wpsp_grid_class') ) :
-function wpsp_grid_class( $col = '4' ) {
-	return esc_attr( apply_filters( 'wpsp_grid_class', 'span_1_of_'. $col ) );
-}
-endif;
-
-
-/**
  * Get or generate excerpts
  *
  * @since 1.0.0
@@ -322,6 +310,67 @@ function wpsp_custom_excerpt_length( $length ) {
 	return '40';
 }
 add_filter( 'excerpt_length', 'wpsp_custom_excerpt_length', 999 );
+
+/**
+ * Returns the correct classname for any specific column grid
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_grid_class') ) :
+function wpsp_grid_class( $col = '4' ) {
+	return esc_attr( apply_filters( 'wpsp_grid_class', 'span_1_of_'. $col ) );
+}
+endif;
+
+/**
+ * Outputs a theme heading
+ * 
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_heading') ) :
+function wpsp_heading( $args = array() ) {
+
+	// Defaults
+	$defaults = array(
+		'apply_filters' => '',
+		'content'       => '',
+		'tag'           => 'h2',
+		'classes'       => array(),
+	);
+
+	// Add filters if defined
+	if ( ! empty( $args['apply_filters'] ) ) {
+		$args = apply_filters( 'wpsp_heading_'. $args['apply_filters'], $args );
+	}
+
+	// Parse args
+	wp_parse_args( $args, $defaults );
+
+	// Extract args
+	extract( $args );
+
+	// Return if text is empty
+	if ( ! $content ) {
+		return;
+	}
+
+	// Get classes
+	$add_classes = $classes;
+	$classes     = array( 'theme-heading' );
+	if ( $add_classes && is_array( $add_classes ) ) {
+		$classes = array_merge( $classes, $add_classes );
+	}
+
+	// Turn classes into space seperated string
+	$classes = implode( ' ', $classes ); ?>
+
+	<<?php echo esc_attr( $tag ); ?> class="<?php echo esc_attr( $classes ); ?>">
+		<span class="text"><?php echo $content; ?></span>
+	</<?php echo esc_attr( $tag ); ?>>
+
+<?php
+}
+endif;
 
 /**
  * Prevent Page Scroll When Clicking the More Link
@@ -519,7 +568,7 @@ function wpsp_social_share_heading() {
 /**
  * Echo post thumbnail url
  *
- * @since 2.0.0
+ * @since 1.0.0
  */
 if ( ! function_exists('wpsp_post_thumbnail_url') ) :
 function wpsp_post_thumbnail_url( $args = array() ) {
@@ -530,7 +579,7 @@ endif;
 /**
  * Return post thumbnail url
  *
- * @since 2.0.0
+ * @since 1.0.0
  */
 if ( ! function_exists('wpsp_get_post_thumbnail_url') ) :
 function wpsp_get_post_thumbnail_url( $args = array() ) {
@@ -744,7 +793,7 @@ endif;
 /**
  * Checks if a featured image has a caption
  *
- * @since 2.0.0
+ * @since 1.0.0
  */
 if ( ! function_exists('wpsp_featured_image_caption') ) :
 function wpsp_featured_image_caption( $post_id = '' ) {
@@ -756,7 +805,7 @@ endif;
 /**
  * Returns thumbnail sizes
  *
- * @since 2.0.0
+ * @since 1.0.0
  */
 if ( ! function_exists('wpsp_get_thumbnail_sizes') ) :
 function wpsp_get_thumbnail_sizes( $size = '' ) {
@@ -847,3 +896,184 @@ function wpsp_image_crop_locations() {
 }
 endif;
 
+/*-------------------------------------------------------------------------------*/
+/* [ Videos ]
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Adds the sp-video class to an iframe
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_add_sp_video_to_oembed') ) :
+function wpsp_add_sp_video_to_oembed( $oembed ) {
+	return str_replace( 'iframe', 'iframe class="sp-video"', $oembed );
+}
+endif;
+
+/**
+ * Echo post video
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_post_video') ) :
+function wpsp_post_video( $post_id ) {
+	echo wpsp_get_post_video( $post_id );
+}
+endif;
+
+/**
+ * Returns post video
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_get_post_video') ) :
+function wpsp_get_post_video( $post_id = '' ) {
+
+	// Define video variable
+	$video = '';
+
+	// Get correct ID
+	$post_id = $post_id ? $post_id : get_the_ID();
+
+	// Embed
+	if ( $meta = get_post_meta( $post_id, 'wpsp_post_video_embed', true ) ) {
+		$video = $meta;
+	}
+
+	// Check for self-hosted first
+	elseif ( $meta = get_post_meta( $post_id, 'wpsp_post_self_hosted_media', true ) ) {
+		$video = $meta;
+	}
+
+	// Check for post oembed
+	elseif ( $meta = get_post_meta( $post_id, 'wpsp_post_oembed', true ) ) {
+		$video = $meta;
+	}
+
+
+	// Apply filters & return
+	return apply_filters( 'wpsp_get_post_video', $video );
+
+}
+endif;
+
+/**
+ * Echo post video HTML
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_post_video_html') ) :
+function wpsp_post_video_html( $video = '' ) {
+	echo wpsp_get_post_video_html( $video );
+}
+endif;
+
+/**
+ * Returns post video HTML
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_get_post_video_html') ) :
+function wpsp_get_post_video_html( $video = '' ) {
+
+	// Get video
+	$video = $video ? $video : wpsp_get_post_video();
+
+	// Return if video is empty
+	if ( empty( $video ) ) {
+		return;
+	}
+
+	// Check post format for standard post type
+	if ( 'post' == get_post_type() && 'video' != get_post_format() ) {
+		return;
+	}
+
+	// Get oembed code and return
+	if ( ! is_wp_error( $oembed = wp_oembed_get( $video ) ) && $oembed ) {
+		return '<div class="responsive-video-wrap">'. $oembed .'</div>';
+	}
+
+	// Display using apply_filters if it's self-hosted
+	else {
+
+		$video = apply_filters( 'the_content', $video );
+
+		// Add responsive video wrap for youtube/vimeo embeds
+		if ( strpos( $video, 'youtube' ) || strpos( $video, 'vimeo' ) ) {
+			return '<div class="responsive-video-wrap">'. $video .'</div>';
+		}
+		
+		// Else return without responsive wrap
+		else {
+			return $video;
+		}
+
+	}
+
+}
+endif;
+
+/*-------------------------------------------------------------------------------*/
+/* [ Audio ]
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Returns post audio
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_get_post_audio') ) :
+function wpsp_get_post_audio( $id = '' ) {
+
+	// Define video variable
+	$audio = '';
+
+	// Get correct ID
+	$id = $id ? $id : get_the_ID();
+
+	// Check for self-hosted first
+	if ( $self_hosted = get_post_meta( $id, 'wpsp_post_self_hosted_media', true ) ) {
+		$audio = $self_hosted;
+	}
+
+	// Check for post oembed
+	elseif ( $post_oembed = get_post_meta( $id, 'wpsp_post_oembed', true ) ) {
+		$audio = $post_oembed;
+	}
+
+	// Apply filters & return
+	return apply_filters( 'wpsp_get_post_audio', $audio );
+
+}
+endif;
+
+/**
+ * Returns post audio
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_get_post_audio_html') ) :
+function wpsp_get_post_audio_html( $audio = '' ) {
+
+	// Get video
+	$audio = $audio ? $audio : wpsp_get_post_audio();
+
+	// Return if video is empty
+	if ( empty( $audio ) ) {
+		return;
+	}
+
+	// Get oembed code and return
+	if ( ! is_wp_error( $oembed = wp_oembed_get( $audio ) ) && $oembed ) {
+		return '<div class="responsive-audio-wrap">'. $oembed .'</div>';
+	}
+
+	// Display using apply_filters if it's self-hosted
+	else {
+		return apply_filters( 'the_content', $audio );
+	}
+
+}
+endif;

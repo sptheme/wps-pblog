@@ -43,7 +43,7 @@ endif;
 /**
  * Displays the blog post thumbnail
  *
- * @since Total 1.0
+ * @since 1.0.0
  */
 if ( ! function_exists( 'wpsp_blog_post_thumbnail' ) ) :
 function wpsp_blog_post_thumbnail( $args = '' ) {
@@ -118,6 +118,19 @@ function wpsp_blog_single_meta_sections() {
 	// Return sections
 	return $sections;
 
+}
+endif;
+
+/**
+ * Gets correct heading for the related blog items
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists( 'wpsp_blog_related_heading' ) ) :
+function wpsp_blog_related_heading() {
+	$heading = wpsp_get_translated_theme_mod( 'blog_related_title' );
+	$heading = $heading ? $heading : esc_html__( 'Related Posts', 'wpsp-blog-textdomain' );
+	return $heading;
 }
 endif;
 

@@ -450,6 +450,10 @@
                 'type'     => 'text',
                 'required' => array( 'is-related-blog-post', '=', '1' ),
                 'title'    => __( 'Related Posts Excerpt Length', 'wpsp-redux-framework' ),
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
                 'default'  => '15'// 1 = on | 0 = off
             ),
             array(
