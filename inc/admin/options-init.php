@@ -399,6 +399,21 @@
                 'options'  => $entry_meta_choices
             ),
             array(
+                'id'       => 'post-gallery-format-cols',
+                'type'     => 'select',
+                'title'    => __( 'Post gallery columns', 'redux-framework-wpsp' ),
+                'subtitle' => __( 'set number of column to display photo', 'redux-framework-wpsp' ),
+                'options'  => $el_number,
+                'default'  => '3'
+            ),
+            array(
+                'id'       => 'media-gallery-overlay',
+                'type'     => 'select',
+                'title'    => __( 'Posts gallery overlay', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set overlay style for each posts', 'wpsp-redux-framework' ),
+                'options'  => $wpsp_overlay_styles_array,
+            ),
+            array(
                 'id'       => 'is-related-blog-post',
                 'type'     => 'switch',
                 'title'    => __( 'Enable/disable related posts', 'wpsp-redux-framework' ),
