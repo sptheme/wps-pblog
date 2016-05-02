@@ -401,8 +401,8 @@
             array(
                 'id'       => 'post-gallery-format-cols',
                 'type'     => 'select',
-                'title'    => __( 'Post gallery columns', 'redux-framework-wpsp' ),
-                'subtitle' => __( 'set number of column to display photo', 'redux-framework-wpsp' ),
+                'title'    => __( 'Post gallery columns', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set number of column to display photo', 'wpsp-redux-framework' ),
                 'options'  => $el_number,
                 'default'  => '3'
             ),
@@ -465,6 +465,7 @@
                 'type'     => 'text',
                 'required' => array( 'is-related-blog-post', '=', '1' ),
                 'title'    => __( 'Related Posts Excerpt Length', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
                 'preg'     => array(
                     'pattern'     => '/[^0-9]/s',
                     'replacement' => 'Allow only number'
@@ -479,7 +480,7 @@
                 'default'  => '1'// 1 = on | 0 = off
             ),
             array(
-                'id'       => 'opt-sortable',
+                'id'       => 'blog-single-block',
                 'type'     => 'sortable',
                 'mode'     => 'checkbox', // checkbox or text
                 'title'    => __( 'Single layout element', 'wpsp-redux-framework' ),
@@ -489,7 +490,111 @@
             ),
         )
     ) );
-
+    // Blog > Archive
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Archive', 'wpsp-redux-framework' ),
+        'id'         => 'blog-archive-option',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'blog-entry-style',
+                'type'     => 'select',
+                'title'    => __( 'Blog entry style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    'large-image-entry-style' => esc_html__( 'Large Image','wpsp-redux-framework' ),
+                    'thumbnail-entry-style' => esc_html__( 'Left Thumbnail','wpsp-redux-framework' ),
+                    'grid-entry-style' => esc_html__( 'Grid','wpsp-redux-framework' ),
+                ),
+                'default'  => 'large-image-entry-style'
+            ),
+            array(
+                'id'       => 'blog-pagination-style',
+                'type'     => 'select',
+                'title'    => __( 'Pagination Style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    'standard' => esc_html__( 'Standard','wpsp-redux-framework' ),
+                    'infinite_scroll' => esc_html__( 'Infinite Scroll','wpsp-redux-framework' ),
+                    'next_prev' => esc_html__( 'Next/Prev','wpsp-redux-framework' ),
+                ),
+            ),
+            array(
+                'id'       => 'is-blog-entry-image-lightbox',
+                'type'     => 'checkbox',
+                'title'    => __( 'Image Lightbox', 'wpsp-redux-framework' ),
+                'default'  => 0,
+            ),
+            array(
+                'id'       => 'blog-entry-overlay',
+                'type'     => 'select',
+                'title'    => __( 'Overlay Style', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set overlay style for each entry post thumbnails', 'wpsp-redux-framework' ),
+                'options'  => $wpsp_overlay_styles_array,
+            ),
+            array(
+                'id'       => 'is-auto-excerpt',
+                'type'     => 'switch',
+                'title'    => __( 'Auto Excerpts', 'wpsp-redux-framework' ),
+                'default'  => true,
+            ),
+            array(
+                'id'       => 'blog-excerpt-length',
+                'type'     => 'text',
+                'required' => array( 'is-auto-excerpt', '=', '1' ),
+                'title'    => __( 'Related Posts Excerpt Length', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => '40'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-entry-readmore-text',
+                'type'     => 'text',
+                'required' => array( 'is-auto-excerpt', '=', '1' ),
+                'title'    => __( 'Read More Button Text', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^a-zA-Z_ -]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => 'Read More'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-entry-meta-sections',
+                'type'     => 'checkbox',
+                'title'    => __( 'Entry Meta', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'checked meta filed to be display', 'wpsp-redux-framework' ),
+                'options'  => $entry_meta_choices
+            ),
+            array(
+                'id'       => 'blog-entry-video-output',
+                'type'     => 'checkbox',
+                'title'    => __( 'Display Featured Videos?', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Show/hide featured video', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-entry-author-avatar',
+                'type'     => 'checkbox',
+                'title'    => __( 'Author Avatar', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Show/hide Author Avatar', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-entry-block',
+                'type'     => 'sortable',
+                'mode'     => 'checkbox', // checkbox or text
+                'title'    => __( 'Entry Layout Elements', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Click and drag and drop elements to re-order them.', 'wpsp-redux-framework' ),
+                'label'    => true,
+                'options'  => $entry_blocks,
+            ),
+        )
+    ) );
     // Search
     Redux::setSection( $opt_name, array(
         'title'            => __( 'Search', 'wpsp-redux-framework' ),
