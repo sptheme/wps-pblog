@@ -2,9 +2,9 @@
 /**
  * Blog entry layout
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.0.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -13,13 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Should we check for the more tag?
-$check_more_tag = apply_filters( 'wpex_check_more_tag', true ); ?>
+$check_more_tag = apply_filters( 'wpsp_check_more_tag', true ); ?>
 
-<div class="blog-entry-excerpt wpex-clr">
+<div class="blog-entry-excerpt clear">
 
     <?php
     // Display excerpt if auto excerpts are enabled in the admin
-    if ( wpex_get_mod( 'blog_exceprt', true ) ) :
+    if ( wpsp_get_redux( 'blog_exceprt', true ) ) :
 
         // Check if the post tag is using the "more" tag
         if ( $check_more_tag && strpos( get_the_content(), 'more-link' ) ) :
@@ -31,8 +31,8 @@ $check_more_tag = apply_filters( 'wpex_check_more_tag', true ); ?>
         else :
 
             // Display custom excerpt
-            wpex_excerpt( array(
-                'length' => wpex_excerpt_length(),
+            wpsp_excerpt( array(
+                'length' => wpsp_excerpt_length(),
             ) );
 
         endif;

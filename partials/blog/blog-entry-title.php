@@ -2,9 +2,9 @@
 /**
  * Blog entry avatar
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.0.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -12,11 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } ?>
 
-<header class="blog-entry-header wpex-clr">
+<header class="blog-entry-header clear">
 	<h2 class="blog-entry-title entry-title">
-		<a href="<?php wpex_permalink(); ?>" title="<?php wpex_esc_title(); ?>" rel="bookmark"><?php the_title(); ?></a>
+		<a href="<?php wpsp_permalink(); ?>" title="<?php wpsp_esc_title(); ?>" rel="bookmark"><?php the_title(); ?></a>
 	</h2><!-- .blog-entry-title -->
-	<?php if ( wpex_get_mod( 'blog_entry_author_avatar' ) ) : ?>
+	<?php if ( wpsp_get_redux( 'blog-entry-author-avatar' ) ) : ?>
 		<?php get_template_part( 'partials/blog/blog-entry-avatar' ); ?>
 	<?php endif; ?>
 </header><!-- .blog-entry-header -->

@@ -1181,3 +1181,47 @@ function wpsp_get_post_audio_html( $audio = '' ) {
 
 }
 endif;
+
+/*-------------------------------------------------------------------------------*/
+/* [ Button ]
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Returns correct theme button classes based on args
+ *
+ * @since 1.0.0
+ */
+function wpsp_get_button_classes( $style = '', $color = '', $size = '', $align = '' ) {
+
+	// Extract if style is an array of arguments
+	if ( is_array( $style ) ) {
+		extract( $style );
+	}
+
+	// Main classes
+	if ( 'plain-text' == $style ) {
+		$classes = 'theme-txt-link';
+	} elseif ( $style ) {
+		$classes = 'theme-button '. $style;
+	} else {
+		$classes = 'theme-button';
+	}
+
+	// Color
+	if ( $color ) {
+		$classes .= ' '. $color;
+	}
+
+	// Size
+	if ( $size ) {
+		$classes .= ' '. $size;
+	}
+
+	// Align
+	if ( $align ) {
+		$classes .= ' align-'. $align;
+	}
+
+	// Apply filters and return classes
+	return apply_filters( 'wpsp_get_theme_button_classes', $classes, $style, $color, $size, $align );
+}

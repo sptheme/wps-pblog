@@ -2,9 +2,9 @@
 /**
  * Blog entry avatar
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.0.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -12,10 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( $tags = wpex_get_category_tags() ) : ?>
+if ( $tags = wpsp_get_category_tags() ) : ?>
 
-	<div class="entry-media-term-tags clr">
-		<?php echo wpex_get_category_tags(); ?>
+	<div class="entry-media-term-tags clear">
+		<?php echo wpsp_get_category_tags(); ?>
 	</div><!-- .entry-media-term-tags -->
 
 <?php endif; ?>

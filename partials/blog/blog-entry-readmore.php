@@ -2,9 +2,9 @@
 /**
  * Blog entry layout
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.3.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -14,18 +14,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Vars
 $format = get_post_format();
-$text   = wpex_get_translated_theme_mod( 'blog_entry_readmore_text' );
-$text   = $text ? $text : esc_html__( 'Read More', 'total' );
+$text   = wpsp_get_translated_theme_mod( 'blog_entry_readmore_text' );
+$text   = $text ? $text : esc_html__( 'Read More', 'wpsp-blog-textdomain' );
 
 // Apply filters for child theming
-$text = apply_filters( 'wpex_post_readmore_link_text', $text );
+$text = apply_filters( 'wpsp_post_readmore_link_text', $text );
 
 // Button classes
-$button_args = apply_filters( 'wpex_blog_entry_button_args', array(
+$button_args = apply_filters( 'wpsp_blog_entry_button_args', array(
 	'style' => '',
 	'color' => '',
 ) ); ?>
 
-<div class="blog-entry-readmore clr">
-	<a href="<?php the_permalink(); ?>" class="<?php echo wpex_get_button_classes( $button_args ); ?>" title="<?php echo $text ?>"><?php echo $text ?><span class="readmore-rarr hidden">&rarr;</span></a>
+<div class="blog-entry-readmore clear">
+	<a href="<?php the_permalink(); ?>" class="<?php echo wpsp_get_button_classes( $button_args ); ?>" title="<?php echo $text ?>"><?php echo $text ?><span class="readmore-rarr hidden">&rarr;</span></a>
 </div><!-- .blog-entry-readmore -->
