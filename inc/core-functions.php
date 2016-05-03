@@ -272,7 +272,7 @@ if ( ! function_exists('wpsp_excerpt_length') ) :
 function wpsp_excerpt_length() {
 
 	// Theme panel length setting
-	$length = wpsp_get_mod( 'blog_excerpt_length', '40' );
+	$length = wpsp_get_redux( 'blog-excerpt-length', '40' );
 
 	// Taxonomy setting
 	if ( is_category() ) {
@@ -451,7 +451,7 @@ if ( ! function_exists('wpsp_get_schema_markup') ) :
 function wpsp_get_schema_markup( $location ) {
 
 	// Return nothing if disabled
-	if ( ! wpsp_get_mod( 'schema_markup_enable', true ) ) {
+	if ( ! wpsp_get_redux( 'schema_markup_enable', true ) ) {
 		return null;
 	}
 
@@ -564,6 +564,86 @@ function wpsp_social_share_heading() {
 /*-------------------------------------------------------------------------------*/
 /* [ Image ]
 /*-------------------------------------------------------------------------------*/
+
+/**
+ * Echo animation classes for entries
+ *
+ * @since 1.1.6
+ */
+if ( ! function_exists('wpsp_entry_image_animation_classes') ) :
+function wpsp_entry_image_animation_classes() {
+	echo wpsp_get_entry_image_animation_classes();
+}
+endif;
+
+/**
+ * Returns animation classes for entries
+ *
+ * @since 1.1.6
+ */
+if ( ! function_exists('wpsp_get_entry_image_animation_classes') ) :
+function wpsp_get_entry_image_animation_classes() {
+
+	// Empty by default
+	$classes = '';
+
+	// Only used for standard posts now
+	if ( 'post' != get_post_type( get_the_ID() ) ) {
+		return;
+	}
+
+	// Get blog classes
+	if ( wpsp_get_redux( 'blog-entry-image-hover-animation' ) ) {
+		$classes = ' wpsp-image-hover '. wpsp_get_redux( 'blog-entry-image-hover-animation' );
+	}
+
+	// Apply filters
+	return apply_filters( 'wpsp_entry_image_animation_classes', $classes );
+
+}
+endif;
+
+/**
+ * Returns attachment data
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_get_attachment_data') ) :
+function wpsp_get_attachment_data( $attachment = '', $return = '' ) {
+
+	// Return if no attachment
+	if ( ! $attachment ) {
+		return;
+	}
+
+	// Return if return equals none
+	if ( 'none' == $return ) {
+		return;
+	}
+
+	// Create array of attachment data
+	$array = array(
+		'url'         => get_post_meta( $attachment, '_wp_attachment_url', true ),
+		'src'         => wp_get_attachment_url( $attachment ),
+		'alt'         => get_post_meta( $attachment, '_wp_attachment_image_alt', true ),
+		'title'       => get_the_title( $attachment),
+		'caption'     => get_post_field( 'post_excerpt', $attachment ),
+		'description' => get_post_field( 'post_content', $attachment ),
+		'video'       => esc_url( get_post_meta( $attachment, '_video_url', true ) ),
+	);
+
+	// Set alt to title if alt not defined
+	$array['alt'] = $array['alt'] ? $array['alt'] : $array['title'];
+
+	// Return data
+	if ( $return ) {
+		return $array[$return];
+	} else {
+		return $array;
+	}
+
+}
+endif;
 
 /**
  * Echo post thumbnail url
@@ -893,6 +973,30 @@ function wpsp_image_crop_locations() {
 		'right-bottom'  => esc_html__( 'Bottom Right', 'wpsp-blog-text-textdomain' ),
 		'center-bottom' => esc_html__( 'Bottom Center', 'wpsp-blog-text-textdomain' ),
 	);
+}
+endif;
+
+/**
+ * Image Hovers
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists('wpsp_image_hovers') ) :
+function wpsp_image_hovers() {
+	return apply_filters( 'wpsp_image_hovers', array(
+		''             => esc_html__( 'Default', 'wpsp-blog-textdomain' ),
+		'opacity'      => esc_html__( 'Opacity', 'wpsp-blog-textdomain' ),
+		'grow'         => esc_html__( 'Grow', 'wpsp-blog-textdomain' ),
+		'shrink'       => esc_html__( 'Shrink', 'wpsp-blog-textdomain' ),
+		'side-pan'     => esc_html__( 'Side Pan', 'wpsp-blog-textdomain' ),
+		'vertical-pan' => esc_html__( 'Vertical Pan', 'wpsp-blog-textdomain' ),
+		'tilt'         => esc_html__( 'Tilt', 'wpsp-blog-textdomain' ),
+		'blurr'        => esc_html__( 'Normal - Blurr', 'wpsp-blog-textdomain' ),
+		'blurr-invert' => esc_html__( 'Blurr - Normal', 'wpsp-blog-textdomain' ),
+		'sepia'        => esc_html__( 'Sepia', 'wpsp-blog-textdomain' ),
+		'fade-out'     => esc_html__( 'Fade Out', 'wpsp-blog-textdomain' ),
+		'fade-in'      => esc_html__( 'Fade In', 'wpsp-blog-textdomain' ),
+	) );
 }
 endif;
 

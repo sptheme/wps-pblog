@@ -153,6 +153,21 @@
         'slideup-title-black'           => esc_html__( 'Slide-Up Title Black', 'wpsp-redux-framework' ),
         'category-tag'                  => esc_html__( 'Category Tag', 'wpsp-redux-framework' ),
     );
+
+    $wpsp_image_hovers = array(
+        ''             => esc_html__( 'Default', 'wpsp-redux-framework' ),
+        'opacity'      => esc_html__( 'Opacity', 'wpsp-redux-framework' ),
+        'grow'         => esc_html__( 'Grow', 'wpsp-redux-framework' ),
+        'shrink'       => esc_html__( 'Shrink', 'wpsp-redux-framework' ),
+        'side-pan'     => esc_html__( 'Side Pan', 'wpsp-redux-framework' ),
+        'vertical-pan' => esc_html__( 'Vertical Pan', 'wpsp-redux-framework' ),
+        'tilt'         => esc_html__( 'Tilt', 'wpsp-redux-framework' ),
+        'blurr'        => esc_html__( 'Normal - Blurr', 'wpsp-redux-framework' ),
+        'blurr-invert' => esc_html__( 'Blurr - Normal', 'wpsp-redux-framework' ),
+        'sepia'        => esc_html__( 'Sepia', 'wpsp-redux-framework' ),
+        'fade-out'     => esc_html__( 'Fade Out', 'wpsp-redux-framework' ),
+        'fade-in'      => esc_html__( 'Fade In', 'wpsp-redux-framework' ),
+    );
     
     // Entry Blocks
     $entry_blocks = apply_filters( 'wpsp_blog_entry_blocks', array(
@@ -510,6 +525,35 @@
                 'default'  => 'large-image-entry-style'
             ),
             array(
+                'id'       => 'blog-grid-columns',
+                'type'     => 'select',
+                'title'    => __( 'Grid columns', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    '6' => esc_html__( '6','wpsp-redux-framework' ),
+                    '5' => esc_html__( '5','wpsp-redux-framework' ),
+                    '4' => esc_html__( '4','wpsp-redux-framework' ),
+                    '3' => esc_html__( '3','wpsp-redux-framework' ),
+                    '2' => esc_html__( '2','wpsp-redux-framework' ),
+                ),
+            ),
+            array(
+                'id'       => 'blog-grid-style',
+                'type'     => 'select',
+                'title'    => __( 'Grid style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    'fit-rows' => esc_html__( 'Fit Rows','wpsp-redux-framework' ),
+                    'masonry' => esc_html__( 'Masonry','wpsp-redux-framework' ),
+                ),
+            ),
+            array(
+                'id'       => 'blog-archive-grid-equal-heights',
+                'type'     => 'checkbox',
+                'title'    => __( 'Equal Heights', 'wpsp-redux-framework' ),
+                'default'  => 0,
+            ),
+            array(
                 'id'       => 'blog-pagination-style',
                 'type'     => 'select',
                 'title'    => __( 'Pagination Style', 'wpsp-redux-framework' ),
@@ -532,6 +576,13 @@
                 'title'    => __( 'Overlay Style', 'wpsp-redux-framework' ),
                 'subtitle' => __( 'set overlay style for each entry post thumbnails', 'wpsp-redux-framework' ),
                 'options'  => $wpsp_overlay_styles_array,
+            ),
+            array(
+                'id'       => 'blog-entry-image-hover-animation',
+                'type'     => 'select',
+                'title'    => __( 'Image Hover Animation', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Animation style for entry post thumbnails', 'wpsp-redux-framework' ),
+                'options'  => $wpsp_image_hovers,
             ),
             array(
                 'id'       => 'is-auto-excerpt',

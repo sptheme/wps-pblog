@@ -2,9 +2,9 @@
 /**
  * Blog entry layout
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.0.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -13,24 +13,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Add post classes
-$classes = wpex_blog_entry_classes(); ?>
+$classes = wpsp_blog_entry_classes(); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( $classes ); ?>>
-	<div class="post-quote-entry-inner clr">
+	<div class="post-quote-entry-inner clear">
 		<span class="fa fa-quote-right"></span>
 		<?php
 		// Content for single posts
 		if ( is_singular( 'post' ) ) : ?>
-			<div class="quote-entry-content clr">
+			<div class="quote-entry-content clear">
 				<?php the_content(); ?>
 			</div><!-- .quote-entry-content -->
 		<?php else :
 			// Content for entries ?>
-			<div class="quote-entry-content clr">
+			<div class="quote-entry-content clear">
 				<?php the_content(); ?>
 			</div><!-- .quote-entry-content -->
 		<?php endif; ?>
-		<div class="quote-entry-author clr">
+		<div class="quote-entry-author clear">
 			<?php the_title(); ?>
 		</div><!-- .quote-entry-author -->
 		</div><!-- .post-quote-entry-inner -->

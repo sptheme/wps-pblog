@@ -107,6 +107,7 @@ class WPSP_Theme_Setup {
 	public static function wpsp_include_functions() {
 		require_once( WPSP_INC_DIR .'aq_resizer.php' );
 		require_once( WPSP_INC_DIR .'sanitize-data.php' );
+		require_once( WPSP_INC_DIR .'category-meta.php' );
 		require_once( WPSP_INC_DIR .'wpml.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
 		require_once( WPSP_INC_DIR .'overlay.php' );

@@ -2,9 +2,9 @@
 /**
  * Blog entry layout
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.3.2
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php
 // Display comments if enabled
-$layout_blocks = wpex_blog_single_layout_blocks();
+$layout_blocks = wpsp_blog_single_layout_blocks();
 if ( in_array( 'comments', $layout_blocks ) ) {
 	comments_template();
 } ?>

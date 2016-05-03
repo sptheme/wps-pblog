@@ -2,9 +2,9 @@
 /**
  * Blog entry layout
  *
- * @package Total WordPress theme
- * @subpackage Partials
- * @version 3.0.0
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Get post data
 $post_format = get_post_format();
-$entry_style = wpex_blog_entry_style();
+$entry_style = wpsp_blog_entry_style();
 
 // Quote format is completely different
 if ( 'quote' == $post_format ) :
@@ -28,14 +28,14 @@ if ( 'quote' == $post_format ) :
 endif;
 
 // Add classes to the blog entry post class - see framework/blog/blog-functions
-$classes = wpex_blog_entry_classes();
+$classes = wpsp_blog_entry_classes();
 
 // Get layout blocks
-$blocks = wpex_blog_entry_layout_blocks(); ?>
+$blocks = wpsp_blog_entry_layout_blocks(); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( $classes ); ?>>
 
-	<div class="blog-entry-inner clr">
+	<div class="blog-entry-inner clear">
 
 		<?php
 		// Thumbnail entry style uses different layout
@@ -45,7 +45,7 @@ $blocks = wpex_blog_entry_layout_blocks(); ?>
 			// Get media
 			get_template_part( 'partials/blog/media/blog-entry', $post_format ); ?>
 
-			<div class="blog-entry-content entry-details clr">
+			<div class="blog-entry-content entry-details clear">
 
 				<?php
 				// Loop through entry blocks
