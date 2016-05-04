@@ -54,8 +54,11 @@ class WPSP_Theme_Setup {
 		// Load the scripts in WP Admin
 		add_action( 'admin_enqueue_scripts', array( $this, 'wpsp_admin_scripts' ) );
 
+		// Load theme js
+		add_action( 'wp_enqueue_scripts', array( $this, 'theme_js') );
+
 		// Load theme style
-		add_action( 'wp_enqueue_scripts', array( $this, 'wpsp_theme_css') );
+		add_action( 'wp_enqueue_scripts', array( $this, 'theme_css') );
 
 		// register sidebar widget areas
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
@@ -110,6 +113,8 @@ class WPSP_Theme_Setup {
 		require_once( WPSP_INC_DIR .'category-meta.php' );
 		require_once( WPSP_INC_DIR .'wpml.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
+		require_once( WPSP_INC_DIR .'blog-functions.php' );
+		require_once( WPSP_INC_DIR .'pagination.php' );
 		require_once( WPSP_INC_DIR .'overlay.php' );
 	}
 
@@ -186,12 +191,77 @@ class WPSP_Theme_Setup {
 	}
 
 	/**
+	 * Returns all js needed for the front-end
+	 *
+	 * @since 1.0.0 
+	 *
+	 */
+	public static function theme_js(){
+		// Front end only
+		if ( is_admin() ) {
+			return;
+		}
+
+		// Get js directory uri
+		$dir = WPSP_JS_DIR_URI;
+
+		// Get current theme version
+		$theme_version = WPSP_THEME_VERSION;
+
+		// Make sure the core jQuery script is loaded
+		wp_enqueue_script( 'jquery' );
+
+		// Comment reply
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
+
+		// Load all non-minified js
+
+		// Superfish used for menu dropdowns
+		wp_enqueue_script( 'wpsp-superfish', $dir .'vendors/superfish.js', array( 'jquery' ), $theme_version, true );
+		wp_enqueue_script( 'wpsp-supersubs', $dir .'vendors/supersubs.js', array( 'jquery' ), $theme_version, true );
+		wp_enqueue_script( 'wpsp-hoverintent', $dir .'vendors/hoverintent.js', array( 'jquery' ), $theme_version, true );
+
+		// Checks if images are loaded within an element
+		wp_enqueue_script( 'wpsp-images-loaded', $dir .'vendors/images-loaded.js', array( 'jquery' ), $theme_version, true );
+
+		// Core global custom
+		wp_enqueue_script( 'wpsp-custom', $dir .'custom.js', array( 'jquery' ), $theme_version, true );
+
+		// Localize script
+		// Get theme options
+		$header_style      = 'one'; //wpex_global_obj( 'header_style' );
+		$sticky_header     = true; //wpex_global_obj( 'has_fixed_header' );
+		$mobile_menu_style = 'sidebar'; //wpex_global_obj( 'mobile_menu_style' );
+
+		$localize_array = array(
+			'isRTL'                 => is_rtl(),
+			'mainLayout'            => 'boxed', //wpex_global_obj( 'main_layout' ),
+			'menuSearchStyle'       => 'disabled', //wpex_global_obj( 'menu_search_style' ),
+			'hasStickyHeader'       => $sticky_header,
+			'siteHeaderStyle'       => $header_style,
+			'superfishDelay'        => 600,
+			'superfishSpeed'        => 'fast',
+			'superfishSpeedOut'     => 'fast',
+			'mobileMenuStyle'       => $mobile_menu_style, //wpex_global_obj( 'mobile_menu_style' ),
+			'localScrollUpdateHash' => true,
+			'localScrollSpeed'      => 800,
+			'windowScrollTopSpeed'  => 800,
+			'carouselSpeed'		    => 150,
+			'customSelects'         => '.woocommerce-ordering .orderby, #dropdown_product_cat, .widget_categories select, .widget_archive select, #bbp_stick_topic_select, #bbp_topic_status_select, #bbp_destination_topic, .single-product .variations_form .variations select',
+			'milestoneDecimalFormat' => ',',
+		);
+		wp_localize_script( 'wpsp-custom', 'wpspLocalize', $localize_array );
+	}
+
+	/**
 	 * Load theme css
 	 *
 	 * @since 1.0.0 
 	 *
 	 */
-	public static function wpsp_theme_css(){
+	public static function theme_css(){
 		wp_enqueue_style( 'wpspblog-style', get_stylesheet_uri() );
 
 		//Add Google Fonts (English): Open Sans

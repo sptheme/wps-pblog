@@ -9,6 +9,69 @@
  */
 
 /**
+ * Exclude categories from the blog
+ * This function runs on pre_get_posts
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists( 'wpsp_blog_exclude_categories' ) ) :
+function wpsp_blog_exclude_categories( $deprecated = true ) {
+
+	// Don't run in these places
+	if ( is_admin()
+		|| is_search()
+		|| is_tag()
+		|| is_category()
+	) {
+		return;
+	}
+
+	// Get Cat id's to exclude
+	if ( $cats = wpsp_get_redux( 'blog-cats-exclude' ) ) {
+		if ( ! is_array( $cats ) ) {
+			$cats = explode( ',', $cats ); // Convert to array
+		}
+	}
+
+	// Return ID's
+	return $cats;
+	
+}
+endif;
+
+/**
+ * Returns the correct blog style
+ *
+ * @since 1.5.3
+ */
+if ( ! function_exists( 'wpsp_blog_style' ) ) :
+function wpsp_blog_style() {
+
+	// Get default style from Customizer
+	$style = wpsp_get_redux( 'blog-entry-style' );
+
+	// Check custom category style
+	if ( is_category() ) {
+		$term      = get_query_var( 'cat' );
+		$term_data = get_option( "category_$term" );
+		if ( $term_data && ! empty ( $term_data['wpsp_term_style'] ) ) {
+			$style = $term_data['wpsp_term_style'] .'-entry-style';
+		}
+	}
+
+	// Sanitize
+	$style = $style ? $style : 'large-image-entry-style';
+
+	// Apply filters for child theming
+	$style = apply_filters( 'wpsp_blog_style', $style );
+
+	// Return style
+	return $style;
+
+}
+endif;
+
+/**
  * Returns the grid style
  *
  * @since 1.0.0
@@ -320,34 +383,31 @@ function wpsp_get_blog_entry_thumbnail( $args = '' ) {
 endif;
 
 /**
- * Exclude categories from the blog
- * This function runs on pre_get_posts
+ * Returns blog entry post blocks
  *
  * @since 1.0.0
  */
-if ( ! function_exists( 'wpsp_blog_exclude_categories' ) ) :
-	function wpsp_blog_exclude_categories( $deprecated = true ) {
+if ( ! function_exists( 'wpsp_blog_entry_meta_sections' ) ) :
+function wpsp_blog_entry_meta_sections() {
 
-		// Don't run in these places
-		if ( is_admin()
-			|| is_search()
-			|| is_tag()
-			|| is_category()
-		) {
-			return;
-		}
+	// Default sections
+	$sections = array( 'date', 'author', 'categories', 'comments' );
 
-		// Get Cat id's to exclude
-		if ( $cats = wpsp_get_redux( 'blog-cats-exclude' ) ) {
-			if ( ! is_array( $cats ) ) {
-				$cats = explode( ',', $cats ); // Convert to array
-			}
-		}
+	// Get Sections from Customizer
+	$sections = wpsp_get_redux( 'blog-entry-meta-sections', $sections );
 
-		// Return ID's
-		return $cats;
-		
+	// Turn into array if string
+	if ( $sections && ! is_array( $sections ) ) {
+		$sections = explode( ',', $sections );
 	}
+
+	// Apply filters for easy modification
+	$sections = apply_filters( 'wpsp_blog_entry_meta_sections', $sections );
+
+	// Return sections
+	return $sections;
+
+}
 endif;
 
 /**
@@ -428,6 +488,67 @@ function wpsp_blog_single_meta_sections() {
 	// Return sections
 	return $sections;
 
+}
+endif;
+
+/**
+ * Adds main classes to blog post entries
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists( 'wpsp_blog_wrap_classes' ) ) :
+function wpsp_blog_wrap_classes( $classes = NULL ) {
+	
+	// Return custom class if set
+	if ( $classes ) {
+		return $classes;
+	}
+	
+	// Admin defaults
+	$style   = wpsp_blog_style();
+	$classes = array( 'entries', 'clear' );
+		
+	// Isotope classes
+	if ( $style == 'grid-entry-style' ) {
+		$classes[] = 'wpsp-row ';
+		if ( 'masonry' == wpsp_blog_grid_style() ) {
+			$classes[] = 'blog-masonry-grid ';
+		} else {
+			if ( 'infinite_scroll' == wpsp_blog_pagination_style() ) {
+				$classes[] = 'blog-masonry-grid ';
+			} else {
+				$classes[] = 'blog-grid ';
+			}
+		}
+	}
+
+	// Left thumbs
+	if ( 'thumbnail-entry-style' == $style ) {
+		$classes[] = 'left-thumbs';
+	}
+
+	
+	// Add some margin when author is enabled
+	if ( $style == 'grid-entry-style' && wpsp_get_redux( 'blog-entry-author-avatar' ) ) {
+		$classes[] = 'grid-w-avatars ';
+	}
+	
+	// Infinite scroll classes
+	if ( 'infinite_scroll' == wpsp_blog_pagination_style() ) {
+		$classes[] = 'infinite-scroll-wrap ';
+	}
+	
+	// Add filter for child theming
+	$classes = apply_filters( 'wpsp_blog_wrap_classes', $classes );
+
+	// Turn classes into space seperated string
+	if ( is_array( $classes ) ) {
+		$classes = implode( ' ', $classes );
+	}
+
+	// Echo classes
+	echo esc_attr( $classes );
+	
 }
 endif;
 
