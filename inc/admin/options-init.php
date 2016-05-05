@@ -170,14 +170,14 @@
     );
     
     // Entry Blocks
-    $entry_blocks = apply_filters( 'wpsp_blog_entry_blocks', array(
+    $entry_blocks = array(
         'featured_media'  => esc_html__( 'Media', 'wpsp-redux-framework' ),
         'title'           => esc_html__( 'Title', 'wpsp-redux-framework' ),
         'meta'            => esc_html__( 'Meta', 'wpsp-redux-framework' ),
         'excerpt_content' => esc_html__( 'Excerpt', 'wpsp-redux-framework' ),
         'readmore'        => esc_html__( 'Read More', 'wpsp-redux-framework' ),
         'social_share'    => esc_html__( 'Social Share', 'wpsp-redux-framework' ),
-    ) );
+    );
 
     // Single Blocks
     $single_blocks = apply_filters( 'wpsp_blog_single_blocks', array(

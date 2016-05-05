@@ -19,7 +19,7 @@ $check_more_tag = apply_filters( 'wpsp_check_more_tag', true ); ?>
 
     <?php
     // Display excerpt if auto excerpts are enabled in the admin
-    if ( wpsp_get_redux( 'blog_exceprt', true ) ) :
+    if ( wpsp_get_redux( 'is-auto-excerpt', true ) ) :
 
         // Check if the post tag is using the "more" tag
         if ( $check_more_tag && strpos( get_the_content(), 'more-link' ) ) :

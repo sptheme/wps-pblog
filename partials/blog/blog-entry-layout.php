@@ -49,32 +49,32 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 
 				<?php
 				// Loop through entry blocks
-				foreach ( $blocks as $block ) : ?>
+				foreach ( $blocks as $key => $value ) : ?>
 
 					<?php
 					// Display the entry title
-					if ( 'title' == $block ) { ?>
+					if ( 'Title' == $key && $value == 'Title' ) { ?>
 
 						<?php get_template_part( 'partials/blog/blog-entry-title' ); ?>
 
 					<?php }
 					
 					// Display the entry meta
-					elseif ( 'meta' == $block ) { ?>
+					elseif ( 'Meta' == $key && $value == 'Meta' ) { ?>
 
 						<?php get_template_part( 'partials/blog/blog-entry-meta' ); ?>
 
 					<?php }
 
 					// Display the entry excerpt or content
-					elseif ( 'excerpt_content' == $block ) { ?>
+					elseif ( 'Excerpt' == $key && $value == 'Excerpt' ) { ?>
 
 						<?php get_template_part( 'partials/blog/blog-entry-content' ); ?>
 
 					<?php }
 
 					// Display the readmore button
-					elseif ( 'readmore' == $block ) { ?>
+					elseif ( 'Readmore' == $key && $value == 'Readmore' ) { ?>
 
 						<?php if ( wpex_has_readmore() ) { ?>
 
@@ -85,7 +85,7 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 					}
 
 					// Display the readmore button
-					elseif ( 'social_share' == $block ) { ?>
+					elseif ( 'Social Share' == $key && $value == 'Social Share' ) { ?>
 
 						<?php get_template_part( 'partials/social-share' ) ?>
 
@@ -135,7 +135,7 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 				<?php }
 
 				// Display the entry excerpt or content
-				elseif ( 'excerpt_content' == $block ) { ?>
+				elseif ( 'excerpt' == $block ) { ?>
 
 					<?php get_template_part( 'partials/blog/blog-entry-content' ); ?>
 
