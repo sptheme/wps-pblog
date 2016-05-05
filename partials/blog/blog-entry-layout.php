@@ -94,7 +94,7 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 					// Custom Blocks
 					else { ?>
 
-						<?php get_template_part( 'partials/blog/blog-entry-'. $block ); ?>
+						<?php get_template_part( 'partials/blog/blog-entry-'. $key ); ?>
 
 					<?php } ?>
 

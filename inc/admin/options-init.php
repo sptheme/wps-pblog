@@ -691,28 +691,13 @@
         )
     ) );
 
-    // Sidebar
+    // Footer
     Redux::setSection( $opt_name, array(
-        'title'            => __( 'Sidebar', 'wpsp-redux-framework' ),
-        'id'               => 'sidebar-options',
+        'title'            => __( 'Footer', 'wpsp-redux-framework' ),
+        'id'               => 'footer-options',
         'desc'             => __( '', 'wpsp-redux-framework' ),
         'customizer_width' => '400px',
-        'icon'             => 'el el-website'
-    ) );
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Default', 'wpsp-redux-framework' ),
-        'id'         => 'default-sidebar',
-        'subsection' => true,
-        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
-        'fields'     => array(
-            array(
-                'id'       => 'sidebar-headings',
-                'type'     => 'select',
-                'title'    => __( 'Sidebar Widget Title Headings', 'wpsp-redux-framework' ),
-                'options'  => $widget_tags,
-                'default'  => 'div'
-            ),
-        )
+        'icon'             => 'el el-credit-card'
     ) );
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Footer Widget', 'wpsp-redux-framework' ),
@@ -743,6 +728,135 @@
             ),
         )
     ) );
+
+    // Layout
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Layout', 'wpsp-redux-framework' ),
+        'id'               => 'basic-layout',
+        'desc'             => __( 'These are general setting for layout', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-screen'
+    ) );
+
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'General', 'wpsp-redux-framework' ),
+        'id'         => 'general-layout',
+        'subsection' => true,
+        'desc'       => __( 'Manage page layout with fullwide and responsive', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'is-responsive',
+                'type'     => 'checkbox',
+                'title'    => __( 'Responsiveness', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'container-max-width',
+                'type'     => 'text',
+                'required' => array( 'is-responsive', '=', '1' ),
+                'title'    => __( 'Max Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 90%', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Desktop Widths', 'wpsp-redux-framework' ),
+        'id'         => 'desktop-width-layout',
+        'subsection' => true,
+        'desc'       => __( 'For screens greater than or equal to 960px. Accepts both pixels or percentage values.', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'main-container-width',
+                'type'     => 'text',
+                'title'    => __( 'Main Container Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 980px', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'main-content-width',
+                'type'     => 'text',
+                'title'    => __( 'Content Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 69%', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'sidebar-width',
+                'type'     => 'text',
+                'title'    => __( 'Sidebar Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 26%', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Medium Screens Widths', 'wpsp-redux-framework' ),
+        'id'         => 'medium-width-layout',
+        'subsection' => true,
+        'desc'       => __( 'For screens between 960px - 1280px. Such as landscape tablets and small monitors/laptops. Accepts both pixels or percentage values.', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'tablet-landscape-main-container-width',
+                'type'     => 'text',
+                'title'    => __( 'Main Container Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 90%', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'tablet-landscape-main-content-width',
+                'type'     => 'text',
+                'title'    => __( 'Content Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 69%', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'tablet-landscape-sidebar-width',
+                'type'     => 'text',
+                'title'    => __( 'Sidebar Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 26%', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) ); 
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Tablet Widths', 'wpsp-redux-framework' ),
+        'id'         => 'tablet-width-layout',
+        'subsection' => true,
+        'desc'       => __( 'For screens between 768px - 959px. Such as portrait tablet. Accepts both pixels or percentage values.', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'tablet-main-container-width',
+                'type'     => 'text',
+                'title'    => __( 'Main Container Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 90%', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'tablet-main-content-width',
+                'type'     => 'text',
+                'title'    => __( 'Content Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 100%', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'tablet-sidebar-width',
+                'type'     => 'text',
+                'title'    => __( 'Sidebar Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 10%', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Mobile Widths', 'wpsp-redux-framework' ),
+        'id'         => 'mobile-width-layout',
+        'subsection' => true,
+        'desc'       => __( 'For screens between 0 - 767px. Accepts both pixels or percentage values.', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'mobile-portrait-main-container-width',
+                'type'     => 'text',
+                'title'    => __( 'Portrait: Main Container Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 90%', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'mobile-landscape-main-container-width',
+                'type'     => 'text',
+                'title'    => __( 'Landscape: Main Container Width', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 90%', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );    
     
     // Global templates for pages, post, custom post, arhcive, category and taxonomy
     Redux::setSection( $opt_name, array(
@@ -754,8 +868,8 @@
     ) );
 
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Layout', 'wpsp-redux-framework' ),
-        'id'         => 'global-layout',
+        'title'      => __( 'Sidebar', 'wpsp-redux-framework' ),
+        'id'         => 'sidebar-layout',
         'subsection' => true,
         'desc'       => __( 'Manage page layout with fullwide, left sidebar and right sidebar', 'wpsp-redux-framework' ),
         'fields'     => array(
@@ -943,11 +1057,18 @@
     ) );
 
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Sidebar', 'wpsp-redux-framework' ),
-        'id'         => 'global-sidebar',
+        'title'      => __( 'Widget area', 'wpsp-redux-framework' ),
+        'id'         => 'widget-area',
         'subsection' => true,
         'desc'       => __( 'Apply it on any pages and posts', 'wpsp-redux-framework' ),
         'fields'     => array( 
+            array(
+                'id'       => 'widget-title-tag',
+                'type'     => 'select',
+                'title'    => __( 'Widget Title Headings', 'wpsp-redux-framework' ),
+                'options'  => $widget_tags,
+                'default'  => 'div'
+            ),
             array(
                 'id'       => 'sidebar-single',
                 'type'     => 'select',

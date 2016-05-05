@@ -60,6 +60,9 @@ class WPSP_Theme_Setup {
 		// Load theme style
 		add_action( 'wp_enqueue_scripts', array( $this, 'theme_css') );
 
+		// Add meta viewport tag to header
+		add_action( 'wp_head', array( $this, 'meta_viewport' ), 1 );
+
 		// register sidebar widget areas
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 
@@ -240,7 +243,7 @@ class WPSP_Theme_Setup {
 
 		$localize_array = array(
 			'isRTL'                 => is_rtl(),
-			'mainLayout'            => 'boxed', //wpex_global_obj( 'main_layout' ),
+			'mainLayout'            => 'full-width', //wpex_global_obj( 'main_layout' ),
 			'menuSearchStyle'       => 'disabled', //wpex_global_obj( 'menu_search_style' ),
 			'hasStickyHeader'       => $sticky_header,
 			'siteHeaderStyle'       => $header_style,
@@ -366,6 +369,30 @@ class WPSP_Theme_Setup {
 		}
 
 		return $contactmethods;
+
+	}
+
+	/**
+	 * Adds the meta tag to the site header
+	 *
+	 * @since 1.0.0
+	 */
+	public function meta_viewport() {
+
+		// Responsive viewport viewport
+		if ( wpsp_get_redux( 'is-responsive', true ) ) {
+			$viewport = '<meta name="viewport" content="width=device-width, initial-scale=1">';
+		}
+
+		// Non responsive meta viewport
+		else {
+			$width    = intval( wpsp_get_redux( 'main-container-width', '980' ) );
+			$width    = $width ? $width: '980';
+			$viewport = '<meta name="viewport" content="width='. $width .'" />';
+		}
+		
+		// Apply filters to the meta viewport for child theme tweaking
+		echo apply_filters( 'wpsp_meta_viewport', $viewport );
 
 	}
 
