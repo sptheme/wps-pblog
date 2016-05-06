@@ -193,6 +193,16 @@
         'comments' => esc_html__( 'Comments','wpsp-redux-framework' ),
     ) );
 
+    // Header styles
+    $header_styles = apply_filters( 'wpsp_header_styles', array(
+        'one' => esc_html__( 'One - Left Logo & Right Navbar','wpsp-redux-framework' ),
+        'two' => esc_html__( 'Two - Bottom Navbar','wpsp-redux-framework' ),
+        'three' => esc_html__( 'Three - Bottom Navbar Centered','wpsp-redux-framework' ),
+        'four' => esc_html__( 'Four - Top Navbar Centered','wpsp-redux-framework' ),
+        'five' => esc_html__( 'Five - Centered Inline Logo','wpsp-redux-framework' ),
+        'six' => esc_html__( 'Six - Vertical','wpsp-redux-framework' ),
+    ) );
+
     /*
      * ---> END OTHER VARIABLE
      */
@@ -690,6 +700,139 @@
             ),
         )
     ) );
+
+    // Header
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Header', 'wpsp-redux-framework' ),
+        'id'               => 'header-options',
+        'desc'             => __( '', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-credit-card'
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'General', 'wpsp-redux-framework' ),
+        'id'         => 'general-header-tab',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'is-full-width-header',
+                'type'     => 'checkbox',
+                'title'    => __( 'Full width', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'header-style',
+                'type'     => 'select',
+                'title'    => __( 'Style', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Style header menu left, bottom and center', 'wpsp-redux-framework' ),
+                'options'  => $header_styles,
+            ),
+            array(
+                'id'       => 'header-background',
+                'type'     => 'color',
+                'title'    => __( 'Background', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Header background color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'header-top-padding',
+                'type'     => 'text',
+                'title'    => __( 'Top Padding', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'header-bottom-padding',
+                'type'     => 'text',
+                'title'    => __( 'bottom Padding', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) ); 
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Logo', 'wpsp-redux-framework' ),
+        'id'         => 'logo-header-tab',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'custom-logo',
+                'type'     => 'media',
+                'title'    => __( 'Main logo', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Upload main image logo', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'logo-top-margin',
+                'type'     => 'text',
+                'title'    => __( 'Top Margin', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'logo-bottom-margin',
+                'type'     => 'text',
+                'title'    => __( 'bottom Margin', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'has-overlay-header',
+                'type'     => 'checkbox',
+                'title'    => __( 'Has Overlay Header', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'custom-overlay-logo',
+                'type'     => 'media',
+                'required' => array( 'has-overlay-header', '=', '1' ),
+                'title'    => __( 'Overlay logo', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Upload custom overlay image logo', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Sticky Header', 'wpsp-redux-framework' ),
+        'id'         => 'sticky-header-tab',
+        'subsection' => true,
+        'desc'       => __( 'Sticky header is disabled while in the Customizer.', 'wpsp-redux-framework' ),
+        'fields'     => array(   
+            array(
+                'id'       => 'has-fixed-header',
+                'type'     => 'checkbox',
+                'title'    => __( 'Has Fixed Header', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-fixed-header',
+                'type'     => 'checkbox',
+                'title'    => __( 'Sticky Header on Scroll', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'For some header styles the entire header will be fixed for others only the menu.', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-shink-fixed-header',
+                'type'     => 'checkbox',
+                'title'    => __( 'Shrink Sticky Header', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-fixed-header-mobile',
+                'type'     => 'checkbox',
+                'title'    => __( 'Sticky Header On Mobile', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'fixed-header-opacity',
+                'type'     => 'text',
+                'title'    => __( 'Sticky header Opacity', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+        )
+    ) );     
 
     // Footer
     Redux::setSection( $opt_name, array(
