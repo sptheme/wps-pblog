@@ -118,6 +118,7 @@ class WPSP_Theme_Setup {
 		require_once( WPSP_INC_DIR .'core-functions.php' );
 		require_once( WPSP_INC_DIR .'blog-functions.php' );
 		require_once( WPSP_INC_DIR .'header-functions.php' );
+		require_once( WPSP_INC_DIR .'menu-functions.php' );
 		require_once( WPSP_INC_DIR .'pagination.php' );
 		require_once( WPSP_INC_DIR .'overlay.php' );
 	}

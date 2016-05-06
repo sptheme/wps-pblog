@@ -832,7 +832,243 @@
                 'default'  => '0'// 1 = on | 0 = off
             ),
         )
-    ) );     
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Menu', 'wpsp-redux-framework' ),
+        'id'         => 'menu-header-tab',
+        'subsection' => true,
+        'fields'     => array(   
+            array(
+                'id'       => 'menu-arrow-down',
+                'type'     => 'checkbox',
+                'title'    => __( 'Top Level Dropdown Icon', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'menu-arrow-side',
+                'type'     => 'checkbox',
+                'title'    => __( 'Second+ Level Dropdown Icon', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'menu-dropdown-top-border',
+                'type'     => 'checkbox',
+                'title'    => __( 'Dropdown Top Border', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'menu-flush-dropdowns',
+                'type'     => 'checkbox',
+                'title'    => __( 'Flush Dropdowns', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'menu-dropdown-style',
+                'type'     => 'select',
+                'title'    => __( 'Style', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Style header Second+ level dropdown menu', 'wpsp-redux-framework' ),
+                'options'  => array(
+                        ''              => 'Skin Default',
+                        'minimal-sq'    => 'Minimal',
+                        'minimal'       => 'Minimal Round',
+                        'black'         => 'Black',
+                ),
+            ),
+            array(
+                'id'       => 'menu-dropdown-dropshadow',
+                'type'     => 'select',
+                'title'    => __( 'Dropdown Dropshadow Style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                        ''      => 'None',
+                        'one'   => 'One',
+                        'two'   => 'Two',
+                        'three' => 'Three',
+                        'four'  => 'Four',
+                        'five'  => 'Five',
+                ),
+            ),
+            array(
+                'id'       => 'section-search-icon',
+                'type'     => 'section',
+                'title'    => __( 'Search Icon', 'wpsp-redux-framework' ),
+                'indent'   => true,
+            ),
+            array(
+                'id'       => 'menu-search-style',
+                'type'     => 'select',
+                'title'    => __( 'Search Icon Style', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Vertical header styles only support the disabled and overlay styles.', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'disabled'          => 'Disabled',
+                    'drop_down'         => 'Dropdown',
+                    'overlay'           => 'Overlay',
+                    'header_replace'    => 'Header Replace',
+                ),
+                'default'   => 'drop_down',
+            ),
+            array(
+                'id'       => 'section-style-menu',
+                'type'     => 'section',
+                'title'    => __( 'Styling: Main', 'wpsp-redux-framework' ),
+                'indent'   => true,
+            ),
+            array(
+                'id'       => 'menu-background',
+                'type'     => 'color',
+                'title'    => __( 'Background', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-border-color',
+                'type'     => 'color',
+                'title'    => __( 'Border', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Not all menus have borders, but this setting is for those that do', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-link-color',
+                'type'     => 'color',
+                'title'    => __( 'Link Color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-link-color-hover',
+                'type'     => 'color',
+                'title'    => __( 'Link Color: Hover', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-link-color-active',
+                'type'     => 'color',
+                'title'    => __( 'Link Color: Current Menu Item', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-link-background',
+                'type'     => 'color',
+                'title'    => __( 'Link Background', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-link-hover-background',
+                'type'     => 'color',
+                'title'    => __( 'Link Background: Hover', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-link-active-background',
+                'type'     => 'color',
+                'title'    => __( 'Link Background: Current Menu Item', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-link-span-background',
+                'type'     => 'color',
+                'title'    => __( 'Link Inner Background', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-link-span-hover-background',
+                'type'     => 'color',
+                'title'    => __( 'Link Inner Background: Hover', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'menu-link-span-active-background',
+                'type'     => 'color',
+                'title'    => __( 'Link Inner Background: Current Menu Item', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+
+            array(
+                'id'       => 'section-style-dropdown',
+                'type'     => 'section',
+                'title'    => __( 'Styling: Dropdowns', 'wpsp-redux-framework' ),
+                'indent'   => true,
+            ),
+            array(
+                'id'       => 'dropdown-menu-background',
+                'type'     => 'color',
+                'title'    => __( 'Background', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'dropdown-menu-pointer-bg',
+                'type'     => 'color',
+                'title'    => __( 'Pointer Background', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'dropdown-menu-pointer-border',
+                'type'     => 'color',
+                'title'    => __( 'Pointer Border', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'dropdown-menu-border',
+                'type'     => 'color',
+                'title'    => __( 'Dropdown Borders', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'dropdown-menu-link-color',
+                'type'     => 'color',
+                'title'    => __( 'Link Color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'dropdown-menu-link-hover',
+                'type'     => 'color',
+                'title'    => __( 'Link Color: Hover', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'dropdown-menu-link-hover-bg',
+                'type'     => 'color',
+                'title'    => __( 'Link Background: Hover', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'dropdown-menu-link-color-active',
+                'type'     => 'color',
+                'title'    => __( 'Link Color: Current Menu Item', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'dropdown-menu-link-bg-active',
+                'type'     => 'color',
+                'title'    => __( 'Link Background: Current Menu Item', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'mega-menu-title',
+                'type'     => 'color',
+                'title'    => __( 'Megamenu Subtitle Color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+        )
+    ) );   
 
     // Footer
     Redux::setSection( $opt_name, array(
