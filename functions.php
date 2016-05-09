@@ -239,20 +239,20 @@ class WPSP_Theme_Setup {
 
 		// Localize script
 		// Get theme options
-		$header_style      = 'one'; //wpex_global_obj( 'header_style' );
-		$sticky_header     = true; //wpex_global_obj( 'has_fixed_header' );
-		$mobile_menu_style = 'sidebar'; //wpex_global_obj( 'mobile_menu_style' );
+		$header_style      = wpsp_get_redux( 'header-style' );
+		$sticky_header     = wpsp_get_redux( 'has-fixed-header' );
+		$mobile_menu_style = wpsp_get_redux( 'mobile-menu-style' );
 
 		$localize_array = array(
 			'isRTL'                 => is_rtl(),
-			'mainLayout'            => 'full-width', //wpex_global_obj( 'main_layout' ),
-			'menuSearchStyle'       => 'disabled', //wpex_global_obj( 'menu_search_style' ),
+			'mainLayout'            => wpsp_get_redux( 'main-layout' ),
+			'menuSearchStyle'       => wpsp_get_redux( 'menu-search-style' ),
 			'hasStickyHeader'       => $sticky_header,
 			'siteHeaderStyle'       => $header_style,
 			'superfishDelay'        => 600,
 			'superfishSpeed'        => 'fast',
 			'superfishSpeedOut'     => 'fast',
-			'mobileMenuStyle'       => $mobile_menu_style, //wpex_global_obj( 'mobile_menu_style' ),
+			'mobileMenuStyle'       => $mobile_menu_style,
 			'localScrollUpdateHash' => true,
 			'localScrollSpeed'      => 800,
 			'windowScrollTopSpeed'  => 800,

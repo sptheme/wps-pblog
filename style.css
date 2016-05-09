@@ -28,6 +28,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Typography
 # Elements
 # Forms
+# Layout
 # Navigation
 	## Links
 	## Menus
@@ -307,17 +308,22 @@ textarea {
 	color: #666666;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	clear: both;
+h1,h2,h3,h4,h5,h6 { 
+	font-weight: 600; 
+	color: #222; 
+	line-height: 1.5; 
+	margin: 1.875em 0 1.250em; 
 }
 
+h1 { font-size: 1.500em; margin: 0 0 1.250em; }
+h2 { font-size: 1.313em }
+h3 { font-size: 1.125em }
+h4 { font-size: 1em }
+h5 { font-size: 0.875em }
+h6 { font-size: 0.750em }
+
 p {
-	margin-bottom: 1.5em;
+	margin-bottom: 1.250em;
 }
 
 dfn,
@@ -327,24 +333,39 @@ i {
 	font-style: italic;
 }
 
-blockquote {
-	margin: 0 1.5em;
+address { 
+	letter-spacing: 0.5px; 
+	margin: 1.250em 0; 
 }
 
-address {
-	margin: 0 0 1.5em;
+pre { 
+	position: relative; 
+	background: #f7f7f7; 
+	padding: 1.250em; 
+	padding-right: 3.125em; 
+	margin: 1.875em 0; 
+	white-space: pre-wrap; 
+	white-space: -moz-pre-wrap; 
+	white-space: -pre-wrap; 
+	white-space: -o-pre-wrap; 
+	word-wrap: break-word; 
+	font-family: 'Verdana'; 
+	letter-spacing: 1px; 
+	z-index: 1; 
 }
-
-pre {
-	background: #eee;
-	font-family: "Courier 10 Pitch", Courier, monospace;
-	font-size: 15px;
-	font-size: 0.9375rem;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.6em;
+pre:before { 
+	position: absolute; 
+	width: 1.875em; 
+	padding-top: 0.625em; 
+	text-align: center; 
+	right: 0; 
+	top: 0; 
+	height: 100%; 
+	font-family: "FontAwesome"; 
+	content: "\f121"; 
+	background: #e7e7e7; 
+	color: #333; 
+	font-size: 0.875em; 
 }
 
 code,
@@ -371,6 +392,11 @@ ins {
 big {
 	font-size: 125%;
 }
+
+em { font-style: italic }
+strong { font-weight: 600; }
+small { font-size: 80% }
+
 
 /*--------------------------------------------------------------
 # Elements
@@ -408,23 +434,35 @@ body {
 	background: #fff; /* Fallback for when there is no custom background color defined. */
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: "";
+hr { 
+	border: solid #e4e4e4; 
+	border-width: 1px 0 0; 
+	clear: both; 
+	margin: 40px 0; 
+	height: 0; 
 }
 
-blockquote,
-q {
-	quotes: "" "";
+blockquote { 
+	background: url('images/quote.png') left 4px no-repeat; 
+	padding-left: 55px; 
+	margin: 2.500em 0; 
+	font-size: 1.231em; 
+	color: #ababab; 
 }
-
-hr {
-	background-color: #ccc;
-	border: 0;
-	height: 1px;
-	margin-bottom: 1.5em;
+blockquote p:last-child { margin: 0 }
+blockquote.left { 
+	margin-right: 20px; 
+	text-align: right; 
+	margin-left: 0; 
+	width: 33%; 
+	float: left; 
+}
+blockquote.right { 
+	margin-left: 20px; 
+	text-align: left; 
+	margin-right: 0; 
+	width: 33%; 
+	float: right; 
 }
 
 ul,
@@ -569,6 +607,34 @@ input[type="color"] {
 textarea {
 	padding-left: 3px;
 	width: 100%;
+}
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+#page { overflow: hidden }
+#wrap { position: relative; }
+.container { max-width: 90%; }
+.container { margin: 0 auto }
+
+@media only screen and (min-width: 992px) {
+	.container { width: 980px; }
+	.content-area { 
+		width: 69%; 
+		float: left; 
+		position: relative; 
+	}
+	.widget-area { width: 26%; float: right; }
+
+	.col-2cr .content-area,
+	.col-2cl .widget-area { float: left; }
+	.col-2cr .widget-area,
+	.col-2cl .content-area { float: right; }
+
+	.col-1c .content-area,
+	.col-1c .widget-area {
+		width: 100%;
+	}
 }
 
 /*--------------------------------------------------------------
@@ -875,6 +941,10 @@ a:active {
 	clear: both;
 	margin: 0 0 1.5em;
 }
+.entry ul,
+.entry ol { margin: 0 0 20px 30px }
+.entry ul { list-style: disc }
+.entry ol { list-style: decimal }
 
 /*--------------------------------------------------------------
 ## Asides

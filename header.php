@@ -26,4 +26,4 @@
 
 	<?php get_template_part( 'partials/header/header-layout' ); ?>
 
-	<div id="content" class="site-content">
+	<div id="content" class="site-content container clear">

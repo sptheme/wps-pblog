@@ -25,7 +25,7 @@ $logo_title   = wpsp_header_logo_title(); ?>
 		if ( $logo_img && ! $overlay_logo ) : ?>
 		
 			<a href="<?php echo esc_url( $logo_url ); ?>" title="<?php echo esc_attr( $logo_title ); ?>" rel="home" class="main-logo">
-				<img src="<?php echo esc_url( $logo_img ); ?>" alt="<?php echo esc_attr( $logo_title ); ?>" />
+				<img src="<?php echo esc_url( $logo_img['url'] ); ?>" alt="<?php echo esc_attr( $logo_title ); ?>" />
 			</a>
 
 		<?php endif; ?>

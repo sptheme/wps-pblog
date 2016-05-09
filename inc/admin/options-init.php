@@ -907,10 +907,12 @@
                 'default'   => 'drop_down',
             ),
             array(
-                'id'       => 'section-style-menu',
-                'type'     => 'section',
-                'title'    => __( 'Styling: Main', 'wpsp-redux-framework' ),
-                'indent'   => true,
+                'id'       => 'search-dropdown-top-border',
+                'type'     => 'color',
+                'required' => array( 'menu-search-style', '=', 'drop_down' ),
+                'title'    => __( 'Search Dropdown Top Border', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
             ),
             array(
                 'id'       => 'menu-background',
@@ -1068,6 +1070,134 @@
                 'validate' => 'color',
             ),
         )
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Mobile menu', 'wpsp-redux-framework' ),
+        'id'         => 'mobile-menu-header-tab',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'is-mobile-menu-search',
+                'type'     => 'checkbox',
+                'title'    => __( 'Mobile Menu Search', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Show/hide search box on mobile screen', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'mobile-menu-toggle-style',
+                'type'     => 'select',
+                'required' => array( 'mobile-menu-style', 'equals', array( 'sidr', 'toggle', 'full_screen' ) ),
+                'title'    => __( 'Toggle Button Style', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Locate mobile menu where should be.', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'icon_buttons'              => 'Right Aligned Icon Button(s)',
+                    'icon_buttons_under_logo'   => 'Under The Logo Icon Button(s)',
+                    'navbar'                    => 'Navbar',
+                    'fixed_top'                 => 'Fixed Site Top',
+                ),
+                'default'   => 'icon_buttons',
+            ),
+            array(
+                'id'       => 'mobile-menu-toggle-fixed-top-bg',
+                'type'     => 'color',
+                'required' => array( 'mobile-menu-toggle-style', 'equals', array( 'fixed_top', 'navbar' ) ),
+                'title'    => __( 'Toggle Background', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'This option work only Toggle Button Style = NavBar or Fixed Site Top', 'wpsp-redux-framework' ),
+                'default'  => '#262626',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'mobile-menu-toggle-text',
+                'type'     => 'text',
+                'required' => array( 'mobile-menu-toggle-style', 'equals', array( 'fixed_top', 'navbar' ) ),
+                'title'    => __( 'Toggle Text', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'This option work only Toggle Button Style = NavBar or Fixed Site Top', 'wpsp-redux-framework' ),
+                'default'  => __( 'Menu', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'mobile-menu-style',
+                'type'     => 'select',
+                'title'    => __( 'Mobile Menu Style', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Locate mobile menu where to display, sidebar(left or right), toggle, full screen or disable', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'sidr'       => 'Sidebar',
+                    'toggle'        => 'Toggle',
+                    'full_screen'   => 'Full Screen Overlay',
+                    'disabled'      => 'Disabled',
+                ),
+                'default'   => 'sidr',
+            ),
+            array(
+                'id'       => 'mobile-menu-sidr-direction',
+                'type'     => 'select',
+                'required' => array( 'mobile-menu-style', '=', 'sidr' ),
+                'title'    => __( 'Direction', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'left'  => 'Left',
+                    'right' => 'Right',
+                ),
+                'default'   => 'left',
+            ),
+            array(
+                'id'       => 'mobile-menu-sidr-displace',
+                'type'     => 'checkbox',
+                'required' => array( 'mobile-menu-style', '=', 'sidr' ),
+                'title'    => __( 'Displace', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Do not push sidebar', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'full-screen-mobile-menu-style',
+                'type'     => 'select',
+                'required' => array( 'mobile-menu-style', '=', 'full_screen' ),
+                'title'    => __( 'Style full screen', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'white'  => 'White',
+                    'black' => 'Black',
+                ),
+                'default'   => 'white',
+            ),
+            array(
+                'id'       => 'section-mobile-toggle-menu',
+                'type'     => 'section',
+                'required' => array( 'mobile-menu-style', 'equals', array( 'sidr', 'toggle' ) ),
+                'title'    => __( 'Mobile Toggle Menu', 'wpsp-redux-framework' ),
+                'indent'   => true,
+            ),
+            array(
+                'id'       => 'toggle-mobile-menu-background',
+                'type'     => 'color',
+                'required' => array( 'mobile-menu-style', 'equals', array( 'sidr', 'toggle' ) ),
+                'title'    => __( 'Background', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'toggle-mobile-menu-borders',
+                'type'     => 'color',
+                'required' => array( 'mobile-menu-style', 'equals', array( 'sidr', 'toggle' ) ),
+                'title'    => __( 'Border', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'toggle-mobile-menu-links',
+                'type'     => 'color',
+                'required' => array( 'mobile-menu-style', 'equals', array( 'sidr', 'toggle' ) ),
+                'title'    => __( 'Links', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'toggle-mobile-menu-links-hover',
+                'type'     => 'color',
+                'required' => array( 'mobile-menu-style', 'equals', array( 'sidr', 'toggle' ) ),
+                'title'    => __( 'Links:hover', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+        )
     ) );   
 
     // Footer
@@ -1135,6 +1265,17 @@
                 'required' => array( 'is-responsive', '=', '1' ),
                 'title'    => __( 'Max Width', 'wpsp-redux-framework' ),
                 'desc'     => __( 'Default: 90%', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'main-layout',
+                'type'     => 'select',
+                'title'    => __( 'Layout style', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Display layout style fullwide or boxed', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'full-width'    => 'Full width',
+                    'boxed'         => 'Boxed',
+                ),
+                'default'   => 'full-width',
             ),
         )
     ) );

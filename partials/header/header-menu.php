@@ -36,13 +36,9 @@ if ( has_nav_menu( $menu_location ) || $ms_global_menu ) :
 		'walker'         => new WPSP_Dropdown_Walker_Nav_Menu(),
 	); ?>
 
-	<?php wpsp_hook_main_menu_before(); ?>
-
 	<div id="site-navigation-wrap" class="<?php echo $wrap_classes; ?>">
 
-		<nav id="site-navigation" class="<?php echo $inner_classes; ?>"<?php wpsp_schema_markup( 'site_navigation' ); ?>>
-
-			<?php wpsp_hook_main_menu_top(); ?>
+		<nav id="site-navigation" class="main-navigation <?php echo $inner_classes; ?>"<?php wpsp_schema_markup( 'site_navigation' ); ?> role="navigation">
 
 				<?php
 				// Display global multisite menu
@@ -59,12 +55,8 @@ if ( has_nav_menu( $menu_location ) || $ms_global_menu ) :
 
 				endif; ?>
 
-			<?php wpsp_hook_main_menu_bottom(); ?>
-
 		</nav><!-- #site-navigation -->
 
 	</div><!-- #site-navigation-wrap -->
-
-	<?php wpsp_hook_main_menu_after(); ?>
 
 <?php endif; ?>
