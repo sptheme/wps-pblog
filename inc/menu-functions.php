@@ -8,6 +8,71 @@
  */
 
 /**
+ * Defines your default search results page style
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists( 'wpsp_search_results_style' ) ) :
+function wpsp_search_results_style() {
+	return apply_filters( 'wpsp_search_results_style', wpsp_get_redux( 'search-style', 'default' ) );
+}
+endif;
+
+/**
+ * Adds the search icon to the menu items
+ *
+ * @since 1.0.0
+ */
+function wpsp_add_search_to_menu ( $items, $args ) {
+
+	// Only used on main menu
+	if ( 'main_menu' != $args->theme_location ) {
+		return $items;
+	}
+
+	// Get search style
+	$search_style = wpsp_get_redux( 'menu-search-style' );
+
+	// Return if disabled
+	if ( ! $search_style || 'disabled' == $search_style ) {
+		return $items;
+	}
+
+	// Get header style
+	$header_style = wpsp_get_redux( 'header-style' );
+	
+	// Get correct search icon class
+	if ( 'overlay' == $search_style) {
+		$class = ' search-overlay-toggle';
+	} elseif ( 'drop_down' == $search_style ) {
+		$class = ' search-dropdown-toggle';
+	} elseif ( 'header_replace' == $search_style ) {
+		$class = ' search-header-replace-toggle';
+	} else {
+		$class = '';
+	}
+
+	// Add search item to menu
+	$items .= '<li class="search-toggle-li wpsp-menu-extra">';
+		$items .= '<a href="#" class="site-search-toggle'. $class .'">';
+			$items .= '<span class="link-inner">';
+				$items .= '<span class="fa fa-search"></span>';
+				if ( 'six' == $header_style ) {
+					$text = esc_html__( 'Search', 'wpsp-blog-textdomain' );
+					$text = apply_filters( 'wpsp_header_search_text', $text );
+					$items .= '<span class="wpsp-menu-search-text">'. $text .'</span>';
+				}
+			$items .= '</span>';
+		$items .= '</a>';
+	$items .= '</li>';
+	
+	// Return nav $items
+	return $items;
+
+}
+add_filter( 'wp_nav_menu_items', 'wpsp_add_search_to_menu', 11, 2 );
+
+/**
  * Returns correct menu classes
  *
  * @since 1.0.0
@@ -157,7 +222,7 @@ endif;
  */
 if ( ! class_exists( 'wpsp_custom_menu' ) ) :
 function wpsp_custom_menu() {
-	$menu = get_post_meta( wpsp_global_obj( 'post_id' ), 'wpsp_custom_menu', true );
+	$menu = get_post_meta( wpsp_get_redux( 'post_id' ), 'wpsp_custom_menu', true );
 	$menu = 'default' != $menu ? $menu : '';
 	return apply_filters( 'wpsp_custom_menu', $menu );
 }

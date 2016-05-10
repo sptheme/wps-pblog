@@ -51,6 +51,10 @@ class WPSP_Theme_Setup {
 		// Must run on 10 priority or else child theme locale will be overritten
 		add_action( 'after_setup_theme', array( $this, 'theme_setup' ), 10 );
 
+		// Defines hooks and runs actions
+		// @todo move to 'wp' hook since it's not needed so early? Would break a lot of snippets...
+		add_action( 'init', array( $this, 'hooks_actions' ), 0 );
+
 		// Load the scripts in WP Admin
 		add_action( 'admin_enqueue_scripts', array( $this, 'wpsp_admin_scripts' ) );
 
@@ -181,6 +185,26 @@ class WPSP_Theme_Setup {
 
 		// Enable excerpts for pages.
 		add_post_type_support( 'page', 'excerpt' );
+	}
+
+	/**
+	 * Defines all theme hooks and runs all needed actions for theme hooks.
+	 *
+	 * @since 1.0.0
+	 */
+	public static function hooks_actions() {
+
+		$dir = WPSP_INC_DIR;
+
+		// Register hooks (needed in admin for Custom Actions panel)
+		require_once( $dir .'hooks/hooks.php' );
+
+		// Front-end stuff
+		if ( ! is_admin() ) {
+			require_once( $dir .'hooks/actions.php' );
+			require_once( $dir .'hooks/partials.php' );
+		}
+
 	}
 
 	/**

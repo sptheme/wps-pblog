@@ -20,10 +20,15 @@
 </head>
 
 <body <?php body_class(); ?><?php wpsp_schema_markup( 'body' ); ?>>
+
+<?php wpsp_outer_wrap_before(); ?>
+
 <div id="page" class="site clear">
+
+	<?php wpsp_hook_wrap_before(); ?>
 
 	<div id="wrap" class="clear">
 
-	<?php get_template_part( 'partials/header/header-layout' ); ?>
+		<?php wpsp_hook_wrap_top(); ?>
 
-	<div id="content" class="site-content container clear">
+		<div id="content" class="site-content container clear">

@@ -23,8 +23,15 @@
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
 		
+		<?php wpsp_hook_wrap_bottom(); ?>
+
 	</div> <!-- #wrap -->
+	
+	<?php wpsp_hook_wrap_after(); ?>
+
 </div><!-- #page -->
+
+<?php wpsp_outer_wrap_after(); ?>
 
 <?php wp_footer(); ?>
 

@@ -8,6 +8,31 @@
  */
 
 /**
+ * Check if the header supports aside content
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists( 'wpsp_header_supports_aside' ) ) :
+function wpsp_header_supports_aside( $header_style = '' ) {
+
+	// False by default
+	$bool = false;
+
+	// Get header style
+	$header_style = $header_style ? $header_style : wpsp_get_redux( 'header-style' );
+
+	// Validate
+	if ( 'two' == $header_style || 'three' == $header_style || 'four' == $header_style ) {
+		$bool = true;
+	}
+
+	// Apply filters and return
+	return apply_filters( 'wpsp_header_supports_aside', $bool );
+
+}
+endif;
+
+/**
  * Returns page header overlay logo
  *
  * @since 1.0.0

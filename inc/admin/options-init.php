@@ -203,6 +203,20 @@
         'six' => esc_html__( 'Six - Vertical','wpsp-redux-framework' ),
     ) );
 
+    $visibility = apply_filters( 'wpsp_visibility', array(
+        ''                         => esc_html__( 'Always Visible', 'wpsp-redux-framework' ),
+        'hidden-phone'             => esc_html__( 'Hidden on Phones', 'wpsp-redux-framework' ),
+        'hidden-tablet'            => esc_html__( 'Hidden on Tablets', 'wpsp-redux-framework' ),
+        'hidden-tablet-landscape'  => esc_html__( 'Hidden on Tablets: Landscape', 'wpsp-redux-framework' ),
+        'hidden-tablet-portrait'   => esc_html__( 'Hidden on Tablets: Portrait', 'wpsp-redux-framework' ),
+        'hidden-desktop'           => esc_html__( 'Hidden on Desktop', 'wpsp-redux-framework' ),
+        'visible-desktop'          => esc_html__( 'Visible on Desktop Only', 'wpsp-redux-framework' ),
+        'visible-phone'            => esc_html__( 'Visible on Phones Only', 'wpsp-redux-framework' ),
+        'visible-tablet'           => esc_html__( 'Visible on Tablets Only', 'wpsp-redux-framework' ),
+        'visible-tablet-landscape' => esc_html__( 'Visible on Tablets: Landscape Only', 'wpsp-redux-framework' ),
+        'visible-tablet-portrait'  => esc_html__( 'Visible on Tablets: Portrait Only', 'wpsp-redux-framework' ),
+    ) );
+
     /*
      * ---> END OTHER VARIABLE
      */
@@ -656,6 +670,7 @@
             ),
         )
     ) );
+
     // Search
     Redux::setSection( $opt_name, array(
         'title'            => __( 'Search', 'wpsp-redux-framework' ),
@@ -698,6 +713,121 @@
                 'desc'     => __( 'Show search sidebar on/off', 'wpsp-redux-framework' ),
                 'default'  => '1'// 1 = on | 0 = off
             ),
+            array(
+                'id'       => 'is-main-search',
+                'type'     => 'checkbox',
+                'title'    => __( 'Enable/Disable main search on header', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+        )
+    ) );
+
+    // Top Bar
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Top Bar', 'wpsp-redux-framework' ),
+        'id'               => 'top-bar-options',
+        'desc'             => __( '', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-tag'
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'General', 'wpsp-redux-framework' ),
+        'id'         => 'general-top-bar-tab',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'has-top-bar',
+                'type'     => 'checkbox',
+                'title'    => __( 'Enable', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Disable/enable top bar', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'top-bar-sticky',
+                'type'     => 'checkbox',
+                'title'    => __( 'Sticky', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'top-bar-visibility',
+                'type'     => 'select',
+                'title'    => __( 'Visibility', 'wpsp-redux-framework' ),
+                'options'  => $visibility,
+                'default'  => 'visible-desktop',
+            ),
+            array(
+                'id'       => 'top-bar-style',
+                'type'     => 'select',
+                'title'    => __( 'Style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                        'one'    => 'Left Content & Right Social',
+                        'two'    => 'Minimal',
+                        'three'  => 'Minimal Round',
+                ),
+                'default'  => 'one',
+            ),
+            array(
+                'id'       => 'top-bar-bg',
+                'type'     => 'color',
+                'title'    => __( 'Background', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'top-bar-border',
+                'type'     => 'color',
+                'title'    => __( 'Border', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'top-bar-text',
+                'type'     => 'color',
+                'title'    => __( 'Color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'top-bar-link-color',
+                'type'     => 'color',
+                'title'    => __( 'Link Color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'top-bar-link-color-hover',
+                'type'     => 'color',
+                'title'    => __( 'Link Color: Hover', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'top-bar-top-padding',
+                'type'     => 'text',
+                'title'    => __( 'Top Padding', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'top-bar-bottom-padding',
+                'type'     => 'text',
+                'title'    => __( 'bottom Padding', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Content', 'wpsp-redux-framework' ),
+        'id'         => 'content-top-bar-tab',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(        
+            array(
+                'id'       => 'top-bar-content',
+                'type'     => 'textarea',
+                'title'    => __( 'Content', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'If you enter the ID number of a page it will automatically display the content of such page.', 'wpsp-redux-framework' ),
+            ),
         )
     ) );
 
@@ -707,7 +837,7 @@
         'id'               => 'header-options',
         'desc'             => __( '', 'wpsp-redux-framework' ),
         'customizer_width' => '400px',
-        'icon'             => 'el el-credit-card'
+        'icon'             => 'el el-tasks'
     ) );
     Redux::setSection( $opt_name, array(
         'title'      => __( 'General', 'wpsp-redux-framework' ),
@@ -715,6 +845,12 @@
         'subsection' => true,
         //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
         'fields'     => array(
+            array(
+                'id'       => 'enable-header',
+                'type'     => 'checkbox',
+                'title'    => __( 'Enable', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
             array(
                 'id'       => 'is-full-width-header',
                 'type'     => 'checkbox',
@@ -727,6 +863,7 @@
                 'title'    => __( 'Style', 'wpsp-redux-framework' ),
                 'subtitle' => __( 'Style header menu left, bottom and center', 'wpsp-redux-framework' ),
                 'options'  => $header_styles,
+                'default'  => 'one',
             ),
             array(
                 'id'       => 'header-background',
@@ -747,6 +884,35 @@
                 'type'     => 'text',
                 'title'    => __( 'bottom Padding', 'wpsp-redux-framework' ),
                 'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'section-header-aside',
+                'type'     => 'section',
+                'required' => array( 'header-style', 'equals', array( 'two', 'three', 'four' ) ),
+                'title'    => __( 'Aside', 'wpsp-redux-framework' ),
+                'indent'   => true,
+            ),
+            array(
+                'id'       => 'header-aside-visibility',
+                'type'     => 'select',
+                'required' => array( 'header-style', 'equals', array( 'two', 'three', 'four' ) ),
+                'title'    => __( 'Visibility', 'wpsp-redux-framework' ),
+                'options'  => $visibility,
+                'default'  => 'visible-desktop',
+            ),
+            array(
+                'id'       => 'header-aside-search',
+                'type'     => 'checkbox',
+                'required' => array( 'header-style', 'equals', array( 'two', 'three', 'four' ) ),
+                'title'    => __( 'Header Aside Search', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'header-aside-content',
+                'type'     => 'textarea',
+                'required' => array( 'header-style', 'equals', array( 'two', 'three', 'four' ) ),
+                'title'    => __( 'Header Aside Content', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'If you enter the ID number of a page it will automatically display the content of such page.', 'wpsp-redux-framework' ),
             ),
         )
     ) ); 
