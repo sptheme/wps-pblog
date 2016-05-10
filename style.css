@@ -503,6 +503,29 @@ table {
 	width: 100%;
 }
 
+/* Placeholder text color -- selectors need to be separate to work. */
+::-webkit-input-placeholder {
+	color: #686868;
+	font-family: 'Open Sans', sans-serif;
+}
+
+:-moz-placeholder {
+	color: #686868;
+	font-family: 'Open Sans', sans-serif;
+}
+
+::-moz-placeholder {
+	color: #686868;
+	font-family: 'Open Sans', sans-serif;
+	opacity: 1;
+	/* Since FF19 lowers the opacity of the placeholder by default */
+}
+
+:-ms-input-placeholder {
+	color: #686868;
+	font-family: 'Open Sans', sans-serif;
+}
+
 /*--------------------------------------------------------------
 # Forms
 --------------------------------------------------------------*/
@@ -656,23 +679,21 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-	color: royalblue;
-}
-
-a:visited {
-	color: purple;
+	color: #007acc;
+	text-decoration: none;
+	-webkit-transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease-in-out;
+       -moz-transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease-in-out;
+        -ms-transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease-in-out;
+         -o-transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease-in-out;
+            transition: background-color .2s ease, border .2s ease, color .2s ease, opacity .2s ease-in-out;
 }
 
 a:hover,
 a:focus,
 a:active {
-	color: midnightblue;
+	color: #686868;
 }
-
-a:focus {
-	outline: thin dotted;
-}
-
+a:focus,
 a:hover,
 a:active {
 	outline: 0;
