@@ -29,6 +29,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Elements
 # Forms
 # Layout
+# Header
 # Navigation
 	## Links
 	## Menus
@@ -638,6 +639,17 @@ textarea {
 }
 
 /*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#site-header { padding: 0 !important; } /* no padding should be added here, add to header-inner please*/
+#site-header-inner { 
+	position: relative; 
+	padding-top: 30px; 
+	padding-bottom: 30px; 
+	height: 100%; 
+}
+
+/*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
@@ -669,79 +681,320 @@ a:active {
 /*--------------------------------------------------------------
 ## Menus
 --------------------------------------------------------------*/
-.main-navigation {
-	clear: both;
-	display: block;
-	float: left;
-	width: 100%;
+/*Superfish + Core menu */
+.sf-menu,
+.sf-menu * { 
+	margin: 0; 
+	padding: 0; 
+	list-style: none; 
+}
+.sf-menu li { 
+	position: relative 
+}
+.sf-menu ul { 
+	position: absolute; 
+	display: none; 
+	top: 100%; 
+	left: 0; 
+	z-index: 10001; 
+}
+.sf-menu > li { float: left; }
+.sf-menu li:hover > ul,
+.sf-menu li.sfHover > ul { display: block; }
+.sf-menu a { 
+	display: block; 
+	position: relative; 
+}
+.sf-menu ul ul { 
+	top: 0; 
+	left: 100%; 
+}
+.sf-menu { float: left }
+.sf-menu ul { 
+	min-width: 140px; 
+	*width: 140px; 
+}
+.sf-menu a { zoom: 1 }
+.sf-menu li { 
+	position: relative; 
+	white-space: nowrap; 
+	*white-space: normal; 
+}
+.sf-menu li:hover,
+.sf-menu li.sfHover { transition: none }
+.sf-menu .sf-mega { 
+	position: absolute; 
+	display: none; 
+	top: 100%; 
+	left: 0; 
+	z-index: 99; 
+}
+.sf-menu li:hover > .sf-mega,
+.sf-menu li.sfHover > .sf-mega { display: block }
+.sf-menu ul img { 
+	display: block; 
+	float: none; 
+	max-width: 100%; 
+}
+#site-navigation a { text-decoration: none }
+#site-navigation .dropdown-menu li a .fa { margin-right: 8px }
+#site-navigation .dropdown-menu li.no-icon-margin a .fa { margin-right: 0 }
+#site-navigation .dropdown-menu .site-search-toggle .fa { margin: 0 }
+.menu-button.menu-button-rounded span.link-inner { border-radius: 40px !important }
+
+/* Menu > Main > Arrows */
+#site-navigation .dropdown-menu li a .nav-arrow { 
+	margin-left: 4px; 
+	margin-right: 0; 
+}
+#site-navigation .dropdown-menu ul a.sf-with-ul { padding-right: 25px }
+#site-navigation .sf-menu > li ul li .nav-arrow { 
+	position: absolute; 
+	top: 50%; 
+	right: 10px; 
+	height: 10px; 
+	line-height: 10px; 
+	margin-top: -5px; 
 }
 
-.main-navigation ul {
-	display: none;
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
+/* Menu > Main > Dropdowns */
+#site-navigation .dropdown-menu ul { 
+	background: #fff; 
+	border: 1px solid #eee; 
+}
+#site-navigation .dropdown-menu ul ul { 
+	margin-left: 0; 
+	text-align: left; 
+}
+#site-navigation .dropdown-menu ul li:first-child ul { margin-top: 0 }
+#site-navigation .dropdown-menu ul li { padding: 0 }
+#site-navigation .dropdown-menu ul a { 
+	display: block; 
+	float: none; 
+	padding: 8px 12px; 
+	height: auto; 
+	margin: 0px; 
+	border: 0px; 
+	line-height: 1.4em; 
+	color: #666; 
+	font-size: 0.923em; 
+	border-bottom: 1px solid #eee; 
+}
+#site-navigation .dropdown-menu ul li:last-child > a { border-bottom: none }
+#site-navigation .dropdown-menu ul a:hover { background: #f7f7f7 }
+
+/* Menu > Main > Left Dropdowns */
+#site-navigation .dropdown-menu li.left-dropdowns ul ul { 
+	left: auto; 
+	right: 100%; 
+}
+body #site-navigation .sf-menu li.left-dropdowns ul a.sf-with-ul { 
+	padding-left: 25px; 
+	padding-right: 12px; 
+}
+#site-navigation .dropdown-menu li.left-dropdowns ul .fa-angle-right { 
+	left: 9px; 
+	right: auto; 
+}
+#site-navigation .dropdown-menu li.left-dropdowns ul .fa-angle-right:before { content: "\f104" }
+
+/* Menu > Main > Animate Links */
+#site-navigation .dropdown-menu > li > a > span.link-inner { 
+	transition: background 0.15s ease-in-out, color 0.15s ease-in-out; 
+	-moz-transition: background 0.15s ease-in-out, color 0.15s ease-in-out; 
+	-webkit-transition: background 0.15s ease-in-out, color 0.15s ease-in-out; 
+}
+#site-navigation .dropdown-menu ul a { 
+	transition: all 0.15s ease-in-out;
+	-moz-transition: all 0.15s ease-in-out; 
+	-webkit-transition: all 0.15s ease-in-out; 
 }
 
-.main-navigation li {
-	float: left;
-	position: relative;
+/*--------------------------------------------------------------
+## Header one - Left logo & Right Navbar
+--------------------------------------------------------------*/
+.header-one #site-logo { 
+	float: left; 
+	height: 100%; 
 }
 
-.main-navigation a {
-	display: block;
-	text-decoration: none;
+/* Header > One > Navbar */
+.navbar-style-one { 
+	position: absolute; 
+	right: -12px; 
+	top: 50%; 
+	margin-top: -25px; 
+	height: 50px; 
+}
+body.navbar-has-inner-span-bg .navbar-style-one { right: -4px; }
+.navbar-style-one .dropdown-menu > li:last-child.menu-button { margin-right: 12px; }
+.navbar-style-one .dropdown-menu > li > a { 
+	display: block; 
+	height: 50px; 
+	line-height: 50px; 
+	padding: 0 4px; 
+	color: #555; 
+}
+.navbar-style-one .dropdown-menu > li > a > span.link-inner { 
+	display: inline-block; 
+	line-height: 1; 
+	padding: 0.5em 0.8em; 
+	border-radius: 3px; 
 }
 
-.main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: left;
-	position: absolute;
-	top: 1.5em;
-	left: -999em;
-	z-index: 99999;
+/*--------------------------------------------------------------
+## Header two - Bottom Navbar
+--------------------------------------------------------------*/
+.header-two { background: #fff }
+.header-two-aside { 
+	float: right; 
+	font-size: 1.077em; 
+	text-align: right; 
 }
 
-.main-navigation ul ul ul {
-	left: -999em;
-	top: 0;
+/* Header > Two > Logo */
+.header-two-logo { float: left }
+
+/* Header > Two > Search */
+#header-two-search { margin-top: 10px }
+#header-two-search { float: right }
+#header-two-search input#header-two-search-input { 
+	font-size: 0.923em; 
+	width: 160px; 
+	float: left; 
+	border: 1px solid #ddd; 
+	height: 32px; 
+	padding: 0 10px; 
+	border: 1px solid #e4e4e4; 
+	background: #f7f7f7; 
+}
+#header-two-search-submit { 
+	height: 32px; 
+	line-height: 32px; 
+	width: 35px; 
+	text-align: center; 
+	padding: 0; 
+	outline: none; 
+	margin-left: 5px; 
+	cursor: pointer; 
+	font-size: 12px; 
 }
 
-.main-navigation ul ul a {
-	width: 200px;
+/* Header > Two > Navbar */
+.navbar-style-two { background: #fff; }
+.navbar-style-two .dropdown-menu { width: 100%; }
+.navbar-style-two { 
+	border-top: 1px solid #eee; 
+	border-bottom: 1px solid #eee; 
+	position: relative; 
+}
+body.page-header-disabled .navbar-style-two { border-bottom: 1px solid #eee; }
+.navbar-style-two .dropdown-menu { 
+	border-left: 1px solid #eee; 
+	border-right: 1px solid #eee; 
+}
+.navbar-style-two .dropdown-menu li { border-right: 1px solid #eee; }
+.navbar-style-two .dropdown-menu li li { border-right: 0; }
+.navbar-style-two .dropdown-menu > li > a { 
+	display: block; 
+	height: 50px; 
+	line-height: 50px; 
+	color: #555; 
+	font-weight: normal; 
+	padding: 0 20px; 
+}
+.navbar-style-two .dropdown-menu .woo-menu-icon,
+.navbar-style-two .dropdown-menu .search-toggle-li { 
+	float: right; 
+	border-left: 1px solid #eee; 
+	border-right: 0; 
 }
 
-.main-navigation ul ul li {
-
+/*--------------------------------------------------------------
+## Header three - Bottom Navbar Centered
+--------------------------------------------------------------*/
+.header-three-logo { 
+	float: none; 
+	text-align: center; 
+	margin: 0 auto; 
 }
-
-.main-navigation li:hover > a,
-.main-navigation li.focus > a {
+.header-three-logo a { 
+	display: inline; 
+	display: inline-block; 
+	float: none; 
 }
-
-.main-navigation ul ul :hover > a,
-.main-navigation ul ul .focus > a {
+.header-three-aside { 
+	float: none; 
+	text-align: center; 
+	width: 100%; 
+	margin-top: 10px; 
 }
-
-.main-navigation ul ul a:hover,
-.main-navigation ul ul a.focus {
+.navbar-style-three { 
+	background: #fff; 
+	border-top: 1px solid #eee; 
+	position: relative; 
 }
-
-.main-navigation ul li:hover > ul,
-.main-navigation ul li.focus > ul {
-	left: auto;
+body.page-header-disabled .navbar-style-three { border-bottom: 1px solid #eee; }
+.navbar-style-three .container { position: relative; }
+.navbar-style-three .sf-menu { text-align: center; float: none; }
+.navbar-style-three .dropdown-menu > li { display: inline-block; float: none; }
+.navbar-style-three .dropdown-menu > li > a { 
+	display: block; 
+	height: 50px; 
+	line-height: 50px; 
+	color: #555; 
+	font-weight: normal; 
+	padding: 0 5px; 
 }
-
-.main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
-	left: 100%;
+.navbar-style-three .dropdown-menu > li > a > span.link-inner { 
+	display: inline-block; 
+	line-height: 1; 
+	padding: 0.5em 0.8em; 
+	border-radius: 3px; 
 }
+.navbar-style-three .dropdown-menu ul { text-align: left }
 
-.main-navigation .current_page_item > a,
-.main-navigation .current-menu-item > a,
-.main-navigation .current_page_ancestor > a,
-.main-navigation .current-menu-ancestor > a {
+/*--------------------------------------------------------------
+## Header four - Top Navbar Centered
+--------------------------------------------------------------*/
+.header-four-logo { 
+	float: none; 
+	text-align: center; 
+	margin: 0 auto; 
 }
+.header-four-logo a { 
+	display: inline-block; 
+	float: none; 
+}
+.header-four-aside { 
+	float: none; 
+	text-align: center; 
+	width: 100%; 
+	margin-top: 10px; 
+}
+.navbar-style-four { 
+	background: #fff; 
+	position: relative; 
+	border-bottom: 1px solid #eee; 
+}
+.navbar-style-four .container { position: relative; }
+.navbar-style-four .sf-menu { 
+	text-align: center; 
+	float: none; 
+}
+.navbar-style-four .dropdown-menu > li { 
+	display: inline-block; 
+	float: none; 
+}
+.navbar-style-four .dropdown-menu > li > a { 
+	display: block; 
+	height: 50px; 
+	line-height: 50px; 
+	color: #555; 
+	font-weight: normal; 
+	padding: 0 15px; 
+}
+.navbar-style-four .dropdown-menu ul { text-align: left; }
 
 /* Small menu. */
 .menu-toggle,

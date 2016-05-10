@@ -165,3 +165,34 @@ function wpsp_header_logo_url() {
 	return $url;
 }
 endif;
+
+/**
+ * Header logo classes
+ *
+ * @since 1.0.0
+ */
+if ( ! function_exists( 'wpsp_header_logo_classes' ) ) :
+function wpsp_header_logo_classes() {
+
+	// Define classes array
+	$classes = array( 'site-branding', 'clr' );
+
+	// Default class
+	$classes[] = 'header-'. wpsp_get_redux( 'header-style' ) .'-logo';
+
+	// Get custom overlay logo
+	if ( wpsp_get_redux( 'has-overlay-header' ) && wpsp_header_overlay_logo() ) {
+		$classes[] = 'has-overlay-logo';
+	}
+
+	// Apply filters for child theming
+	$classes = apply_filters( 'wpsp_header_logo_classes', $classes );
+
+	// Turn classes into space seperated string
+	$classes = implode( ' ', $classes );
+
+	// Return classes
+	return $classes;
+
+}
+endif;

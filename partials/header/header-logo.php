@@ -18,7 +18,7 @@ $logo_img     = wpsp_get_redux( 'custom-logo' );
 $overlay_logo = wpsp_header_overlay_logo(); 
 $logo_title   = wpsp_header_logo_title(); ?>
 
-<div id="site-logo" class="site-branding">
+<div id="site-logo" class="site-branding <?php echo wpsp_header_logo_classes(); ?>">
 	<div id="site-logo-inner" class="site-logo-inner clear">
 		<?php
 		// Custom site-wide image logo
