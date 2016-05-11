@@ -284,6 +284,11 @@ class WPSP_Theme_Setup {
 			'customSelects'         => '.woocommerce-ordering .orderby, #dropdown_product_cat, .widget_categories select, .widget_archive select, #bbp_stick_topic_select, #bbp_topic_status_select, #bbp_destination_topic, .single-product .variations_form .variations select',
 			'milestoneDecimalFormat' => ',',
 		);
+		// Header five
+		if ( 'five' == $header_style ) {
+			$localize_array['headerFiveSplitOffset'] = 1;
+		}
+
 		wp_localize_script( 'wpsp-custom', 'wpspLocalize', $localize_array );
 	}
 

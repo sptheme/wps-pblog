@@ -866,6 +866,16 @@
                 'default'  => 'one',
             ),
             array(
+                'id'       => 'vertical-header-style',
+                'type'     => 'select',
+                'required' => array( 'header-style', '=', 'six' ),
+                'title'    => __( 'Vertical Header Style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                        ''         => 'Default',
+                        'fixed'    => 'Fixed',
+                ),
+            ),
+            array(
                 'id'       => 'header-background',
                 'type'     => 'color',
                 'title'    => __( 'Background', 'wpsp-redux-framework' ),
