@@ -158,8 +158,8 @@ endif;
 if ( ! function_exists( 'wpsp_layout_class' ) ) :
 function wpsp_layout_class() {
 	// Default layout
-	$layout = 'col-2cr';
-	$default = 'col-2cr';
+	$layout = 'full-width';
+	$default = 'right-sidebar';
 
 	// Check for page/post specific layout
 	if ( is_page() || is_single() ) {

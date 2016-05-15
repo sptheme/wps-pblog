@@ -1453,6 +1453,28 @@
                 ),
                 'default'   => 'full-width',
             ),
+            array(
+                'id'       => 'boxed-dropdshadow',
+                'type'     => 'checkbox',
+                'required' => array( 'main-layout', '=', 'boxed' ),
+                'title'    => __( 'Boxed Layout Drop-Shadow', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'boxed-padding',
+                'type'     => 'text',
+                'required' => array( 'main-layout', '=', 'boxed' ),
+                'title'    => __( 'Outer Margin', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Default: 40px 30px', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'boxed-wrap-bg',
+                'type'     => 'color',
+                'required' => array( 'main-layout', '=', 'boxed' ),
+                'title'    => __( 'Inner Background', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
         )
     ) );
     Redux::setSection( $opt_name, array(
@@ -1577,20 +1599,20 @@
                 'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
                 //Must provide key => value(array:title|img) pairs for radio options
                 'options'  => array(
-                    'col-1c' => array(
+                    'full-width' => array(
                         'alt' => '1 Column',
                         'img' => ReduxFramework::$_url . 'assets/img/1col.png'
                     ),
-                    'col-2cl' => array(
+                    'left-sidebar' => array(
                         'alt' => '2 Column Left',
                         'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
                     ),
-                    'col-2cr' => array(
+                    'right-sidebar' => array(
                         'alt' => '2 Column Right',
                         'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                     )
                 ),
-                'default'  => 'col-1c',
+                'default'  => 'full-width',
             ),
             array(
                 'id'       => 'single-layout',
@@ -1603,15 +1625,15 @@
                         'alt' => 'Inherit Global Layout',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
-                    'col-1c' => array(
+                    'full-width' => array(
                         'alt' => '1 Column',
                         'img' => ReduxFramework::$_url . 'assets/img/1col.png'
                     ),
-                    'col-2cl' => array(
+                    'left-sidebar' => array(
                         'alt' => '2 Column Left',
                         'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
                     ),
-                    'col-2cr' => array(
+                    'right-sidebar' => array(
                         'alt' => '2 Column Right',
                         'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                     )
@@ -1629,15 +1651,15 @@
                         'alt' => 'Inherit Global Layout',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
-                    'col-1c' => array(
+                    'full-width' => array(
                         'alt' => '1 Column',
                         'img' => ReduxFramework::$_url . 'assets/img/1col.png'
                     ),
-                    'col-2cl' => array(
+                    'left-sidebar' => array(
                         'alt' => '2 Column Left',
                         'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
                     ),
-                    'col-2cr' => array(
+                    'right-sidebar' => array(
                         'alt' => '2 Column Right',
                         'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                     )
@@ -1655,15 +1677,15 @@
                         'alt' => 'Inherit Global Layout',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
-                    'col-1c' => array(
+                    'full-width' => array(
                         'alt' => '1 Column',
                         'img' => ReduxFramework::$_url . 'assets/img/1col.png'
                     ),
-                    'col-2cl' => array(
+                    'left-sidebar' => array(
                         'alt' => '2 Column Left',
                         'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
                     ),
-                    'col-2cr' => array(
+                    'right-sidebar' => array(
                         'alt' => '2 Column Right',
                         'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                     )
@@ -1681,15 +1703,15 @@
                         'alt' => 'Inherit Global Layout',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
-                    'col-1c' => array(
+                    'full-width' => array(
                         'alt' => '1 Column',
                         'img' => ReduxFramework::$_url . 'assets/img/1col.png'
                     ),
-                    'col-2cl' => array(
+                    'left-sidebar' => array(
                         'alt' => '2 Column Left',
                         'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
                     ),
-                    'col-2cr' => array(
+                    'right-sidebar' => array(
                         'alt' => '2 Column Right',
                         'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                     )
@@ -1707,15 +1729,15 @@
                         'alt' => 'Inherit Global Layout',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
-                    'col-1c' => array(
+                    'full-width' => array(
                         'alt' => '1 Column',
                         'img' => ReduxFramework::$_url . 'assets/img/1col.png'
                     ),
-                    'col-2cl' => array(
+                    'left-sidebar' => array(
                         'alt' => '2 Column Left',
                         'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
                     ),
-                    'col-2cr' => array(
+                    'right-sidebar' => array(
                         'alt' => '2 Column Right',
                         'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                     )
@@ -1734,15 +1756,15 @@
                         'alt' => 'Inherit Global Layout',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
-                    'col-1c' => array(
+                    'full-width' => array(
                         'alt' => '1 Column',
                         'img' => ReduxFramework::$_url . 'assets/img/1col.png'
                     ),
-                    'col-2cl' => array(
+                    'left-sidebar' => array(
                         'alt' => '2 Column Left',
                         'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
                     ),
-                    'col-2cr' => array(
+                    'right-sidebar' => array(
                         'alt' => '2 Column Right',
                         'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                     )

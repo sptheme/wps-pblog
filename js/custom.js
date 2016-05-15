@@ -66,6 +66,26 @@
 			self.config.$document.on( 'ready', function() {
 				self.superFish();
 				self.inlineHeaderLogo();
+				self.initUpdateConfig();
+			} );
+
+			// Run on Window Load
+			self.config.$window.on( 'load', function() {
+				self.equalHeights();
+			} );
+
+			// Run on Window Resize
+			self.config.$window.resize( function() {
+				// Window width change
+				if ( self.config.$window.width() != self.config.$windowWidth ) {
+					self.resizeUpdateConfig();
+				}
+			} );
+
+			// On orientation change
+			self.config.$window.on( 'orientationchange',function() {
+				resizeUpdateConfig();
+				self.inlineHeaderLogo();
 			} );
 		},
 
@@ -121,6 +141,149 @@
 
 			// Add display class to logo (hidden by default)
 			$headerLogo.addClass( 'display' );
+
+		},
+
+		/**
+		 * Updates config on doc ready
+		 *
+		 * @since 1.0.0
+		 */
+		initUpdateConfig: function() {
+			// Define header
+			if ( $( '#site-header' ).length ) {
+				this.config.$siteHeader = $( '#site-header' );
+			}
+
+			// Define logo
+			if ( $( '#site-logo img' ).length ) {
+				this.config.$siteLogo = $( '#site-logo img' );
+				this.config.$siteLogoSrc = this.config.$siteLogo.attr( 'src' );
+			}
+
+			// Site nav wrap
+			if ( $( '#site-navigation-wrap' ).length ) {
+				this.config.$siteNavWrap = $( '#site-navigation-wrap' );
+			}
+
+			// Mobile menu style
+			if ( $( '#site-navigation-wrap' ).length ) {
+				this.config.$mobileMenuStyle = wpspLocalize.mobileMenuStyle;
+			}
+
+			// Vertical header
+			if ( this.config.$body.hasClass( 'wpsp-has-vertical-header' ) ) {
+				this.config.$verticalHeaderActive = true;
+			}
+		},
+
+		/**
+		 * Updates config whenever the window is resized
+		 *
+		 * @since 1.0.0
+		 */
+		resizeUpdateConfig: function() {
+
+			// Update main configs
+			this.config.$windowHeight = this.config.$window.height();
+			this.config.$windowWidth  = this.config.$window.width();
+			this.config.$windowTop    = this.config.$window.scrollTop();
+
+			// Update header height
+			if ( this.config.$siteHeader ) {
+
+				// reset sticky height
+				if ( $( '.wpsp-sticky-header-holder' ).length ) {
+					$( '.wpsp-sticky-header-holder' ).height( '' );
+				}
+
+				// Get header height
+				this.config.$siteHeaderHeight = this.config.$siteHeader.outerHeight();
+
+				// Re add sticky height
+				if ( $( '.wpsp-sticky-header-holder' ).length ) {
+					$( '.wpsp-sticky-header-holder' ).height( this.config.$siteHeaderHeight );
+				}
+
+			}
+
+			// Get logo height
+			if ( this.config.$siteLogo ) {
+				this.config.$siteLogoHeight = this.config.$siteLogo.height();
+			}
+
+			// Vertical Header
+			if ( this.config.$windowWidth < 960 ) {
+				this.config.$verticalHeaderActive = false;
+			} else if ( this.config.$body.hasClass( 'wpsp-has-vertical-header' ) ) {
+				this.config.$verticalHeaderActive = true;
+			}
+
+			// Update Topbar sticky height
+			if ( this.config.$stickyTopBar ) {
+				this.config.$stickyTopBarHeight = this.config.$stickyTopBar.outerHeight();
+				$( '.wpsp-sticky-top-bar-holder' ).height( this.config.$stickyTopBarHeight );
+			}
+
+			// Re-stick topbar but check for mobile first
+			if ( this.config.$hasStickyTopBar ) {
+
+				// Unstick first
+				this.stickyTopBar( 'unstick' );
+
+				// Desktops or mobile enabled
+				if ( wpspLocalize.hasStickyTopBarMobile || ( this.config.$windowWidth >= wpspLocalize.stickyTopBarBreakPoint ) ) {
+					this.config.$hasStickyTopBar = true;
+					this.stickyTopBar();
+				}
+
+				// Mobile
+				else if ( ! wpspLocalize.hasStickyTopBarMobile ) {
+					this.config.$hasStickyTopBar = false;
+				}
+
+			}
+
+			// Sticky Header
+			if ( this.config.$hasStickyHeader ) {
+
+				// Unstick first
+				this.stickyHeader( 'unstick' );
+				this.stickyHeaderShrink( 'destroy' );
+
+				// Desktops
+				if ( this.config.$hasStickyMobileHeader || ( this.config.$windowWidth >= wpspLocalize.stickyHeaderBreakPoint ) ) {
+					this.config.$hasStickyHeader = true;
+					this.stickyHeader();
+					this.stickyHeaderShrink();
+				}
+
+				// Mobile
+				else if ( ! this.config.$hasStickyMobileHeader ) {
+					this.config.$hasStickyHeader = false;
+				}
+
+			}
+
+			// Local scroll offset => update last
+			//this.config.$localScrollOffset = this.parseLocalScrollOffset();
+
+		},
+
+		/**
+		 * Equal heights function
+		 *
+		 * @since 1.0.0
+		 */
+		equalHeights: function() {
+
+			// Make sure equal heights function is defined
+			if ( ! $.fn.matchHeight ) {
+				return;
+			}
+			
+			// Add equal heights
+			$( '.equal-height-column, .match-height-row .match-height-content, .vcex-feature-box-match-height .vcex-match-height, .equal-height-content, .match-height-grid .match-height-content, .blog-entry-equal-heights .blog-entry-inner, .wpsp-vc-row-columns-match-height .wpsp-vc-column-wrapper' ).matchHeight();
 
 		},
 

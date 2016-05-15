@@ -221,3 +221,119 @@ function wpsp_header_logo_classes() {
 
 }
 endif;
+
+function wpsp_body_classes( $classes ) {
+
+	global $post;
+
+	// Save some vars
+	$main_layout  = wpsp_get_redux( 'main-layout' );
+	$header_style = wpsp_get_redux( 'header-style' );
+	$post_layout  = get_post_meta( $post->ID, 'wpsp_layout', true );
+	$global_layout = wpsp_get_redux( 'layout-global' );
+	$post_id      = $post->ID;
+
+	// RTL
+	if ( is_RTL() ) {
+		$classes[] = 'rtl';
+	}
+
+	// Customizer
+	if ( is_customize_preview() ) {
+		$classes[] = 'is_customize_preview';
+	}
+	
+	// Main class
+	$classes[] = 'wpsp-theme';
+
+	// Responsive
+	if ( wpsp_get_redux( 'is-responsive' ) ) {
+		$classes[] = 'wpsp-responsive';
+	}
+
+	// Layout Style
+	$classes[] = $main_layout .'-main-layout';
+	
+	// Vertical header style
+	if ( 'six' == $header_style) {
+		$classes[] = 'wpsp-has-vertical-header';
+		if ( 'fixed' == wpsp_get_redux( 'vertical-header-style' ) ) {
+			$classes[] = 'wpsp-fixed-vertical-header';
+		}
+	}
+
+	// Boxed Layout dropshadow
+	if ( 'boxed' == $main_layout
+		&& wpsp_get_redux( 'boxed-dropdshadow' )
+	) {
+		$classes[] = 'wrap-boxshadow';
+	}
+
+	// Sidebar enabled
+	if ( 'left-sidebar' == $post_layout || 'right-sidebar' == $post_layout || 'left-sidebar' == $global_layout || 'right-sidebar' == $global_layout ) { 
+		$classes[] = 'has-sidebar';
+	} 
+
+	// Content layout
+	if ( $post_layout ) {
+		$classes[] = 'content-'. $post_layout;
+	}
+
+	// Single Post cagegories
+	if ( is_singular( 'post' ) ) {
+		$cats = get_the_category( $post_id );
+		foreach ( $cats as $cat ) {
+			$classes[] = 'post-in-category-'. $cat->category_nicename;
+		}
+	}
+
+	// Topbar
+	if ( wpsp_get_redux( 'has-top-bar' ) ) {
+		$classes[] = 'has-topbar';
+	}
+
+	// Widget Icons
+	if ( wpsp_get_redux( 'has-widget-icons', true ) ) {
+		$classes[] = 'sidebar-widget-icons';
+	}
+
+	// Overlay header style
+	if ( wpsp_get_redux( 'has-overlay-header' ) ) {
+		$classes[] = 'has-overlay-header';
+	}
+
+	// Footer reveal
+	if ( wpsp_get_redux( 'has-footer-reveal' ) ) {
+		$classes[] = 'footer-has-reveal';
+	}
+
+	// Disabled main header
+	if ( ! wpsp_get_redux( 'enable-header' ) ) {
+		$classes[] = 'wpsp-site-header-disabled';
+	}
+
+	// Mobile menu toggle style
+	$classes[] = 'wpsp-mobile-toggle-menu-'. wpsp_get_redux( 'mobile-menu-toggle-style' );
+
+	// Mobile menu style
+	if ( 'disabled' == wpsp_get_redux( 'mobile-menu-style' ) ) {
+		$classes[] = 'mobile-menu-disabled';
+	} else {
+		$classes[] = 'has-mobile-menu';
+	}
+
+	// Navbar inner span bg
+	if ( wpsp_get_redux( 'menu-link-span-background' ) ) {
+		$classes[] = 'navbar-has-inner-span-bg';
+	}
+
+	// Check if avatars are enabled
+	if ( is_singular() && ! get_option( 'show_avatars' ) ) {
+		$classes[] = 'comment-avatars-disabled';
+	}
+	
+	// Return classes
+	return $classes;
+
+}
+add_filter( 'body_class', 'wpsp_body_classes' );
