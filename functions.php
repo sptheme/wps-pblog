@@ -119,6 +119,7 @@ class WPSP_Theme_Setup {
 		require_once( WPSP_INC_DIR .'sanitize-data.php' );
 		require_once( WPSP_INC_DIR .'category-meta.php' );
 		require_once( WPSP_INC_DIR .'wpml.php' );
+		require_once( WPSP_INC_DIR .'fonts.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
 		require_once( WPSP_INC_DIR .'blog-functions.php' );
 		require_once( WPSP_INC_DIR .'header-functions.php' );
@@ -256,7 +257,10 @@ class WPSP_Theme_Setup {
 		wp_enqueue_script( 'wpsp-images-loaded', $dir .'vendors/images-loaded.js', array( 'jquery' ), $theme_version, true );
 
 		// Equal Heights
-			wp_enqueue_script( 'wpsp-match-height', $dir .'vendors/jquery.matchHeight.js', array( 'jquery' ), $theme_version, true );
+		wp_enqueue_script( 'wpsp-match-height', $dir .'vendors/jquery.matchHeight.js', array( 'jquery' ), $theme_version, true );
+
+		// Leaner modal used for search/woo modals: @todo: Replace with CSS+light js
+		wp_enqueue_script( 'wpsp-leanner-modal', $dir .'vendors/leanner-modal.js', array( 'jquery' ), $theme_version, true );
 
 		// Tooltips
 		wp_enqueue_script( 'wpsp-tipsy', $dir .'vendors/tipsy.js', array( 'jquery' ), $theme_version, true );

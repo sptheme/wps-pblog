@@ -31,4 +31,8 @@
 
 		<?php wpsp_hook_wrap_top(); ?>
 
+		<?php wpsp_hook_content_before(); ?>
+
 		<div id="content" class="site-content container clear">
+
+			<?php wpsp_hook_content_top(); ?>

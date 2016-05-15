@@ -298,7 +298,7 @@ function wpsp_mobile_menu_alt() {
  * @since 1.0.0
  */
 function wpsp_sidr_close() { ?>
-	<?php if ( 'sidr' == wpsp_get_redux( 'mobile_menu_style' ) ) : ?>
+	<?php if ( 'sidr' == wpsp_get_redux( 'mobile-menu-style' ) ) : ?>
 		<div id="sidr-close"><a href="#sidr-close" class="toggle-sidr-close"></a></div>
 	<?php endif; ?>
 <?php }

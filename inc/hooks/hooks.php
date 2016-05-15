@@ -68,3 +68,39 @@ function wpsp_hook_header_bottom() {
 function wpsp_hook_header_after() {
 	do_action( 'wpsp_hook_header_after' );
 }
+
+/**
+ * Main Menu Hooks
+ *
+ * @since 1.0.0
+ */
+function wpsp_hook_main_menu_before() {
+	do_action( 'wpsp_hook_main_menu_before' );
+}
+function wpsp_hook_main_menu_top() {
+	do_action( 'wpsp_hook_main_menu_top' );
+}
+function wpsp_hook_main_menu_bottom() {
+	do_action( 'wpsp_hook_main_menu_bottom' );
+}
+function wpsp_hook_main_menu_after() {
+	do_action( 'wpsp_hook_main_menu_after' );
+}
+
+/**
+ * Main Hooks
+ *
+ * @since 1.0.0
+ */
+function wpsp_hook_content_before() {
+	do_action( 'wpsp_hook_content_before' );
+}
+function wpsp_hook_content_top() {
+	do_action( 'wpsp_hook_content_top' );
+}
+function wpsp_hook_content_bottom() {
+	do_action( 'wpsp_hook_content_bottom' );
+}
+function wpsp_hook_content_after() {
+	do_action( 'wpsp_hook_content_after' );
+}

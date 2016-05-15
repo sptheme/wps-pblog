@@ -10,8 +10,11 @@
  */
 
 ?>
+			<?php wpsp_hook_content_bottom(); ?>
 
 		</div><!-- #content -->
+
+		<?php wpsp_hook_content_after(); ?>
 
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="site-info">
