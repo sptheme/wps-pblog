@@ -33,49 +33,6 @@ function wpsp_header_supports_aside( $header_style = '' ) {
 endif;
 
 /**
- * Returns page header overlay logo
- *
- * @since 1.0.0
- */
-if ( ! function_exists( 'wpsp_header_overlay_logo' ) ) :
-function wpsp_header_overlay_logo() {
-
-	// Return false if disabled
-	if ( ! wpsp_get_redux( 'has-overlay-header' ) ) {
-		return false;
-	}
-
-	// No custom overlay logo by default
-	$logo = false;
-
-	// Get logo via custom field
-	$logo = wpsp_get_redux( 'custom-overlay-logo' );
-
-	// Check old method
-	if ( is_array( $logo ) ) {
-		if ( ! empty( $logo['url'] ) ) {
-			$logo = $logo['url'];
-		} else {
-			$logo = false;
-		}
-	}
-
-	// Apply filters for child theming
-	$logo = apply_filters( 'wpsp_header_overlay_logo', $logo );
-
-	// If numeric logo is an attachment ID so lets get the URL
-	if ( is_numeric( $logo ) ) {
-		$logo = wp_get_attachment_image_src( $logo, 'full' );
-		$logo = $logo[0];
-	}
-
-	// Return logo
-	return esc_url( $logo );
-
-}
-endif;
-
-/**
  * Add classes to the header wrap
  *
  * @since 1.0.0
@@ -93,12 +50,12 @@ function wpsp_header_classes() {
 	$classes['header_style'] = 'header-'. $header_style;
 
 	// Full width header
-	if ( wpsp_get_redux( 'full-width-header' ) ) {
+	if ( wpsp_get_redux( 'is-full-width-header' ) ) {
 		$classes[] = 'wpsp-full-width';
 	}
 
 	// Sticky Header
-	if ( wpsp_get_redux( 'has-fixed-header' ) && ( 'one' == $header_style || 'five' == $header_style ) ) {
+	if ( wpsp_get_redux( 'is-fixed-header' ) && ( 'one' == $header_style || 'five' == $header_style ) ) {
 		$classes['fixed_scroll'] = 'fixed-scroll';
 		if ( wpsp_get_redux( 'is-shrink-fixed-header' ) ) {
 			$classes['wpsp-shrink-sticky-header'] = 'wpsp-shrink-sticky-header';
@@ -132,7 +89,7 @@ function wpsp_header_classes() {
 		$classes[] = 'overlay-header';
 
 		// Add a fixed class for the overlay-header style only
-		if ( wpsp_get_redux( 'has-fixed-header' ) ) {
+		if ( wpsp_get_redux( 'is-fixed-header' ) ) {
 			$classes[] = 'fix-overlay-header';
 		}
 
@@ -204,11 +161,6 @@ function wpsp_header_logo_classes() {
 
 	// Default class
 	$classes[] = 'header-'. wpsp_get_redux( 'header-style' ) .'-logo';
-
-	// Get custom overlay logo
-	if ( wpsp_get_redux( 'has-overlay-header' ) && wpsp_header_overlay_logo() ) {
-		$classes[] = 'has-overlay-logo';
-	}
 
 	// Apply filters for child theming
 	$classes = apply_filters( 'wpsp_header_logo_classes', $classes );

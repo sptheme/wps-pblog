@@ -950,19 +950,6 @@
                 'title'    => __( 'bottom Margin', 'wpsp-redux-framework' ),
                 'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
             ),
-            array(
-                'id'       => 'has-overlay-header',
-                'type'     => 'checkbox',
-                'title'    => __( 'Has Overlay Header', 'wpsp-redux-framework' ),
-                'default'  => '1'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'custom-overlay-logo',
-                'type'     => 'media',
-                'required' => array( 'has-overlay-header', '=', '1' ),
-                'title'    => __( 'Overlay logo', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Upload custom overlay image logo', 'wpsp-redux-framework' ),
-            ),
         )
     ) );
     Redux::setSection( $opt_name, array(
@@ -972,12 +959,6 @@
         'desc'       => __( 'Sticky header is disabled while in the Customizer.', 'wpsp-redux-framework' ),
         'fields'     => array(   
             array(
-                'id'       => 'has-fixed-header',
-                'type'     => 'checkbox',
-                'title'    => __( 'Has Fixed Header', 'wpsp-redux-framework' ),
-                'default'  => '1'// 1 = on | 0 = off
-            ),
-            array(
                 'id'       => 'is-fixed-header',
                 'type'     => 'checkbox',
                 'title'    => __( 'Sticky Header on Scroll', 'wpsp-redux-framework' ),
@@ -985,20 +966,23 @@
                 'default'  => '0'// 1 = on | 0 = off
             ),
             array(
-                'id'       => 'is-shink-fixed-header',
+                'id'       => 'is-shrink-fixed-header',
                 'type'     => 'checkbox',
+                'required' => array( 'is-fixed-header', '=', '1' ),
                 'title'    => __( 'Shrink Sticky Header', 'wpsp-redux-framework' ),
-                'default'  => '0'// 1 = on | 0 = off
+                'default'  => '1'// 1 = on | 0 = off
             ),
             array(
                 'id'       => 'is-fixed-header-mobile',
                 'type'     => 'checkbox',
+                'required' => array( 'is-fixed-header', '=', '1' ),
                 'title'    => __( 'Sticky Header On Mobile', 'wpsp-redux-framework' ),
                 'default'  => '0'// 1 = on | 0 = off
             ),
             array(
                 'id'       => 'fixed-header-opacity',
                 'type'     => 'text',
+                'required' => array( 'is-fixed-header', '=', '1' ),
                 'title'    => __( 'Sticky header Opacity', 'wpsp-redux-framework' ),
                 'validate' => 'preg_replace',
                 'preg'     => array(

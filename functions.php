@@ -253,6 +253,12 @@ class WPSP_Theme_Setup {
 		wp_enqueue_script( 'wpsp-supersubs', $dir .'vendors/supersubs.js', array( 'jquery' ), $theme_version, true );
 		wp_enqueue_script( 'wpsp-hoverintent', $dir .'vendors/hoverintent.js', array( 'jquery' ), $theme_version, true );
 
+		// Sticky header
+		wp_enqueue_script( 'wpsp-sticky', $dir .'vendors/sticky.js', array( 'jquery' ), $theme_version, true );
+
+		// Page animations
+		wp_enqueue_script( 'wpsp-animsition', $dir .'vendors/animsition.js', array( 'jquery' ), $theme_version, true );
+
 		// Checks if images are loaded within an element
 		wp_enqueue_script( 'wpsp-images-loaded', $dir .'vendors/images-loaded.js', array( 'jquery' ), $theme_version, true );
 
@@ -271,7 +277,7 @@ class WPSP_Theme_Setup {
 		// Localize script
 		// Get theme options
 		$header_style      = wpsp_get_redux( 'header-style' );
-		$sticky_header     = wpsp_get_redux( 'has-fixed-header' );
+		$sticky_header     = wpsp_get_redux( 'is-fixed-header' );
 		$mobile_menu_style = wpsp_get_redux( 'mobile-menu-style' );
 
 		$localize_array = array(
@@ -291,6 +297,27 @@ class WPSP_Theme_Setup {
 			'customSelects'         => '.woocommerce-ordering .orderby, #dropdown_product_cat, .widget_categories select, .widget_archive select, #bbp_stick_topic_select, #bbp_topic_status_select, #bbp_destination_topic, .single-product .variations_form .variations select',
 			'milestoneDecimalFormat' => ',',
 		);
+
+		// Sticky Header
+		if ( $sticky_header ) {
+			$array['hasStickyMobileHeader']  = wpsp_get_redux( 'is-fixed-header-mobile' );
+			$array['overlayHeaderStickyTop'] = 0;
+			$array['stickyHeaderBreakPoint'] = 960;
+
+			// Shrink sticky header
+			if ( wpsp_get_redux( 'is-shink-fixed-header' ) ) {
+				$array['shrinkHeaderHeight']     = 70;
+				$array['shrinkHeaderLogoHeight'] = ''; // Calculate via js by default
+			}
+			
+		}
+
+		// Sticky topBar
+		if ( wpsp_get_redux( 'top-bar-sticky' ) ) {
+			$array['stickyTopBarBreakPoint'] = 960;
+			$array['hasStickyTopBarMobile']  = true;
+		}
+
 		// Header five
 		if ( 'five' == $header_style ) {
 			$localize_array['headerFiveSplitOffset'] = 1;

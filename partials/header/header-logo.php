@@ -15,29 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define variables
 $logo_url     = wpsp_header_logo_url();
 $logo_img     = wpsp_get_redux( 'custom-logo' );
-$overlay_logo = wpsp_header_overlay_logo(); 
 $logo_title   = wpsp_header_logo_title(); ?>
 
 <div id="site-logo" class="site-branding <?php echo wpsp_header_logo_classes(); ?>">
-	<div id="site-logo-inner" class="site-logo-inner clear">
-		<?php
-		// Custom site-wide image logo
-		if ( $logo_img && ! $overlay_logo ) : ?>
-		
-			<a href="<?php echo esc_url( $logo_url ); ?>" title="<?php echo esc_attr( $logo_title ); ?>" rel="home" class="main-logo">
-				<img src="<?php echo esc_url( $logo_img['url'] ); ?>" alt="<?php echo esc_attr( $logo_title ); ?>" />
-			</a>
-
-		<?php endif; ?>
-
-		<?php
-		// Custom header-overlay logo
-		if ( $overlay_logo ) : ?>
-
-			<a href="<?php echo esc_url( $logo_url ); ?>" title="<?php echo esc_attr( $logo_title ); ?>" rel="home" class="overlay-header-logo">
-				<img src="<?php echo esc_url( $overlay_logo ); ?>" alt="<?php echo esc_attr( $logo_title ); ?>" />
-			</a>
-
-		<?php endif; ?>
+	<div id="site-logo-inner" class="site-logo-inner clear">	
+		<a href="<?php echo esc_url( $logo_url ); ?>" title="<?php echo esc_attr( $logo_title ); ?>" rel="home" class="main-logo">
+			<img src="<?php echo esc_url( $logo_img['url'] ); ?>" alt="<?php echo esc_attr( $logo_title ); ?>" />
+		</a>
 	</div> <!-- .site-logo-inner -->
 </div><!-- .site-branding -->

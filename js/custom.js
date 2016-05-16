@@ -65,6 +65,7 @@
 			// Run on document ready
 			self.config.$document.on( 'ready', function() {
 				self.superFish();
+				self.megaMenusWidth();
 				self.inlineHeaderLogo();
 				self.initUpdateConfig();
 				self.menuSearch();
@@ -72,7 +73,22 @@
 
 			// Run on Window Load
 			self.config.$window.on( 'load', function() {
+				self.windowLoadUpdateConfig();
+				self.megaMenusTop();
+				self.flushDropdownsTop();
 				self.equalHeights();
+				
+				// Delay functions if page animations are enabled
+				if ( $.fn.animsition && wpspLocalize.pageAnimation && wpspLocalize.pageAnimationInDuration ) {
+					setTimeout( function() {
+						self.stickyHeader();
+						self.stickyHeaderShrink();
+					}, wpspLocalize.pageAnimationInDuration );
+				} else {
+					self.stickyHeader();
+					self.stickyHeaderShrink();
+				}
+
 			} );
 
 			// Run on Window Resize
@@ -80,7 +96,14 @@
 				// Window width change
 				if ( self.config.$window.width() != self.config.$windowWidth ) {
 					self.resizeUpdateConfig();
+					self.megaMenusWidth();
+					self.inlineHeaderLogo();
 				}
+			} );
+
+			// Run on Scroll
+			self.config.$window.scroll( function() {
+				self.config.$windowTop = self.config.$window.scrollTop();
 			} );
 
 			// On orientation change
@@ -90,67 +113,24 @@
 			} );
 		},
 
-	    superFish: function() {
-	        if ( ! $.fn.superfish ) {
-				return;
-			}
-
-			$( '#site-navigation ul.sf-menu' ).superfish( {
-				delay: wpspLocalize.superfishDelay,
-				animation: {
-					opacity: 'show'
-				},
-				animationOut: {
-					opacity: 'hide'
-				},
-				speed: wpspLocalize.superfishSpeed,
-				speedOut: wpspLocalize.superfishSpeedOut,
-				cssArrows: false,
-				disableHI: false
-			} );
-	    },
-
-	    /**
-		 * Header 5 - Inline Logo
-		 *
-		 * @since 1.0.0
-		 */
-		inlineHeaderLogo: function() {
-
-			// Only needed for header style 5
-			if ( 'five' != wpspLocalize.siteHeaderStyle ) {
-				return;
-			}
-
-			var $headerLogo        = $( '#site-header-inner > .header-five-logo' ),
-				$headerNav         = $( '#site-header-inner .navbar-style-five' ),
-				$navLiCount        = $headerNav.children( '#site-navigation' ).children( 'ul' ).children( 'li' ).size(),
-				$navBeforeMiddleLi = Math.round( $navLiCount / 2 ) - parseInt( wpspLocalize.headerFiveSplitOffset ),
-				$centeredLogo      = $( '.menu-item-logo .header-five-logo' );
-
-				// Add logo into menu
-				if ( this.config.$windowWidth >= this.config.$mobileMenuBreakpoint && $headerLogo.length && $headerNav.length ) {
-					$('<li class="menu-item-logo"></li>').insertAfter( $headerNav.find( '#site-navigation > ul > li:nth( '+ $navBeforeMiddleLi +' )' ) );
-						$headerLogo.appendTo( $headerNav.find( '.menu-item-logo' ) );
-				}
-
-				// Remove logo from menu and add to header
-				if ( this.config.$windowWidth < this.config.$mobileMenuBreakpoint && $centeredLogo.length ) {
-					$centeredLogo.prependTo( $( '#site-header-inner' ) );
-					$( '.menu-item-logo' ).remove();
-				}
-
-			// Add display class to logo (hidden by default)
-			$headerLogo.addClass( 'display' );
-
-		},
-
 		/**
 		 * Updates config on doc ready
 		 *
 		 * @since 1.0.0
 		 */
 		initUpdateConfig: function() {
+
+			// Mobile check & add mobile class to the header
+			this.config.$isMobile = this.mobileCheck();
+			if ( this.config.$isMobile ) {
+				this.config.$body.addClass( 'wpsp-is-mobile-device' );
+			}
+
+			// Local scroll speed
+			if ( wpspLocalize.localScrollSpeed ) {
+				this.config.$localScrollSpeed = parseInt( wpspLocalize.localScrollSpeed );
+			}
+
 			// Define header
 			if ( $( '#site-header' ).length ) {
 				this.config.$siteHeader = $( '#site-header' );
@@ -176,6 +156,48 @@
 			if ( this.config.$body.hasClass( 'wpsp-has-vertical-header' ) ) {
 				this.config.$verticalHeaderActive = true;
 			}
+
+			// Sticky Header
+			if ( wpspLocalize.hasStickyHeader ) {
+				if ( wpspLocalize.stickyHeaderBreakPoint ) {
+					this.config.$stickyHeaderBreakPoint = wpspLocalize.stickyHeaderBreakPoint;
+				}
+				if ( this.config.$hasStickyMobileHeader || ( this.config.$windowWidth >= this.config.$stickyHeaderBreakPoint ) ) {
+					this.config.$hasStickyHeader = true;
+				} else {
+					this.config.$hasStickyHeader = false;
+				}
+			}
+		},
+
+		/**
+		 * Updates config on window load
+		 *
+		 * @since 1.0.0
+		 */
+		windowLoadUpdateConfig: function() {
+
+			// Header bottom position
+			if ( this.config.$siteHeader ) {
+				var $siteHeaderTop = this.config.$siteHeader.offset().top;
+				this.config.$windowHeight = this.config.$window.height();
+				this.config.$siteHeaderHeight = this.config.$siteHeader.outerHeight();
+				this.config.$siteHeaderBottom = $siteHeaderTop + this.config.$siteHeaderHeight;
+				this.config.$siteHeaderTop = $siteHeaderTop;
+				if ( this.config.$siteLogo ) {
+					this.config.$siteLogoHeight = this.config.$siteLogo.height();
+				}
+			}
+
+			// Update Topbar sticky height
+			if ( this.config.$stickyTopBar ) {
+				this.config.$stickyTopBarHeight = this.config.$stickyTopBar.outerHeight();
+				$( '.wpsp-sticky-top-bar-holder' ).height( this.config.$stickyTopBarHeight );
+			}
+
+			// Set localScrollOffset after site is loaded to make sure it includes dynamic items
+			this.config.$localScrollOffset = this.parseLocalScrollOffset();
+
 		},
 
 		/**
@@ -267,7 +289,502 @@
 			}
 
 			// Local scroll offset => update last
-			//this.config.$localScrollOffset = this.parseLocalScrollOffset();
+			this.config.$localScrollOffset = this.parseLocalScrollOffset();
+
+		},
+
+		/**
+		 * Mobile Check
+		 *
+		 * @since 1.0.0
+		 */
+		mobileCheck: function() {
+			if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent ) ) {
+				return true;
+			}
+		},
+
+		/**
+		 * Page Animations
+		 *
+		 * @since 1.0.0
+		 */
+		pageAnimations: function() {
+
+			if ( ! $.fn.animsition ) {
+				return;
+			}
+
+			// Return if wrapper doesn't exist
+			if ( ! wpspLocalize.pageAnimation ) {
+				return;
+			}
+
+			// Run animsition
+			$( '.animsition' ).animsition( {
+				touchSupport: false,
+				inClass: wpspLocalize.pageAnimationIn,
+				outClass: wpspLocalize.pageAnimationOut,
+				inDuration: wpspLocalize.pageAnimationInDuration,
+				outDuration: wpspLocalize.pageAnimationOutDuration,
+				linkElement: 'a[href]:not([target="_blank"]):not([href^="#"]):not([href*="javascript"]):not([href*=".jpg"]):not([href*=".jpeg"]):not([href*=".gif"]):not([href*=".png"]):not([href*=".mov"]):not([href*=".swf"]):not([href*=".mp4"]):not([href*=".flv"]):not([href*=".avi"]):not([href*=".mp3"]):not([href^="mailto:"]):not([href*="?"]):not([href*="#localscroll"]):not([class="wcmenucart"])',
+				loading: true
+			} );
+
+		},
+
+	    superFish: function() {
+	        if ( ! $.fn.superfish ) {
+				return;
+			}
+
+			$( '#site-navigation ul.sf-menu' ).superfish( {
+				delay: wpspLocalize.superfishDelay,
+				animation: {
+					opacity: 'show'
+				},
+				animationOut: {
+					opacity: 'hide'
+				},
+				speed: wpspLocalize.superfishSpeed,
+				speedOut: wpspLocalize.superfishSpeedOut,
+				cssArrows: false,
+				disableHI: false
+			} );
+	    },
+
+	     /**
+		 * MegaMenus Width
+		 *
+		 * @since 1.0.0
+		 */
+		megaMenusWidth: function() {
+
+			if ( ! this.config.$siteHeader || wpspLocalize.siteHeaderStyle !== 'one' ) {
+				return;
+			}
+
+			var $siteNavigationWrap         = $( '#site-navigation-wrap' ),
+				$headerContainerWidth       = this.config.$siteHeader.find( '.container' ).outerWidth(),
+				$navWrapWidth               = $siteNavigationWrap.outerWidth(),
+				$siteNavigationWrapPosition = $siteNavigationWrap.css( 'right' ),
+				$siteNavigationWrapPosition = parseInt( $siteNavigationWrapPosition );
+
+			if ( 'auto' == $siteNavigationWrapPosition ) {
+				$siteNavigationWrapPosition = 0;
+			}
+
+			var $megaMenuNegativeMargin = $headerContainerWidth-$navWrapWidth-$siteNavigationWrapPosition;
+
+			$( '#site-navigation-wrap .megamenu > ul' ).css( {
+				'width'       : $headerContainerWidth,
+				'margin-left' : -$megaMenuNegativeMargin
+			} );
+
+		},
+
+		/**
+		 * MegaMenus Top Position
+		 *
+		 * @since 1.0.0
+		 */
+		megaMenusTop: function() {
+
+			if ( ! this.config.$siteHeaderHeight
+				|| ! this.config.$siteNavWrap
+				|| ! this.config.$siteHeader.hasClass( 'header-one' )
+				|| $( '#site-navigation-wrap' ).hasClass( 'wpsp-flush-dropdowns' )
+				|| ! this.config.$siteHeader.hasClass( 'header-one' )
+			) {
+				return;
+			}
+
+			var $navHeight = this.config.$siteNavWrap.outerHeight(),
+				$megaMenuTop = this.config.$siteHeaderHeight - $navHeight;
+
+			$( '#site-navigation-wrap .megamenu > ul' ).css( {
+				'top': $megaMenuTop/2 + $navHeight
+			} );
+
+		},
+
+		/**
+		 * FlushDropdowns top positioning
+		 *
+		 * @since 1.0.0
+		 */
+		flushDropdownsTop: function() {
+
+			if ( ! this.config.$siteHeaderHeight
+				|| ! this.config.$siteNavWrap
+				|| ! this.config.$siteNavWrap.hasClass( 'wpsp-flush-dropdowns' )
+			) {
+				return;
+			}
+
+			var $navHeight = this.config.$siteNavWrap.outerHeight(),
+				$dropTop = this.config.$siteHeaderHeight - $navHeight;
+
+			$( '#site-navigation-wrap .dropdown-menu > .menu-item-has-children > ul' ).css( {
+				'top': $dropTop/2 + $navHeight
+			} );
+
+		},
+
+	    /**
+		 * Header 5 - Inline Logo
+		 *
+		 * @since 1.0.0
+		 */
+		inlineHeaderLogo: function() {
+
+			// Only needed for header style 5
+			if ( 'five' != wpspLocalize.siteHeaderStyle ) {
+				return;
+			}
+
+			var $headerLogo        = $( '#site-header-inner > .header-five-logo' ),
+				$headerNav         = $( '#site-header-inner .navbar-style-five' ),
+				$navLiCount        = $headerNav.children( '#site-navigation' ).children( 'ul' ).children( 'li' ).size(),
+				$navBeforeMiddleLi = Math.round( $navLiCount / 2 ) - parseInt( wpspLocalize.headerFiveSplitOffset ),
+				$centeredLogo      = $( '.menu-item-logo .header-five-logo' );
+
+				// Add logo into menu
+				if ( this.config.$windowWidth >= this.config.$mobileMenuBreakpoint && $headerLogo.length && $headerNav.length ) {
+					$('<li class="menu-item-logo"></li>').insertAfter( $headerNav.find( '#site-navigation > ul > li:nth( '+ $navBeforeMiddleLi +' )' ) );
+						$headerLogo.appendTo( $headerNav.find( '.menu-item-logo' ) );
+				}
+
+				// Remove logo from menu and add to header
+				if ( this.config.$windowWidth < this.config.$mobileMenuBreakpoint && $centeredLogo.length ) {
+					$centeredLogo.prependTo( $( '#site-header-inner' ) );
+					$( '.menu-item-logo' ).remove();
+				}
+
+			// Add display class to logo (hidden by default)
+			$headerLogo.addClass( 'display' );
+
+		},
+
+		/**
+		 * Sticky Header
+		 *
+		 * @since 1.0.0
+		 */
+		stickyHeader: function( event ) {
+
+			var self        = this,
+				$fixedNav   = $( '.fixed-nav' ),
+				$topSpacing = 0,
+				$mobileMenu = $( '#wpsp-mobile-menu-fixed-top' );
+
+			// Destroy sticky and sticky functions
+			if ( 'unstick' == event ) {
+
+				if ( $( '.wpsp-sticky-header-holder' ).length ) {
+
+					// Destroy shrink header
+					self.stickyHeaderShrink( 'resize_destroy' );
+
+					// Destroy sticky header
+					$( '#site-header.fixed-scroll' ).unstick();
+
+					// Set correct header height
+					$( '.wpsp-sticky-header-holder' ).css( 'height', '' );
+
+					// Return correct logo
+					var $logo = self.config.retinaLogo ? self.config.retinaLogo : self.config.$siteLogoSrc;
+					if ( $logo ) {
+						self.config.$siteLogo.attr( 'src', $logo );
+					}
+
+				}
+
+				if ( $( '.wpsp-sticky-menu-holder' ).length ) {
+					$( '.fixed-nav' ).unstick();
+				}
+
+			}
+
+			// Add Sticky
+			else {
+
+				// Sticky is disabled do nothing or header doesn't exist...return
+				if ( ! this.config.$siteHeader
+					|| ! this.config.$hasStickyHeader
+				) {
+				   return;
+				}
+
+				if ( self.config.$hasStickyTopBar ) {
+					$topSpacing = $topSpacing + self.config.$stickyTopBar.outerHeight()
+				}
+				if ( $mobileMenu.is( ':visible' ) ) {
+					$topSpacing = $topSpacing + $mobileMenu.outerHeight();
+				}
+
+				// Already sticky do nothing
+				if ( $( '.wpsp-sticky-header-holder' ).length ) {
+					return;
+				}
+
+				// Sticky header
+				if ( self.config.$siteHeader.hasClass( 'fixed-scroll' ) ) {
+
+					// Start sticky
+					self.config.$siteHeader.sticky( {
+						topSpacing       : $topSpacing,
+						getWidthFrom     : '#wrap',
+						responsiveWidth  : true,
+						wrapperClassName : 'wpsp-sticky-header-holder'
+					} );
+
+					// Set header height
+					$( '.wpsp-sticky-header-holder' ).height( self.config.$siteHeaderHeight );
+
+					// Sticky on start events
+					self.config.$siteHeader.on( 'sticky-start', function() {
+
+						// Sticky custom logo
+						if ( self.config.$siteLogo
+							&& wpspLocalize.stickyheaderCustomLogo
+							&& ! self.config.$siteHeader.hasClass( 'wpsp-shrink-sticky-header' )
+						) {
+							self.config.$siteLogo.attr( 'src', wpspLocalize.stickyheaderCustomLogo );
+						}
+
+					} );
+
+					// Sticky on end events
+					self.config.$siteHeader.on( 'sticky-end', function() {
+
+						// Return correct logo
+						if ( ! self.config.$siteHeader.hasClass( 'wpsp-shrink-sticky-header' ) ) {
+							var $logo = self.config.retinaLogo ? self.config.retinaLogo : self.config.$siteLogoSrc;
+							if ( $logo ) {
+								self.config.$siteLogo.attr( 'src', $logo );
+							}
+						}
+
+					} );
+
+				} 
+
+				// Sticky nav
+				else if ( $fixedNav.length ) {
+
+					$fixedNav.sticky( {
+						topSpacing       : $topSpacing,
+						getWidthFrom     : '#wrap',
+						responsiveWidth  : true,
+						wrapperClassName : 'wpsp-sticky-menu-holder'
+					} );
+
+					// Sticky on start events
+					$fixedNav.on( 'sticky-start', function() {
+						$( '.wpsp-sticky-menu-holder' ).height( $fixedNav.outerHeight() );
+					} );
+
+					// Sticky on end events
+					$fixedNav.on( 'sticky-end', function() {
+						$( '.wpsp-sticky-menu-holder' ).height('');
+					} );
+
+				}
+
+			}
+
+		},
+
+		/**
+		 * Shrink sticky header
+		 *
+		 * @since 1.0.0
+		 */
+		stickyHeaderShrink: function( event ) {
+
+			// Initial checks
+			if ( ! this.config.$siteHeader
+				|| ! this.config.$siteHeader.hasClass( 'wpsp-shrink-sticky-header' )
+				|| ! $( '.wpsp-sticky-header-holder' ).length
+			) {
+				return;
+			}
+
+			// Declare main vars
+			var self = this,
+				$siteHeaderInner  = $( '#site-header-inner' ),
+				$ogTopPadding     = $( '#site-header-inner' ).css( 'padding-top' ),
+				$ogBottomPadding  = $( '#site-header-inner' ).css( 'padding-bottom' ),
+				$ogHeight         = $siteHeaderInner.outerHeight(),
+				$shrunkHeight     = parseInt( wpspLocalize.shrinkHeaderHeight ),
+				$shrunkSpeed      = 300;
+
+			// Shurnk logo height
+			if ( wpspLocalize.shrinkHeaderLogoHeight ) {
+				var $shrunkHeightLogo = wpspLocalize.shrinkHeaderLogoHeight;
+			} else {
+				var $shrunkHeightLogo = 50;
+				if ( $shrunkHeightLogo > self.config.$siteLogoHeight ) {
+					$shrunkHeightLogo = self.config.$siteLogoHeight - 10;
+				}
+			}
+			$shrunkHeightLogo = parseInt( $shrunkHeightLogo );
+
+			// Destroy method
+			function destroy() {
+
+				if ( self.config.$siteHeader.hasClass( 'wpsp-header-shrunk' ) ) {
+					// Reset header height
+					$siteHeaderInner.stop(true,true).animate( {
+						//'height'         : $ogHeight,
+						'padding-top'    : $ogTopPadding,
+						'padding-bottom' : $ogBottomPadding
+					}, {
+						duration: $shrunkSpeed,
+						queue: false
+					} );
+
+					// Reset logo
+					var $logo = self.config.retinaLogo ? self.config.retinaLogo : self.config.$siteLogoSrc;
+					if ( $logo ) {
+						self.config.$siteLogo.attr( 'src', $logo );
+					}
+
+					// Reset logo height
+					if ( self.config.$siteLogo ) {
+						self.config.$siteLogo.stop(true,true).animate( {
+							'height' : self.config.$siteLogoHeight
+						}, {
+							duration : $shrunkSpeed,
+							queue    : false,
+							complete : function() {
+								$( this ).css( 'height', '' );
+							}
+						} );
+					}
+
+					// Get correct header height after animations are complete and re-position megamenus
+					setTimeout( function() {
+						self.config.$siteHeaderHeight = self.config.$siteHeader.outerHeight();
+						self.megaMenusTop();
+						self.flushDropdownsTop();
+					}, $shrunkSpeed );
+
+					// Remove shrunk class
+					self.config.$siteHeader.removeClass( 'wpsp-header-shrunk' );
+
+				}
+			}
+
+			// Destroy event
+			if ( 'destroy' == event ) {
+				destroy();
+				return;
+			}
+
+			// Resize destroy method - required since header height can change on window resize
+			function resizeDestroy() {
+
+				if ( ! $shrunkHeight ) {
+					return;
+				}
+
+				// Reset header height
+				$siteHeaderInner.css( {
+					'height'         : '',
+					'padding-top'    : '',
+					'padding-bottom' : ''
+				} );
+
+				// Reset logo
+				var $logo = self.config.retinaLogo ? self.config.retinaLogo : self.config.$siteLogoSrc;
+				if ( $logo ) {
+					self.config.$siteLogo.attr( 'src', $logo );
+				}
+
+				// Reset logo height
+				if ( self.config.$siteLogo ) {
+					self.config.$siteLogo.css( 'height', '' );
+				}
+
+				// Get correct header height and megaMenus top location
+				self.config.$siteHeaderHeight = self.config.$siteHeader.outerHeight();
+				self.megaMenusTop();
+				self.flushDropdownsTop();
+
+				// Remove shrunk class
+				self.config.$siteHeader.removeClass( 'wpsp-header-shrunk' );
+
+			}
+
+			if ( 'resize_destroy' == event ) {
+				resizeDestroy();
+				return;
+			}
+
+			// Get offset
+			var $offSet = 0;
+			if ( self.config.$siteHeaderBottom ) {
+				$offSet = self.config.$siteHeaderBottom;
+			}
+
+			self.config.$window.scroll( function() {
+
+				// Sticky header disabled = must check on scroll
+				if ( ! self.config.$hasStickyHeader ) {
+					return;
+				}
+
+				// Add shrink classes
+				if ( self.config.$windowTop > $offSet ) {
+
+					if ( ! self.config.$siteHeader.hasClass( 'wpsp-header-shrunk' ) ) {
+
+						// Set header innner height
+						$siteHeaderInner.stop(true,true).animate( {
+							'height'         : $shrunkHeight,
+							'padding-top'    : '0',
+							'padding-bottom' : '0'
+						}, {
+							'duration' : $shrunkSpeed,
+							'queue'    : false
+						} );
+
+						// Set logo height
+						if ( self.config.$siteLogo ) {
+							self.config.$siteLogo.stop(true,true).animate( {
+								'height' : $shrunkHeightLogo
+							}, {
+								'duration' : $shrunkSpeed,
+								'queue'    : false
+							} );
+						}
+
+						// Sticky custom logo
+						if ( self.config.$siteLogo && wpspLocalize.stickyheaderCustomLogo ) {
+							self.config.$siteLogo.attr( 'src', wpspLocalize.stickyheaderCustomLogo );
+						}
+
+						// Get correct header height after animations are complete and re-position megamenus
+						setTimeout( function() {
+							self.config.$siteHeaderHeight = self.config.$siteHeader.outerHeight();
+							self.megaMenusTop();
+							self.flushDropdownsTop();
+						}, $shrunkSpeed );
+
+						// Add class to prevent events from running every time user scrolls
+						self.config.$siteHeader.addClass( 'wpsp-header-shrunk' );
+
+					}
+
+				} else {
+
+					destroy(); // As a function so we can destroy when sticky is destroyed also
+
+				}
+
+			} );
 
 		},
 
@@ -387,6 +904,74 @@
 			
 			// Add equal heights
 			$( '.equal-height-column, .match-height-row .match-height-content, .vcex-feature-box-match-height .vcex-match-height, .equal-height-content, .match-height-grid .match-height-content, .blog-entry-equal-heights .blog-entry-inner, .wpsp-vc-row-columns-match-height .wpsp-vc-column-wrapper' ).matchHeight();
+
+		},
+
+		/**
+		 * Local Scroll Offset
+		 *
+		 * @since 1.0.0
+		 */
+		parseLocalScrollOffset: function() {
+
+			// Return custom offset
+			if ( wpspLocalize.localScrollOffset ) {
+				return wpspLocalize.localScrollOffset;
+			}
+
+			// Define return var
+			var $offSet = 0;
+
+			// Fixed header
+			if ( ! this.config.$verticalHeaderActive
+				&& this.config.$siteHeader
+				&& this.config.$hasStickyHeader
+				&& this.config.$siteHeaderHeight
+				&& this.config.$siteHeader.hasClass( 'fixed-scroll' )
+			) {
+
+
+				// Return 0 for small screens if mobile fixed header is disabled
+				if ( ! this.config.$hasStickyMobileHeader && this.config.$windowWidth <= wpspLocalize.stickyHeaderBreakPoint ) {
+					$offSet = 0;
+				}
+
+				// Return header height
+				else {
+
+					// Shrink header
+					if ( this.config.$siteHeader.hasClass( 'wpsp-shrink-sticky-header' ) ) {
+						$offSet = wpspLocalize.shrinkHeaderHeight;
+					}
+
+					// Standard header
+					else {
+						$offSet = this.config.$siteHeaderHeight;
+					}
+
+				}
+
+			}
+
+			// Fixed Nav
+			if ( $( '#site-navigation-wrap' ).length && $( '#site-navigation-wrap' ).hasClass( 'fixed-nav' ) ) {
+				if ( this.config.$windowWidth >= wpspLocalize.stickyHeaderBreakPoint ) {
+					$offSet = parseInt( $offSet ) + parseInt( $( '#site-navigation-wrap' ).outerHeight() );
+				}
+			}
+
+			// Add sticky topbar height offset
+			if ( this.config.$hasStickyTopBar && this.config.$stickyTopBarHeight ) {
+				$offSet = parseInt( $offSet ) + parseInt( this.config.$stickyTopBarHeight );
+			}
+
+			// Add wp toolbar
+			if ( $( '#wpadminbar' ).length ) {
+				$offSet = parseInt( $offSet ) + 32;
+			}
+
+			// Return offset
+			return $offSet;
 
 		},
 

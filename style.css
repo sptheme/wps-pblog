@@ -672,6 +672,46 @@ textarea {
 	padding-bottom: 30px; 
 	height: 100%; 
 }
+#site-header.overlay-header #site-header-inner { 
+	padding-top: 40px; 
+	padding-bottom: 40px; 
+}
+
+/* Header > Main > Full-Width */
+@media only screen and (min-width: 960px) {
+	#site-header.wpsp-full-width .container { 
+		width: 100% !important; 
+		max-width: none !important; 
+	}
+	#site-header.wpsp-full-width > .container { padding-left: 30px; }
+	#site-header.wpsp-full-width .navbar-style-one { right: 30px }
+	#site-header.wpsp-full-width.header-one #searchform-dropdown,
+	#site-header.wpsp-full-width.header-one #current-shop-items-dropdown { right: 30px; }
+	#site-header.wpsp-full-width .header-two-aside { margin-right: 30px; }
+}
+
+/* Sticky Header */
+.wpsp-sticky-header-holder { background: #fff; }
+.wpsp-sticky-header-holder.is-sticky #site-header { 
+	overflow: visible !important; 
+	z-index: 999; 
+	background: #fff; 
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.1); 
+}
+.wpsp-sticky-header-holder.is-sticky #site-header-inner { z-index: 999; }
+body.admin-bar .is-sticky #site-header { margin-top: 32px }
+.wpsp-sticky-header-holder.is-sticky #site-header.overlay-header { left: auto; }
+body.has-overlay-header .wpsp-sticky-header-holder { height: auto !important; }
+body.has-overlay-header .wpsp-sticky-header-holder { background: none !important; }
+
+/* Sticky header > Shrink */
+#site-header.wpsp-shrink-sticky-header { width: 100%; }
+#site-header.wpsp-shrink-sticky-header { transition: opacity 0.3s; }
+#site-header.wpsp-shrink-sticky-header.wpsp-header-shrunk #site-logo { 
+	padding-top: 0; 
+	padding-bottom: 0; 
+}
+
 
 /*--------------------------------------------------------------
 # Navigation
@@ -758,6 +798,7 @@ a:active {
 	float: none; 
 	max-width: 100%; 
 }
+#site-navigation.container { position: relative; }
 #site-navigation a { text-decoration: none }
 #site-navigation .dropdown-menu li a .fa { margin-right: 8px }
 #site-navigation .dropdown-menu li.no-icon-margin a .fa { margin-right: 0 }
