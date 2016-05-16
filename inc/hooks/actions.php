@@ -71,3 +71,4 @@ add_action( 'wpsp_hook_content_after', 'wpsp_overlay_header_wrap_close', 9999 );
 -------------------------------------------------------------------------------*/
 add_action( 'wp_footer', 'wpsp_search_overlay' );
 add_action( 'wp_footer', 'wpsp_sidr_close' );
+add_action( 'wp_footer', 'wpsp_scroll_top' );

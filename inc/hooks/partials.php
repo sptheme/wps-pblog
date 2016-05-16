@@ -302,3 +302,13 @@ function wpsp_sidr_close() { ?>
 		<div id="sidr-close"><a href="#sidr-close" class="toggle-sidr-close"></a></div>
 	<?php endif; ?>
 <?php }
+
+
+/**
+ * Gets the scroll to top button template part.
+ *
+ * @since 1.0.0
+ */
+function wpsp_scroll_top() {
+	get_template_part( 'partials/scroll-top' );
+}

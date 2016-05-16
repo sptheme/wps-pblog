@@ -30,6 +30,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Forms
 # Layout
 # Header
+# Footer
 # Navigation
 	## Links
 	## Menus
@@ -712,6 +713,41 @@ body.has-overlay-header .wpsp-sticky-header-holder { background: none !important
 	padding-bottom: 0; 
 }
 
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+/* Footer > Back To Top Button */
+#site-scroll-top { 
+	position: fixed; 
+	right: 40px; 
+	bottom: 80px; 
+	color: #898989; 
+	height: 35px; 
+	line-height: 35px; 
+	width: 35px; 
+	font-size: 16px; 
+	border-radius: 50%; 
+	background: #f7f7f7; 
+	border: 3px solid #fff; 
+	text-align: center; 
+	z-index: 999; 
+	visibility: hidden; 
+	opacity: 0; 
+	transition: all 0.25s ease-in-out; 
+	box-sizing: content-box; 
+	-moz-box-sizing: content-box; 
+	-webkit-box-sizing: content-box; 
+}
+#site-scroll-top:hover { 
+	border-color: transparent; 
+	text-decoration: none; 
+	color: #fff; 
+}
+#site-scroll-top.show { 
+	display: block; 
+	visibility: visible; 
+	opacity: 1; 
+}
 
 /*--------------------------------------------------------------
 # Navigation
