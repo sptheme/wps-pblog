@@ -64,6 +64,9 @@ class WPSP_Theme_Setup {
 		// Load theme style
 		add_action( 'wp_enqueue_scripts', array( $this, 'theme_css') );
 
+		// Load responsive CSS - must be added last
+		add_action( 'wp_enqueue_scripts', array( $this, 'responsive_css' ), 99 );
+
 		// Add meta viewport tag to header
 		add_action( 'wp_head', array( $this, 'meta_viewport' ), 1 );
 
@@ -345,6 +348,17 @@ class WPSP_Theme_Setup {
 		//Enabling Local Web Fonts
 		wp_enqueue_style( 'local-fonts-english', get_template_directory_uri() . '/fonts/custom-fonts.css' );
 		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/fonts/font-awesome/css/font-awesome.min.css' );
+	}
+
+	/**
+	 * Loads responsive css very last after all styles.
+	 *
+	 * @since 1.0.0
+	 */
+	public static function responsive_css() {
+		if ( wpsp_get_redux( 'is-responsive' ) ) {
+			wp_enqueue_style( 'wpsp-responsive', WPSP_CSS_DIR_URI .'responsive.css', false, WPSP_THEME_VERSION );
+		}
 	}
 
 	/**

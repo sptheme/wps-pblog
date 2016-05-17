@@ -69,5 +69,6 @@ add_action( 'wpsp_hook_content_after', 'wpsp_overlay_header_wrap_close', 9999 );
 
 /* WP_Footer
 -------------------------------------------------------------------------------*/
+add_action( 'wp_footer', 'wpsp_mobile_menu_alt' );
 add_action( 'wp_footer', 'wpsp_search_overlay' );
 add_action( 'wp_footer', 'wpsp_sidr_close' );

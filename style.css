@@ -33,6 +33,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Navigation
 	## Links
 	## Menus
+	## Mobile menu	
 # Search	
 # Accessibility
 # Alignments
@@ -46,6 +47,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Media
 	## Captions
 	## Galleries
+# Commons
 # Addon Elements
 	## Lean Modal
 	## Social Button
@@ -639,27 +641,25 @@ textarea {
 --------------------------------------------------------------*/
 #page { overflow: hidden }
 #wrap { position: relative; }
-.container { max-width: 90%; }
-.container { margin: 0 auto }
+.container { 
+	width: 980px;
+	margin: 0 auto;
+}
+.content-area { 
+	width: 69%; 
+	float: left; 
+	position: relative; 
+}
+.widget-area { width: 26%; float: right; }
 
-@media only screen and (min-width: 992px) {
-	.container { width: 980px; }
-	.content-area { 
-		width: 69%; 
-		float: left; 
-		position: relative; 
-	}
-	.widget-area { width: 26%; float: right; }
+.right-sidebar .content-area,
+.left-sidebar .widget-area { float: left; }
+.right-sidebar .widget-area,
+.left-sidebar .content-area { float: right; }
 
-	.right-sidebar .content-area,
-	.left-sidebar .widget-area { float: left; }
-	.right-sidebar .widget-area,
-	.left-sidebar .content-area { float: right; }
-
-	.full-width .content-area,
-	.full-width .widget-area {
-		width: 100%;
-	}
+.full-width .content-area,
+.full-width .widget-area {
+	width: 100%;
 }
 
 /*--------------------------------------------------------------
@@ -675,6 +675,35 @@ textarea {
 #site-header.overlay-header #site-header-inner { 
 	padding-top: 40px; 
 	padding-bottom: 40px; 
+}
+
+/* Header > Main > Logo */
+#site-logo { display: table; }
+#site-logo-inner { 
+	display: table-cell; 
+	vertical-align: middle; 
+}
+#site-logo a { 
+	height: 100%; 
+	padding: 0; 
+	margin: 0; 
+	text-decoration: none; 
+}
+#site-logo a.site-logo-text { 
+	color: #222; 
+	font-size: 24px; 
+	font-weight: bold;
+}
+#site-logo-fa-icon { margin-right: 10px; }
+#site-logo-fa-icon.fa-wpsp-hidden { margin-right: 0; }
+#site-logo a:hover { text-decoration: none }
+#site-logo img { 
+	display: inline; 
+	vertical-align: middle; 
+	height: auto; 
+	width: auto; 
+	max-height: 100%; 
+	max-width: 100%; 
 }
 
 /* Header > Main > Full-Width */
@@ -798,6 +827,8 @@ a:active {
 	float: none; 
 	max-width: 100%; 
 }
+
+/* Main navigation */
 #site-navigation.container { position: relative; }
 #site-navigation a { text-decoration: none }
 #site-navigation .dropdown-menu li a .fa { margin-right: 8px }
@@ -871,6 +902,32 @@ body #site-navigation .sf-menu li.left-dropdowns ul a.sf-with-ul {
 	transition: all 0.15s ease-in-out;
 	-moz-transition: all 0.15s ease-in-out; 
 	-webkit-transition: all 0.15s ease-in-out; 
+}
+
+@media only screen and (min-width: 992px) {
+	#site-navigation { display: block; }
+}
+
+.site-main .comment-navigation,
+.site-main .posts-navigation,
+.site-main .post-navigation {
+	margin: 0 0 1.5em;
+	overflow: hidden;
+}
+
+.comment-navigation .nav-previous,
+.posts-navigation .nav-previous,
+.post-navigation .nav-previous {
+	float: left;
+	width: 50%;
+}
+
+.comment-navigation .nav-next,
+.posts-navigation .nav-next,
+.post-navigation .nav-next {
+	float: right;
+	text-align: right;
+	width: 50%;
 }
 
 /*--------------------------------------------------------------
@@ -1152,43 +1209,94 @@ body.page-header-disabled .navbar-style-three { border-bottom: 1px solid #eee; }
 
 }
 
+/*--------------------------------------------------------------
+## Mobile menu
+--------------------------------------------------------------*/
 
-/* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
+/* Mobile Menu Toggles > Icon Button(s) */
+#mobile-menu { 
+	height: 40px; 
+	position: absolute; 
+	right: 0; 
+	top: 50%; 
+	margin-top: -20px; 
+}
+#mobile-menu a { 
+	display: block; 
+	float: left; 
+	color: #666; 
+	font-size: 18px; 
+	height: 40px; 
+	width: 40px; 
+	line-height: 40px; 
+	border: 1px solid #eee; 
+	border-radius: 3px; 
+	text-align: center; 
+	margin-left: 10px; 
+	background: #f7f7f7; 
+	transition: all .15s ease-in-out; 
+}
+#mobile-menu a:first-child { margin-left: 0 }
+#mobile-menu a:hover { 
+	text-decoration: none; 
+	background: #f1f1f1; 
+	color: #333; 
 }
 
-@media screen and (min-width: 37.5em) {
-	.menu-toggle {
-		display: none;
-	}
-	.main-navigation ul {
-		display: block;
-	}
+/* Mobile Menu Toggles > Icon Button(s) Under Logo */
+.wpsp-mobile-toggle-menu-icon_buttons_under_logo #mobile-menu { 
+	position: relative; 
+	top: auto; 
+	right: auto !important; 
+	left: auto !important; 
+	margin: 0; 
+	float: none; 
+	text-align: center; 
+	padding-top: 20px; 
+	height: auto; 
 }
 
-.site-main .comment-navigation,
-.site-main .posts-navigation,
-.site-main .post-navigation {
-	margin: 0 0 1.5em;
-	overflow: hidden;
+.wpsp-mobile-toggle-menu-icon_buttons_under_logo #mobile-menu a { 
+	display: inline-block; 
+	float: none; 
 }
 
-.comment-navigation .nav-previous,
-.posts-navigation .nav-previous,
-.post-navigation .nav-previous {
-	float: left;
-	width: 50%;
+/* Mobile Menu Toggles > Fixed Top */
+#wpsp-mobile-menu-fixed-top { 
+	background: #222; 
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	width: 100%; 
+	z-index: 99; 
 }
 
-.comment-navigation .nav-next,
-.posts-navigation .nav-next,
-.post-navigation .nav-next {
-	float: right;
-	text-align: right;
-	width: 50%;
+/*body.has-overlay-header #wpsp-mobile-menu-fixed-top { top: auto; bottom: 0; }*/
+#wpsp-mobile-menu-fixed-top .mobile-menu-toggle { 
+	display: block; 
+	width: 100%; 
+	height: 50px; 
+	line-height: 50px; 
+	color: #fff; 
+	font-size: 18px; 
+	text-decoration: none; 
 }
+#wpsp-mobile-menu-fixed-top .mobile-menu-toggle .fa { margin-right: 10px; }
+
+/* Mobile Menu Toggles > Navbar */
+#wpsp-mobile-menu-navbar { 
+	background: #262626; 
+	color: #fff; 
+	height: 50px; 
+	line-height: 50px; 
+	font-size: 14px; 
+}
+#wpsp-mobile-menu-navbar a { 
+	display: block; 
+	color: #fff; 
+}
+#wpsp-mobile-menu-navbar a:hover { text-decoration: none; }
+#wpsp-mobile-menu-navbar a .fa { margin-right: 10px; }
 
 /*--------------------------------------------------------------
 # Search
@@ -1554,6 +1662,19 @@ object {
 .gallery-caption {
 	display: block;
 }
+
+/*--------------------------------------------------------------
+# Commons
+--------------------------------------------------------------*/
+
+/* Commons > Displays */
+.wpsp-block { display: block }
+.wpsp-inline-block { display: block; display: inline-block; }
+.wpsp-inline { display: inline }
+
+/* Commons > Visibility */
+.hidden,
+.wpsp-hidden { display: none }
 
 /*--------------------------------------------------------------
 # Addon Elements
