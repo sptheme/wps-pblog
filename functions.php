@@ -265,6 +265,9 @@ class WPSP_Theme_Setup {
 		// Checks if images are loaded within an element
 		wp_enqueue_script( 'wpsp-images-loaded', $dir .'vendors/images-loaded.js', array( 'jquery' ), $theme_version, true );
 
+		// Mobile menu
+		wp_enqueue_script( 'wpsp-sidr', $dir .'vendors/sidr.js', array( 'jquery' ), $theme_version, true );
+
 		// Equal Heights
 		wp_enqueue_script( 'wpsp-match-height', $dir .'vendors/jquery.matchHeight.js', array( 'jquery' ), $theme_version, true );
 
@@ -301,24 +304,43 @@ class WPSP_Theme_Setup {
 			'milestoneDecimalFormat' => ',',
 		);
 
+		// Sidr settings
+		if ( 'sidr' == $mobile_menu_style ) {
+			$localize_array['sidrSource']         = sidr_menu_source();
+			$localize_array['sidrDisplace']       = wpsp_get_redux( 'mobile-menu-sidr-displace', true ) ?  true : false;
+			$localize_array['sidrSide']           = wpsp_get_redux( 'mobile-menu-sidr-direction', 'left' );
+			$localize_array['sidrSpeed']          = 300;
+			$localize_array['sidrDropdownTarget'] = 'arrow';
+		}
+
+		// Toggle mobile menu
+		if ( 'toggle' == $mobile_menu_style ) {
+			$localize_array['animateMobileToggle'] = true;
+		}
+
+		// Full screen mobile menu style
+		if ( 'full_screen' == $mobile_menu_style ) {
+			$localize_array['fullScreenMobileMenuStyle'] = wpsp_get_redux( 'full-screen-mobile-menu-style', 'white' );
+		}
+
 		// Sticky Header
 		if ( $sticky_header ) {
-			$array['hasStickyMobileHeader']  = wpsp_get_redux( 'is-fixed-header-mobile' );
-			$array['overlayHeaderStickyTop'] = 0;
-			$array['stickyHeaderBreakPoint'] = 960;
+			$localize_array['hasStickyMobileHeader']  = wpsp_get_redux( 'is-fixed-header-mobile' );
+			$localize_array['overlayHeaderStickyTop'] = 0;
+			$localize_array['stickyHeaderBreakPoint'] = 960;
 
 			// Shrink sticky header
 			if ( wpsp_get_redux( 'is-shink-fixed-header' ) ) {
-				$array['shrinkHeaderHeight']     = 70;
-				$array['shrinkHeaderLogoHeight'] = ''; // Calculate via js by default
+				$localize_array['shrinkHeaderHeight']     = 70;
+				$localize_array['shrinkHeaderLogoHeight'] = ''; // Calculate via js by default
 			}
 			
 		}
 
 		// Sticky topBar
 		if ( wpsp_get_redux( 'top-bar-sticky' ) ) {
-			$array['stickyTopBarBreakPoint'] = 960;
-			$array['hasStickyTopBarMobile']  = true;
+			$localize_array['stickyTopBarBreakPoint'] = 960;
+			$localize_array['hasStickyTopBarMobile']  = true;
 		}
 
 		// Header five

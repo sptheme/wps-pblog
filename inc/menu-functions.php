@@ -227,3 +227,56 @@ function wpsp_custom_menu() {
 	return apply_filters( 'wpsp_custom_menu', $menu );
 }
 endif;
+
+
+/**
+ * Mobile menu source.
+ *
+ * @since 1.0.0
+ */
+if ( ! class_exists( 'sidr_menu_source' ) ) :
+function sidr_menu_source() {
+
+	// Get style defined in Customizer
+	$style = wpsp_get_redux( 'mobile-menu-style', 'sidr' );
+
+	// Sanitize
+	$style = $style ? $style : 'sidr';
+
+	// Disable if responsive is disabled
+	$style = wpsp_get_redux( 'is-responsive', true ) ? $style : 'disabled';
+
+	// Only needed for sidr menu style
+	if ( 'sidr' != $style ) {
+		return;
+	}
+
+	// Define array of items
+	$items = array();
+
+	// Add close button
+	$items['sidrclose'] = '#sidr-close';
+
+	// Add mobile menu alternative if defined
+	if ( has_nav_menu( 'mobile_menu_alt' ) ) {
+		$items['nav'] = '#mobile-menu-alternative';
+	}
+
+	// If mobile menu alternative is not defined add main navigation
+	else {
+		$items['nav'] = '#site-navigation';
+	}
+
+	// Add search form
+	if ( wpsp_get_redux( 'is-mobile-menu-search', true ) ) {
+		$items['search'] = '#mobile-menu-search';
+	}
+
+	// Apply filters for child theming
+	$items = apply_filters( 'wpex_mobile_menu_source', $items );
+
+	// Turn items into comma seperated list and return
+	return implode( ', ', $items );
+
+}
+endif;

@@ -1,4 +1,11 @@
-
+/*--------------------------------------------------------------
+# Visibility
+--------------------------------------------------------------*/
+.hidden-desktop,
+.visible-phone,
+.visible-tablet,
+.visible-tablet-landscape,
+.visible-tablet-portrait { display: none !important }
 
 /*--------------------------------------------------------------
 # All Devices under 960px
@@ -54,7 +61,40 @@
 # Tablet Portrait
 --------------------------------------------------------------*/
 @media only screen and (min-width: 768px) and (max-width: 959px) {
+
+	/* visibility */
+	.hidden-desktop,
+	.visible-tablet,
+	.visible-tablet-portrait { display: block !important }
+	.visible-desktop,
+	.hidden-tablet,
+	.hide-on-tablets,
+	.tparrows.custom,
+	.hidden-tablet-portrait { display: none !important }
+
 	/* reset equal height */
 	.match-height-content,
 	.equal-height-content { height: auto !important }
+}
+
+/*--------------------------------------------------------------
+# Phone Portrait and Landscape
+--------------------------------------------------------------*/
+@media only screen and (max-width: 767px) {
+	/* visibility */
+	.hidden-desktop { display: block !important }
+	.visible-desktop { display: none !important }
+	.hidden-phone { display: none !important }
+	.visible-phone { display: block !important }
+}
+
+/*--------------------------------------------------------------
+# Phone Landscape
+--------------------------------------------------------------*/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+	/* visibility */
+	.hidden-desktop { display: block !important }
+	.visible-desktop, .hidden-phone { display: none !important }
+
 }

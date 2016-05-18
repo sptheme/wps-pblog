@@ -291,6 +291,17 @@ function wpsp_mobile_menu_alt() {
 	}
 }
 
+/**
+ * Adds a hidden searchbox in the footer for use with the mobile menu
+ *
+ * @since 1.0.0
+ */
+function wpsp_mobile_searchform() {
+	if ( wpsp_get_redux( 'is-mobile-menu-search', true ) ) {
+		get_template_part( 'partials/search/mobile-searchform' );
+	}
+}
+
 
 /**
  * Sidr Close button

@@ -437,6 +437,14 @@ html {
 body {
 	background: #fff; /* Fallback for when there is no custom background color defined. */
 }
+/* Disable scroll when mobile menu active */
+body.wpsp-noscroll { 
+	position:absolute; 
+	width:100%; 
+	overflow-y:hidden; 
+	top:0; 
+	bottom:0; 
+}
 
 hr { 
 	border: solid #e4e4e4; 
@@ -611,6 +619,7 @@ input[type="datetime-local"]:focus,
 input[type="color"]:focus,
 textarea:focus {
 	color: #111;
+	outline: 0;
 }
 
 input[type="text"],
@@ -632,8 +641,53 @@ input[type="color"] {
 }
 
 textarea {
-	padding-left: 3px;
-	width: 100%;
+	width: 100%; 
+	max-width: 100%; 
+	-webkit-appearance: none;
+}
+
+/* Fix */
+button,
+input,
+select,
+textarea { font-size: 100%; line-height: inherit; margin: 0; vertical-align: baseline; }
+
+/* reset search styling */
+input[type="search"] { outline: 0 }
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none }
+
+/* remove chrome yellow autofill */
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px #f7f7f7 inset }
+.password-protection-box input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px #fff inset }
+
+/* placeholder color */
+::-webkit-input-placeholder { color: inherit }
+:-moz-placeholder { color: inherit }
+::-moz-placeholder { color: inherit }
+:-ms-input-placeholder { color: inherit }
+
+/* input normal */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+textarea { 
+	color: #777; 
+	padding: .6em; 
+	display: inline-block; 
+	font-size: 1em; 
+	transition: .15s linear border; 
+	-webkit-appearance: none; 
+	max-width: 100%; 
+	border: 1px solid #eee; 
+	background: #f7f7f7; 
+	font-family: inherit; 
+	line-height: inherit; 
 }
 
 /*--------------------------------------------------------------
@@ -1297,6 +1351,106 @@ body.page-header-disabled .navbar-style-three { border-bottom: 1px solid #eee; }
 }
 #wpsp-mobile-menu-navbar a:hover { text-decoration: none; }
 #wpsp-mobile-menu-navbar a .fa { margin-right: 10px; }
+
+/* Mobile Menus > Sidebar */
+#sidr-main {  display: none; position: absolute; position: fixed; top: 0; height: 100%; z-index: 999999; width: 300px; max-width: 100%; padding-bottom: 30px; overflow-x: hidden; overflow-y: auto; font-size: 1.077em; background: #262626; color: #fff; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-overflow-scrolling: touch; }
+.sidr.right { left: auto; right: -300px; }
+.sidr.left { left: -300px; right: auto; }
+.sidr ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.sidr a { color: #707070 }
+.sidr a:hover,
+.sidr-class-dropdown-toggle:hover,
+.sidr-class-menu-item-has-children.active > a,
+.sidr-class-menu-item-has-children.active > a > .sidr-class-dropdown-toggle { color: #fff; text-decoration: none; }
+a.sidr-class-toggle-sidr-close { position: relative; margin: 0 auto; display: block; height: 50px; line-height: 50px; font-size: 18px; color: #fff; background: rgba(0,0,0,0.1); }
+.sidr-class-toggle-sidr-close:before { font-family: "FontAwesome"; content: "\f0c9"; position: absolute; top: 0; left: 20px; height: 50px; line-height: 50px; }
+.sidr-class-dropdown-menu ul { display: none; border-top: 1px solid rgba( 255, 255, 255, 0.035 ); margin-left: 0; background: rgba(255,255,255,0.02); }
+.sidr-class-dropdown-menu li { border-bottom: 1px solid rgba( 255, 255, 255, 0.035 ) }
+.sidr-class-dropdown-menu > li:first-child { border-top: 1px solid rgba( 255, 255, 255, 0.035 ) }
+.sidr-class-dropdown-menu li a { padding: 12px 20px; display: block; position: relative; }
+.sidr-class-dropdown-menu li a.sidr-class-sf-with-ul { padding-right: 40px }
+.sidr-class-dropdown-menu ul li:last-child { border: none }
+.sidr-class-menu-item-has-children { position: relative }
+.sidr-class-dropdown-menu li.sidr-class-menu-item-has-children > a { padding-right: 60px }
+.sidr-class-dropdown-toggle { font-size: 11px; height: 100%; width: 60px; position: absolute; right: 0; top: 0; cursor: pointer; color: #707070; text-align: right; padding-right: 20px; text-align: center; }
+.sidr-class-dropdown-toggle:before { font-family: "FontAwesome"; content: "\f054"; position: absolute; height: 30px; line-height: 30px; width: 30px; top: 50%; left: 50%; margin-top: -15px; margin-left: -15px; }
+.sidr-class-dropdown-menu li.active > a > .sidr-class-dropdown-toggle:before { content: "\f078" }
+.sidr-class-dropdown-menu ul a:before { font-family: "FontAwesome"; content: "\f0da"; display: inline-block; margin: 0 10px; }
+.sidr-class-dropdown-menu ul ul a:before { margin-left: 20px }
+.sidr-class-dropdown-menu ul ul ul a:before { margin-left: 40px }
+.sidr-class-dropdown-menu a .fa { margin-right: 10px }
+.sidr #searchform-header-replace-close,
+.sidr .nav-arrow { display: none !important }
+.sidr-class-wcmenucart { display: none !important }
+
+/* Mobile Menus > Sidr > Overlay */
+.wpsp-sidr-overlay { position: fixed; top: 0; left: 0; height: 100%; width: 100%; background: rgba(0,0,0,0.6); z-index: 9999; }
+
+/* Mobile Menus > Sidr > Search */
+#sidr-id-searchform-overlay-title { display: none }
+.sidr-class-mobile-menu-searchform { position: relative; margin: 30px 20px 0; }
+.sidr-class-mobile-menu-searchform input { width: 100%; background: #fff; background: rgba(255,255,255,0.06); border: 0; outline: 0; padding: 15px 45px 15px 15px; line-height: 1.4em; border-radius: 3px; color: #fff; color: rgba(255,255,255,0.5); font-size: 1em; font-weight: 400; transition: all 0.3s; }
+.sidr-class-mobile-menu-searchform input:focus { color: #fff; }
+.sidr-class-mobile-menu-searchform button { background: none !important; display: block; position: absolute; right: 10px; height: 30px; line-height: 30px; width: 30px; text-align: center; top: 50%; margin-top: -15px; color: #fff; opacity: 0.4; padding: 0; }
+.sidr-class-mobile-menu-searchform button:hover { opacity: 1; }
+
+/* Mobile Menus > Toggle */
+.mobile-toggle-nav { margin-top: 0; display: none; background: #fff; }
+.mobile-toggle-nav { z-index: 9999; height: auto; line-height: inherit; }
+.mobile-toggle-nav ul {
+	list-style: none;
+	padding-left: 0;
+}
+.mobile-toggle-nav a { color: #555; display: block; padding: 10px 0; position: relative; border-top: 1px solid #eee; }
+.mobile-toggle-nav a:hover { color: #000 }
+.mobile-toggle-nav a:hover { text-decoration: none }
+.mobile-toggle-nav a .fa { margin-right: 10px }
+.mobile-toggle-nav .nav-arrow { display: none }
+.mobile-toggle-nav .wpsp-mobile-dropdown-icon { z-index: 2; cursor: pointer; position: absolute; right: 0; top: 50%; height: 30px; line-height: 30px; width: 60px; text-align: center; margin-top: -15px; font-weight: 400; font-size: 10px; text-align: right; }
+.mobile-toggle-nav .menu-item-has-children ul { margin-left: 0; }
+.mobile-toggle-nav .menu-item-has-children ul a { padding-left: 20px }
+.mobile-toggle-nav .menu-item-has-children ul ul a { padding-left: 40px }
+.mobile-toggle-nav .menu-item-has-children ul ul ul a { padding-left: 60px }
+.mobile-toggle-nav .menu-item-has-children ul ul ul a { padding-left: 80px }
+
+.wpsp-mobile-toggle-menu-fixed_top .mobile-toggle-nav { background: #222; }
+.wpsp-mobile-toggle-menu-fixed_top .mobile-toggle-nav a { border-color: #333; color: #aaa; }
+.wpsp-mobile-toggle-menu-fixed_top .mobile-toggle-nav a:hover { color: #fff; }
+
+.mobile-toggle-nav #mobile-menu-search { display: block; margin-bottom: 20px; position: relative; }
+.mobile-toggle-nav-search input[type="search"] { width: 100%; padding: 0 50px 0 10px; height: 45px; }
+.mobile-toggle-nav-search .searchform-submit { position: absolute; top: 0; right: 0; padding: 0; height: 45px; line-height: 45px; width: 45px; border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0; }
+
+/* Mobile Menus > Hide Things */
+.sidr-class-search-toggle-li,
+#sidr-id-searchform-dropdown,
+.mobile-toggle-nav-ul li.search-toggle-li { display: none; }
+
+/* Mobile Menus > Full Screen Fade Overlay */
+.full-screen-overlay-nav { z-index: -1; position: fixed; width: 100%; height: 100%; top: 0; left: 0; visibility: hidden; opacity: 0; transition: all 0.4s; display: block; overflow-y: auto; font-weight: 300; font-size: 2.462em; }
+.full-screen-overlay-nav.visible { z-index: 99999; visibility: visible; opacity: 1; }
+.full-screen-overlay-nav .full-screen-overlay-nav-close { position: fixed; top: 20px; right: 20px; width: 58px; height: 58px; cursor: pointer; opacity: 0.5; transition: all 0.3s; }
+.full-screen-overlay-nav .full-screen-overlay-nav-close:hover { opacity: 1; }
+.full-screen-overlay-nav-ul-wrapper { display: table; width: 100%; height: 100%; text-align: center; }
+.full-screen-overlay-nav-ul { display: table-cell; vertical-align: middle; height: 100%; width: 100%; padding: 80px; }
+.full-screen-overlay-nav-ul ul { display: block; list-style: none; padding: 0; margin: 0; }
+.full-screen-overlay-nav-ul li { display: block; }
+.full-screen-overlay-nav-ul li a { display: inline-block; color: #000; transition: all 0.3s; margin-bottom: 20px; }
+.full-screen-overlay-nav-ul li a .fa { margin-right: 10px; }
+.full-screen-overlay-nav-ul li a:hover { text-decoration: none; opacity: 0.4; }
+.full-screen-overlay-nav-ul li.wpsp-menu-extra { display: none !important; }
+.full-screen-overlay-nav-ul .nav-arrow { display: none; }
+
+.full-screen-overlay-nav.white { background: #fff; }
+.full-screen-overlay-nav.white .full-screen-overlay-nav-close { background: url( 'images/full-screen-overlay-nav-close-black.png' ) no-repeat; }
+.full-screen-overlay-nav.black { background: #000; }
+.full-screen-overlay-nav.black .full-screen-overlay-nav-close { background: url( 'images/full-screen-overlay-nav-close-white.png' ) no-repeat; }
+.full-screen-overlay-nav.black li a { color: #fff; opacity: 0.4; }
+.full-screen-overlay-nav.black li a:hover { opacity: 1; }
 
 /*--------------------------------------------------------------
 # Search
