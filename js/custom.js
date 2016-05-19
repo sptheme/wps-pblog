@@ -867,14 +867,15 @@
 				}
 			}
 			$shrunkHeightLogo = parseInt( $shrunkHeightLogo );
-
+			
 			// Destroy method
 			function destroy() {
 
 				if ( self.config.$siteHeader.hasClass( 'wpsp-header-shrunk' ) ) {
+					
 					// Reset header height
 					$siteHeaderInner.stop(true,true).animate( {
-						//'height'         : $ogHeight,
+						'height'         : $ogHeight,
 						'padding-top'    : $ogTopPadding,
 						'padding-bottom' : $ogBottomPadding
 					}, {
@@ -977,7 +978,7 @@
 				if ( self.config.$windowTop > $offSet ) {
 
 					if ( ! self.config.$siteHeader.hasClass( 'wpsp-header-shrunk' ) ) {
-
+						
 						// Set header innner height
 						$siteHeaderInner.stop(true,true).animate( {
 							'height'         : $shrunkHeight,

@@ -85,8 +85,7 @@ function wpsp_header_menu_classes( $return ) {
 
 	// Get data
 	$header_style = wpsp_get_redux( 'header-style' );
-	$has_overlay  = wpsp_get_redux( 'has-overlay-header' );
-
+	
 	// Return wrapper classes
 	if ( 'wrapper' == $return ) {
 
@@ -104,14 +103,13 @@ function wpsp_header_menu_classes( $return ) {
 		}
 
 		// Dropdown dropshadow
-		if ( 'one' == $header_style || 'five' == $header_style || $has_overlay ) {
+		if ( 'one' == $header_style || 'five' == $header_style ) {
 			$classes[] = 'wpsp-dropdowns-caret';
 		}
 
 		// Flush Dropdowns
 		if ( wpsp_get_redux( 'menu-flush-dropdowns' )
 			&& 'one' == $header_style
-			&& ! $has_overlay
 		) {
 			$classes[] = 'wpsp-flush-dropdowns';
 		}

@@ -330,7 +330,7 @@ class WPSP_Theme_Setup {
 			$localize_array['stickyHeaderBreakPoint'] = 960;
 
 			// Shrink sticky header
-			if ( wpsp_get_redux( 'is-shink-fixed-header' ) ) {
+			if ( wpsp_get_redux( 'is-shrink-fixed-header' ) ) {
 				$localize_array['shrinkHeaderHeight']     = 70;
 				$localize_array['shrinkHeaderLogoHeight'] = ''; // Calculate via js by default
 			}

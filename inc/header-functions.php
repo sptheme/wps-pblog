@@ -73,7 +73,7 @@ function wpsp_header_classes() {
 	}
 
 	// Header Overlay Style
-	if ( wpsp_get_redux( 'has-overlay-header', true ) ) {
+	if ( wpsp_get_redux( 'has-overlay-header' ) ) {
 
 		// Dark dropdowns for overlay header
 		unset( $classes['wpsp-dropdown-style-'. $dropdown_style] );
