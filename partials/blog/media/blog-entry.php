@@ -21,27 +21,11 @@ if ( $thumbnail = wpsp_get_blog_entry_thumbnail() ) :
 
 	<div class="blog-entry-media entry-media clear <?php echo wpsp_overlay_classes( $overlay ); ?>">
 
-		<?php
-		// Lightbox style entry
-		if ( wpsp_get_redux( 'is-blog-entry-image-lightbox' ) ) : ?>
-
-			<a href="<?php echo wpsp_post_thumbnail_url(); ?>" title="<?php echo esc_attr( the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark" class="blog-entry-media-link wpex-lightbox<?php wpsp_entry_image_animation_classes(); ?>" data-type="image">
-				<?php echo $thumbnail; ?>
-				<?php wpsp_overlay( 'inside_link', $overlay ); ?>
-			</a><!-- .blog-entry-media-link -->
-			<?php wpsp_overlay( 'outside_link', $overlay ); ?>
-
-		<?php
-		// Standard link to post
-		else : ?>
-
-			<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark" class="blog-entry-media-link<?php wpsp_entry_image_animation_classes(); ?>">
-				<?php echo $thumbnail; ?>
-				<?php wpsp_overlay( 'inside_link', $overlay ); ?>
-			</a><!-- .blog-entry-media-link -->
-			<?php wpsp_overlay( 'outside_link', $overlay ); ?>
-			
-		<?php endif; ?>
+		<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark" class="blog-entry-media-link<?php wpsp_entry_image_animation_classes(); ?>">
+			<?php echo $thumbnail; ?>
+			<?php wpsp_overlay( 'inside_link', $overlay ); ?>
+		</a><!-- .blog-entry-media-link -->
+		<?php wpsp_overlay( 'outside_link', $overlay ); ?>
 
 	</div><!-- .blog-entry-media -->
 

@@ -589,12 +589,6 @@
                 ),
             ),
             array(
-                'id'       => 'is-blog-entry-image-lightbox',
-                'type'     => 'checkbox',
-                'title'    => __( 'Image Lightbox', 'wpsp-redux-framework' ),
-                'default'  => 0,
-            ),
-            array(
                 'id'       => 'blog-entry-overlay',
                 'type'     => 'select',
                 'title'    => __( 'Overlay Style', 'wpsp-redux-framework' ),
