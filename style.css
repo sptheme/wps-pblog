@@ -104,7 +104,7 @@ body > div {
 }
 
 body {
-	background-color: #eee;
+	background-color: #ffffff;
 	color: #333;
 	font-size: 13px;
 	font-size: 1.3rem;
@@ -309,38 +309,7 @@ img {
 }
 
 /* Table */
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	line-height: 2;
-	margin-bottom: 40px;
-	width: 100%;
-	word-break: break-word;
-}
-
-tbody {
-	border-bottom: 1px solid #eee;
-}
-
-td,
-th {
-	text-align: left;
-}
-
-td {
-	border-top: 1px solid #eee;
-	padding: 6px;
-}
-
-th {
-	font-weight: 400;
-	padding: 0 6px;
-}
-
-td:first-child,
-th:first-child {
-	padding-left: 0;
-}
+table { width: 100%; }
 
 /* Placeholder text color -- selectors need to be separate to work. */
 ::-webkit-input-placeholder {
@@ -1478,13 +1447,122 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 # Widgets
 --------------------------------------------------------------*/
 .widget {
-	margin: 0 0 1.5em;
+	margin: 0 0 30px;
+}
+
+.widget .widget-title { 
+	display: block; 
+	margin: 0 0 20px; 
+	font-size: 1.077em; 
+	line-height: 1.5; 
+	font-weight: 600; 
+	color: #000; 
 }
 
 /* Make sure select elements fit in widgets. */
 .widget select {
 	max-width: 100%;
 }
+
+.widget ul { 
+	list-style: none; 
+	margin: 0; 
+	padding: 0;
+}
+.widget ul.children {
+	margin-left: 20px;
+}
+
+/* Widgets > Borders */
+.widget_categories li,
+.widget_recent_entries li,
+.widget_archive li,
+.widget_recent_comments li,
+.widget_pages li { 
+	padding: 6px 0; 
+	border-bottom: 1px solid #eee; 
+}
+
+.widget_categories li:first-child,
+.widget_recent_entries li:first-child,
+.widget_archive li:first-child,
+.widget_recent_comments li:first-child,
+.widget_pages li:first-child { border-top: 1px solid #eee }
+
+.widget ul.children li:last-child { border-bottom: none; }
+
+/* Widgets > Custom Menu */
+.widget_nav_menu .sub-menu { display: none }
+.widget_nav_menu ul { margin: 0 }
+.widget_nav_menu ul ul { 
+	margin: 0; 
+	border: none; 
+	border-radius: 0; 
+}
+.widget_nav_menu ul > li:first-child > a { border-top: 1px solid #eee }
+.widget_nav_menu li ul li:first-child a { border-top: none }
+.widget_nav_menu a { 
+	position: relative; 
+	font-weight: normal; 
+	display: block; 
+	padding: 9px 15px; 
+	border: 1px solid #eee; 
+	border-top: none; 
+	color: #777; 
+	cursor: pointer; 
+}
+.widget_nav_menu a .fa { margin-right: 10px }
+.widget_nav_menu .menu-item-has-children > a { padding-right: 30px }
+.widget_nav_menu ul ul li a { padding-left: 20px }
+.widget_nav_menu ul ul ul li a { padding-left: 30px }
+.widget_nav_menu .sub-menu a:before { content: "-"; margin-right: 10px; }
+.widget_nav_menu .sub-menu .sub-menu a:before { 
+	content: "- -"; 
+	margin-right: 10px; 
+}
+.widget_nav_menu a:hover,
+.widget_nav_menu li.active > a { 
+	background-color: #f9f9f9; 
+	text-decoration: none; 
+}
+.widget_nav_menu .parent > a:after { 
+	font-family: 'FontAwesome'; 
+	display: block; 
+	content: "\f0d7"; 
+	position: absolute; 
+	right: 15px; 
+	top: 50%; 
+	font-size: 1.077em; 
+	height: 20px; 
+	line-height: 20px; 
+	margin-top: -10px; 
+	color: #ddd; 
+}
+.widget_nav_menu .parent.active > a:after { content: "\f0d8" }
+.widget_nav_menu .current_page_item > a,
+.widget_nav_menu .current-menu-item > a { background: #f7f7f7 }
+.widget_nav_menu .current_page_item > .sub-menu,
+.widget_nav_menu .current-menu-item > .sub-menu { display: block; }
+}
+
+/* Widgets > Calendar */
+.widget_calendar table { width: 100%; font-size: 0.846em; }
+.widget_calendar thead th { background: #f5f5f5; border: 1px solid #ddd; font-size: 0.846em; }
+.widget_calendar tbody td { text-align: center; border: 1px solid #ddd; line-height: 2.5em; transition: background 0.15s ease; -webkit-transition: background 0.15s ease; -o-transition: background 0.15s ease; -moz-transition: background 0.15s ease; }
+.widget_calendar tbody td:hover { background: #f1f1f1; color: #333; }
+.widget_calendar tbody td a { display: block; text-decoration: none; background: #f1f1f1; color: #333; }
+.widget_calendar tbody td:hover a { background: #4d4d4d; color: #fff; }
+.widget_calendar tfoot td { padding-top: 1px; padding: 4px; }
+.widget_calendar caption { cursor: pointer; font-size: 13px; text-transform: uppercase; margin: 0; padding: 12px; outline: 0 none !important; color: #fff; text-align: center; }
+.widget_calendar tbody a { display: block; text-decoration: underline; }
+.widget_calendar th { text-align: center; border: 1px solid transparent; border-top: none; padding: 7px 0; color: #a7a7a7; }
+
+/* Widgets > Categories */
+.widget_categories li { position: relative }
+.widget_categories li ul { margin: 0 0 0 20px }
+.widget_categories li ul li:first-child { border-top: 1px solid #eee; margin-top: 4px; }
+.widget_categories li ul li:last-child { border-bottom: none; padding-bottom: 0; }
+.widget_categories .cat-count-span { color: #999; font-size: 0.846em; }
 
 /*--------------------------------------------------------------
 # Content
