@@ -24,11 +24,11 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Normalize
-# Fonts icon
+# FontAwesome icon
 # Typography
 # Elements
 # Forms
-# Layout
+# Structure and Layout
 # Header
 # Navigation
 	## Links
@@ -57,219 +57,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
-html {
-	font-family: sans-serif;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust:     100%;
-}
+/* normalize.css v3.0.1 | MIT License | git.io/normalize */
 
-body {
-	margin: 0;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-main,
-menu,
-nav,
-section,
-summary {
-	display: block;
-}
-
-audio,
-canvas,
-progress,
-video {
-	display: inline-block;
-	vertical-align: baseline;
-}
-
-audio:not([controls]) {
-	display: none;
-	height: 0;
-}
-
-[hidden],
-template {
-	display: none;
-}
-
-a {
-	background-color: transparent;
-}
-
-a:active,
-a:hover {
-	outline: 0;
-}
-
-abbr[title] {
-	border-bottom: 1px dotted;
-}
-
-b,
-strong {
-	font-weight: bold;
-}
-
-dfn {
-	font-style: italic;
-}
-
-h1 {
-	font-size: 2em;
-	margin: 0.67em 0;
-}
-
-mark {
-	background: #ff0;
-	color: #000;
-}
-
-small {
-	font-size: 80%;
-}
-
-sub,
-sup {
-	font-size: 75%;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
-}
-
-sup {
-	top: -0.5em;
-}
-
-sub {
-	bottom: -0.25em;
-}
-
-img {
-	border: 0;
-}
-
-svg:not(:root) {
-	overflow: hidden;
-}
-
-figure {
-	margin: 1em 40px;
-}
-
-hr {
-	box-sizing: content-box;
-	height: 0;
-}
-
-pre {
-	overflow: auto;
-}
-
-code,
-kbd,
-pre,
-samp {
-	font-family: monospace, monospace;
-	font-size: 1em;
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-	color: inherit;
-	font: inherit;
-	margin: 0;
-}
-
-button {
-	overflow: visible;
-}
-
-button,
-select {
-	text-transform: none;
-}
-
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-	-webkit-appearance: button;
-	cursor: pointer;
-}
-
-button[disabled],
-html input[disabled] {
-	cursor: default;
-}
-
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-	border: 0;
-	padding: 0;
-}
-
-input {
-	line-height: normal;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-	box-sizing: border-box;
-	padding: 0;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-	height: auto;
-}
-
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-	-webkit-appearance: none;
-}
-
-fieldset {
-	border: 1px solid #c0c0c0;
-	margin: 0 2px;
-	padding: 0.35em 0.625em 0.75em;
-}
-
-legend {
-	border: 0;
-	padding: 0;
-}
-
-textarea {
-	overflow: auto;
-}
-
-optgroup {
-	font-weight: bold;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-td,
-th {
-	padding: 0;
-}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:0 0}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#333}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
 
 /*--------------------------------------------------------------
-# Fonts icon
+# FontAwesome icon
 --------------------------------------------------------------*/
 
 .overlay-article-hover:before,
@@ -301,6 +94,26 @@ th {
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
+html {
+	font-size: 62.5%; /* 10px browser default */
+}
+
+/* Chrome fix */
+body > div {
+	font-size: 1.3rem;
+}
+
+body {
+	background-color: #eee;
+	color: #333;
+	font-size: 13px;
+	font-size: 1.3rem;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 400;
+	line-height: 1.625;
+	margin: 0;
+}
+
 body,
 button,
 input,
@@ -316,10 +129,10 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight: 600; 
 	color: #222; 
 	line-height: 1.5; 
-	margin: 1.875em 0 1.250em; 
+	margin: 0 0 12px; 
 }
 
-h1 { font-size: 1.500em; margin: 0 0 1.250em; }
+h1 { font-size: 1.500em; }
 h2 { font-size: 1.313em }
 h3 { font-size: 1.125em }
 h4 { font-size: 1em }
@@ -327,7 +140,7 @@ h5 { font-size: 0.875em }
 h6 { font-size: 0.750em }
 
 p {
-	margin-bottom: 1.250em;
+	margin: 0 0 24px;
 }
 
 dfn,
@@ -419,7 +232,8 @@ small { font-size: 80% }
 	width: device-width;
 }
 
-html {
+html,
+input[type="search"] {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -428,22 +242,7 @@ html {
 *,
 *:before,
 *:after {
-	/* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
-	-webkit-box-sizing: inherit;
-	-moz-box-sizing: inherit;
 	box-sizing: inherit;
-}
-
-body {
-	background: #fff; /* Fallback for when there is no custom background color defined. */
-}
-/* Disable scroll when mobile menu active */
-body.wpsp-noscroll { 
-	position:absolute; 
-	width:100%; 
-	overflow-y:hidden; 
-	top:0; 
-	bottom:0; 
 }
 
 hr { 
@@ -479,7 +278,7 @@ blockquote.right {
 
 ul,
 ol {
-	margin: 0 0 1.5em 3em;
+	margin: 0 0 1.5em 1.5em;
 }
 
 ul {
@@ -509,9 +308,38 @@ img {
 	max-width: 100%; /* Adhere to container width. */
 }
 
+/* Table */
 table {
-	margin: 0 0 1.5em;
+	border-collapse: collapse;
+	border-spacing: 0;
+	line-height: 2;
+	margin-bottom: 40px;
 	width: 100%;
+	word-break: break-word;
+}
+
+tbody {
+	border-bottom: 1px solid #eee;
+}
+
+td,
+th {
+	text-align: left;
+}
+
+td {
+	border-top: 1px solid #eee;
+	padding: 6px;
+}
+
+th {
+	font-weight: 400;
+	padding: 0 6px;
+}
+
+td:first-child,
+th:first-child {
+	padding-left: 0;
 }
 
 /* Placeholder text color -- selectors need to be separate to work. */
@@ -691,7 +519,7 @@ textarea {
 }
 
 /*--------------------------------------------------------------
-# Layout
+# Structure and Layout
 --------------------------------------------------------------*/
 #page { overflow: hidden }
 #wrap { position: relative; }
@@ -1452,6 +1280,15 @@ a.sidr-class-toggle-sidr-close { position: relative; margin: 0 auto; display: bl
 .full-screen-overlay-nav.black li a { color: #fff; opacity: 0.4; }
 .full-screen-overlay-nav.black li a:hover { opacity: 1; }
 
+/* Disable scroll when mobile menu active */
+body.wpsp-noscroll { 
+	position:absolute; 
+	width:100%; 
+	overflow-y:hidden; 
+	top:0; 
+	bottom:0; 
+}
+
 /*--------------------------------------------------------------
 # Search
 --------------------------------------------------------------*/
@@ -1617,20 +1454,13 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 # Clearings
 --------------------------------------------------------------*/
 .clear:before,
-.clear:after,
 .entry-content:before,
-.entry-content:after,
 .comment-content:before,
-.comment-content:after,
 .site-header:before,
-.site-header:after,
 .site-content:before,
-.site-content:after,
-.site-footer:before,
-.site-footer:after {
+.site-footer:before {
 	content: "";
 	display: table;
-	table-layout: fixed;
 }
 
 .clear:after,
@@ -1640,6 +1470,8 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 .site-content:after,
 .site-footer:after {
 	clear: both;
+	content: "";
+	display: table;
 }
 
 /*--------------------------------------------------------------
@@ -1688,10 +1520,6 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 	clear: both;
 	margin: 0 0 1.5em;
 }
-.entry ul,
-.entry ol { margin: 0 0 20px 30px }
-.entry ul { list-style: disc }
-.entry ol { list-style: decimal }
 
 /*--------------------------------------------------------------
 ## Asides
