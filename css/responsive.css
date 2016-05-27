@@ -1,4 +1,19 @@
 /*--------------------------------------------------------------
+>>> TABLE OF CONTENTS: Media queries
+----------------------------------------------------------------
+# All Devices under 960px 
+	- Max-width: 559px
+# Tablet Landscape 
+	- Min-width:768px and Max-width:1024px
+# Tablet Portrait 
+	- Min-width: 768px and Max-width: 959px
+# Phone Portrait and Landscape
+	- Max-width: 767px
+# Phone Landscape
+	- Min-width: 480px and Max-width: 767px
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
 # Visibility
 --------------------------------------------------------------*/
 .hidden-desktop,
@@ -49,7 +64,7 @@
 /*--------------------------------------------------------------
 # Tablet Landscape
 --------------------------------------------------------------*/
-@media only screen and (min-device-width:768px) and (max-device-width:1024px) and (orientation:landscape) { 
+@media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape) { 
 	.hidden-desktop,
 	.visible-tablet,
 	.visible-tablet-landscape { display: block !important }
