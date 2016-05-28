@@ -145,8 +145,6 @@
         'title-bottom'                  => esc_html__( 'Title Bottom', 'wpsp-redux-framework' ),
         'title-bottom-see-through'      => esc_html__( 'Title Bottom See Through', 'wpsp-redux-framework' ),
         'title-excerpt-hover'           => esc_html__( 'Title + Excerpt Hover', 'wpsp-redux-framework' ),
-        'title-category-hover'          => esc_html__( 'Title + Category Hover', 'wpsp-redux-framework' ),
-        'title-category-visible'        => esc_html__( 'Title + Category Visible', 'wpsp-redux-framework' ),
         'title-date-hover'              => esc_html__( 'Title + Date Hover', 'wpsp-redux-framework' ),
         'title-date-visible'            => esc_html__( 'Title + Date Visible', 'wpsp-redux-framework' ),
         'slideup-title-white'           => esc_html__( 'Slide-Up Title White', 'wpsp-redux-framework' ),
@@ -551,6 +549,7 @@
             array(
                 'id'       => 'blog-grid-columns',
                 'type'     => 'select',
+                'required' => array( 'blog-entry-style', '=', 'grid-entry-style' ),
                 'title'    => __( 'Grid columns', 'wpsp-redux-framework' ),
                 'options'  => array(
                     '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
@@ -564,6 +563,7 @@
             array(
                 'id'       => 'blog-grid-style',
                 'type'     => 'select',
+                'required' => array( 'blog-entry-style', '=', 'grid-entry-style' ),
                 'title'    => __( 'Grid style', 'wpsp-redux-framework' ),
                 'options'  => array(
                     '' => esc_html__( 'Default', 'wpsp-redux-framework' ),

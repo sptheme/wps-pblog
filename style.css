@@ -29,6 +29,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Elements
 # Forms
 # Structure and Layout
+# Grid & Columns
 # Header
 # Navigation
 	## Links
@@ -41,6 +42,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Widgets
 # Content
 	## Posts and pages
+	## Entry Global
+	## Post Meta
 	## Asides
 	## Comments
 # Infinite scroll
@@ -48,7 +51,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Captions
 	## Galleries
 # Commons
+# Blog Post
+## Blog Entry
+## Blog Single
 # Addon Elements
+	## Overlay
+	## Image Hover
 	## Lean Modal
 	## Social Button
 	## Social Sharing
@@ -279,6 +287,7 @@ blockquote.right {
 ul,
 ol {
 	margin: 0 0 1.5em 1.5em;
+	padding-left: 0;
 }
 
 ul {
@@ -512,6 +521,87 @@ textarea {
 .full-width .widget-area {
 	width: 100%;
 }
+
+/*--------------------------------------------------------------
+# Grid and Columns
+--------------------------------------------------------------*/
+/* Grid > Main Classes */
+.wpsp-row { margin: 0 -10px }
+.wpsp-row .col { float: left; margin: 0 0 20px; padding: 0 10px; }
+.wpsp-row .span_1_of_1.col { float: none }
+.wpsp-row .span_1_of_2 { width: 50% }
+.wpsp-row .span_1_of_3 { width: 33.33% }
+.wpsp-row .span_1_of_4 { width: 25% }
+.wpsp-row .span_1_of_5 { width: 20% }
+.wpsp-row .span_1_of_6 { width: 16.66666667% }
+.wpsp-row .span_1_of_7 { width: 14.28% }
+
+/* Grid > Gaps */
+.wpsp-row.gap-none { margin-left: 0; margin-right: 0; }
+.wpsp-row.gap-none .col,
+.wpsp-row.gap-none .nr-col { padding-left: 0; padding-right: 0; margin-bottom: 0; }
+.wpsp-row.gap-5 { margin-left: -2.5px; margin-right: -2.5px; }
+.wpsp-row.gap-5 .col,
+.wpsp-row.gap-5 .nr-col { padding-left: 2.5px; padding-right: 2.5px; margin-bottom: 5px; }
+.wpsp-row.gap-10 { margin-left: -5px; margin-right: -5px; }
+.wpsp-row.gap-10 .col,
+.wpsp-row.gap-10 .nr-col { padding-left: 5px; padding-right: 5px; margin-bottom: 10px; }
+.wpsp-row.gap-15 { margin-left: -7.5px; margin-right: -7.5px; }
+.wpsp-row.gap-15 .col,
+.wpsp-row.gap-15 .nr-col { padding-left: 7.5px; padding-right: 7.5px; margin-bottom: 15px; }
+.wpsp-row.gap-20 { margin-left: -10px; margin-right: -10px; }
+.wpsp-row.gap-20 .col,
+.wpsp-row.gap-20 .nr-col { padding-left: 10px; padding-right: 10px; margin-bottom: 20px; }
+.wpsp-row.gap-25 { margin-left: -12.5px; margin-right: -12.5px; }
+.wpsp-row.gap-25 .col,
+.wpsp-row.gap-25 .nr-col { padding-left: 12.5px; padding-right: 12.5px; margin-bottom: 25px; }
+.wpsp-row.gap-30 { margin-left: -15px; margin-right: -15px; }
+.wpsp-row.gap-30 .col,
+.wpsp-row.gap-30 .nr-col { padding-left: 15px; padding-right: 15px; margin-bottom: 30px; }
+.wpsp-row.gap-35 { margin-left: -17.5px; margin-right: -17.5px; }
+.wpsp-row.gap-35 .col,
+.wpsp-row.gap-35 .nr-col { padding-left: 17.5px; padding-right: 17.5px; margin-bottom: 35px; }
+.wpsp-row.gap-40 { margin-left: -20px; margin-right: -20px; }
+.wpsp-row.gap-40 .col,
+.wpsp-row.gap-40 .nr-col { padding-left: 20px; padding-right: 20px; margin-bottom: 40px; }
+.wpsp-row.gap-50 { margin-left: -25px; margin-right: -25px; }
+.wpsp-row.gap-50 .col,
+.wpsp-row.gap-50 .nr-col { padding-left: 25px; padding-right: 25px; margin-bottom: 50px; }
+.wpsp-row.gap-60 { margin-left: -30px; margin-right: -30px; }
+.wpsp-row.gap-60 .col,
+.wpsp-row.gap-60 .nr-col { padding-left: 30px; padding-right: 30px; margin-bottom: 60px; }
+
+/* Grid > Non Responsive */
+.nr-col { float: left; margin: 0 0 20px; padding: 0 10px; }
+.span_1_of_2.nr-col { width: 50% }
+.span_1_of_3.nr-col { width: 33.33% }
+.span_1_of_4.nr-col { width: 25% }
+.span_1_of_5.nr-col { width: 20% }
+.span_1_of_6.nr-col { width: 16.66666667% }
+
+/* Grid > No Margins 1 */
+.one-half,
+.one-third,
+.one-fourth,
+.one-fifth { display: block; float: left; }
+.one-half { width: 50% }
+.one-third { width: 33.33% }
+.one-fourth { width: 25% }
+.one-fifth { width: 20% }
+.one-sixth { width: 16.6666% }
+
+/* Grid > No Margins 2 */
+.wpsp-row.vcex-no-margin-grid { margin-left: 0; margin-right: 0px; }
+.wpsp-row.vcex-no-margin-grid .col { margin: 0 !important; padding: 0 !important; }
+.wpsp-row.vcex-no-margin-grid .span_1_of_3 { width: 33.3% }
+.wpsp-row.vcex-no-margin-grid .span_1_of_6 { width: 16.66% }
+
+/* Grid > Clear Floats */
+.clr-margin,
+.count-1,
+.col-1,
+.col.first { clear: both; margin-left: 0; }
+.isotope-entry { clear: none }
 
 /*--------------------------------------------------------------
 # Header
@@ -1397,6 +1487,11 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 	outline: 0;
 }
 
+/* Accessibility > Theme Heading */
+.theme-heading { height: auto; top: auto !important; font-size: 1.154em; font-weight: 600; color: #000; margin: 0 0 20px; overflow: hidden; position: relative; }
+.theme-heading span.text { display: inline-block; max-width: 90%; position: relative; }
+.theme-heading span.text:after { content: ""; display: block; position: absolute; top: 50%; border-bottom: solid 1px #eee; left: 100%; width: 9999px; margin-top: -1px; margin-left: 15px; }
+
 /*--------------------------------------------------------------
 # Alignments
 --------------------------------------------------------------*/
@@ -1600,6 +1695,34 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 }
 
 /*--------------------------------------------------------------
+## Entry Global
+--------------------------------------------------------------*/
+/* Entries > Left Thumbnail Style */
+.entries.left-thumbs .hentry { border: 0 }
+.entries.left-thumbs .hentry .entry-media { float: left; margin: 0; width: 46%; }
+.entries.left-thumbs .hentry .entry-details { background: none; border: none; float: right; width: 50%; padding: 0; }
+
+/* Entries > Title */
+.entry-title { display: block; font-size: 1.077em; margin: 0 0 5px; font-weight: 600; color: #000; }
+.entry-title a { color: inherit }
+.entry-title a:hover { text-decoration: none }
+.single-post-title { font-size: 1.846em; margin: 0 0 10px; font-weight: 400; }
+
+/*--------------------------------------------------------------
+## Post Meta
+--------------------------------------------------------------*/
+.meta,
+.entry .meta { font-size: 0.923em; color: #777; list-style: none; margin: 0 0 10px; }
+.meta li,
+.entry .meta li { float: left; margin: 0 20px 5px 0; }
+.meta li:last-child,
+.entry .meta li:last-child { margin-right: 0 }
+.meta li .fa { margin-right: 8px }
+.meta a { color: #777; text-decoration: none; }
+.meta a:hover { color: #000; text-decoration: none; }
+.meta time { display: inline; }
+
+/*--------------------------------------------------------------
 ## Asides
 --------------------------------------------------------------*/
 .blog .format-aside .entry-title,
@@ -1737,8 +1860,322 @@ object {
 .wpsp-hidden { display: none }
 
 /*--------------------------------------------------------------
+# Blog Post
+--------------------------------------------------------------*/
+.blog-entry a.blog-entry-media-link { display: block; margin: 0 auto; }
+.blog-entry-media img { display: block; margin: 0 auto; width: 100%; }
+.single-post .blog-entry.grid-entry-style.format-quote { width: 100%; margin: 0; }
+.format-quote { overflow: hidden }
+.blog-entry-readmore span.readmore-rarr { margin-left: 7px }
+.blog-entry .social-share-title { display: none }
+.blog-entry-excerpt p:last-child { margin: 0 }
+
+/*--------------------------------------------------------------
+## Blog Entry
+--------------------------------------------------------------*/
+.blog-entry-title { font-size: 1.846em; margin: 0 0 10px; font-weight: 400; }
+.blog-entry-media,
+.blog-entry-excerpt,
+.blog-entry-readmore { margin-bottom: 20px }
+
+/* Blog Entry > Quote Format */
+.blog-entry.format-quote .post-quote-entry-inner { position: relative; display: block; padding: 20px 30px; font-size: 1.231em; z-index: 2; background: #f7f7f7; }
+.blog-entry.format-quote p:last-child { margin: 0 }
+.blog-entry.format-quote .quote-entry-author { margin-top: 15px; font-size: 0.923em; font-weight: 300; text-decoration: underline; }
+.blog-entry.format-quote .fa-quote-right { position: absolute; right: 15px; bottom: 15px; color: #999; font-size: 60px; display: block; z-index: 1; opacity: 0.15; }
+
+/* Blog Entry > Avatar */
+.entry-has-avatar .blog-entry-header { position: relative; padding-left: 100px; min-height: 74px; margin-bottom: 20px; }
+.blog-entry-author-avatar { position: absolute; left: 0; top: 0; }
+.blog-entry-author-avatar { height: 74px; width: 74px; }
+.blog-entry-author-avatar a,
+.blog-entry-author-avatar img { display: block; width: 100%; height: 100%; }
+
+
+/* Blog Entry > Large image Style */
+.entry-has-avatar.large-image-entry-style { position: relative; }
+
+.blog-entry.large-image-entry-style { position: relative; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #eee; margin-left: 0; }
+.blog-entry.large-image-entry-style.format-quote { padding-bottom: 40px }
+
+/* Blog Entry > Large image > Audio Format */
+.blog-entry.large-image-entry-style .blog-entry-music-icon-overlay .fa { height: 60px; line-height: 60px; width: 60px; margin-top: -30px; margin-left: -30px; }
+
+/* Blog Entry > Large image > Readmore */
+.blog-entry.large-image-entry-style .blog-entry-readmore { margin-top: 0px }
+
+
+/* Blog Entry > Thumbnail Style */
+.entries.left-thumbs .blog-entry.thumbnail-entry-style { margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #eee; }
+.blog-entry.thumbnail-entry-style .blog-entry-title { margin: 0 0 5px }
+
+
+/* Blog Entry > Grid Style */
+.blog-isotope-grid .infinite-scroll-loader { bottom: 0 }
+.blog-entry.grid-entry-style { float: left }
+.blog-entry.grid-entry-style .blog-entry-inner { padding: 0 20px 20px; border: 1px solid #eee; }
+.blog-entry.grid-entry-style .blog-entry-media { margin: 0 -20px }
+.blog-entry.grid-entry-style .wpsp-social-share { display: none !important }
+
+/* Blog Entry > Grid > Title */
+.blog-entry.grid-entry-style header { margin-top: 20px }
+.blog-entry.grid-entry-style .blog-entry-title { font-size: 1.231em }
+
+/* Blog Entry > Grid > Avatar */
+.blog-entry.grid-entry-style .header-with-avatar { padding-left: 80px; min-height: 60px; }
+.blog-entry.grid-entry-style .blog-entry-author-avatar { height: 60px; width: 60px; }
+
+/* Blog Entry > Grid > Gallery */
+.blog-entry.grid-entry-style .sp-fade-arrows { opacity: 1; -moz-opacity: 1; -webkit-opacity: 1; }
+.blog-entry.grid-entry-style .sp-horizontal .sp-arrows { margin-top: -20px }
+.blog-entry.grid-entry-style .wpsp-slider .sp-arrow { height: 40px; width: 25px; line-height: 40px; font-size: 1.077em; background: rgba(0,0,0,.3); }
+.blog-entry.grid-entry-style .wpsp-slider .sp-arrow:hover { background: rgba(0,0,0,1) }
+
+/* Blog Entry > Grid > Excerpt */
+.blog-entry.grid-entry-style .blog-entry-excerpt { margin-top: 10px }
+
+/* Blog Entry > Grid > Readmore */
+.blog-entry.grid-entry-style .blog-entry-readmore { margin-top: 20px }
+
+
+/*--------------------------------------------------------------
+# Blog Single
+--------------------------------------------------------------*/
+.single-post .entry { margin-bottom: 40px }
+
+/* Blog Single > Meta */
+.single-post .meta { margin: 0 0 20px }
+.single-post .meta.meta-with-title { border: none; padding: 0; }
+
+/* Blog Single > Thumbnail */
+#post-media { display: block; position: relative; margin-bottom: 20px; }
+#post-media img { display: block; margin: 0 auto; width: 100%; }
+.post-media-caption { position: absolute; bottom: 0; left: 0; width: 100%; padding: 10px 15px; background: #000; background: rgba(0,0,0,0.75); color: #fff; font-size: 0.923em; font-weight: normal; text-align: center; }
+.post-media-caption p { color: #fff }
+.post-media-caption a { color: #fff; text-decoration: underline; }
+.post-media-caption p:last-child { margin: 0 }
+
+/* Blog Single > Tags */
+.post-tags { margin-bottom: 40px }
+
+/* Blog Single > Related Posts */
+.related-posts { margin-bottom: 20px; overflow: hidden; }
+.related-posts figure { margin: 0; }
+.related-posts li { margin-bottom: 20px }
+.related-posts li:last-child,
+.related-posts li p:last-child { margin-bottom: 0 }
+.related-post-thumb { display: block }
+.related-post-thumb img { display: block; width: 100%; }
+.related-post-title { margin: 0 0 5px; display: block; }
+.related-post-content { padding: 10px; background: #f7f7f7; border: 1px solid #eee; }
+.related-post-excerpt { font-size: 0.923em; line-height: 1.7em; }
+.related-post-excerpt p:last-child { margin: 0 }
+
+/* Blog Single > Quote */
+.single .format-quote { position: relative; display: block; padding: 20px 30px; font-size: 1.231em; z-index: 2; background: #f7f7f7; }
+.single .format-quote p:last-child { margin: 0 }
+.single .format-quote .quote-entry-author { margin-top: 15px; font-size: 0.923em; font-weight: 300; text-decoration: underline; }
+.single .format-quote .fa-quote-right { position: absolute; right: 15px; bottom: 15px; font-size: 60px; display: block; z-index: 1; opacity: 0.1; }
+
+/*next/previous posts*/
+.post-pagination { border-top: 1px solid #eee; padding: 30px 0; color: #888; list-style: none; font-size: 1.077em; font-weight: 600; margin: 0; }
+.post-pagination .post-prev { float: left; width: 48%; }
+.post-pagination .post-prev span { margin-right: 5px }
+.post-pagination .post-next { float: right; width: 48%; text-align: right; }
+.post-pagination .post-next span { margin-left: 5px }
+.post-pagination a { color: #888 }
+.content-full-screen .post-pagination { display: none }
+
+/*--------------------------------------------------------------
+## Author Bio
+--------------------------------------------------------------*/
+.author-bio { position: relative; margin: 0 0 40px; background: #f7f7f7; border: 1px solid #eee; padding: 25px 25px 25px 125px; }
+.author-bio-avatar { position: absolute; top: 20px; left: 20px; }
+.author-bio-avatar img { display: block; border-radius: 74px; -moz-border-radius: 74px; -webkit-border-radius: 74px; height: 74px; width: 74px; }
+.author-bio-title { font-weight: 600; font-size: 1.077em; margin: 0 0 10px; }
+.author-bio-description p:last-child { margin: 0 }
+.author-bio-social { margin-top: 15px }
+.author-bio-social a { display: block; float: left; color: #fff; height: 25px; line-height: 25px; width: 25px; border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%; text-align: center; margin-right: 4px; font-size: 13px; background: #1e1e1e; }
+.author-bio-social a:hover { color: #fff; text-decoration: none; opacity: 0.8; }
+.author-bio-social a:active { box-shadow: inset 0 1px 4px rgba(0,0,0,0.4) }
+.author-bio-social a.twitter { background: #00ACED }
+.author-bio-social a.facebook { background: #3B5998 }
+.author-bio-social a.google-plus { background: #D14836 }
+.author-bio-social a.pinterest { background: #CB2027 }
+.author-bio-social a.linkedin { background: #007FB1 }
+.author-bio-social a.instagram { background: #517fa4 }
+
+/*--------------------------------------------------------------
 # Addon Elements
 --------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+## Overlays
+--------------------------------------------------------------*/
+.overlay-parent { position: relative; display: block; overflow: hidden; }
+.overlay-parent > a,
+.overlay-parent > a img { display: block; width: 100% !important; }
+
+/* Overlays > Hide */
+.overlay-hide { visibility: hidden; opacity: 0; -moz-opacity: 0; -webkit-opacity: 0; }
+
+/* Hoverlays > Show */
+.overlay-parent:hover .overlay-plus-two-hover,
+.overlay-parent:hover .overlay-plus-three-hover,
+.overlay-parent:hover .magnifying-hover,
+.overlay-parent:hover .overlay-slideup-title span.title,
+.overlay-parent:hover .overlay-hover-button { visibility: visible; opacity: 1; -moz-opacity: 1; -webkit-opacity: 1; }
+
+/* Overlays > Magnifying Hover */
+.magnifying-hover { height: 100%; width: 100%; position: absolute; top: 0; left: 0; background: #000; background: rgba(0,0,0,0.7); transition: all .25s ease-in-out; }
+.magnifying-hover .fa { position: absolute; height: 30px; line-height: 30px; width: 30px; text-align: center; top: 50%; margin-top: -15px; left: 50%; margin-left: -15px; color: #fff; font-size: 21px; }
+
+/* Overlays > Plus Hover */
+.overlay-plus-hover { height: 100%; width: 100%; position: absolute; top: 0; left: 0; background: #000 url("images/overlay-plus.png") center center no-repeat; transition: all .25s ease-in-out; }
+.overlay-parent:hover .overlay-plus-hover { visibility: visible; opacity: 0.65; -moz-opacity: 0.65; -webkit-opacity: 0.65; }
+
+/* Overlays > Plus #2 Hover */
+.overlay-plus-two-hover { height: 100%; width: 100%; position: absolute; top: 0; left: 0; background: #000; background: rgba(0,0,0,0.8); transition: all .25s ease-in-out; }
+.overlay-plus-two-hover .fa { position: absolute; height: 30px; line-height: 30px; width: 30px; text-align: center; top: 50%; margin-top: -15px; left: 50%; margin-left: -15px; color: #fff; font-size: 14px; }
+
+/* Overlays > Plus #3 Hover */
+.overlay-plus-three-hover { height: 100%; width: 100%; position: absolute; top: 0; left: 0; background: #000; background: rgba(0,0,0,0.6); transition: all .3s; }
+.overlay-plus-three-hover .fa { position: absolute; height: 30px; line-height: 30px; width: 30px; text-align: center; top: 50%; left: 50%; margin-left: -15px; font-size: 36px; opacity: 0; visibility: none; transition: all .3s; }
+.overlay-plus-three-hover:hover .fa { margin-top: -15px; opacity: 1; visibility: visible; }
+
+/* Overlays > Slide Up Title > White */
+.overlay-slideup-title { position: absolute; top: 0; right: 0; background: #fff; height: 100%; width: 100%; transition: all .25s ease-in-out; }
+.overlay-slideup-title.white { background: #fff }
+.overlay-slideup-title.black { background: #000 }
+.overlay-slideup-title span.title { position: absolute; bottom: 30px; left: 0; width: 100%; text-align: center; padding: 0 30px; color: #000; font-size: 1.077em; font-weight: 600; transition: all .15s ease-in-out; line-height: 1.6em; }
+.overlay-slideup-title.black span.title { color: #fff }
+.overlay-parent:hover .overlay-slideup-title { visibility: visible; opacity: 0.8; -webkit-opacity: 0.8; -moz-opacity: 0.8; }
+.overlay-parent:hover .overlay-slideup-title span.title { bottom: 60px }
+
+/* Overlays > Title + Excerpt Hover */
+.overlay-title-excerpt-hover { background: #000; background: rgba(0,0,0,0.75); position: absolute; top: 0; right: 0; height: 100%; width: 100%; transition: all .25s ease-in-out; overflow: hidden; }
+.overlay-parent:hover .overlay-title-excerpt-hover { visibility: visible; opacity: 1; -moz-opacity: 1; -webkit-opacity: 1; }
+.overlay-title-excerpt-hover-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
+.overlay-title-excerpt-hover-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
+.overlay-title-excerpt-hover:hover .overlay-title-excerpt-hover-text { transform: none }
+.overlay-title-excerpt-hover-title { font-size: 1.231em; color: #fff; margin: 0 0 10px; }
+.overlay-title-excerpt-hover-excerpt { font-style: italic; font-weight: normal; color: #bbb; overflow: hidden; }
+
+/* Overlays > Title + Category Hover */
+.overlay-title-category-hover { background: #000; background: rgba(0,0,0,0.75); position: absolute; top: 0; right: 0; height: 100%; width: 100%; transition: all .25s ease-in-out; }
+.overlay-parent:hover .overlay-title-category-hover { visibility: visible; opacity: 1; }
+.overlay-title-category-hover-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; overflow: hidden; }
+.overlay-title-category-hover-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
+.overlay-title-category-hover:hover .overlay-title-category-hover-text { transform: none }
+.overlay-title-category-hover-title { font-size: 1.231em }
+.overlay-title-category-hover-category { font-style: italic; font-weight: normal; color: #bbb; }
+
+/* Overlays > Title + Category Visible */
+.overlay-title-category-visible { background: #000; background: rgba(0,0,0,0.5); position: absolute; top: 0; right: 0; height: 100%; width: 100%; }
+.overlay-title-category-visible-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
+.overlay-title-category-visible-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; }
+.overlay-title-category-visible-title { font-size: 1.231em }
+.overlay-title-category-visible-category { color: #fff; font-weight: normal; -webkit-font-smoothing: antialiased; }
+
+/* Overlays > Title + Date Hover */
+.overlay-title-date-hover { background: #000; background: rgba(0,0,0,0.75); position: absolute; top: 0; right: 0; height: 100%; width: 100%; transition: all .25s ease-in-out; }
+.overlay-parent:hover .overlay-title-date-hover { visibility: visible; opacity: 1; }
+.overlay-title-date-hover-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
+.overlay-title-date-hover-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
+.overlay-title-date-hover:hover .overlay-title-date-hover-text { transform: none }
+.overlay-title-date-hover-title { font-size: 1.231em }
+.overlay-title-date-hover-date { font-style: italic; font-weight: normal; color: #bbb; }
+
+/* Overlays > Title + Date Visible */
+.overlay-title-date-visible { background: #000; background: rgba(0,0,0,0.5); position: absolute; top: 0; right: 0; height: 100%; width: 100%; }
+.overlay-title-date-visible-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
+.overlay-title-date-visible-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; }
+.overlay-title-date-visible-title { font-size: 1.231em }
+.overlay-title-date-visible-date { color: #fff; font-weight: normal; -webkit-font-smoothing: antialiased; }
+
+/* Overlays > Title Push Up */
+.overlay-parent-title-push-up,
+.overlay-parent-title-push-up > a { overflow: hidden; position: relative; -webkit-backface-visibility: hidden; }
+.overlay-parent-title-push-up img { transition: all 0.35s }
+.overlay-title-push-up { display: block; background: #000; color: #fff; padding: 15px 20px; position: absolute; bottom: -100px; left: 0; width: 100%; transition: 0.35s all; font-size: 1.077em; -webkit-backface-visibility: hidden; word-wrap: break-word; }
+
+/* Overlays > Title Bottom */
+.overlay-title-bottom,
+.overlay-title-bottom-see-through { display: block; background: #000; color: #fff; padding: 10px 20px; position: absolute; bottom: 0; left: 0; width: 100%; font-size: 1.077em; }
+.overlay-title-bottom-see-through { background: rgba(0,0,0,0.6) }
+
+/* Overlays > Button */
+.overlay-hover-button { background: #000; background: rgba(0,0,0,0.75); position: absolute; top: 0; right: 0; height: 100%; width: 100%; transition: all .25s ease-in-out; }
+.overlay-hover-button-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
+.overlay-hover-button-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
+.overlay-parent:hover .overlay-hover-button-text { transform: none }
+.theme-button.overlay-hover-button-link { font-size: 1.077em }
+
+/* Overlays > Category Tag */
+.overlay-category-tag { position: absolute; left: 0; top: 0; margin: 0; z-index: 99; }
+.overlay-category-tag a { display: block; float: left; font-size: 0.846em; font-weight: 600; padding: 0.308em 0.615em; margin-right: 5px; margin-bottom: 5px; text-transform: uppercase; transition: 0.15s all; -moz-transition: 0.15s all; -webkit-transition: 0.15s all; color: #fff; background: #000; background: rgba( 0, 0, 0, 0.65 ); }
+.overlay-category-tag a:hover { background: #000; text-decoration: none; }
+
+/* Overlays > Category Tag v2 */
+.overlay-category-tag-two { position: absolute; left: 20px; top: 20px; margin: 0; z-index: 99; }
+.overlay-category-tag-two a { display: block; float: left; font-size: 0.846em; font-weight: 600; padding: 0.308em 0.923em; margin-right: 5px; margin-bottom: 5px; text-transform: uppercase; transition: 0.15s all; -webkit-transition: 0.15s all; color: #fff; border: 2px solid #fff; border-color: rgba(255,255,255,0.5); border-radius: 40px; -moz-border-radius: 40px; letter-spacing: 1px; }
+.overlay-category-tag-two a:hover { background: #fff; color: #000; text-decoration: none; }
+
+
+/*--------------------------------------------------------------
+## Image Hover
+--------------------------------------------------------------*/
+/* Image Hover */
+.wpsp-image-hover { position: relative; overflow: hidden; vertical-align: top; }
+.wpsp-image-hover > a { -webkit-backface-visibility: hidden; -webkit-transform: translateZ(0) scale(1.0, 1.0); }
+.wpsp-image-hover img { display: block; width: 100%; /* width is important to fix firefox bug */ margin: 0 auto; height: auto; box-shadow: 0 0 0 rgba(0,0,0,0); -moz-box-shadow: 0 0 0 rgba(0,0,0,0); -webkit-box-shadow: 0 0 0 rgba(0,0,0,0); transition: all 0.25s; -moz-transition: all 0.25s; -webkit-transition: all 0.25s; -o-transition: all 0.25s; }
+
+/* Image Hover > Opacity */
+.wpsp-image-hover.opacity img { width: auto; }
+.wpsp-image-hover.opacity img:hover { opacity: 0.8; -moz-opacity: 0.8; -webkit-opacity: 0.8 }
+
+/* Image Hover > Grow */
+.wpsp-image-hover.grow { display: inline-block; }
+.wpsp-image-hover.grow:hover img { transform: scale(1.2); -ms-transform: scale(1.2); -webkit-transform: scale(1.2); -o-transform: scale(1.2); -moz-transform: scale(1.2); }
+
+/* Image Hover > Shrink */
+.wpsp-image-hover.shrink:hover img { transform: scale(0.8); -ms-transform: scale(0.8); -webkit-transform: scale(0.8); -o-transform: scale(0.8); -moz-transform: scale(0.8); }
+
+/* Image Hover > Pan */
+.wpsp-image-hover.side-pan:hover img { margin-left: -11%; transform: scale(1.2); -ms-transform: scale(1.2); -webkit-transform: scale(1.2); -o-transform: scale(1.2); -moz-transform: scale(1.2); }
+.wpsp-image-hover.vertical-pan:hover img { margin-top: -10%; transform: scale(1.2); -ms-transform: scale(1.2); -webkit-transform: scale(1.2); -o-transform: scale(1.2); -moz-transform: scale(1.2); }
+
+/* Image Hover > Tilt */
+.wpsp-image-hover.tilt:hover img { -webkit-transform: rotate(-10deg); -moz-transform: rotate(-10deg); -o-transform: rotate(-10deg); -ms-transform: rotate(-10deg); transform: rotate(-10deg); }
+
+/* Image Hover > Blurr */
+.wpsp-image-hover.blurr img,
+.wpsp-image-hover.blurr-invert img { transition: all 0.2s; -moz-transition: all 0.2s; -webkit-transition: all 0.2s; -o-transition: all 0.2s; }
+.wpsp-image-hover.blurr:hover img { filter: blur(3px); -webkit-filter: blur(3px); -moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); }
+
+/* Image Hover > Invert */
+.wpsp-image-hover.blurr-invert img { filter: blur(3px); -webkit-filter: blur(3px); -moz-filter: blur(3px); -o-filter: blur(3px); -ms-filter: blur(3px); }
+.wpsp-image-hover.blurr-invert:hover img { filter: blur(0px); -webkit-filter: blur(0px); -moz-filter: blur(0px); -o-filter: blur(0px); -ms-filter: blur(0px); }
+
+/* Image Hover > Sepia */
+.wpsp-image-hover.sepia img { -webkit-filter: sepia(100%); filter: sepia(100%); }
+.wpsp-image-hover.sepia:hover img { -webkit-filter: sepia( 100% ); filter: sepia( 100% ); }
+
+/* Image Hover > FadeIn */
+.wpsp-image-hover.fade-in { background: #000; }
+.wpsp-image-hover.fade-in img { width: 100%; opacity: 0.7; -moz-opacity: 0.7; -webkit-opacity: 0.7; }
+.wpsp-image-hover.fade-in:hover img { opacity: 1; -moz-opacity: 1; -webkit-opacity: 1; }
+
+/* Image Hover > FadeOut */
+.wpsp-image-hover.fade-out { background: #000 }
+.wpsp-image-hover.fade-out img { width: 100% }
+.wpsp-image-hover.fade-out:hover img { opacity: 0.7; -moz-opacity: 0.7; -webkit-opacity: 0.7; }
+
+/* Other */
+.non-clickable { cursor: default; }
+
+/* Deprecated */
+.rounded { border-radius: 50% }
 
 /*--------------------------------------------------------------
 ## Lean Modal

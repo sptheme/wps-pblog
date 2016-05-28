@@ -74,9 +74,9 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 					<?php }
 
 					// Display the readmore button
-					elseif ( 'Readmore' == $key && $value == 'Readmore' ) { ?>
+					elseif ( 'Read More' == $key && $value == 'Read More' ) { ?>
 
-						<?php if ( wpex_has_readmore() ) { ?>
+						<?php if ( wpsp_get_redux( 'is-auto-excerpt', true ) ) { ?>
 
 							<?php get_template_part( 'partials/blog/blog-entry-readmore' ); ?>
 
@@ -110,41 +110,41 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 		else :
 			
 			// Loop through composer blocks and output layout
-			foreach ( $blocks as $block ) : ?>
+			foreach ( $blocks as $key => $value ) : ?>
 
 				<?php
 				// Featured media
-				if ( 'featured_media' == $block ) { ?>
+				if ( 'Media' == $key && $value == 'Media' ) { ?>
 
 					<?php get_template_part( 'partials/blog/media/blog-entry', $post_format ); ?>
 
 				<?php }
 
 				// Display the entry header
-				elseif ( 'title' == $block ) { ?>
+				elseif ( 'Title' == $key && $value == 'Title' ) { ?>
 
 					<?php get_template_part( 'partials/blog/blog-entry-title' ); ?>
 
 				<?php }
 				
 				// Display the entry meta
-				elseif ( 'meta' == $block ) { ?>
+				elseif ( 'Meta' == $key && $value == 'Meta' ) { ?>
 
 					<?php get_template_part( 'partials/blog/blog-entry-meta' ); ?>
 
 				<?php }
 
 				// Display the entry excerpt or content
-				elseif ( 'excerpt' == $block ) { ?>
+				elseif ( 'Excerpt' == $key && $value == 'Excerpt' ) { ?>
 
 					<?php get_template_part( 'partials/blog/blog-entry-content' ); ?>
 
 				<?php }
 
 				// Display the readmore button
-				elseif ( 'readmore' == $block ) { ?>
+				elseif ( 'Read More' == $key && $value == 'Read More' ) { ?>
 
-					<?php if ( wpex_has_readmore() ) { ?>
+					<?php if ( wpsp_get_redux( 'is-auto-excerpt', true ) ) { ?>
 
 						<?php get_template_part( 'partials/blog/blog-entry-readmore' ); ?>
 
@@ -153,18 +153,18 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 				<?php }
 
 				// Display the readmore button
-				elseif ( 'social_share' == $block ) { ?>
+				elseif ( 'Social Share' == $key && $value == 'Social Share' ) { ?>
 
 					<?php get_template_part( 'partials/social-share' ) ?>
 
 				<?php }
 
 				// Custom Blocks
-				else { ?>
+				//else { ?>
 
-					<?php get_template_part( 'partials/blog/blog-entry-'. $block ); ?>
+					<?php //get_template_part( 'partials/blog/blog-entry-'. $block ); ?>
 
-				<?php } ?>
+				<?php //} ?>
 
 			<?php
 			// End block loop

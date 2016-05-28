@@ -90,6 +90,16 @@
 	/* reset equal height */
 	.match-height-content,
 	.equal-height-content { height: auto !important }
+
+	/*hide things*/
+	.single .meta-comments,
+	.blog-entry .wpsp-social-share { display: none }
+
+	/* turn 4 column masonry grids into 2 columns */
+	.wpsp-row .span_1_of_4.col-3.col,
+	.wpsp-row .span_1_of_4.col.product:nth-child(2n+3) { margin-left: 0; clear: both; }
+	.wpsp-row .span_1_of_4.col,
+	.wpsp-isotope-grid .span_1_of_4.col { width: 50% }
 }
 
 /*--------------------------------------------------------------
@@ -101,6 +111,18 @@
 	.visible-desktop { display: none !important }
 	.hidden-phone { display: none !important }
 	.visible-phone { display: block !important }
+
+	.col,
+	.blog-entry { width: 100% !important; margin-bottom: 25px; }
+
+	#wrap .wpsp-row .col { width: 100% !important; }
+	#wrap .wpsp-row.gap-none .col { margin-bottom: 0 !important }
+	.row-no-spacing .wpb_column { margin-bottom: 0 }
+
+	/* Entries > Left Thumbnail Style */
+	.entries.left-thumbs .hentry .entry-media { margin-bottom: 20px }
+	.entries.left-thumbs .hentry .entry-media,
+	.entries.left-thumbs .hentry .entry-details { float: none; width: 100%; }
 }
 
 /*--------------------------------------------------------------
@@ -111,5 +133,9 @@
 	/* visibility */
 	.hidden-desktop { display: block !important }
 	.visible-desktop, .hidden-phone { display: none !important }
+
+	.col { width: 100%; margin-left: 0; margin-right: 0; margin-bottom: 30px; }
+	.row-no-spacing .wpb_column { margin-bottom: 0 }
+	.equal-height-column { height: auto !important }
 
 }

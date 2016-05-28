@@ -271,6 +271,9 @@ class WPSP_Theme_Setup {
 		// Equal Heights
 		wp_enqueue_script( 'wpsp-match-height', $dir .'vendors/jquery.matchHeight.js', array( 'jquery' ), $theme_version, true );
 
+		// Main masonry script
+		wp_enqueue_script( 'wpsp-isotope', $dir .'vendors/isotope.js', array( 'jquery' ), '2.2.2', true );
+
 		// Leaner modal used for search/woo modals: @todo: Replace with CSS+light js
 		wp_enqueue_script( 'wpsp-leanner-modal', $dir .'vendors/leanner-modal.js', array( 'jquery' ), $theme_version, true );
 

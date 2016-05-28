@@ -70,6 +70,7 @@
 				self.mobileMenu();
 				self.inlineHeaderLogo();
 				self.menuSearch();
+				self.archiveMasonryGrids();
 			} );
 
 			// Run on Window Load
@@ -111,6 +112,7 @@
 			self.config.$window.on( 'orientationchange',function() {
 				resizeUpdateConfig();
 				self.inlineHeaderLogo();
+				self.archiveMasonryGrids();
 			} );
 		},
 
@@ -1129,6 +1131,39 @@
 		},
 
 		/**
+		 * Isotope Grids
+		 *
+		 * @since 1.0.0
+		 */
+		archiveMasonryGrids: function() {
+
+			// Define main vars
+			var self      = this,
+				$archives = $( '.blog-masonry-grid,div.wpsp-row.portfolio-masonry,div.wpsp-row.portfolio-no-margins,div.wpsp-row.staff-masonry,div.wpsp-row.staff-no-margins' );
+
+			// Loop through archives
+			$archives.each( function() {
+
+				var $this               = $( this ),
+					$data               = $this.data(),
+					$transitionDuration = self.parseData( $data.transitionDuration, '0.0' ),
+					$layoutMode         = self.parseData( $data.layoutMode, 'masonry' );
+
+				// Load isotope after images loaded
+				$this.imagesLoaded( function() {
+					$this.isotope( {
+						itemSelector       : '.isotope-entry',
+						transformsEnabled  : true,
+						isOriginLeft       : self.config.$isRTL ? false : true,
+						transitionDuration : $transitionDuration + 's'
+					} );
+				} );
+
+			} );
+
+		},
+
+		/**
 		 * Equal heights function
 		 *
 		 * @since 1.0.0
@@ -1143,6 +1178,15 @@
 			// Add equal heights
 			$( '.equal-height-column, .match-height-row .match-height-content, .vcex-feature-box-match-height .vcex-match-height, .equal-height-content, .match-height-grid .match-height-content, .blog-entry-equal-heights .blog-entry-inner, .wpsp-vc-row-columns-match-height .wpsp-vc-column-wrapper' ).matchHeight();
 
+		},
+
+		/**
+		 * Parses data to check if a value is defined in the data attribute and if not returns the fallback
+		 *
+		 * @since 1.0.0
+		 */
+		parseData: function( val, fallback ) {
+			return ( typeof val !== 'undefined' ) ? val : fallback;
 		},
 
 		/**

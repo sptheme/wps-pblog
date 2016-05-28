@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Vars
-$format = get_post_format();
 $text   = wpsp_get_translated_theme_mod( 'blog_entry_readmore_text' );
 $text   = $text ? $text : esc_html__( 'Read More', 'wpsp-blog-textdomain' );
 
