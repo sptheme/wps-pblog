@@ -123,6 +123,7 @@ class WPSP_Theme_Setup {
 		require_once( WPSP_INC_DIR .'category-meta.php' );
 		require_once( WPSP_INC_DIR .'wpml.php' );
 		require_once( WPSP_INC_DIR .'fonts.php' );
+		require_once( WPSP_INC_DIR .'custom-login.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
 		require_once( WPSP_INC_DIR .'blog-functions.php' );
 		require_once( WPSP_INC_DIR .'header-functions.php' );
