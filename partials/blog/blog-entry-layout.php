@@ -53,28 +53,28 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 
 					<?php
 					// Display the entry title
-					if ( 'Title' == $key && $value == 'Title' ) { ?>
+					if ( 'title' == $key && !empty($value) ) { ?>
 
 						<?php get_template_part( 'partials/blog/blog-entry-title' ); ?>
 
 					<?php }
 					
 					// Display the entry meta
-					elseif ( 'Meta' == $key && $value == 'Meta' ) { ?>
+					elseif ( 'meta' == $key && !empty($value) ) { ?>
 
 						<?php get_template_part( 'partials/blog/blog-entry-meta' ); ?>
 
 					<?php }
 
 					// Display the entry excerpt or content
-					elseif ( 'Excerpt' == $key && $value == 'Excerpt' ) { ?>
+					elseif ( 'excerpt_content' == $key && !empty($value) ) { ?>
 
 						<?php get_template_part( 'partials/blog/blog-entry-content' ); ?>
 
 					<?php }
 
 					// Display the readmore button
-					elseif ( 'Read More' == $key && $value == 'Read More' ) { ?>
+					elseif ( 'readmore' == $key && !empty($value) ) { ?>
 
 						<?php if ( wpsp_get_redux( 'is-auto-excerpt', true ) ) { ?>
 
@@ -85,16 +85,9 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 					}
 
 					// Display the readmore button
-					elseif ( 'Social Share' == $key && $value == 'Social Share' ) { ?>
+					elseif ( 'social_share' == $key && !empty($value) ) { ?>
 
 						<?php get_template_part( 'partials/social-share' ) ?>
-
-					<?php }
-
-					// Custom Blocks
-					else { ?>
-
-						<?php get_template_part( 'partials/blog/blog-entry-'. $key ); ?>
 
 					<?php } ?>
 
@@ -114,35 +107,35 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 
 				<?php
 				// Featured media
-				if ( 'Media' == $key && $value == 'Media' ) { ?>
+				if ( 'featured_media' == $key && !empty($value) ) { ?>
 
 					<?php get_template_part( 'partials/blog/media/blog-entry', $post_format ); ?>
 
 				<?php }
 
 				// Display the entry header
-				elseif ( 'Title' == $key && $value == 'Title' ) { ?>
+				elseif ( 'title' == $key && !empty($value) ) { ?>
 
 					<?php get_template_part( 'partials/blog/blog-entry-title' ); ?>
 
 				<?php }
 				
 				// Display the entry meta
-				elseif ( 'Meta' == $key && $value == 'Meta' ) { ?>
+				elseif ( 'meta' == $key && !empty($value) ) { ?>
 
 					<?php get_template_part( 'partials/blog/blog-entry-meta' ); ?>
 
 				<?php }
 
 				// Display the entry excerpt or content
-				elseif ( 'Excerpt' == $key && $value == 'Excerpt' ) { ?>
+				elseif ( 'excerpt_content' == $key && !empty($value) ) { ?>
 
 					<?php get_template_part( 'partials/blog/blog-entry-content' ); ?>
 
 				<?php }
 
 				// Display the readmore button
-				elseif ( 'Read More' == $key && $value == 'Read More' ) { ?>
+				elseif ( 'readmore' == $key && !empty($value) ) { ?>
 
 					<?php if ( wpsp_get_redux( 'is-auto-excerpt', true ) ) { ?>
 
@@ -153,18 +146,11 @@ $blocks = wpsp_blog_entry_layout_blocks(); ?>
 				<?php }
 
 				// Display the readmore button
-				elseif ( 'Social Share' == $key && $value == 'Social Share' ) { ?>
+				elseif ( 'social_share' == $key && !empty($value) ) { ?>
 
 					<?php get_template_part( 'partials/social-share' ) ?>
 
-				<?php }
-
-				// Custom Blocks
-				//else { ?>
-
-					<?php //get_template_part( 'partials/blog/blog-entry-'. $block ); ?>
-
-				<?php //} ?>
+				<?php } ?>
 
 			<?php
 			// End block loop
