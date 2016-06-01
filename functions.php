@@ -47,6 +47,9 @@ class WPSP_Theme_Setup {
 		// Load all the theme addons - must run on this hook!!!
 		add_action( 'after_setup_theme', array( $this, 'wpsp_addons' ), 2 );
 
+		// Add custom post types supports
+		add_action( 'after_setup_theme', array( $this, 'wpsp_add_custom_post_type' ), 3 );
+
 		// Setup theme => add_theme_support, register_nav_menus, load_theme_textdomain, etc
 		// Must run on 10 priority or else child theme locale will be overritten
 		add_action( 'after_setup_theme', array( $this, 'theme_setup' ), 10 );
@@ -142,6 +145,16 @@ class WPSP_Theme_Setup {
 	 */
 	public static function wpsp_addons() {
 		require_once( WPSP_INC_DIR .'addons/widget-areas.php' );
+	}
+
+	/**
+	 * Add custom post types support 
+	 *
+	 * @since 1.0.0
+	 */
+	public static function wpsp_add_custom_post_type() {
+		require_once( WPSP_INC_DIR . 'post-types/post-types-helpers.php' );
+		require_once( WPSP_INC_DIR . 'post-types/portfolio/portfolio-config.php' );
 	}
 
 	/**
