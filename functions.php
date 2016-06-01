@@ -70,6 +70,9 @@ class WPSP_Theme_Setup {
 		// Add meta viewport tag to header
 		add_action( 'wp_head', array( $this, 'meta_viewport' ), 1 );
 
+		// Loads html5 shiv script
+		add_action( 'wp_head', array( $this, 'html5_shiv' ) );
+
 		// register sidebar widget areas
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 
@@ -388,6 +391,39 @@ class WPSP_Theme_Setup {
 	}
 
 	/**
+	 * Adds the meta tag to the site header
+	 *
+	 * @since 1.0.0
+	 */
+	public function meta_viewport() {
+
+		// Responsive viewport viewport
+		if ( wpsp_get_redux( 'is-responsive', true ) ) {
+			$viewport = '<meta name="viewport" content="width=device-width, initial-scale=1">';
+		}
+
+		// Non responsive meta viewport
+		else {
+			$width    = intval( wpsp_get_redux( 'main-container-width', '980' ) );
+			$width    = $width ? $width: '980';
+			$viewport = '<meta name="viewport" content="width='. $width .'" />';
+		}
+		
+		// Apply filters to the meta viewport for child theme tweaking
+		echo apply_filters( 'wpsp_meta_viewport', $viewport );
+
+	}
+
+	/**
+	 * Load HTML5 dependencies for IE8
+	 *
+	 * @since 1.6.0
+	 */
+	public static function html5_shiv() {
+		echo '<!--[if lt IE 9]><script src="'. WPSP_JS_DIR_URI .'vendors/html5.js"></script><![endif]-->';
+	}
+
+	/**
 	 * Registers the theme sidebars (widget areas)
 	 *
 	 * @since 1.1.0
@@ -474,30 +510,6 @@ class WPSP_Theme_Setup {
 		}
 
 		return $contactmethods;
-
-	}
-
-	/**
-	 * Adds the meta tag to the site header
-	 *
-	 * @since 1.0.0
-	 */
-	public function meta_viewport() {
-
-		// Responsive viewport viewport
-		if ( wpsp_get_redux( 'is-responsive', true ) ) {
-			$viewport = '<meta name="viewport" content="width=device-width, initial-scale=1">';
-		}
-
-		// Non responsive meta viewport
-		else {
-			$width    = intval( wpsp_get_redux( 'main-container-width', '980' ) );
-			$width    = $width ? $width: '980';
-			$viewport = '<meta name="viewport" content="width='. $width .'" />';
-		}
-		
-		// Apply filters to the meta viewport for child theme tweaking
-		echo apply_filters( 'wpsp_meta_viewport', $viewport );
 
 	}
 
