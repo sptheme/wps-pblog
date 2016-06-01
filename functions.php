@@ -515,8 +515,3 @@ class WPSP_Theme_Setup {
 
 }
 $wpsp_theme_setup = new WPSP_Theme_Setup;
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';

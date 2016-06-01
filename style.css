@@ -1568,7 +1568,7 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 
 /* Make sure select elements fit in widgets. */
 .widget select {
-	max-width: 100%;
+	width: 100%;
 }
 
 .widget ul { 
