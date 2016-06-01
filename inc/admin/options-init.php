@@ -323,21 +323,48 @@
             ),
         )
     ) );
-
-    // Pages
+    // General Pages
     Redux::setSection( $opt_name, array(
-        'title'            => __( 'Pages', 'wpsp-redux-framework' ),
-        'id'               => 'pages-options',
-        'desc'             => __( '', 'wpsp-redux-framework' ),
-        'customizer_width' => '400px',
-        'icon'             => 'el el-file'
-    ) );
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Settings', 'wpsp-redux-framework' ),
-        'id'         => 'page-single-tab',
+        'title'      => __( 'Pages', 'wpsp-redux-framework' ),
+        'id'         => 'single-page',
         'subsection' => true,
         //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
         'fields'     => array(
+            array(
+                'id'       => 'page-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Layout', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Layout for all Pages', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
+                //Must provide key => value(array:title|img) pairs for radio options
+                'options'  => array(
+                    'inherit' => array(
+                        'alt' => 'Inherit Global Layout',
+                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
+                    ),
+                    'full-width' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'left-sidebar' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'right-sidebar' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'inherit',
+            ),
+            array(
+                'id'       => 'sidebar-page',
+                'type'     => 'select',
+                'data'     => 'sidebar',
+                'title'    => __( 'Sidebar', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Sidebar for all Pages', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Other sidebar will override this option if they are set', 'wpsp-redux-framework' ),
+            ),
             array(
                 'id'       => 'is-pages-custom-sidebar',
                 'type'     => 'checkbox',
@@ -359,326 +386,90 @@
             ),
         )
     ) );
-
-    // Blog section
+    // General > Error 404
     Redux::setSection( $opt_name, array(
-        'title'            => __( 'Blog', 'wpsp-redux-framework' ),
-        'id'               => 'blog-options',
-        'desc'             => __( '', 'wpsp-redux-framework' ),
-        'customizer_width' => '400px',
-        'icon'             => 'el el-file-edit'
-    ) );
-    // blog > general
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'General', 'wpsp-redux-framework' ),
-        'id'         => 'blog-general-option',
+        'title'      => __( 'Error 404', 'wpsp-redux-framework' ),
+        'id'         => 'error-404',
         'subsection' => true,
         //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
         'fields'     => array(
             array(
-                'id'       => 'blog-page',
-                'type'     => 'select',
-                'data'     => 'pages',
-                'title'    => __( 'Main Page', 'wpsp-redux-framework' ),
+                'id'       => '404-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Layout', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Layout for 404 error page', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ is_404 ] Error 404 page layout', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'inherit' => array(
+                        'alt' => 'Inherit Global Layout',
+                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
+                    ),
+                    'full-width' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'left-sidebar' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'right-sidebar' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'inherit',
             ),
             array(
-                'id'       => 'blog-cats-exclude',
-                'type'     => 'text',
-                'title'    => __( 'Exclude Categories From Blog', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Enter the ID of categories to exclude from the blog template or homepage blog seperated by a comma (no spaces).', 'wpsp-redux-framework' ),
+                'id'       => 'sidebar-404',
+                'type'     => 'select',
+                'data'     => 'sidebar',
+                'title'    => __( 'Sidebar', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Sidebar for 404 Error page', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ <strong>is_404</strong> ] Primary', 'wpsp-redux-framework' ),
             ),
         )
-    ) );
-    // blog > single 
+    ) );        
+    // General > Search
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Single', 'wpsp-redux-framework' ),
-        'id'         => 'blog-single-option',
+        'title'      => __( 'Search', 'wpsp-redux-framework' ),
+        'id'         => 'search',
         'subsection' => true,
         //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
         'fields'     => array(
             array(
-                'id'       => 'blog-single-header',
-                'type'     => 'select',
-                'title'    => __( 'Header Displays', 'wpsp-redux-framework' ),
+                'id'       => 'search-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Layout', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Layout for search page', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ is_search ] Search page layout', 'wpsp-redux-framework' ),
                 'options'  => array(
-                    'custom_text' => 'Custom Text',
-                    'post_title' => 'Post title',
-                    'first_category' => 'First Category',
+                    'inherit' => array(
+                        'alt' => 'Inherit Global Layout',
+                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
+                    ),
+                    'full-width' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'left-sidebar' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'right-sidebar' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
                 ),
-                'default'  => 'custom_text'
+                'default'  => 'inherit',
             ),
             array(
-                'id'       => 'is-featured-image-lightbox',
-                'type'     => 'checkbox',
-                'title'    => __( 'Featured image lightbox', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Enable/disable featured image lightbox', 'wpsp-redux-framework' ),
-                'default'  => '1'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'is-blog-thumbnail-caption',
-                'type'     => 'checkbox',
-                'title'    => __( 'Featured image caption', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Enable/disable featured image caption', 'wpsp-redux-framework' ),
-                'default'  => '1'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'is-blog-next-prev',
-                'type'     => 'checkbox',
-                'title'    => __( 'Next & Previous Links', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Enable/disable Next & Previous Post Links', 'wpsp-redux-framework' ),
-                'default'  => '0'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'blog-post-meta-sections',
-                'type'     => 'checkbox',
-                'title'    => __( 'Meta', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'checked meta filed to be display', 'wpsp-redux-framework' ),
-                'options'  => $entry_meta_choices
-            ),
-            array(
-                'id'       => 'post-gallery-format-cols',
+                'id'       => 'sidebar-search',
                 'type'     => 'select',
-                'title'    => __( 'Post gallery columns', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'set number of column to display photo', 'wpsp-redux-framework' ),
-                'options'  => $el_number,
-                'default'  => '3'
+                'data'     => 'sidebar',
+                'title'    => __( 'Sidebar', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Sidebar for search page', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ <strong>is_search</strong> ] Primary', 'wpsp-redux-framework' ),
             ),
-            array(
-                'id'       => 'media-gallery-overlay',
-                'type'     => 'select',
-                'title'    => __( 'Posts gallery overlay', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'set overlay style for each posts', 'wpsp-redux-framework' ),
-                'options'  => $wpsp_overlay_styles_array,
-            ),
-            array(
-                'id'       => 'is-related-blog-post',
-                'type'     => 'switch',
-                'title'    => __( 'Enable/disable related posts', 'wpsp-redux-framework' ),
-                'default'  => false,
-            ),
-            array(
-                'id'       => 'related-post-title',
-                'type'     => 'text',
-                'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Title', 'wpsp-redux-framework' ),
-                'default'  => __( 'Related Posts', 'wpsp-redux-framework' ),
-            ),
-            array(
-                'id'       => 'related-blog-post-count',
-                'type'     => 'select',
-                'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Count', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'set number of related post', 'wpsp-redux-framework' ),
-                'options'  => $el_number,
-                'default'  => '3'
-            ),
-            array(
-                'id'       => 'related-blog-post-columns',
-                'type'     => 'select',
-                'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Columns', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'set number of column to display related post', 'wpsp-redux-framework' ),
-                'options'  => $el_number,
-                'default'  => '3'
-            ),
-            array(
-                'id'       => 'blog-related-overlay',
-                'type'     => 'select',
-                'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Image Overlay', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'set overlay style for each posts', 'wpsp-redux-framework' ),
-                'options'  => $wpsp_overlay_styles_array,
-            ),
-            array(
-                'id'       => 'is-blog-related-excerpt',
-                'type'     => 'checkbox',
-                'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Excerpt', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Show/hide post excerpt', 'wpsp-redux-framework' ),
-                'default'  => '1'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'blog-related-excerpt-length',
-                'type'     => 'text',
-                'required' => array( 'is-related-blog-post', '=', '1' ),
-                'title'    => __( 'Related Posts Excerpt Length', 'wpsp-redux-framework' ),
-                'validate' => 'preg_replace',
-                'preg'     => array(
-                    'pattern'     => '/[^0-9]/s',
-                    'replacement' => 'Allow only number'
-                ),
-                'default'  => '15'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'is-featured-image',
-                'type'     => 'checkbox',
-                'title'    => __( 'Featured image', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Enable/disable featured image', 'wpsp-redux-framework' ),
-                'default'  => '1'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'blog-single-block',
-                'type'     => 'sortable',
-                'mode'     => 'checkbox', // checkbox or text
-                'title'    => __( 'Single layout element', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Click and drag and drop elements to re-order them.', 'wpsp-redux-framework' ),
-                'label'    => true,
-                'options'  => $single_blocks,
-            ),
-        )
-    ) );
-    // Blog > Archive
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Archive', 'wpsp-redux-framework' ),
-        'id'         => 'blog-archive-option',
-        'subsection' => true,
-        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
-        'fields'     => array(
-            array(
-                'id'       => 'blog-entry-style',
-                'type'     => 'select',
-                'title'    => __( 'Blog entry style', 'wpsp-redux-framework' ),
-                'options'  => array(
-                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
-                    'large-image-entry-style' => esc_html__( 'Large Image','wpsp-redux-framework' ),
-                    'thumbnail-entry-style' => esc_html__( 'Left Thumbnail','wpsp-redux-framework' ),
-                    'grid-entry-style' => esc_html__( 'Grid','wpsp-redux-framework' ),
-                ),
-                'default'  => 'large-image-entry-style'
-            ),
-            array(
-                'id'       => 'blog-grid-columns',
-                'type'     => 'select',
-                'required' => array( 'blog-entry-style', '=', 'grid-entry-style' ),
-                'title'    => __( 'Grid columns', 'wpsp-redux-framework' ),
-                'options'  => array(
-                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
-                    '6' => esc_html__( '6','wpsp-redux-framework' ),
-                    '5' => esc_html__( '5','wpsp-redux-framework' ),
-                    '4' => esc_html__( '4','wpsp-redux-framework' ),
-                    '3' => esc_html__( '3','wpsp-redux-framework' ),
-                    '2' => esc_html__( '2','wpsp-redux-framework' ),
-                ),
-            ),
-            array(
-                'id'       => 'blog-grid-style',
-                'type'     => 'select',
-                'required' => array( 'blog-entry-style', '=', 'grid-entry-style' ),
-                'title'    => __( 'Grid style', 'wpsp-redux-framework' ),
-                'options'  => array(
-                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
-                    'fit-rows' => esc_html__( 'Fit Rows','wpsp-redux-framework' ),
-                    'masonry' => esc_html__( 'Masonry','wpsp-redux-framework' ),
-                ),
-            ),
-            array(
-                'id'       => 'blog-archive-grid-equal-heights',
-                'type'     => 'checkbox',
-                'title'    => __( 'Equal Heights', 'wpsp-redux-framework' ),
-                'default'  => 0,
-            ),
-            array(
-                'id'       => 'blog-pagination-style',
-                'type'     => 'select',
-                'title'    => __( 'Pagination Style', 'wpsp-redux-framework' ),
-                'options'  => array(
-                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
-                    'standard' => esc_html__( 'Standard','wpsp-redux-framework' ),
-                    'infinite_scroll' => esc_html__( 'Infinite Scroll','wpsp-redux-framework' ),
-                    'next_prev' => esc_html__( 'Next/Prev','wpsp-redux-framework' ),
-                ),
-            ),
-            array(
-                'id'       => 'blog-entry-overlay',
-                'type'     => 'select',
-                'title'    => __( 'Overlay Style', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'set overlay style for each entry post thumbnails', 'wpsp-redux-framework' ),
-                'options'  => $wpsp_overlay_styles_array,
-            ),
-            array(
-                'id'       => 'blog-entry-image-hover-animation',
-                'type'     => 'select',
-                'title'    => __( 'Image Hover Animation', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Animation style for entry post thumbnails', 'wpsp-redux-framework' ),
-                'options'  => $wpsp_image_hovers,
-            ),
-            array(
-                'id'       => 'is-auto-excerpt',
-                'type'     => 'switch',
-                'title'    => __( 'Auto Excerpts', 'wpsp-redux-framework' ),
-                'default'  => true,
-            ),
-            array(
-                'id'       => 'blog-excerpt-length',
-                'type'     => 'text',
-                'required' => array( 'is-auto-excerpt', '=', '1' ),
-                'title'    => __( 'Related Posts Excerpt Length', 'wpsp-redux-framework' ),
-                'validate' => 'preg_replace',
-                'preg'     => array(
-                    'pattern'     => '/[^0-9]/s',
-                    'replacement' => 'Allow only number'
-                ),
-                'default'  => '40'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'blog-entry-readmore-text',
-                'type'     => 'text',
-                'required' => array( 'is-auto-excerpt', '=', '1' ),
-                'title'    => __( 'Read More Button Text', 'wpsp-redux-framework' ),
-                'validate' => 'preg_replace',
-                'preg'     => array(
-                    'pattern'     => '/[^a-zA-Z_ -]/s',
-                    'replacement' => 'Allow only number'
-                ),
-                'default'  => 'Read More'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'blog-entry-meta-sections',
-                'type'     => 'checkbox',
-                'title'    => __( 'Entry Meta', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'checked meta filed to be display', 'wpsp-redux-framework' ),
-                'options'  => $entry_meta_choices
-            ),
-            array(
-                'id'       => 'blog-entry-video-output',
-                'type'     => 'checkbox',
-                'title'    => __( 'Display Featured Videos?', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Show/hide featured video', 'wpsp-redux-framework' ),
-                'default'  => '1'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'blog-entry-author-avatar',
-                'type'     => 'checkbox',
-                'title'    => __( 'Author Avatar', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Show/hide Author Avatar', 'wpsp-redux-framework' ),
-                'default'  => '1'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'blog-entry-block',
-                'type'     => 'sortable',
-                'mode'     => 'checkbox', // checkbox or text
-                'title'    => __( 'Entry Layout Elements', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Click and drag and drop elements to re-order them.', 'wpsp-redux-framework' ),
-                'label'    => true,
-                'options'  => $entry_blocks,
-            ),
-        )
-    ) );
-
-    // Search
-    Redux::setSection( $opt_name, array(
-        'title'            => __( 'Search', 'wpsp-redux-framework' ),
-        'id'               => 'search-options',
-        'desc'             => __( '', 'wpsp-redux-framework' ),
-        'customizer_width' => '400px',
-        'icon'             => 'el el-search'
-    ) );
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Settings', 'wpsp-redux-framework' ),
-        'id'         => 'search-tab',
-        'subsection' => true,
-        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
-        'fields'     => array(
             array(
                 'id'       => 'search-style',
                 'type'     => 'select',
@@ -712,6 +503,45 @@
                 'type'     => 'checkbox',
                 'title'    => __( 'Enable/Disable main search on header', 'wpsp-redux-framework' ),
                 'default'  => '1'// 1 = on | 0 = off
+            ),
+        )
+    ) );
+    // General > Placeholder
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Placeholder', 'wpsp-redux-framework' ),
+        'id'         => 'placehodler-option',
+        'subsection' => true,
+        'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'landscape-placeholder',
+                'type'     => 'media',
+                'title'    => __( 'Landscape Placeholder', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Use for any post that do not have post featured image.', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Recommended size 960px by 625px', 'wpsp-redux-framework' ),
+                'default'  => array(
+                    'url' => get_template_directory_uri() . '/images/thumbnail-landscape.gif'
+                    )
+            ),
+            array(
+                'id'       => 'portrait-placeholder',
+                'type'     => 'media',
+                'title'    => __( 'Portrait Placeholder', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Use for publication post that do not have post featured image.', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Recommended size 480px by 691px', 'wpsp-redux-framework' ),
+                'default'  => array(
+                    'url' => get_template_directory_uri() . '/images/thumbnail-portrait.gif'
+                    )
+            ),
+            array(
+                'id'       => 'square-placeholder',
+                'type'     => 'media',
+                'title'    => __( 'Square Placeholder', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Use for staff post that do not have post featured image.', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Recommended size 480px by 480px', 'wpsp-redux-framework' ),
+                'default'  => array(
+                    'url' => get_template_directory_uri() . '/images/thumbnail-square.gif'
+                    )
             ),
         )
     ) );
@@ -1352,6 +1182,31 @@
                 'validate' => 'color',
             ),
         )
+    ) );
+
+    // Sidebar
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Sidebar', 'wpsp-redux-framework' ),
+        'id'               => 'sidebar',
+        'desc'             => __( 'These are really basic fields!', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-website'
+    ) );
+
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'General', 'wpsp-redux-framework' ),
+        'id'         => 'general-sidebar',
+        'subsection' => true,
+        'desc'       => __( 'Apply it on any pages and posts', 'wpsp-redux-framework' ),
+        'fields'     => array( 
+            array(
+                'id'       => 'widget-title-tag',
+                'type'     => 'select',
+                'title'    => __( 'Widget Title Headings', 'wpsp-redux-framework' ),
+                'options'  => $widget_tags,
+                'default'  => 'div'
+            ),
+        )
     ) );   
 
     // Footer
@@ -1391,6 +1246,506 @@
             ),
         )
     ) );
+    
+    // Blog section
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Blog', 'wpsp-redux-framework' ),
+        'id'               => 'blog-options',
+        'desc'             => __( '', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-file-edit'
+    ) );
+    // blog > general
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'General', 'wpsp-redux-framework' ),
+        'id'         => 'blog-general-option',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'blog-page',
+                'type'     => 'select',
+                'data'     => 'pages',
+                'title'    => __( 'Main Page', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'blog-cats-exclude',
+                'type'     => 'text',
+                'title'    => __( 'Exclude Categories From Blog', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter the ID of categories to exclude from the blog template or homepage blog seperated by a comma (no spaces).', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );
+    // blog > single 
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Single', 'wpsp-redux-framework' ),
+        'id'         => 'blog-single-option',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'single-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Layout', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Layout for single post', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ is_single ] Single post layout - If a post has a set layout, it will override this.', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'inherit' => array(
+                        'alt' => 'Inherit Global Layout',
+                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
+                    ),
+                    'full-width' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'left-sidebar' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'right-sidebar' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'inherit',
+            ),
+            array(
+                'id'       => 'sidebar-single',
+                'type'     => 'select',
+                'data'     => 'sidebar',
+                'title'    => __( 'Sidebar single post', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Sidebar for single post', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ is_single ] Primary - If a single post has a unique sidebar, it will override this.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'blog-single-header',
+                'type'     => 'select',
+                'title'    => __( 'Header Displays', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'custom_text' => 'Custom Text',
+                    'post_title' => 'Post title',
+                    'first_category' => 'First Category',
+                ),
+                'default'  => 'custom_text'
+            ),
+            array(
+                'id'       => 'is-featured-image-lightbox',
+                'type'     => 'checkbox',
+                'title'    => __( 'Featured image lightbox', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enable/disable featured image lightbox', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-blog-thumbnail-caption',
+                'type'     => 'checkbox',
+                'title'    => __( 'Featured image caption', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enable/disable featured image caption', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-blog-next-prev',
+                'type'     => 'checkbox',
+                'title'    => __( 'Next & Previous Links', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enable/disable Next & Previous Post Links', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-post-meta-sections',
+                'type'     => 'checkbox',
+                'title'    => __( 'Meta', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'checked meta filed to be display', 'wpsp-redux-framework' ),
+                'options'  => $entry_meta_choices
+            ),
+            array(
+                'id'       => 'post-gallery-format-cols',
+                'type'     => 'select',
+                'title'    => __( 'Post gallery columns', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set number of column to display photo', 'wpsp-redux-framework' ),
+                'options'  => $el_number,
+                'default'  => '3'
+            ),
+            array(
+                'id'       => 'media-gallery-overlay',
+                'type'     => 'select',
+                'title'    => __( 'Posts gallery overlay', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set overlay style for each posts', 'wpsp-redux-framework' ),
+                'options'  => $wpsp_overlay_styles_array,
+            ),
+            array(
+                'id'       => 'is-related-blog-post',
+                'type'     => 'switch',
+                'title'    => __( 'Enable/disable related posts', 'wpsp-redux-framework' ),
+                'default'  => false,
+            ),
+            array(
+                'id'       => 'related-post-title',
+                'type'     => 'text',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Title', 'wpsp-redux-framework' ),
+                'default'  => __( 'Related Posts', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'related-blog-post-count',
+                'type'     => 'select',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Count', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set number of related post', 'wpsp-redux-framework' ),
+                'options'  => $el_number,
+                'default'  => '3'
+            ),
+            array(
+                'id'       => 'related-blog-post-columns',
+                'type'     => 'select',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Columns', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set number of column to display related post', 'wpsp-redux-framework' ),
+                'options'  => $el_number,
+                'default'  => '3'
+            ),
+            array(
+                'id'       => 'blog-related-overlay',
+                'type'     => 'select',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Image Overlay', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set overlay style for each posts', 'wpsp-redux-framework' ),
+                'options'  => $wpsp_overlay_styles_array,
+            ),
+            array(
+                'id'       => 'is-blog-related-excerpt',
+                'type'     => 'checkbox',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Excerpt', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Show/hide post excerpt', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-related-excerpt-length',
+                'type'     => 'text',
+                'required' => array( 'is-related-blog-post', '=', '1' ),
+                'title'    => __( 'Related Posts Excerpt Length', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => '15'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'is-featured-image',
+                'type'     => 'checkbox',
+                'title'    => __( 'Featured image', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enable/disable featured image', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-single-block',
+                'type'     => 'sortable',
+                'mode'     => 'checkbox', // checkbox or text
+                'title'    => __( 'Single layout element', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Click and drag and drop elements to re-order them.', 'wpsp-redux-framework' ),
+                'label'    => true,
+                'options'  => $single_blocks,
+            ),
+        )
+    ) );
+    // Blog > Archive
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Archive', 'wpsp-redux-framework' ),
+        'id'         => 'blog-archive-option',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'archive-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Archive', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Layout for archive page', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ is_archive ] Category, date, tag and author archive layout', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'inherit' => array(
+                        'alt' => 'Inherit Global Layout',
+                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
+                    ),
+                    'full-width' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'left-sidebar' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'right-sidebar' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'inherit',
+            ),
+            array(
+                'id'       => 'category-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Archive — Category', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Layout for each categories', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ is_category ] Category archive layout', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'inherit' => array(
+                        'alt' => 'Inherit Global Layout',
+                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
+                    ),
+                    'full-width' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'left-sidebar' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'right-sidebar' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'inherit',
+            ),
+            array(
+                'id'       => 'sidebar-archive',
+                'type'     => 'select',
+                'data'     => 'sidebar',
+                'title'    => __( 'Sidebar', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Sidebar for archive page', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ is_archive ] Primary', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'sidebar-category',
+                'type'     => 'select',
+                'data'     => 'sidebar',
+                'title'    => __( 'Sidebar — Category', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Sidebar for each categories', 'wpsp-redux-framework' ),
+                'desc'     => __( '[ is_category ] Primary', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'blog-entry-style',
+                'type'     => 'select',
+                'title'    => __( 'Blog entry style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    'large-image-entry-style' => esc_html__( 'Large Image','wpsp-redux-framework' ),
+                    'thumbnail-entry-style' => esc_html__( 'Left Thumbnail','wpsp-redux-framework' ),
+                    'grid-entry-style' => esc_html__( 'Grid','wpsp-redux-framework' ),
+                ),
+                'default'  => 'large-image-entry-style'
+            ),
+            array(
+                'id'       => 'blog-grid-columns',
+                'type'     => 'select',
+                'required' => array( 'blog-entry-style', '=', 'grid-entry-style' ),
+                'title'    => __( 'Grid columns', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    '6' => esc_html__( '6','wpsp-redux-framework' ),
+                    '5' => esc_html__( '5','wpsp-redux-framework' ),
+                    '4' => esc_html__( '4','wpsp-redux-framework' ),
+                    '3' => esc_html__( '3','wpsp-redux-framework' ),
+                    '2' => esc_html__( '2','wpsp-redux-framework' ),
+                ),
+            ),
+            array(
+                'id'       => 'blog-grid-style',
+                'type'     => 'select',
+                'required' => array( 'blog-entry-style', '=', 'grid-entry-style' ),
+                'title'    => __( 'Grid style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    'fit-rows' => esc_html__( 'Fit Rows','wpsp-redux-framework' ),
+                    'masonry' => esc_html__( 'Masonry','wpsp-redux-framework' ),
+                ),
+            ),
+            array(
+                'id'       => 'blog-archive-grid-equal-heights',
+                'type'     => 'checkbox',
+                'title'    => __( 'Equal Heights', 'wpsp-redux-framework' ),
+                'default'  => 0,
+            ),
+            array(
+                'id'       => 'blog-pagination-style',
+                'type'     => 'select',
+                'title'    => __( 'Pagination Style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    'standard' => esc_html__( 'Standard','wpsp-redux-framework' ),
+                    'infinite_scroll' => esc_html__( 'Infinite Scroll','wpsp-redux-framework' ),
+                    'next_prev' => esc_html__( 'Next/Prev','wpsp-redux-framework' ),
+                ),
+            ),
+            array(
+                'id'       => 'blog-entry-overlay',
+                'type'     => 'select',
+                'title'    => __( 'Overlay Style', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set overlay style for each entry post thumbnails', 'wpsp-redux-framework' ),
+                'options'  => $wpsp_overlay_styles_array,
+            ),
+            array(
+                'id'       => 'blog-entry-image-hover-animation',
+                'type'     => 'select',
+                'title'    => __( 'Image Hover Animation', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Animation style for entry post thumbnails', 'wpsp-redux-framework' ),
+                'options'  => $wpsp_image_hovers,
+            ),
+            array(
+                'id'       => 'is-auto-excerpt',
+                'type'     => 'switch',
+                'title'    => __( 'Auto Excerpts', 'wpsp-redux-framework' ),
+                'default'  => true,
+            ),
+            array(
+                'id'       => 'blog-excerpt-length',
+                'type'     => 'text',
+                'required' => array( 'is-auto-excerpt', '=', '1' ),
+                'title'    => __( 'Related Posts Excerpt Length', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => '40'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-entry-readmore-text',
+                'type'     => 'text',
+                'required' => array( 'is-auto-excerpt', '=', '1' ),
+                'title'    => __( 'Read More Button Text', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^a-zA-Z_ -]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => 'Read More'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-entry-meta-sections',
+                'type'     => 'checkbox',
+                'title'    => __( 'Entry Meta', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'checked meta filed to be display', 'wpsp-redux-framework' ),
+                'options'  => $entry_meta_choices
+            ),
+            array(
+                'id'       => 'blog-entry-video-output',
+                'type'     => 'checkbox',
+                'title'    => __( 'Display Featured Videos?', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Show/hide featured video', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-entry-author-avatar',
+                'type'     => 'checkbox',
+                'title'    => __( 'Author Avatar', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Show/hide Author Avatar', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'blog-entry-block',
+                'type'     => 'sortable',
+                'mode'     => 'checkbox', // checkbox or text
+                'title'    => __( 'Entry Layout Elements', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Click and drag and drop elements to re-order them.', 'wpsp-redux-framework' ),
+                'label'    => true,
+                'options'  => $entry_blocks,
+            ),
+        )
+    ) );
+
+    // Portfolio
+    Redux::setSection( $opt_name, array(
+        'title'            => __( 'Portfolio', 'wpsp-redux-framework' ),
+        'id'               => 'portfolio-tab',
+        'desc'             => __( 'Manage portfolio post options', 'wpsp-redux-framework' ),
+        'customizer_width' => '400px',
+        'icon'             => 'el el-briefcase'
+    ) );
+
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Single', 'wpsp-redux-framework' ),
+        'id'         => 'portfolio-single',
+        'subsection' => true,
+        'desc'       => __( 'Manage portfolio single post', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'portfolio-single-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Layout', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Layout for single page', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'inherit' => array(
+                        'alt' => 'Inherit Global Layout',
+                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
+                    ),
+                    'full-width' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'left-sidebar' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'right-sidebar' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'inherit',
+            ),
+            array(
+                'id'       => 'sidebar-portfolio-single-post',
+                'type'     => 'select',
+                'data'     => 'sidebar',
+                'title'    => __( 'Single', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Sidebar for portfolio single post', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Other sidebar will override this option if they are set', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) ); 
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Archive', 'wpsp-redux-framework' ),
+        'id'         => 'portfolio-archive',
+        'subsection' => true,
+        'desc'       => __( 'Manage portfolio archive posts', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'portfolio-archive-layout',
+                'type'     => 'image_select',
+                'title'    => __( 'Layout', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Layout for archive page', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'inherit' => array(
+                        'alt' => 'Inherit Global Layout',
+                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
+                    ),
+                    'full-width' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'left-sidebar' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'right-sidebar' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'inherit',
+            ),
+            array(
+                'id'       => 'sidebar-portfolio-archive',
+                'type'     => 'select',
+                'data'     => 'sidebar',
+                'title'    => __( 'Sidebar archive', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Sidebar for archive page', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );        
 
     // Layout
     Redux::setSection( $opt_name, array(
@@ -1407,6 +1762,29 @@
         'subsection' => true,
         'desc'       => __( 'Manage page layout with fullwide and responsive', 'wpsp-redux-framework' ),
         'fields'     => array(
+            array(
+                'id'       => 'layout-global',
+                'type'     => 'image_select',
+                'title'    => __( 'Global layout', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Layout for all pages, posts and custom post', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
+                //Must provide key => value(array:title|img) pairs for radio options
+                'options'  => array(
+                    'full-width' => array(
+                        'alt' => '1 Column',
+                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                    ),
+                    'left-sidebar' => array(
+                        'alt' => '2 Column Left',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                    ),
+                    'right-sidebar' => array(
+                        'alt' => '2 Column Right',
+                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                    )
+                ),
+                'default'  => 'full-width',
+            ),
             array(
                 'id'       => 'is-responsive',
                 'type'     => 'checkbox',
@@ -1552,308 +1930,7 @@
                 'desc'     => __( 'Default: 90%', 'wpsp-redux-framework' ),
             ),
         )
-    ) );    
-    
-    // Global templates for pages, post, custom post, arhcive, category and taxonomy
-    Redux::setSection( $opt_name, array(
-        'title'            => __( 'Template', 'wpsp-redux-framework' ),
-        'id'               => 'basic-template',
-        'desc'             => __( 'These are really basic fields!', 'wpsp-redux-framework' ),
-        'customizer_width' => '400px',
-        'icon'             => 'el el-website'
-    ) );
-
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Sidebar', 'wpsp-redux-framework' ),
-        'id'         => 'sidebar-layout',
-        'subsection' => true,
-        'desc'       => __( 'Manage page layout with fullwide, left sidebar and right sidebar', 'wpsp-redux-framework' ),
-        'fields'     => array(
-            array(
-                'id'       => 'layout-global',
-                'type'     => 'image_select',
-                'title'    => __( 'Global layout', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Layout for all pages, posts and custom post', 'wpsp-redux-framework' ),
-                'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
-                //Must provide key => value(array:title|img) pairs for radio options
-                'options'  => array(
-                    'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                    ),
-                    'left-sidebar' => array(
-                        'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                    ),
-                    'right-sidebar' => array(
-                        'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                    )
-                ),
-                'default'  => 'full-width',
-            ),
-            array(
-                'id'       => 'single-layout',
-                'type'     => 'image_select',
-                'title'    => __( 'Single', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Layout for single post', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ is_single ] Single post layout - If a post has a set layout, it will override this.', 'wpsp-redux-framework' ),
-                'options'  => array(
-                    'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
-                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
-                    ),
-                    'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                    ),
-                    'left-sidebar' => array(
-                        'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                    ),
-                    'right-sidebar' => array(
-                        'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                    )
-                ),
-                'default'  => 'inherit',
-            ),
-            array(
-                'id'       => 'archive-layout',
-                'type'     => 'image_select',
-                'title'    => __( 'Archive', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Layout for archive page', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ is_archive ] Category, date, tag and author archive layout', 'wpsp-redux-framework' ),
-                'options'  => array(
-                    'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
-                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
-                    ),
-                    'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                    ),
-                    'left-sidebar' => array(
-                        'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                    ),
-                    'right-sidebar' => array(
-                        'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                    )
-                ),
-                'default'  => 'inherit',
-            ),
-            array(
-                'id'       => 'category-layout',
-                'type'     => 'image_select',
-                'title'    => __( 'Archive — Category', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Layout for each categories', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ is_category ] Category archive layout', 'wpsp-redux-framework' ),
-                'options'  => array(
-                    'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
-                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
-                    ),
-                    'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                    ),
-                    'left-sidebar' => array(
-                        'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                    ),
-                    'right-sidebar' => array(
-                        'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                    )
-                ),
-                'default'  => 'inherit',
-            ),
-            array(
-                'id'       => 'search-layout',
-                'type'     => 'image_select',
-                'title'    => __( 'Search', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Layout for search page', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ is_search ] Search page layout', 'wpsp-redux-framework' ),
-                'options'  => array(
-                    'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
-                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
-                    ),
-                    'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                    ),
-                    'left-sidebar' => array(
-                        'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                    ),
-                    'right-sidebar' => array(
-                        'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                    )
-                ),
-                'default'  => 'inherit',
-            ),
-            array(
-                'id'       => '404-layout',
-                'type'     => 'image_select',
-                'title'    => __( 'Error 404', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Layout for 404 error page', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ is_404 ] Error 404 page layout', 'wpsp-redux-framework' ),
-                'options'  => array(
-                    'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
-                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
-                    ),
-                    'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                    ),
-                    'left-sidebar' => array(
-                        'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                    ),
-                    'right-sidebar' => array(
-                        'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                    )
-                ),
-                'default'  => 'inherit',
-            ),
-            array(
-                'id'       => 'page-layout',
-                'type'     => 'image_select',
-                'title'    => __( 'Pages layout', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Layout for all Pages', 'wpsp-redux-framework' ),
-                'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
-                //Must provide key => value(array:title|img) pairs for radio options
-                'options'  => array(
-                    'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
-                        'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
-                    ),
-                    'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
-                    ),
-                    'left-sidebar' => array(
-                        'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
-                    ),
-                    'right-sidebar' => array(
-                        'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
-                    )
-                ),
-                'default'  => 'inherit',
-            ),
-        )
-    ) );
-
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Widget area', 'wpsp-redux-framework' ),
-        'id'         => 'widget-area',
-        'subsection' => true,
-        'desc'       => __( 'Apply it on any pages and posts', 'wpsp-redux-framework' ),
-        'fields'     => array( 
-            array(
-                'id'       => 'widget-title-tag',
-                'type'     => 'select',
-                'title'    => __( 'Widget Title Headings', 'wpsp-redux-framework' ),
-                'options'  => $widget_tags,
-                'default'  => 'div'
-            ),
-            array(
-                'id'       => 'sidebar-single',
-                'type'     => 'select',
-                'data'     => 'sidebar',
-                'title'    => __( 'Single', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Sidebar for single post', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ is_single ] Primary - If a single post has a unique sidebar, it will override this.', 'wpsp-redux-framework' ),
-            ),
-            array(
-                'id'       => 'sidebar-archive',
-                'type'     => 'select',
-                'data'     => 'sidebar',
-                'title'    => __( 'Archive', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Sidebar for archive page', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ is_archive ] Primary', 'wpsp-redux-framework' ),
-            ),
-            array(
-                'id'       => 'sidebar-category',
-                'type'     => 'select',
-                'data'     => 'sidebar',
-                'title'    => __( 'Archive — Category', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Sidebar for each categories', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ is_category ] Primary', 'wpsp-redux-framework' ),
-            ),
-            array(
-                'id'       => 'sidebar-search',
-                'type'     => 'select',
-                'data'     => 'sidebar',
-                'title'    => __( 'Search', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Sidebar for search page', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ <strong>is_search</strong> ] Primary', 'wpsp-redux-framework' ),
-            ),
-            array(
-                'id'       => 'sidebar-404',
-                'type'     => 'select',
-                'data'     => 'sidebar',
-                'title'    => __( 'Error 404', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Sidebar for 404 Error page', 'wpsp-redux-framework' ),
-                'desc'     => __( '[ <strong>is_404</strong> ] Primary', 'wpsp-redux-framework' ),
-            ),
-            array(
-                'id'       => 'sidebar-page',
-                'type'     => 'select',
-                'data'     => 'sidebar',
-                'title'    => __( 'Page sidebar', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Sidebar for all Pages', 'wpsp-redux-framework' ),
-                'desc'     => __( 'Other sidebar will override this option if they are set', 'wpsp-redux-framework' ),
-            ),
-        )
-    ) );
-
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Placeholder', 'wpsp-redux-framework' ),
-        'id'         => 'placehodler-option',
-        'subsection' => true,
-        'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
-        'fields'     => array(
-            array(
-                'id'       => 'landscape-placeholder',
-                'type'     => 'media',
-                'title'    => __( 'Landscape Placeholder', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Use for any post that do not have post featured image.', 'wpsp-redux-framework' ),
-                'desc'     => __( 'Recommended size 960px by 625px', 'wpsp-redux-framework' ),
-                'default'  => array(
-                    'url' => get_template_directory_uri() . '/images/thumbnail-landscape.gif'
-                    )
-            ),
-            array(
-                'id'       => 'portrait-placeholder',
-                'type'     => 'media',
-                'title'    => __( 'Portrait Placeholder', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Use for publication post that do not have post featured image.', 'wpsp-redux-framework' ),
-                'desc'     => __( 'Recommended size 480px by 691px', 'wpsp-redux-framework' ),
-                'default'  => array(
-                    'url' => get_template_directory_uri() . '/images/thumbnail-portrait.gif'
-                    )
-            ),
-            array(
-                'id'       => 'square-placeholder',
-                'type'     => 'media',
-                'title'    => __( 'Square Placeholder', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Use for staff post that do not have post featured image.', 'wpsp-redux-framework' ),
-                'desc'     => __( 'Recommended size 480px by 480px', 'wpsp-redux-framework' ),
-                'default'  => array(
-                    'url' => get_template_directory_uri() . '/images/thumbnail-square.gif'
-                    )
-            ),
-        )
-    ) );
+    ) );   
 
     // Branding
     Redux::setSection( $opt_name, array(
