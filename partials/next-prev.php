@@ -50,7 +50,7 @@ if ( $has_terms || wpsp_is_post_in_series() ) {
 
     <div class="post-pagination-wrap clear">
 
-        <ul class="post-pagination container clear">
+        <ul class="post-pagination clear">
 
             <?php if ( $prev_link ) : ?>
 

@@ -18,7 +18,7 @@ $footer_headings  = $footer_headings ? $footer_headings : 'div';
 register_sidebar( array(
 	'name'          => esc_html__( 'Main Sidebar', 'wpsp-blog-textdomain' ),
 	'id'            => 'sidebar',
-	'before_widget' => '<div class="sidebar-box %2$s clr">',
+	'before_widget' => '<div class="widget %2$s clr">',
 	'after_widget'  => '</div>',
 	'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
 	'after_title'   => '</'. $sidebar_headings .'>',
@@ -29,7 +29,7 @@ if ( wpsp_get_redux( 'pages-custom-sidebar', true ) ) {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Pages Sidebar', 'wpsp-blog-textdomain' ),
 		'id'            => 'pages_sidebar',
-		'before_widget' => '<div class="sidebar-box %2$s clr">',
+		'before_widget' => '<div class="widget %2$s clr">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
 		'after_title'   => '</'. $sidebar_headings .'>',
@@ -41,7 +41,7 @@ if ( wpsp_get_redux( 'is-search-custom-sidebar', true ) ) {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Search Results Sidebar', 'wpsp-blog-textdomain' ),
 		'id'            => 'search_sidebar',
-		'before_widget' => '<div class="sidebar-box %2$s clr">',
+		'before_widget' => '<div class="widget %2$s clr">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
 		'after_title'   => '</'. $sidebar_headings .'>',

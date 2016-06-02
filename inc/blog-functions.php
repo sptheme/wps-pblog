@@ -299,7 +299,7 @@ function wpsp_blog_entry_layout_blocks() {
 	}
 
 	// Set block keys equal to vals
-	$blocks = array_combine( $blocks, $blocks );
+	//$blocks = array_combine( $blocks, $blocks );
 
 	// Apply filters to entry layout blocks after they are turned into an array
 	$blocks = apply_filters( 'wpsp_blog_entry_layout_blocks', $blocks );
@@ -575,7 +575,7 @@ if ( ! function_exists( 'wpsp_blog_single_layout_blocks' ) ) :
 function wpsp_blog_single_layout_blocks() {
 
 	// Get layout blocks
-	$blocks = wpsp_get_redux( 'blog-single-composer' );
+	$blocks = wpsp_get_redux( 'blog-single-block' );
 
 	// If blocks are 100% empty return defaults
 	$blocks = $blocks ? $blocks : 'featured_media,title,meta,post_series,the_content,post_tags,social_share,author_bio,related_posts,comments';
@@ -586,7 +586,7 @@ function wpsp_blog_single_layout_blocks() {
 	}
 
 	// Set block keys equal to vals
-	$blocks = array_combine( $blocks, $blocks );
+	//$blocks = array_combine( $blocks, $blocks );
 
 	// Apply filters to entry layout blocks
 	$blocks = apply_filters( 'wpsp_blog_single_layout_blocks', $blocks );

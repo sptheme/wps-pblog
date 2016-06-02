@@ -47,6 +47,9 @@ class WPSP_Theme_Setup {
 		// Load all the theme addons - must run on this hook!!!
 		add_action( 'after_setup_theme', array( $this, 'wpsp_addons' ), 2 );
 
+		// Add custom post types supports
+		add_action( 'after_setup_theme', array( $this, 'wpsp_add_custom_post_type' ), 3 );
+
 		// Setup theme => add_theme_support, register_nav_menus, load_theme_textdomain, etc
 		// Must run on 10 priority or else child theme locale will be overritten
 		add_action( 'after_setup_theme', array( $this, 'theme_setup' ), 10 );
@@ -64,8 +67,14 @@ class WPSP_Theme_Setup {
 		// Load theme style
 		add_action( 'wp_enqueue_scripts', array( $this, 'theme_css') );
 
+		// Load responsive CSS - must be added last
+		add_action( 'wp_enqueue_scripts', array( $this, 'responsive_css' ), 99 );
+
 		// Add meta viewport tag to header
 		add_action( 'wp_head', array( $this, 'meta_viewport' ), 1 );
+
+		// Loads html5 shiv script
+		add_action( 'wp_head', array( $this, 'html5_shiv' ) );
 
 		// register sidebar widget areas
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
@@ -120,6 +129,7 @@ class WPSP_Theme_Setup {
 		require_once( WPSP_INC_DIR .'category-meta.php' );
 		require_once( WPSP_INC_DIR .'wpml.php' );
 		require_once( WPSP_INC_DIR .'fonts.php' );
+		require_once( WPSP_INC_DIR .'custom-login.php' );
 		require_once( WPSP_INC_DIR .'core-functions.php' );
 		require_once( WPSP_INC_DIR .'blog-functions.php' );
 		require_once( WPSP_INC_DIR .'header-functions.php' );
@@ -135,6 +145,16 @@ class WPSP_Theme_Setup {
 	 */
 	public static function wpsp_addons() {
 		require_once( WPSP_INC_DIR .'addons/widget-areas.php' );
+	}
+
+	/**
+	 * Add custom post types support 
+	 *
+	 * @since 1.0.0
+	 */
+	public static function wpsp_add_custom_post_type() {
+		require_once( WPSP_INC_DIR . 'post-types/post-types-helpers.php' );
+		require_once( WPSP_INC_DIR . 'post-types/portfolio/portfolio-config.php' );
 	}
 
 	/**
@@ -262,8 +282,14 @@ class WPSP_Theme_Setup {
 		// Checks if images are loaded within an element
 		wp_enqueue_script( 'wpsp-images-loaded', $dir .'vendors/images-loaded.js', array( 'jquery' ), $theme_version, true );
 
+		// Mobile menu
+		wp_enqueue_script( 'wpsp-sidr', $dir .'vendors/sidr.js', array( 'jquery' ), $theme_version, true );
+
 		// Equal Heights
 		wp_enqueue_script( 'wpsp-match-height', $dir .'vendors/jquery.matchHeight.js', array( 'jquery' ), $theme_version, true );
+
+		// Main masonry script
+		wp_enqueue_script( 'wpsp-isotope', $dir .'vendors/isotope.js', array( 'jquery' ), '2.2.2', true );
 
 		// Leaner modal used for search/woo modals: @todo: Replace with CSS+light js
 		wp_enqueue_script( 'wpsp-leanner-modal', $dir .'vendors/leanner-modal.js', array( 'jquery' ), $theme_version, true );
@@ -298,24 +324,43 @@ class WPSP_Theme_Setup {
 			'milestoneDecimalFormat' => ',',
 		);
 
+		// Sidr settings
+		if ( 'sidr' == $mobile_menu_style ) {
+			$localize_array['sidrSource']         = sidr_menu_source();
+			$localize_array['sidrDisplace']       = wpsp_get_redux( 'mobile-menu-sidr-displace', true ) ?  true : false;
+			$localize_array['sidrSide']           = wpsp_get_redux( 'mobile-menu-sidr-direction', 'left' );
+			$localize_array['sidrSpeed']          = 300;
+			$localize_array['sidrDropdownTarget'] = 'arrow';
+		}
+
+		// Toggle mobile menu
+		if ( 'toggle' == $mobile_menu_style ) {
+			$localize_array['animateMobileToggle'] = true;
+		}
+
+		// Full screen mobile menu style
+		if ( 'full_screen' == $mobile_menu_style ) {
+			$localize_array['fullScreenMobileMenuStyle'] = wpsp_get_redux( 'full-screen-mobile-menu-style', 'white' );
+		}
+
 		// Sticky Header
 		if ( $sticky_header ) {
-			$array['hasStickyMobileHeader']  = wpsp_get_redux( 'is-fixed-header-mobile' );
-			$array['overlayHeaderStickyTop'] = 0;
-			$array['stickyHeaderBreakPoint'] = 960;
+			$localize_array['hasStickyMobileHeader']  = wpsp_get_redux( 'is-fixed-header-mobile' );
+			$localize_array['overlayHeaderStickyTop'] = 0;
+			$localize_array['stickyHeaderBreakPoint'] = 960;
 
 			// Shrink sticky header
-			if ( wpsp_get_redux( 'is-shink-fixed-header' ) ) {
-				$array['shrinkHeaderHeight']     = 70;
-				$array['shrinkHeaderLogoHeight'] = ''; // Calculate via js by default
+			if ( wpsp_get_redux( 'is-shrink-fixed-header' ) ) {
+				$localize_array['shrinkHeaderHeight']     = 70;
+				$localize_array['shrinkHeaderLogoHeight'] = ''; // Calculate via js by default
 			}
 			
 		}
 
 		// Sticky topBar
 		if ( wpsp_get_redux( 'top-bar-sticky' ) ) {
-			$array['stickyTopBarBreakPoint'] = 960;
-			$array['hasStickyTopBarMobile']  = true;
+			$localize_array['stickyTopBarBreakPoint'] = 960;
+			$localize_array['hasStickyTopBarMobile']  = true;
 		}
 
 		// Header five
@@ -345,6 +390,50 @@ class WPSP_Theme_Setup {
 		//Enabling Local Web Fonts
 		wp_enqueue_style( 'local-fonts-english', get_template_directory_uri() . '/fonts/custom-fonts.css' );
 		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/fonts/font-awesome/css/font-awesome.min.css' );
+	}
+
+	/**
+	 * Loads responsive css very last after all styles.
+	 *
+	 * @since 1.0.0
+	 */
+	public static function responsive_css() {
+		if ( wpsp_get_redux( 'is-responsive' ) ) {
+			wp_enqueue_style( 'wpsp-responsive', WPSP_CSS_DIR_URI .'responsive.css', false, WPSP_THEME_VERSION );
+		}
+	}
+
+	/**
+	 * Adds the meta tag to the site header
+	 *
+	 * @since 1.0.0
+	 */
+	public function meta_viewport() {
+
+		// Responsive viewport viewport
+		if ( wpsp_get_redux( 'is-responsive', true ) ) {
+			$viewport = '<meta name="viewport" content="width=device-width, initial-scale=1">';
+		}
+
+		// Non responsive meta viewport
+		else {
+			$width    = intval( wpsp_get_redux( 'main-container-width', '980' ) );
+			$width    = $width ? $width: '980';
+			$viewport = '<meta name="viewport" content="width='. $width .'" />';
+		}
+		
+		// Apply filters to the meta viewport for child theme tweaking
+		echo apply_filters( 'wpsp_meta_viewport', $viewport );
+
+	}
+
+	/**
+	 * Load HTML5 dependencies for IE8
+	 *
+	 * @since 1.6.0
+	 */
+	public static function html5_shiv() {
+		echo '<!--[if lt IE 9]><script src="'. WPSP_JS_DIR_URI .'vendors/html5.js"></script><![endif]-->';
 	}
 
 	/**
@@ -437,34 +526,5 @@ class WPSP_Theme_Setup {
 
 	}
 
-	/**
-	 * Adds the meta tag to the site header
-	 *
-	 * @since 1.0.0
-	 */
-	public function meta_viewport() {
-
-		// Responsive viewport viewport
-		if ( wpsp_get_redux( 'is-responsive', true ) ) {
-			$viewport = '<meta name="viewport" content="width=device-width, initial-scale=1">';
-		}
-
-		// Non responsive meta viewport
-		else {
-			$width    = intval( wpsp_get_redux( 'main-container-width', '980' ) );
-			$width    = $width ? $width: '980';
-			$viewport = '<meta name="viewport" content="width='. $width .'" />';
-		}
-		
-		// Apply filters to the meta viewport for child theme tweaking
-		echo apply_filters( 'wpsp_meta_viewport', $viewport );
-
-	}
-
 }
 $wpsp_theme_setup = new WPSP_Theme_Setup;
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';

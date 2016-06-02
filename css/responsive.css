@@ -1,0 +1,141 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS: Media queries
+----------------------------------------------------------------
+# All Devices under 960px 
+	- Max-width: 559px
+# Tablet Landscape 
+	- Min-width:768px and Max-width:1024px
+# Tablet Portrait 
+	- Min-width: 768px and Max-width: 959px
+# Phone Portrait and Landscape
+	- Max-width: 767px
+# Phone Landscape
+	- Min-width: 480px and Max-width: 767px
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Visibility
+--------------------------------------------------------------*/
+.hidden-desktop,
+.visible-phone,
+.visible-tablet,
+.visible-tablet-landscape,
+.visible-tablet-portrait { display: none !important }
+
+/*--------------------------------------------------------------
+# All Devices under 960px
+--------------------------------------------------------------*/
+@media only screen and (max-width: 959px) {
+	.container { max-width: 90%; }
+	.content-area,
+	.widget-area {
+		width: 100%;
+		max-width: none;
+		float: none;
+	}
+
+	/* Header > Logo */
+	#site-header #site-logo { height: 100%; float: left; text-align: left; }
+	body.rtl #site-header #site-logo { float: right; text-align: right; }
+
+	/* Header > Navbar */
+	body.has-mobile-menu #site-navigation-wrap { display: none; }
+	body.has-mobile-menu #mobile-menu,
+	body.has-mobile-menu #wpsp-mobile-menu-fixed-top,
+	body.has-mobile-menu #wpsp-mobile-menu-navbar { display: block; }
+	body.has-mobile-menu.boxed-main-layout #mobile-menu { right: 30px; }
+
+	/* Header > Mobile Menu Disabled */
+	body.mobile-menu-disabled #site-header #site-logo { float: none; text-align: center; margin: 0 auto 20px 0; }
+	body.mobile-menu-disabled #site-logo a { display: inline; display: inline-block; float: none; }
+	body.mobile-menu-disabled #site-logo img { display: block }
+	body.mobile-menu-disabled #site-header #site-navigation-wrap { position: relative; top: auto; right: auto; clear: both; margin: 0; }
+
+	/* Header > Mobile Menu Toggle Buttons Under Logo */
+	.wpsp-mobile-toggle-menu-icon_buttons_under_logo #site-header #site-logo { float: none !important; display: block; text-align: center; width: 100%; max-width: none; }
+	.wpsp-mobile-toggle-menu-icon_buttons_under_logo #site-logo-inner { display: block; }
+	.wpsp-mobile-toggle-menu-icon_buttons_under_logo #site-header #site-logo img { display: inline; float: none; }
+
+	/* Header > Fixed Top Mobile Menu */
+	body.has-mobile-menu.wpsp-mobile-toggle-menu-fixed_top { padding-top: 50px; } /* offset fixed mobile menu*/
+	body.has-mobile-menu.wpsp-mobile-toggle-menu-fixed_top #site-header #site-logo { float: none; width: 100%; text-align: center; }
+}
+
+/*--------------------------------------------------------------
+# Tablet Landscape
+--------------------------------------------------------------*/
+@media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape) { 
+	.hidden-desktop,
+	.visible-tablet,
+	.visible-tablet-landscape { display: block !important }
+	.visible-desktop,
+	.hidden-tablet-landscape { display: none !important }
+}
+
+/*--------------------------------------------------------------
+# Tablet Portrait
+--------------------------------------------------------------*/
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+	/* visibility */
+	.hidden-desktop,
+	.visible-tablet,
+	.visible-tablet-portrait { display: block !important }
+	.visible-desktop,
+	.hidden-tablet,
+	.hide-on-tablets,
+	.tparrows.custom,
+	.hidden-tablet-portrait { display: none !important }
+
+	/* reset equal height */
+	.match-height-content,
+	.equal-height-content { height: auto !important }
+
+	/*hide things*/
+	.single .meta-comments,
+	.blog-entry .wpsp-social-share { display: none }
+
+	/* turn 4 column masonry grids into 2 columns */
+	.wpsp-row .span_1_of_4.col-3.col,
+	.wpsp-row .span_1_of_4.col.product:nth-child(2n+3) { margin-left: 0; clear: both; }
+	.wpsp-row .span_1_of_4.col,
+	.wpsp-isotope-grid .span_1_of_4.col { width: 50% }
+}
+
+/*--------------------------------------------------------------
+# Phone Portrait and Landscape
+--------------------------------------------------------------*/
+@media only screen and (max-width: 767px) {
+	/* visibility */
+	.hidden-desktop { display: block !important }
+	.visible-desktop { display: none !important }
+	.hidden-phone { display: none !important }
+	.visible-phone { display: block !important }
+
+	.col,
+	.blog-entry { width: 100% !important; margin-bottom: 25px; }
+
+	#wrap .wpsp-row .col { width: 100% !important; }
+	#wrap .wpsp-row.gap-none .col { margin-bottom: 0 !important }
+	.row-no-spacing .wpb_column { margin-bottom: 0 }
+
+	/* Entries > Left Thumbnail Style */
+	.entries.left-thumbs .hentry .entry-media { margin-bottom: 20px }
+	.entries.left-thumbs .hentry .entry-media,
+	.entries.left-thumbs .hentry .entry-details { float: none; width: 100%; }
+}
+
+/*--------------------------------------------------------------
+# Phone Landscape
+--------------------------------------------------------------*/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+	/* visibility */
+	.hidden-desktop { display: block !important }
+	.visible-desktop, .hidden-phone { display: none !important }
+
+	.col { width: 100%; margin-left: 0; margin-right: 0; margin-bottom: 30px; }
+	.row-no-spacing .wpb_column { margin-bottom: 0 }
+	.equal-height-column { height: auto !important }
+
+}

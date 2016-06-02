@@ -283,11 +283,22 @@ function wpsp_mobile_menu_icons() {
  * @since 1.0.0
  */
 function wpsp_mobile_menu_alt() {
-	if ( wpsp_get_redux( 'responsive' )
-		&& wpsp_get_redux( 'has_mobile_menu' )
+	if ( wpsp_get_redux( 'is-responsive' )
+		&& 'disabled' != wpsp_get_redux( 'mobile-menu-style' )
 		&& has_nav_menu( 'mobile_menu_alt' )
 	) {
 		get_template_part( 'partials/header/header-menu-mobile-alt' );
+	}
+}
+
+/**
+ * Adds a hidden searchbox in the footer for use with the mobile menu
+ *
+ * @since 1.0.0
+ */
+function wpsp_mobile_searchform() {
+	if ( wpsp_get_redux( 'is-mobile-menu-search', true ) ) {
+		get_template_part( 'partials/search/mobile-searchform' );
 	}
 }
 

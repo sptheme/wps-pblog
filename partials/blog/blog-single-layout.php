@@ -32,67 +32,62 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$layout_blocks = wpsp_blog_single_layout_blocks();
 
 		// Loop through blocks
-		foreach ( $layout_blocks as $block ) : 
+		foreach ( $layout_blocks as $key => $value ) : 
 
-		// Loop through post detail
+			// Loop through post detail
 
-		// Post title
-		if ( 'title' == $block ) {	
-			get_template_part( 'partials/blog/blog-single-title' );
-		}
-
-		// Post meta
-		elseif ( 'meta' == $block ) {
-			get_template_part( 'partials/blog/blog-single-meta' );
-		}
-
-		// Featured Media - featured image, video, gallery, etc
-		elseif ( 'featured_media' == $block ) {
-			if ( ! $password_required && ! get_post_meta( get_the_ID(), 'wpsp_post_media_position', true ) ) {
-
-				$post_format = $post_format ? $post_format : 'thumbnail';
-				
-				get_template_part( 'partials/blog/media/blog-single', $post_format );
-
+			// Post title
+			if ( 'title' == $key && !empty($value) ) {	
+				get_template_part( 'partials/blog/blog-single-title' );
 			}
-		}
 
-		// Get post content
-		elseif ( 'the_content' == $block ) {
-			get_template_part( 'partials/blog/blog-single-content' );
-		}	
+			// Post meta
+			elseif ( 'meta' == $key && !empty($value) ) {
+				get_template_part( 'partials/blog/blog-single-meta' );
+			}
 
-		// Post Tags
-		elseif ( 'post_tags' == $block && ! $password_required ) {
-			get_template_part( 'partials/blog/blog-single-tags' );
-		}
-		
-		// Social sharing links
-		elseif ( 'social_share' == $block && ! $password_required ) {	
-			get_template_part( 'partials/social-share' );
-		}
+			// Featured Media - featured image, video, gallery, etc
+			elseif ( 'featured_media' == $key && !empty($value) ) {
+				if ( ! $password_required && ! get_post_meta( get_the_ID(), 'wpsp_post_media_position', true ) ) {
 
-		// Author bio
-		elseif ( 'author_bio' == $block && ! $password_required ) {
-			get_template_part( 'author-bio' );
-		}
+					$post_format = $post_format ? $post_format : 'thumbnail';
+					
+					get_template_part( 'partials/blog/media/blog-single', $post_format );
 
-		// Displays related posts
-		elseif ( 'related_posts' == $block ) {
-			get_template_part( 'partials/blog/blog-single-related' ); 
-		}
+				}
+			}
 
-		// Get the post comments & comment_form
-		elseif ( 'comments' == $block || comments_open() || get_comments_number() ) {
-			comments_template();
-		}
+			// Get post content
+			elseif ( 'the_content' == $key && !empty($value) ) {
+				get_template_part( 'partials/blog/blog-single-content' );
+			}	
 
-		// Custom Blocks
-		else {
-			get_template_part( 'partials/blog/blog-single', $block );
-		}
+			// Post Tags
+			elseif ( 'post_tags' == $key && !empty($value) && ! $password_required ) {
+				get_template_part( 'partials/blog/blog-single-tags' );
+			}
+			
+			// Social sharing links
+			elseif ( 'social_share' == $key && !empty($value) && ! $password_required ) {	
+				get_template_part( 'partials/social-share' );
+			}
 
-	endforeach;
+			// Author bio
+			elseif ( 'author_bio' == $key && !empty($value) && ! $password_required ) {
+				get_template_part( 'author-bio' );
+			}
+
+			// Displays related posts
+			elseif ( 'related_posts' == $key && !empty($value) ) {
+				get_template_part( 'partials/blog/blog-single-related' ); 
+			}
+
+			// Get the post comments & comment_form
+			elseif ( 'comments' == $key && !empty($value) || comments_open() || get_comments_number() ) {
+				comments_template();
+			}
+
+		endforeach;
 
 	endif; ?>
 </article>
