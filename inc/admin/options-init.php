@@ -191,6 +191,16 @@
         'comments' => esc_html__( 'Comments','wpsp-redux-framework' ),
     ) );
 
+    $portfolio_single_blocks = apply_filters( 'wpsp_portfolio_single_blocks', array(
+        'title'    => esc_html__( 'Post Title', 'wpsp-redux-framework' ),
+        'meta'     => esc_html__( 'Post Meta', 'wpsp-redux-framework' ),
+        'media'    => esc_html__( 'Media', 'wpsp-redux-framework' ),
+        'content'  => esc_html__( 'Content', 'wpsp-redux-framework' ),
+        'share'    => esc_html__( 'Social Share', 'wpsp-redux-framework' ),
+        'comments' => esc_html__( 'Comments', 'wpsp-redux-framework' ),
+        'related'  => esc_html__( 'Related Posts', 'wpsp-redux-framework' ),
+    ) );
+
     // Header styles
     $header_styles = apply_filters( 'wpsp_header_styles', array(
         'one' => esc_html__( 'One - Left Logo & Right Navbar','wpsp-redux-framework' ),
@@ -1617,7 +1627,7 @@
                 'validate' => 'preg_replace',
                 'preg'     => array(
                     'pattern'     => '/[^a-zA-Z_ -]/s',
-                    'replacement' => 'Allow only number'
+                    'replacement' => 'Allow only text'
                 ),
                 'default'  => 'Read More'// 1 = on | 0 = off
             ),
@@ -1703,6 +1713,64 @@
                 'subtitle' => __( 'Sidebar for portfolio single post', 'wpsp-redux-framework' ),
                 'desc'     => __( 'Other sidebar will override this option if they are set', 'wpsp-redux-framework' ),
             ),
+            array(
+                'id'       => 'portfolio-next-prev',
+                'type'     => 'checkbox',
+                'title'    => __( 'Next & Previous Links', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Show/hide Next and Previous post', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'portfolio-related-title',
+                'type'     => 'text',
+                'title'    => __( 'Related Posts Title', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^a-zA-Z_ -]/s',
+                    'replacement' => 'Allow only text'
+                ),
+                'default'  => 'Related Projects'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'portfolio-related-count',
+                'type'     => 'text',
+                'title'    => __( 'Related Posts Count', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => '4'
+            ),
+            array(
+                'id'       => 'portfolio-related-columns',
+                'type'     => 'select',
+                'title'    => __( 'Related Posts Columns', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    '6' => esc_html__( '6','wpsp-redux-framework' ),
+                    '5' => esc_html__( '5','wpsp-redux-framework' ),
+                    '4' => esc_html__( '4','wpsp-redux-framework' ),
+                    '3' => esc_html__( '3','wpsp-redux-framework' ),
+                    '2' => esc_html__( '2','wpsp-redux-framework' ),
+                ),
+            ),
+            array(
+                'id'       => 'portfolio-related-excerpts',
+                'type'     => 'checkbox',
+                'title'    => __( 'Related Posts Content', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Show/hide related excerpts post', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'portfolio-single-block',
+                'type'     => 'sortable',
+                'mode'     => 'checkbox', // checkbox or text
+                'title'    => __( 'Post Layout Elements', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Click and drag and drop elements to re-order them.', 'wpsp-redux-framework' ),
+                'label'    => true,
+                'options'  => $portfolio_single_blocks,
+            ),
         )
     ) ); 
     Redux::setSection( $opt_name, array(
@@ -1743,6 +1811,74 @@
                 'data'     => 'sidebar',
                 'title'    => __( 'Sidebar archive', 'wpsp-redux-framework' ),
                 'subtitle' => __( 'Sidebar for archive page', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'portfolio-archive-grid-style',
+                'type'     => 'select',
+                'title'    => __( 'Grid style', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'fit-rows' => esc_html__( 'Fit Rows','wpsp-redux-framework' ),
+                    'masonry' => esc_html__( 'Masonry','wpsp-redux-framework' ),
+                    'no-margins' => esc_html__( 'No Margins', 'wpsp-redux-framework' ),
+                ),
+                'default'  => 'fit-rows',
+            ),
+            array(
+                'id'       => 'portfolio-entry-columns',
+                'type'     => 'select',
+                'title'    => __( 'Columns', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    '' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    '6' => esc_html__( '6','wpsp-redux-framework' ),
+                    '5' => esc_html__( '5','wpsp-redux-framework' ),
+                    '4' => esc_html__( '4','wpsp-redux-framework' ),
+                    '3' => esc_html__( '3','wpsp-redux-framework' ),
+                    '2' => esc_html__( '2','wpsp-redux-framework' ),
+                ),
+                'default'  => '3',
+
+            ),
+            array(
+                'id'       => 'portfolio-archive-grid-equal-heights',
+                'type'     => 'checkbox',
+                'required' => array( 'portfolio-archive-grid-style', '=', 'fit-rows' ),
+                'title'    => __( 'Equal Heights', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'portfolio-archive-posts-per-page',
+                'type'     => 'text',
+                'title'    => __( 'Related Posts Count', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => '12'
+            ),
+            array(
+                'id'       => 'portfolio-entry-overlay-style',
+                'type'     => 'select',
+                'title'    => __( 'Archives Entry: Image Overlay', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'set overlay style for each entry posts', 'wpsp-redux-framework' ),
+                'options'  => $wpsp_overlay_styles_array,
+            ),
+            array(
+                'id'       => 'portfolio-entry-details',
+                'type'     => 'checkbox',
+                'title'    => __( 'Archives Entry: Details', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'portfolio-entry-excerpt-length',
+                'type'     => 'text',
+                'title'    => __( 'Archives Entry: Excerpt Length', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => '20'
             ),
         )
     ) );        
