@@ -84,7 +84,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 			$slug             = $slug ? $slug : 'portfolio-item';
 			$menu_icon        = get_option( 'portfolio_admin_icon' );
 			$menu_icon        = $menu_icon ? $menu_icon : 'portfolio';
-			$portfolio_search = ( 'off' != get_option( 'portfolio_search', 'on' ) ) ? true : false;
+			$portfolio_search = ( 'off' != get_option( 'portfolio_search', 'on' ) ) ? false : true;
 
 			// Args
 			$args = array(
@@ -103,7 +103,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 				),
 				'public' => true,
 				'capability_type' => 'post',
-				'has_archive' => false,
+				'has_archive' => true,
 				'menu_icon' => 'dashicons-'. $menu_icon,
 				'menu_position' => 20,
 				'exclude_from_search' => $portfolio_search,
@@ -603,7 +603,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 			}
 
 			if ( wpsp_is_portfolio_tax() ) {
-				$query->set( 'posts_per_page', 12 );
+				$query->set( 'posts_per_page', wpsp_get_redux( 'portfolio-archive-posts-per-page', '12') );
 				return;
 			}
 

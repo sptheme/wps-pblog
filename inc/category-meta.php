@@ -45,9 +45,9 @@ if ( ! class_exists( 'WPSP_Category_Meta' ) ) {
 			<td>
 				<select name="term_meta[wpsp_term_layout]">
 					<option value="" <?php selected( $layout ) ?>><?php esc_html_e( 'Default', 'wpsp-admin' ); ?></option>
-					<option value="col-2cr" <?php selected( $layout, 'col-2cr' ) ?>><?php esc_html_e( 'Right Sidebar', 'wpsp-admin' ); ?></option>
-					<option value="col-2cl" <?php selected( $layout, 'col-2cl' ) ?>><?php esc_html_e( 'Left Sidebar', 'wpsp-admin' ); ?></option>
-					<option value="col-1c" <?php selected( $layout, 'col-1c' ) ?>><?php esc_html_e( 'Full Width', 'wpsp-admin' ); ?></option>
+					<option value="right-sidebar" <?php selected( $layout, 'right-sidebar' ) ?>><?php esc_html_e( 'Right Sidebar', 'wpsp-admin' ); ?></option>
+					<option value="left-sidebar" <?php selected( $layout, 'left-sidebar' ) ?>><?php esc_html_e( 'Left Sidebar', 'wpsp-admin' ); ?></option>
+					<option value="full-width" <?php selected( $layout, 'full-width' ) ?>><?php esc_html_e( 'Full Width', 'wpsp-admin' ); ?></option>
 				</select>
 			</td>
 			</tr>

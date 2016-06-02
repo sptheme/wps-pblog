@@ -181,9 +181,9 @@ function wpsp_body_classes( $classes ) {
 	// Save some vars
 	$main_layout  = wpsp_get_redux( 'main-layout' );
 	$header_style = wpsp_get_redux( 'header-style' );
-	$post_layout  = get_post_meta( $post->ID, 'wpsp_layout', true );
+	$post_layout  = wpsp_post_layout();
 	$global_layout = wpsp_get_redux( 'layout-global' );
-	$post_id      = $post->ID;
+	$post_id      = is_singular() ? $post->ID : NULL;
 
 	// RTL
 	if ( is_RTL() ) {
@@ -289,3 +289,90 @@ function wpsp_body_classes( $classes ) {
 
 }
 add_filter( 'body_class', 'wpsp_body_classes' );
+
+function wpsp_post_layout() {
+	
+	global $post;
+
+	// Check URL
+	if ( ! empty( $_GET['post_layout'] ) ) {
+		return esc_html( $_GET['post_layout'] );
+	}
+
+	// Singular Page
+	if ( is_page() ) {
+
+		// Attachment
+		if ( is_attachment() ) {
+			$class = 'full-width';
+		} 
+
+		// All other pages
+		else {
+			$class = wpsp_get_redux( 'page-layout', 'right-sidebar' );	
+		}
+	}
+
+	// Singular Post
+	elseif ( is_singular( 'post' ) ) {
+
+		$class = wpsp_get_redux( 'single-layout', 'right-sidebar' );
+
+	}
+
+	// Attachment
+	elseif ( is_singular( 'attachment' ) ) {
+
+		 $class = 'full-width';
+
+	}
+
+	// Home
+	elseif ( is_home() ) {
+		$class = wpsp_get_redux( 'archive-layout', 'right-sidebar' );
+	}
+
+	// Search
+	elseif ( is_search() ) {
+		$class = get_theme_mod( 'search-layout', 'right-sidebar' );
+	}
+
+	// Standard Categories
+	elseif ( is_category() ) {
+		$class = wpsp_get_redux( 'archives-layout', 'right-sidebar' );
+		$term  = get_query_var( 'cat' );
+		if ( $term_data = get_option( "category_$term" ) ) {
+			if ( ! empty( $term_data['wpsp_term_layout'] ) ) {
+				$class = $term_data['wpsp_term_layout'];
+			}
+		}
+	}
+
+	// Archives
+	elseif (
+		is_tag()
+		|| is_date()
+		|| is_author()
+		|| ( is_tax( 'post_format' ) && 'post' == get_post_type() ) 
+	) {
+		$class = wpsp_get_redux( 'archives-layout', 'right-sidebar' );
+	}
+	
+	// 404 page
+	elseif ( is_404() ) {
+		$class = 'full-width';
+	}
+
+	// All else
+	else {
+		$class = 'right-sidebar';
+	}
+
+	// Class should never be empty
+	if ( empty( $class ) ) {
+		$class = 'right-sidebar';
+	}
+
+	// Apply filters and return
+	return apply_filters( 'wpsp_post_layout_class', $class );
+}
