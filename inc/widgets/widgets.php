@@ -136,6 +136,10 @@ function wpsp_sidebar_primary() {
 	if ( is_404() && wpsp_get_redux('sidebar-404') ) $sidebar = wpsp_get_redux('sidebar-404');
 	if ( is_page() && wpsp_get_redux('sidebar-page') ) $sidebar = wpsp_get_redux('sidebar-page');
 
+	if ( is_singular('portfolio') && wpsp_get_redux('sidebar-portfolio-single-post') ) $sidebar = wpsp_get_redux('sidebar-portfolio-single-post');
+	if ( is_tax('portfolio_category') && wpsp_get_redux('sidebar-portfolio-archive') ) $sidebar = wpsp_get_redux('sidebar-portfolio-archive');
+	if ( is_tax('portfolio_tag') && wpsp_get_redux('sidebar-portfolio-archive') ) $sidebar = wpsp_get_redux('sidebar-portfolio-archive');
+
 	// Check for page/post specific sidebar
 	if ( is_page() || is_single() ) {
 		// Reset post data
@@ -176,6 +180,9 @@ function wpsp_layout_class() {
 		elseif ( is_single() && ( wpsp_get_redux('single-layout') !='inherit' ) ) $layout = wpsp_get_redux('single-layout');
 		elseif ( is_page() && ( wpsp_get_redux('page-layout') !='inherit' ) ) $layout = wpsp_get_redux('page-layout');
 
+		// Else check for custom post
+		elseif ( is_singular('portfolio') && ( $wpsp_get_redux('portfolio-single-layout') !='inherit' ) ) $layout = $wpsp_get_redux('portfolio-single-layout');
+
 		// Else get global option
 		else $layout = wpsp_get_redux( 'layout-global' );
 	}
@@ -185,6 +192,10 @@ function wpsp_layout_class() {
 	elseif ( is_archive() && ( wpsp_get_redux('archive-layout') !='inherit' ) ) $layout = wpsp_get_redux('archive-layout');
 	elseif ( is_search() && ( wpsp_get_redux('search-layout') !='inherit' ) ) $layout = wpsp_get_redux('search-layout');
 	elseif ( is_404() && ( wpsp_get_redux('404-layout') !='inherit' ) ) $layout = wpsp_get_redux('404-layout');
+
+	// Custom taxonomy layout
+	elseif ( is_tax('portfolio_category') && wpsp_get_redux('portfolio-archive-layout') !='inherit' ) $sidebar = wpsp_get_redux('portfolio-archive-layout');
+	elseif ( is_tax('portfolio_tag') && wpsp_get_redux('portfolio-archive-layout') !='inherit' ) $sidebar = wpsp_get_redux('portfolio-archive-layout');
 
 	// Global option
 	else $layout = wpsp_get_redux( 'layout-global' );
