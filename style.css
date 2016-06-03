@@ -53,8 +53,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Galleries
 # Commons
 # Blog Post
-## Blog Entry
-## Blog Single
+	## Blog Entry
+	## Blog Single
+# Portfolio
 # Addon Elements
 	## Overlay
 	## Image Hover
@@ -2053,6 +2054,41 @@ object {
 .author-bio-social a.pinterest { background: #CB2027 }
 .author-bio-social a.linkedin { background: #007FB1 }
 .author-bio-social a.instagram { background: #517fa4 }
+
+/*--------------------------------------------------------------
+# Portfolio
+--------------------------------------------------------------*/
+
+/* Portfolio > Entries */
+.portfolio-entry-categories { margin: -5px 0 10px }
+.portfolio-entry-categories a { font-size: 0.923em; color: #777; list-style: none; }
+.vcex-portfolio-entry-media,
+.portfolio-entry-media { position: relative; overflow: hidden; }
+.portfolio-entry-media-link { display: block }
+.vcex-portfolio-entry-media img,
+.portfolio-entry-media img { display: block; width: 100%; box-shadow: #000 0em 0em 0em; }
+.portfolio-entry-details { background: #f7f7f7; border: 1px solid #eee; padding: 15px; }
+.portfolio-entry-excerpt p { margin-bottom: 15px }
+.portfolio-entry-excerpt p:last-child { margin: 0 }
+.portfolio-entry-readmore-wrap { padding-top: 15px }
+
+/* Portfolio > No Margin Grid */
+.portfolio-no-margins .col { margin: 0 !important; padding: 0 !important; }
+.portfolio-no-margins .portfolio-entry-details { background: #262626; border: none; color: #787878; }
+.portfolio-no-margins .portfolio-entry-title a { color: #fff }
+
+/* Portfolio > 1 Column Grid */
+#portfolio-entries .portfolio-entry.span_1_of_1 { margin: 0 0 30px; float: none; border: none; }
+#portfolio-entries .portfolio-entry.span_1_of_1 .portfolio-entry-media { width: 45%; float: left; margin: 0 30px 0 0; }
+#portfolio-entries .portfolio-entry.span_1_of_1 .portfolio-entry-details { background: none; border: none; padding: 0; }
+#portfolio-entries .portfolio-entry.span_1_of_1 .portfolio-entry-title { margin: 0 }
+
+/* Portfolio > Singular */
+#portfolio-single-media,
+#portfolio-single-related { margin-bottom: 30px }
+#portfolio-post-comments,
+.single-portfolio .wpsp-social-share-wrap.position-horizontal,
+.no-composer #portfolio-single-related { margin-top: 30px }
 
 /*--------------------------------------------------------------
 # Addon Elements

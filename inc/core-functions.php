@@ -1187,12 +1187,6 @@ function wpsp_get_post_video( $post_id = '' ) {
 		$video = $meta;
 	}
 
-	// Check for post oembed
-	elseif ( $meta = get_post_meta( $post_id, 'wpsp_post_oembed', true ) ) {
-		$video = $meta;
-	}
-
-
 	// Apply filters & return
 	return apply_filters( 'wpsp_get_post_video', $video );
 

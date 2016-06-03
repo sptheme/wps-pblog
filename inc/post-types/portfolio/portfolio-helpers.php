@@ -157,10 +157,18 @@ if ( ! function_exists( 'wpsp_portfolio_post_video' ) ) {
  *
  * @since 1.0.0
  */
-function wpsp_get_portfolio_post_video() {
+function wpsp_get_portfolio_post_video( $post_id = '' ) {
+
+	// Define video variable
+	$video = '';
+
+	// Get correct ID
+	$post_id = $post_id ? $post_id : get_the_ID();
+
+	$video_url = get_post_meta( $post_id, 'wpsp_portfolio_post_video_embed', true );
 
 	// Get video URl
-	$video = wpsp_get_post_video_html();
+	$video = wpsp_get_post_video_html( $video_url );
 
 	// Return if no video
 	if ( empty( $video ) ) {
