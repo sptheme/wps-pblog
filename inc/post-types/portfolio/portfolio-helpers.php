@@ -21,6 +21,75 @@ if ( ! function_exists( 'wpsp_is_portfolio_tax' ) ) {
 }
 
 /**
+ * Returns portfolio entry blocks
+ *
+ * @since 1.0.0
+ */
+function wpsp_portfolio_entry_blocks() {
+
+	// Get layout blocks
+	$blocks = ''; //wpsp_get_redux( 'portfolio-entry-block' );
+
+	// If blocks are 100% empty return defaults
+	$blocks = $blocks ? $blocks : 'media,title,content,read_more';
+
+	// Convert blocks to array so we can loop through them
+	if ( ! is_array( $blocks ) ) {
+		$blocks = explode( ',', $blocks );
+	}
+
+	// Apply filters and return blocks
+	return apply_filters( 'wpsp_portfolio_entry_blocks', $blocks );
+
+}
+
+/**
+ * Returns portfolio post blocks
+ *
+ * @since 1.0.0
+ */
+function wpsp_portfolio_post_blocks() {
+
+	// Get layout blocks
+	$blocks = wpsp_get_redux( 'portfolio-single-block' );
+
+	// If blocks are 100% empty return defaults
+	$blocks = $blocks ? $blocks : 'content,share,related';
+
+	// Convert blocks to array so we can loop through them
+	if ( ! is_array( $blocks ) ) {
+		$blocks = explode( ',', $blocks );
+	}
+
+	// Apply filters and return blocks
+	return apply_filters( 'wpsp_portfolio_single_blocks', $blocks );
+
+}
+
+/**
+ * Returns portfolio single meta sections
+ *
+ * @since 1.0.0
+ */
+function wpsp_portfolio_single_meta_sections() {
+
+	// Default sections
+	$sections = array( 'date', 'author', 'categories', 'comments' );
+
+	// Apply filters for easy modification
+	$sections = apply_filters( 'wpsp_portfolio_single_meta_sections', $sections );
+
+	// Turn into array if string
+	if ( $sections && ! is_array( $sections ) ) {
+		$sections = explode( ',', $sections );
+	}
+
+	// Return sections
+	return $sections;
+
+}
+
+/**
  * Returns correct thumbnail HTML for the portfolio entries
  *
  * @since 1.0.0
@@ -34,6 +103,29 @@ if ( ! function_exists( 'wpsp_get_portfolio_entry_thumbnail' ) ) {
 			'alt'   => wpsp_get_esc_title(),
 		) ) );
 	}
+}
+
+/**
+ * Returns correct thumbnail HTML for the portfolio posts
+ *
+ * @since 1.0.0
+ */
+function wpsp_get_portfolio_post_thumbnail( $args = array() ) {
+
+	// Define thumbnail args
+	$defaults = array(
+		'size'          => 'portfolio_post',
+		'class'         => 'portfolio-single-media-img',
+		'alt'           => wpsp_get_esc_title(),
+		'schema_markup' => true,
+	);
+
+	// Parse arguments
+	$args = wp_parse_args( $args, $defaults );
+
+	// Return thumbanil
+	return wpsp_get_post_thumbnail( apply_filters( 'wpsp_get_portfolio_post_thumbnail_args', $args ) );
+
 }
 
 /**
@@ -154,4 +246,15 @@ if ( ! function_exists( 'wpsp_portfolio_match_height' ) ) {
 			return false;
 		}
 	}
+}
+
+/**
+ * Gets correct heading for the related blog items
+ *
+ * @since 1.0.0
+ */
+function wpsp_portfolio_related_heading() {
+	$heading = wpsp_get_translated_theme_mod( 'portfolio_related_title' );
+	$heading = $heading ? esc_html( $heading ) : esc_html__( 'Related Projects', 'wpsp-blog-textdomain' );
+	return $heading;
 }

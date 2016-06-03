@@ -1754,6 +1754,7 @@
                     '3' => esc_html__( '3','wpsp-redux-framework' ),
                     '2' => esc_html__( '2','wpsp-redux-framework' ),
                 ),
+                'default'  => '3'
             ),
             array(
                 'id'       => 'portfolio-related-excerpts',

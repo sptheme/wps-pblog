@@ -46,12 +46,12 @@
 		'autosave'		=> true, // Auto save: true, false (default). Optional.
 
 		'fields'		=> array(
-			array(
+			/*array(
 				'name'  => __( 'oEmbed URL', 'wpsp-meta-box' ), 
 				'id'    => $prefix . "post_self_hosted_media",
 				'desc'  => __( 'Enter a URL that is compatible with WPs built-in oEmbed feature. This setting is used for your video and audio post formats. <a href="http://codex.wordpress.org/Embeds" target="_blank">Learn More →</a>', 'wpsp-meta-box'),
 				'type'  => 'text',
-			),
+			),*/
 			array(
 				'name'  => __( 'Self Hosted', 'wpsp-meta-box' ), 
 				'id'    => $prefix . "post_self_hosted_media",
@@ -86,7 +86,45 @@
 		)
     );
 
-	// Page layout options
+	// Portfolio > Gallery
+	$meta_boxes[] = array(
+    	'id'			=> 'portfolio-gallery',
+		'title'			=> __( 'Portfolio gallery', 'wpsp-meta-box' ),
+		'post_types'	=> array( 'portfolio' ),
+		'context'		=> 'normal', // Where the meta box appear: normal (default), advanced, side. Optional.
+		'priority'		=> 'high', // Order of meta box: high (default), low. Optional.
+		'autosave'		=> true, // Auto save: true, false (default). Optional.
+
+		'fields'		=> array(
+			array(
+				'name'  => __( 'Upload photos', 'wpsp-meta-box' ), 
+				'id'    => $prefix . "portfolio_gallery",
+				'desc'  => __( 'Upload photo into album', 'wpsp-meta-box'),
+				'type'  => 'image_advanced',
+			),
+		)
+    );
+
+    // Portfolio > Video
+	$meta_boxes[] = array(
+    	'id'			=> 'portfolio-video',
+		'title'			=> __( 'Portfolio video', 'wpsp-meta-box' ),
+		'post_types'	=> array( 'portfolio' ),
+		'context'		=> 'normal', // Where the meta box appear: normal (default), advanced, side. Optional.
+		'priority'		=> 'high', // Order of meta box: high (default), low. Optional.
+		'autosave'		=> true, // Auto save: true, false (default). Optional.
+
+		'fields'		=> array(
+			array(
+				'name'  => __( 'Embed Code', 'wpsp-meta-box' ), 
+				'id'    => $prefix . "portfolio_post_video_embed",
+				'desc'  => __( 'Insert your embed/iframe code.', 'wpsp-meta-box'),
+				'type'  => 'oembed',
+			),
+		)
+    );
+
+    // Page layout options
 	$meta_boxes[] = array(
 		// Meta box id, UNIQUE per meta box. Optional since 4.1.5
 		'id'         => 'page-options',
@@ -134,7 +172,8 @@
 				),
 			),
 		)
-	);	
+	);
+
 
 	return $meta_boxes;
 }

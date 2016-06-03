@@ -423,6 +423,148 @@ if ( is_admin() && apply_filters( 'wpsp_dashboard_thumbnails', true ) ) :
 endif;
 
 /*-------------------------------------------------------------------------------*/
+/* [ Taxonomy & Terms ]
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Returns 1st term name
+ *
+ * @since 1.0.0
+ */
+function wpsp_get_first_term_name( $post_id = '', $taxonomy = 'category' ) {
+	if ( ! taxonomy_exists( $taxonomy ) ) {
+		return;
+	}
+	$post_id = $post_id ? $post_id : NULL;
+	$terms   = wp_get_post_terms( $post_id, $taxonomy );
+	if ( ! empty( $terms[0] ) ) {
+		return $terms[0]->name;
+	}
+}
+
+/**
+ * Returns 1st taxonomy of any taxonomy with a link
+ *
+ * @since 1.0.0
+ */
+function wpsp_get_first_term_link( $post_id = '', $taxonomy = 'category' ) {
+	if ( ! taxonomy_exists( $taxonomy ) ) {
+		return;
+	}
+	$post_id = $post_id ? $post_id : NULL;
+	$terms   = wp_get_post_terms( $post_id, $taxonomy );
+	if ( ! empty( $terms[0] ) ) {
+		return '<a href="'. esc_url( get_term_link( $terms[0], $taxonomy ) ) .'" title="'. esc_attr( $terms[0]->name ) .'">'. $terms[0]->name .'</a>';
+	}
+}
+
+/**
+ * Echos 1st taxonomy of any taxonomy with a link
+ *
+ * @since 1.0.0
+ */
+function wpsp_first_term_link( $post_id = '', $taxonomy = 'category' ) {
+	echo wpsp_get_first_term_link( $post_id, $taxonomy );
+}
+
+/**
+ * Returns a list of terms for specific taxonomy
+ * 
+ * @since 1.0.0
+ */
+function wpsp_get_list_post_terms( $taxonomy = 'category', $show_links = true ) {
+	return wpsp_list_post_terms( $taxonomy, $show_links, false );
+}
+
+/**
+ * List terms for specific taxonomy
+ * 
+ * @since 1.0.0
+ */
+function wpsp_list_post_terms( $taxonomy = 'category', $show_links = true, $echo = true ) {
+
+	// Make sure taxonomy exists
+	if ( ! taxonomy_exists( $taxonomy ) ) {
+		return;
+	}
+
+	// Get terms
+	$list_terms = array();
+	$terms      = wp_get_post_terms( get_the_ID(), $taxonomy );
+
+	// Return if no terms are found
+	if ( ! $terms ) {
+		return;
+	}
+
+	// Loop through terms
+	foreach ( $terms as $term ) {
+		$permalink = get_term_link( $term->term_id, $taxonomy );
+		if ( $show_links ) {
+			$list_terms[] = '<a href="'. $permalink .'" title="'. esc_attr( $term->name ) .'" class="term-'. $term->term_id .'">'. $term->name .'</a>';
+		} else {
+			$list_terms[] = '<span class="term-'. $term->term_id .'">'. esc_attr( $term->name ) .'</span>';
+		}
+	}
+
+	// Turn into comma seperated string
+	if ( $list_terms && is_array( $list_terms ) ) {
+		$list_terms = implode( ', ', $list_terms );
+	} else {
+		return;
+	}
+
+	// Echo terms
+	if ( $echo ) {
+		echo $list_terms;
+	} else {
+		return $list_terms;
+	}
+
+}
+
+/**
+ * Returns the "category" taxonomy for a given post type
+ *
+ * @since 1.0.0
+ */
+function wpsp_get_post_type_cat_tax( $post_type = '' ) {
+
+	// Get the post type
+	$post_type = $post_type ? $post_type : get_post_type();
+
+	// Return taxonomy
+	if ( 'post' == $post_type ) {
+		$tax = 'category';
+	} elseif ( 'portfolio' == $post_type ) {
+		$tax = 'portfolio_category';
+	} elseif ( 'staff' == $post_type ) {
+		$tax = 'staff_category';
+	} elseif ( 'testimonials' == $post_type ) {
+		$tax = 'testimonials_category';
+	} elseif ( 'product' == $post_type ) {
+		$tax = 'product_cat';
+	} elseif ( 'tribe_events' == $post_type ) {
+		$tax = 'tribe_events_cat';
+	} else {
+		$tax = false;
+	}
+
+	// Apply filters & return
+	return apply_filters( 'wpsp_get_post_type_cat_tax', $tax );
+
+}
+
+/**
+ * Retrieve all term data
+ *
+ * @since 1.0.0
+ */
+function wpsp_get_term_data() {
+	return get_option( 'wpsp_term_data' );
+}
+
+/*-------------------------------------------------------------------------------*/
 /* [ Schema Markup ]
 /*-------------------------------------------------------------------------------*/
 
