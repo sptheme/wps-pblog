@@ -1216,6 +1216,13 @@
                 'options'  => $widget_tags,
                 'default'  => 'div'
             ),
+            array(
+                'id'       => 'has-widget-icons',
+                'type'     => 'checkbox',
+                'title'    => __( 'Widget Icons', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Certain widgets include little icons such as the recent posts widget. Here you can toggle the icons on or off.', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
         )
     ) );   
 

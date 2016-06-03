@@ -1708,6 +1708,24 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 .widget_categories li ul li:last-child { border-bottom: none; padding-bottom: 0; }
 .widget_categories .cat-count-span { color: #999; font-size: 0.846em; }
 
+/* Widgets > Recent Posts w/ Icons */
+.sidebar-widget-icons .widget_archive a:before,
+.sidebar-widget-icons .widget_recent_entries a:before,
+.sidebar-widget-icons .widget_recent_comments a:first-child:before,
+.sidebar-widget-icons .widget_layered_nav a:before,
+.sidebar-widget-icons .widget_product_categories a:before,
+.sidebar-widget-icons .widget_categories a:before,
+.sidebar-widget-icons .widget_pages a:before,
+.sidebar-widget-icons .widget_meta a:before { margin-right: 10px; font-family: "FontAwesome"; color: #999; display: inline-block; }
+.sidebar-widget-icons .widget_archive a:before { content: "\f016" }
+.sidebar-widget-icons .widget_recent_entries a:before { content: "\f0f6" }
+.sidebar-widget-icons .widget_recent_comments a:first-child:before { content: "\f0e5" }
+.sidebar-widget-icons .widget_layered_nav a:before { content: "\f0da" }
+.sidebar-widget-icons .widget_product_categories a:before { content: "\f0da" }
+.sidebar-widget-icons .widget_categories a:before { content: "\f114" }
+.sidebar-widget-icons .widget_pages a:before { content: "\f105 " }
+.sidebar-widget-icons .widget_meta a:before { content: "\f178 " }
+
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
