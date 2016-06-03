@@ -556,115 +556,6 @@
         )
     ) );
 
-    // Top Bar
-    Redux::setSection( $opt_name, array(
-        'title'            => __( 'Top Bar', 'wpsp-redux-framework' ),
-        'id'               => 'top-bar-options',
-        'desc'             => __( '', 'wpsp-redux-framework' ),
-        'customizer_width' => '400px',
-        'icon'             => 'el el-tag'
-    ) );
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'General', 'wpsp-redux-framework' ),
-        'id'         => 'general-top-bar-tab',
-        'subsection' => true,
-        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
-        'fields'     => array(
-            array(
-                'id'       => 'has-top-bar',
-                'type'     => 'checkbox',
-                'title'    => __( 'Enable', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Disable/enable top bar', 'wpsp-redux-framework' ),
-                'default'  => '1'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'top-bar-sticky',
-                'type'     => 'checkbox',
-                'title'    => __( 'Sticky', 'wpsp-redux-framework' ),
-                'default'  => '0'// 1 = on | 0 = off
-            ),
-            array(
-                'id'       => 'top-bar-visibility',
-                'type'     => 'select',
-                'title'    => __( 'Visibility', 'wpsp-redux-framework' ),
-                'options'  => $visibility,
-                'default'  => 'visible-desktop',
-            ),
-            array(
-                'id'       => 'top-bar-style',
-                'type'     => 'select',
-                'title'    => __( 'Style', 'wpsp-redux-framework' ),
-                'options'  => array(
-                        'one'    => 'Left Content & Right Social',
-                        'two'    => 'Minimal',
-                        'three'  => 'Minimal Round',
-                ),
-                'default'  => 'one',
-            ),
-            array(
-                'id'       => 'top-bar-bg',
-                'type'     => 'color',
-                'title'    => __( 'Background', 'wpsp-redux-framework' ),
-                'default'  => '#ffffff',
-                'validate' => 'color',
-            ),
-            array(
-                'id'       => 'top-bar-border',
-                'type'     => 'color',
-                'title'    => __( 'Border', 'wpsp-redux-framework' ),
-                'default'  => '#ffffff',
-                'validate' => 'color',
-            ),
-            array(
-                'id'       => 'top-bar-text',
-                'type'     => 'color',
-                'title'    => __( 'Color', 'wpsp-redux-framework' ),
-                'default'  => '#ffffff',
-                'validate' => 'color',
-            ),
-            array(
-                'id'       => 'top-bar-link-color',
-                'type'     => 'color',
-                'title'    => __( 'Link Color', 'wpsp-redux-framework' ),
-                'default'  => '#ffffff',
-                'validate' => 'color',
-            ),
-            array(
-                'id'       => 'top-bar-link-color-hover',
-                'type'     => 'color',
-                'title'    => __( 'Link Color: Hover', 'wpsp-redux-framework' ),
-                'default'  => '#ffffff',
-                'validate' => 'color',
-            ),
-            array(
-                'id'       => 'top-bar-top-padding',
-                'type'     => 'text',
-                'title'    => __( 'Top Padding', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
-            ),
-            array(
-                'id'       => 'top-bar-bottom-padding',
-                'type'     => 'text',
-                'title'    => __( 'bottom Padding', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
-            ),
-        )
-    ) );
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Content', 'wpsp-redux-framework' ),
-        'id'         => 'content-top-bar-tab',
-        'subsection' => true,
-        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
-        'fields'     => array(        
-            array(
-                'id'       => 'top-bar-content',
-                'type'     => 'textarea',
-                'title'    => __( 'Content', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'If you enter the ID number of a page it will automatically display the content of such page.', 'wpsp-redux-framework' ),
-            ),
-        )
-    ) );
-
     // Header
     Redux::setSection( $opt_name, array(
         'title'            => __( 'Header', 'wpsp-redux-framework' ),
@@ -1241,8 +1132,16 @@
         //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
         'fields'     => array(
             array(
+                'id'       => 'has-footer',
+                'type'     => 'checkbox',
+                'title'    => __( 'Enable footer', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Switch footer on/off', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
                 'id'       => 'is-footer-widgets',
                 'type'     => 'checkbox',
+                'required' => array( 'has-footer', '=', '1' ),
                 'title'    => __( 'Footer Widgets', 'wpsp-redux-framework' ),
                 'desc'     => __( 'If you disable this option we recommend you go to the Customizer Manager and disable the section as well so the next time you work with the Customizer it will load faster.', 'wpsp-redux-framework' ),
                 'default'  => '1'// 1 = on | 0 = off
@@ -1250,6 +1149,7 @@
             array(
                 'id'       => 'footer-headings',
                 'type'     => 'select',
+                'required' => array( 'has-footer', '=', '1' ),
                 'title'    => __( 'Footer Widget Title Headings', 'wpsp-redux-framework' ),
                 'options'  => $widget_tags,
                 'default'  => 'div'
@@ -1257,9 +1157,116 @@
             array(
                 'id'       => 'footer-widgets-columns',
                 'type'     => 'select',
+                'required' => array( 'has-footer', '=', '1' ),
                 'title'    => __( 'Columns', 'wpsp-redux-framework' ),
                 'options'  => $el_number,
                 'default'  => '4',
+            ),
+            array(
+                'id'       => 'footer-widgets-gap',
+                'type'     => 'select',
+                'required' => array( 'has-footer', '=', '1' ),
+                'title'    => __( 'Footer Widgets Gap', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'default' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    '0' => esc_html__( '0px','wpsp-redux-framework' ),
+                    '5' => esc_html__( '5px','wpsp-redux-framework' ),
+                    '10' => esc_html__( '10px','wpsp-redux-framework' ),
+                    '15' => esc_html__( '15px','wpsp-redux-framework' ),
+                    '20' => esc_html__( '20px','wpsp-redux-framework' ),
+                    '25' => esc_html__( '25px','wpsp-redux-framework' ),
+                    '30' => esc_html__( '30px','wpsp-redux-framework' ),
+                    '35' => esc_html__( '35px','wpsp-redux-framework' ),
+                    '40' => esc_html__( '40px','wpsp-redux-framework' ),
+                    '50' => esc_html__( '50px','wpsp-redux-framework' ),
+                    '60' => esc_html__( '60px','wpsp-redux-framework' ),
+                ),
+                'default'  => 'default',
+            ),
+            array(
+                'id'       => 'footer-padding',
+                'type'     => 'text',
+                'required' => array( 'has-footer', '=', '1' ),
+                'title'    => __( 'Padding', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Format: top right bottom left.', 'wpsp-redux-framework' ),
+            ),
+        )
+    ) );
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Footer bottom', 'wpsp-redux-framework' ),
+        'id'         => 'footer-bottom',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'has-footer-bottom',
+                'type'     => 'checkbox',
+                'title'    => __( 'Bottom Footer Area', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Switch bottom footer on/off', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'footer-copyright-text',
+                'type'     => 'textarea',
+                'required' => array( 'has-footer-bottom', '=', '1' ),
+                'title'    => __( 'Copyright', 'wpsp-redux-framework' ),
+                'default'  => __( 'Copyright <a href="#">Your Business LLC.</a> - All Rights Reserved', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'bottom-footer-text-align',
+                'type'     => 'select',
+                'required' => array( 'has-footer-bottom', '=', '1' ),
+                'title'    => __( 'Text align', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'default' => esc_html__( 'Default', 'wpsp-redux-framework' ),
+                    'left' => esc_html__( 'Left','wpsp-redux-framework' ),
+                    'right' => esc_html__( 'Right','wpsp-redux-framework' ),
+                    'center' => esc_html__( 'Center','wpsp-redux-framework' ),
+                ),
+                'default'  => 'default',
+            ),
+            array(
+                'id'       => 'bottom-footer-padding',
+                'type'     => 'text',
+                'required' => array( 'has-footer-bottom', '=', '1' ),
+                'title'    => __( 'Padding', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Format: top right bottom left.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'bottom-footer-background',
+                'type'     => 'color',
+                'required' => array( 'has-footer-bottom', '=', '1' ),
+                'title'    => __( 'Background', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Footer bottom background color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'bottom-footer-color',
+                'type'     => 'color',
+                'required' => array( 'has-footer-bottom', '=', '1' ),
+                'title'    => __( 'Color', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Footer bottom text color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'bottom-footer-link-color',
+                'type'     => 'color',
+                'required' => array( 'has-footer-bottom', '=', '1' ),
+                'title'    => __( 'Link', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Footer bottom link color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'bottom-footer-link-color-hover',
+                'type'     => 'color',
+                'required' => array( 'has-footer-bottom', '=', '1' ),
+                'title'    => __( 'Link', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Footer bottom link color hover', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
             ),
         )
     ) );

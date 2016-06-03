@@ -16,16 +16,6 @@
 
 		<?php wpsp_hook_content_after(); ?>
 
-		<footer id="colophon" class="site-footer" role="contentinfo">
-			<div class="site-info">
-				<div class="container clear">
-				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'wpspblog' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'wpspblog' ), 'WordPress' ); ?></a>
-				<span class="sep"> | </span>
-				<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'wpspblog' ), 'wpspblog', '<a href="https://www.linkedin.com/in/sopheakpeas" rel="designer">Sopheak</a>' ); ?>
-				</div> <!-- .container .clear -->
-			</div><!-- .site-info -->
-		</footer><!-- #colophon -->
-		
 		<?php wpsp_hook_wrap_bottom(); ?>
 
 	</div> <!-- #wrap -->

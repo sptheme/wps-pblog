@@ -7,7 +7,7 @@
  */
 
 /*-------------------------------------------------------------------------------*/
-/* -  Toggle Bar
+/* #  Toggle Bar
 /*-------------------------------------------------------------------------------*/
 
 /**
@@ -34,7 +34,7 @@ function wpsp_toggle_bar_button() {
 }
 
 /*-------------------------------------------------------------------------------*/
-/* -  Top Bar
+/* #  Top Bar
 /*-------------------------------------------------------------------------------*/
 
 /**
@@ -49,7 +49,7 @@ function wpsp_top_bar() {
 }
 
 /*-------------------------------------------------------------------------------*/
-/* -  Header
+/* #  Header
 /*-------------------------------------------------------------------------------*/
 
 /**
@@ -167,7 +167,7 @@ function wpsp_overlay_header_wrap_close() {
 }
 
 /*-------------------------------------------------------------------------------*/
-/* ## Menu
+/* # Menu
 /*-------------------------------------------------------------------------------*/
 
 /**
@@ -314,6 +314,41 @@ function wpsp_sidr_close() { ?>
 	<?php endif; ?>
 <?php }
 
+
+/*-------------------------------------------------------------------------------*/
+/* #  Footer
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Gets the footer layout template part.
+ *
+ * @since 1.0.0
+ */
+function wpsp_footer() {
+	if ( wpsp_get_redux( 'has-footer' ) ) {
+		get_template_part( 'partials/footer/footer-layout' );
+	}
+}
+
+/**
+ * Get the footer widgets template part.
+ *
+ * @since 1.0.0
+ */
+function wpsp_footer_widgets() {
+	get_template_part( 'partials/footer/footer-widgets' );
+}
+
+/**
+ * Gets the footer bottom template part.
+ *
+ * @since 1.0.0
+ */
+function wpsp_footer_bottom() {
+	if ( wpsp_get_redux( 'has-footer-bottom', true ) ) {
+		get_template_part( 'partials/footer/footer-bottom' );
+	}
+}
 
 /**
  * Gets the scroll to top button template part.
