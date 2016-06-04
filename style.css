@@ -352,117 +352,15 @@ table { width: 100%; }
 /*--------------------------------------------------------------
 # Forms
 --------------------------------------------------------------*/
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-	border: 1px solid;
-	border-color: #ccc #ccc #bbb;
-	border-radius: 3px;
-	background: #e6e6e6;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
-	color: rgba(0, 0, 0, .8);
-	font-size: 12px;
-	font-size: 0.75rem;
-	line-height: 1;
-	padding: .6em 1em .4em;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-button:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover,
-input[type="submit"]:hover {
-	border-color: #ccc #bbb #aaa;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
-}
-
-button:focus,
-input[type="button"]:focus,
-input[type="reset"]:focus,
-input[type="submit"]:focus,
-button:active,
-input[type="button"]:active,
-input[type="reset"]:active,
-input[type="submit"]:active {
-	border-color: #aaa #bbb #bbb;
-	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"],
-input[type="number"],
-input[type="tel"],
-input[type="range"],
-input[type="date"],
-input[type="month"],
-input[type="week"],
-input[type="time"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="color"],
-textarea {
-	color: #666;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-}
-
-select {
-	border: 1px solid #ccc;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus,
-input[type="number"]:focus,
-input[type="tel"]:focus,
-input[type="range"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="week"]:focus,
-input[type="time"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="color"]:focus,
-textarea:focus {
-	color: #111;
-	outline: 0;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"],
-input[type="number"],
-input[type="tel"],
-input[type="range"],
-input[type="date"],
-input[type="month"],
-input[type="week"],
-input[type="time"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="color"] {
-	padding: 3px;
-}
-
-textarea {
-	width: 100%; 
-	max-width: 100%; 
-	-webkit-appearance: none;
-}
-
-/* Fix */
+/*fixes */
 button,
 input,
 select,
 textarea { font-size: 100%; line-height: inherit; margin: 0; vertical-align: baseline; }
+
+/* turn off number spinners */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 
 /* reset search styling */
 input[type="search"] { outline: 0 }
@@ -470,6 +368,18 @@ input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none }
+
+/* input normal */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+textarea { color: #777; padding: .6em; display: inline-block; font-size: 1em; transition: .15s linear border; -webkit-appearance: none; max-width: 100%; border: 1px solid #eee; background: #f7f7f7; font-family: inherit; line-height: inherit; }
+
+/* textarea */
+textarea { width: 100%; max-width: 100%; -webkit-appearance: none; }
 
 /* remove chrome yellow autofill */
 input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px #f7f7f7 inset }
@@ -481,26 +391,50 @@ input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px #f7f7f7 inset }
 ::-moz-placeholder { color: inherit }
 :-ms-input-placeholder { color: inherit }
 
-/* input normal */
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"],
-input[type="url"],
-input[type="search"],
-textarea { 
-	color: #777; 
-	padding: .6em; 
-	display: inline-block; 
-	font-size: 1em; 
-	transition: .15s linear border; 
-	-webkit-appearance: none; 
-	max-width: 100%; 
-	border: 1px solid #eee; 
-	background: #f7f7f7; 
-	font-family: inherit; 
-	line-height: inherit; 
-}
+/* input focus */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+textarea:focus { outline: 0; /*border-color: #129FEA; background-color: #f9f9f9; */ }
+
+/* theme button default */
+.theme-button,
+.color-button,
+input[type="submit"],
+button { color: #fff; padding: .5em 1em; margin: 0; display: inline-block; font-size: 0.923em; font-weight: normal; color: #fff; outline: none; cursor: pointer; outline: none; border: none; font-family: inherit; -webkit-appearance: none; transition: all 0.15s ease-in-out; border-radius: 3px; -webkit-font-smoothing: inherit; text-decoration: none !important; }
+p.theme-button a { color: #fff }
+.theme-button p, .vcex-button p { margin: 0 !important; }
+
+/* theme button hover */
+.theme-button:hover,
+.color-button:hover,
+input[type="submit"]:hover,
+button:hover { color: #fff }
+
+/* theme button active */
+.theme-button:active,
+.color-button:active,
+input[type="submit"]:active,
+button:active { color: #fff; box-shadow: 0 2px 2px rgba(0,0,0,.1) inset; }
+
+/* readmore link edits */
+.readmore-link-wrap { display: block }
+.search-entry .readmore-link-wrap { margin-top: 10px }
+.readmore-link { display: block; float: left; }
+
+/* make some buttons smaller */
+.readmore-link { font-size: 0.846em }
+
+/* password protection */
+.password-protection-box { padding: 20px; background: #f7f7f7; border: 1px solid #eee; margin-bottom: 40px; }
+.password-protection-box p:last-child { margin: 0 }
+.password-protection-box h2 { font-size: 1.077em; margin: 0 0 10px; }
+.password-protection-box input { height: 40px; padding-top: 0; padding-bottom: 0; }
+.password-protection-box input[type="password"] { background: #fff; width: 68%; float: left; }
+.password-protection-box input[type="submit"] { float: right; width: 30%; font-size: 1em; margin-left: 4px; height: 40px; line-height: 40px; padding-left: 25px; padding-right: 25px; padding-top: 0; padding-bottom: 0; }
 
 /*--------------------------------------------------------------
 # Structure and Layout
@@ -704,6 +638,7 @@ body.has-overlay-header .wpsp-sticky-header-holder { background: none !important
 .site-footer .col { margin-bottom: 0 }
 .full-screen-post .site-footer { margin-top: 0 }
 .site-footer .widget_recent_entries li,
+.site-footer .widget_recent_comments li,
 .site-footer .widget_categories li { margin-bottom: 4px; padding-bottom: 4px; border-bottom: 1px solid #333; }
 
 /* Footer > Typography */
