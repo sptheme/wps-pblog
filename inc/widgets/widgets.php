@@ -18,7 +18,7 @@ $footer_headings  = $footer_headings ? $footer_headings : 'div';
 register_sidebar( array(
 	'name'          => esc_html__( 'Main Sidebar', 'wpsp-blog-textdomain' ),
 	'id'            => 'sidebar',
-	'before_widget' => '<div class="widget %2$s clr">',
+	'before_widget' => '<div class="widget %2$s clear">',
 	'after_widget'  => '</div>',
 	'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
 	'after_title'   => '</'. $sidebar_headings .'>',
@@ -29,7 +29,7 @@ if ( wpsp_get_redux( 'pages-custom-sidebar', true ) ) {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Pages Sidebar', 'wpsp-blog-textdomain' ),
 		'id'            => 'pages_sidebar',
-		'before_widget' => '<div class="widget %2$s clr">',
+		'before_widget' => '<div class="widget %2$s clear">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
 		'after_title'   => '</'. $sidebar_headings .'>',
@@ -41,7 +41,7 @@ if ( wpsp_get_redux( 'is-search-custom-sidebar', true ) ) {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Search Results Sidebar', 'wpsp-blog-textdomain' ),
 		'id'            => 'search_sidebar',
-		'before_widget' => '<div class="widget %2$s clr">',
+		'before_widget' => '<div class="widget %2$s clear">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
 		'after_title'   => '</'. $sidebar_headings .'>',
@@ -62,7 +62,7 @@ if ( $footer_widgets ) {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Footer Column 1', 'wpsp-blog-textdomain' ),
 		'id'            => 'footer_one',
-		'before_widget' => '<div class="footer-widget %2$s clr">',
+		'before_widget' => '<div class="footer-widget %2$s clear">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<'. $footer_headings .' class="widget-title">',
 		'after_title'   => '</'. $footer_headings .'>',
@@ -73,7 +73,7 @@ if ( $footer_widgets ) {
 		register_sidebar( array(
 			'name'          => esc_html__( 'Footer Column 2', 'wpsp-blog-textdomain' ),
 			'id'            => 'footer_two',
-			'before_widget' => '<div class="footer-widget %2$s clr">',
+			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<'. $footer_headings .' class="widget-title">',
 			'after_title'   => '</'. $footer_headings .'>'
@@ -85,7 +85,7 @@ if ( $footer_widgets ) {
 		register_sidebar( array(
 			'name'          => esc_html__( 'Footer Column 3', 'wpsp-blog-textdomain' ),
 			'id'            => 'footer_three',
-			'before_widget' => '<div class="footer-widget %2$s clr">',
+			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<'. $footer_headings .' class="widget-title">',
 			'after_title'   => '</'. $footer_headings .'>',
@@ -97,7 +97,7 @@ if ( $footer_widgets ) {
 		register_sidebar( array(
 			'name'          => esc_html__( 'Footer Column 4', 'wpsp-blog-textdomain' ),
 			'id'            => 'footer_four',
-			'before_widget' => '<div class="footer-widget %2$s clr">',
+			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<'. $footer_headings .' class="widget-title">',
 			'after_title'   => '</'. $footer_headings .'>',
@@ -109,7 +109,7 @@ if ( $footer_widgets ) {
 		register_sidebar( array(
 			'name'          => esc_html__( 'Footer Column 5', 'wpsp-blog-textdomain' ),
 			'id'            => 'footer_five',
-			'before_widget' => '<div class="footer-widget %2$s clr">',
+			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<'. $footer_headings .' class="widget-title">',
 			'after_title'   => '</'. $footer_headings .'>',

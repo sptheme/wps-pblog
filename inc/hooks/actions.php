@@ -71,6 +71,10 @@ add_action( 'wpsp_hook_content_after', 'wpsp_overlay_header_wrap_close', 9999 );
 -------------------------------------------------------------------------------*/
 add_action( 'wpsp_hook_wrap_bottom', 'wpsp_footer' );
 
+/* Footer > Before
+-------------------------------------------------------------------------------*/
+add_action( 'wpsp_hook_footer_before', 'wpsp_footer_callout' );
+
 /* Footer > Inner
 -------------------------------------------------------------------------------*/
 add_action( 'wpsp_hook_footer_inner', 'wpsp_footer_widgets' );

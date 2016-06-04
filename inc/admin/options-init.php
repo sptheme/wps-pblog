@@ -1126,6 +1126,48 @@
         'icon'             => 'el el-credit-card'
     ) );
     Redux::setSection( $opt_name, array(
+        'title'      => __( 'Footer Callout', 'wpsp-redux-framework' ),
+        'id'         => 'footer-callout',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'has-footer-callout',
+                'type'     => 'checkbox',
+                'title'    => __( 'Footer callout', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Switch footer callout on/off', 'wpsp-redux-framework' ),
+                'default'  => '1'// 1 = on | 0 = off
+            ),
+            array(
+                'id'       => 'callout-link',
+                'type'     => 'text',
+                'required' => array( 'has-footer-callout', '=', '1' ),
+                'title'    => __( 'Callout link', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a valid link.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'callout-link-text',
+                'type'     => 'text',
+                'required' => array( 'has-footer-callout', '=', '1' ),
+                'title'    => __( 'Callout link text', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter your text.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'callout-text',
+                'type'     => 'editor',
+                'required' => array( 'has-footer-callout', '=', '1' ),
+                'title'    => __( 'Callout text', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Override the default callout text and if your callout box is disabled globally but you have content here it will still display for this page or post.', 'wpsp-redux-framework' ),
+                'default'          => 'I am the footer call-to-action block, here you can add some relevant/important information about your company or product. I can be disabled in the theme options.',
+                'args'     => array(
+                    'media_buttons'    => false,
+                    'teeny'            => true,
+                    'textarea_rows'    => 5
+                )
+            ),
+        )
+    ) );         
+    Redux::setSection( $opt_name, array(
         'title'      => __( 'Footer Widget', 'wpsp-redux-framework' ),
         'id'         => 'footer-widget',
         'subsection' => true,

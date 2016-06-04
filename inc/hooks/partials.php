@@ -320,6 +320,17 @@ function wpsp_sidr_close() { ?>
 /*-------------------------------------------------------------------------------*/
 
 /**
+ * Gets the footer callout template part.
+ *
+ * @since 1.0.0
+ */
+function wpsp_footer_callout() {
+	if ( wpsp_get_redux( 'has-footer-callout' ) ) {
+		get_template_part( 'partials/footer/footer-callout' );
+	}
+}
+
+/**
  * Gets the footer layout template part.
  *
  * @since 1.0.0
