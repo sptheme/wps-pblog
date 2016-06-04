@@ -50,28 +50,28 @@ $content   = wpsp_translate_theme_mod( 'callout_text', $content );
 $link      = wpsp_translate_theme_mod( 'callout_link', $link );
 $link_text = wpsp_translate_theme_mod( 'callout_link_txt', $link_text ); ?>
 	
-<div id="footer-callout-wrap" class="clear <?php echo wpsp_get_redux( 'callout_visibility', 'always-visible' ); ?>">
+<div id="callout-wrap" class="clear <?php echo wpsp_get_redux( 'callout_visibility', 'always-visible' ); ?>">
 
-	<div id="footer-callout" class="clear container">
+	<div id="callout" class="clear container">
 
-		<div id="footer-callout-left" class="footer-callout-content clear <?php if ( ! $link ) echo 'full-width'; ?>">
+		<div id="callout-left" class="callout-content clear <?php if ( ! $link ) echo 'full-width'; ?>">
 
 			<?php echo do_shortcode( $content ); ?>
 
-		</div><!-- #footer-callout-left -->
+		</div><!-- #callout-left -->
 
 		<?php
 		// Display footer callout button if callout link & text options are not blank in the admin
 		if ( $link ) : ?>
 
-			<div id="footer-callout-right" class="footer-callout-button clear">
+			<div id="callout-right" class="callout-button clear">
 
 				<a href="<?php echo esc_url( $link ); ?>" class="theme-button" title="<?php echo esc_attr( $link_text ); ?>"<?php echo $target; ?><?php echo $rel; ?>><?php echo $link_text; ?></a>
 
-			</div><!-- #footer-callout-right -->
+			</div><!-- #callout-right -->
 
 		<?php endif; ?>
 
-	</div><!-- #footer-callout -->
+	</div><!-- #callout -->
 
-</div><!-- #footer-callout-wrap -->	
+</div><!-- #callout-wrap -->	

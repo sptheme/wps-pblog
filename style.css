@@ -32,6 +32,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Grid & Columns
 # Header
 # Footer
+	## Footer + Footer Widgets
+	## Back To Top Button
 # Navigation
 	## Links
 	## Menus
@@ -62,6 +64,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Lean Modal
 	## Social Button
 	## Social Sharing
+	## Callout
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -687,7 +690,51 @@ body.has-overlay-header .wpsp-sticky-header-holder { background: none !important
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-/* Footer > Back To Top Button */
+
+/*--------------------------------------------------------------
+## Footer + Footer Widgets
+--------------------------------------------------------------*/
+
+/* Footer > Main */
+.site-footer { background: #262626; color: #777; }
+.site-footer .container { padding-top: 45px }
+.single-col-footer .col { margin-left: 0; width: 100%; margin-right: 0; }
+.site-footer ul { margin: 0 }
+.site-footer .col { margin-bottom: 0 }
+.full-screen-post .site-footer { margin-top: 0 }
+.site-footer .widget_recent_entries li,
+.site-footer .widget_categories li { margin-bottom: 4px; padding-bottom: 4px; border-bottom: 1px solid #333; }
+
+/* Footer > Typography */
+.footer-widget .widget-title { display: block; line-height: 1.5; color: #fff; font-weight: 600; font-size: 1.077em; margin: 0 0 20px; }
+.site-footer p { color: #777 }
+.site-footer-widgets { position: relative }
+.site-footer a,
+.site-footer strong { color: #999 }
+.site-footer a:hover { color: #fff; text-decoration: none; }
+
+/* Footer > Widgets */
+.footer-widget { padding-bottom: 45px }
+#footer-widgets.wpsp-row .col { margin-bottom: 0 !important }
+.footer-widget .wpsp-widget-recent-posts-title { color: #fff }
+.sidebar-widget-icons .footer-widget ul { list-style: none; }
+
+/* Footer > Bottom */
+#footer-bottom { background: #222; color: #999; font-size: 0.923em; }
+#footer-bottom-inner { position: relative }
+#footer-bottom p { color: #999 }
+#footer-bottom p:last-child { margin: 0 }
+#footer-bottom-inner { padding-top: 20px; padding-bottom: 20px; }
+#footer-bottom a { color: #aaa }
+#footer-bottom a:hover { color: #fff; text-decoration: none; }
+
+/* Footer > Copyright */
+#footer-copyright { font-size: 0.923em; font-weight: 400; }
+#footer-copyright p:last-child { margin: 0 }
+
+/*--------------------------------------------------------------
+## Back To Top Button
+--------------------------------------------------------------*/
 #site-scroll-top { 
 	position: fixed; 
 	right: 40px; 
@@ -1622,7 +1669,8 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 .widget_recent_entries li,
 .widget_archive li,
 .widget_recent_comments li,
-.widget_pages li { 
+.widget_pages li,
+.site-footer .widget_nav_menu li { 
 	padding: 6px 0; 
 	border-bottom: 1px solid #eee; 
 }
@@ -1631,7 +1679,8 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 .widget_recent_entries li:first-child,
 .widget_archive li:first-child,
 .widget_recent_comments li:first-child,
-.widget_pages li:first-child { border-top: 1px solid #eee }
+.widget_pages li:first-child,
+.site-footer .widget_nav_menu li:first-child { border-top: 1px solid #eee }
 
 .widget ul.children li:last-child { border-bottom: none; }
 
@@ -1700,6 +1749,8 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 .widget_calendar caption { cursor: pointer; font-size: 13px; text-transform: uppercase; margin: 0; padding: 12px; outline: 0 none !important; color: #fff; text-align: center; }
 .widget_calendar tbody a { display: block; text-decoration: underline; }
 .widget_calendar th { text-align: center; border: 1px solid transparent; border-top: none; padding: 7px 0; color: #a7a7a7; }
+#footer .widget_calendar thead th { background: #222 }
+#footer .widget_calendar tbody td { border-color: #222 }
 
 /* Widgets > Categories */
 .widget_categories li { position: relative }
@@ -2503,3 +2554,15 @@ ul.wpsp-social-share { list-style: none }
 .wpsp-social-share.style-three-d li.share-linkedin a { background: #4875B4 }
 .wpsp-social-share.style-three-d li.share-linkedin a:hover { background: #3e659c }
 .wpsp-social-share.style-three-d li { margin-bottom: 3px }
+
+/*--------------------------------------------------------------
+## Callout
+--------------------------------------------------------------*/
+#callout-wrap { background: #f7f7f7; padding: 30px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+#callout { font-size: 1.385em }
+#callout-left,
+#callout-right { display: block; float: left; }
+#callout-left { width: 75% }
+#callout-left.full-width { width: 100% }
+#callout-right { width: 23%; margin-left: 2%; }
+#callout .theme-button { margin: 0; width: 100%; text-align: center; font-size: 0.889em; padding: 15px 20px; }
