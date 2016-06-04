@@ -181,7 +181,7 @@ function wpsp_layout_class() {
 		elseif ( is_page() && ( wpsp_get_redux('page-layout') !='inherit' ) ) $layout = wpsp_get_redux('page-layout');
 
 		// Else check for custom post
-		elseif ( is_singular('portfolio') && ( $wpsp_get_redux('portfolio-single-layout') !='inherit' ) ) $layout = $wpsp_get_redux('portfolio-single-layout');
+		elseif ( is_singular('portfolio') && ( wpsp_get_redux('portfolio-single-layout') !='inherit' ) ) $layout = wpsp_get_redux('portfolio-single-layout');
 
 		// Else get global option
 		else $layout = wpsp_get_redux( 'layout-global' );
