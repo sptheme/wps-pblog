@@ -662,6 +662,9 @@
                 'type'     => 'media',
                 'title'    => __( 'Main logo', 'wpsp-redux-framework' ),
                 'subtitle' => __( 'Upload main image logo', 'wpsp-redux-framework' ),
+                'default'  => array(
+                    'url'=> get_template_directory_uri() . '/images/icons/apple-touch-icon-76x76-precomposed.png'
+                ),
             ),
             array(
                 'id'       => 'logo-top-margin',
@@ -2144,11 +2147,17 @@
                 'id'       => 'custom-login-logo',
                 'type'     => 'media',
                 'title'    => __( 'Custom login logo', 'wpsp-redux-framework' ),
+                'default'  => array(
+                    'url'=> get_template_directory_uri() . '/images/icons/apple-touch-icon-120x120-precomposed.png'
+                ),
             ),
             array(
                 'id'       => 'custom-admin-favicon',
                 'type'     => 'media',
                 'title'    => __( 'Custom favicon', 'wpsp-redux-framework' ),
+                'default'  => array(
+                    'url'=> get_template_directory_uri() . '/images/icons/favicon-16x16.png'
+                ),
             ),
             array(
                 'id'       => 'login-logo-height',
