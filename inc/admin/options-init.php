@@ -1151,6 +1151,7 @@
                 'required' => array( 'has-footer-callout', '=', '1' ),
                 'title'    => __( 'Callout link text', 'wpsp-redux-framework' ),
                 'subtitle' => __( 'Enter your text.', 'wpsp-redux-framework' ),
+                'default'  => __( 'Keep in Touch', 'wpsp-redux-framework' ),
             ),
             array(
                 'id'       => 'callout-text',
