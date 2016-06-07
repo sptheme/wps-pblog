@@ -1830,13 +1830,72 @@ h6 a:hover,
 /*--------------------------------------------------------------
 ## Comments
 --------------------------------------------------------------*/
-.comment-content a {
-	word-wrap: break-word;
-}
+#comments { margin-bottom: 40px; }
+#comments.empty-closed-comments { display: none; }
 
-.bypostauthor {
-	display: block;
-}
+/* Comments > Entry */
+#comments .children { margin-left: 30px; }
+#comments .comment { position: relative; }
+#comments .comment-body { position: relative; margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #eee; }
+#comments .comment .comment-body { margin-left: 80px; }
+body.comment-avatars-disabled #comments .comment .comment-body { margin-left: 0; }
+#comments .comment-content p:last-child { margin-bottom: 0; }
+
+/* Comments > Avatar */
+#comments .comment-author .avatar { left: -80px; position: absolute; top: 0px; padding: 3px; border: 1px solid #e4e4e4; }
+#comments .comment-author .avatar img { display: block }
+
+/* Comments > Meta */
+#comments .comment-meta { margin-bottom: 15px; }
+#comments .comment-meta .fn { display: block; font-size: 1.077em; font-weight: 600; color: #000; }
+#comments .comment-meta .fn .url { color: #000; }
+#comments .comment-meta .says { display: none; }
+#comments .comment-meta a:hover { text-decoration: none; }
+#comments .comment-metadata time { color: #a7a7a7; }
+#comments .comment-metadata .comment-edit-link { display: inline-block; margin-left: 6px; }
+#comments .comment-metadata .comment-edit-link:hover { text-decoration: underline; }
+
+/* Comments > Reply */
+#comments .comment-body .reply { padding-top: 15px }
+#comments .comment-body .reply a { color: #a7a7a7; text-decoration: underline; }
+#comments .comment-body .reply a:hover { color: #000 }
+#comments .comment-reply-title { font-size: 1.231em; margin-bottom: 0; }
+#comments .logged-in-as { font-size: 0.923em; margin: 0 0 10px; }
+
+#comments #cancel-comment-reply-link { font-size: 0.923em; color: #989898; float: right; font-weight: normal; border: 2px solid #ededed; padding: 3px 10px; border-radius: 3px; text-decoration: none; }
+#comments #cancel-comment-reply-link:hover { color: #000 }
+#comments #cancel-comment-reply-link .fa { margin-right: 7px }
+
+/* Comments > Form */
+#comments p.comment-notes { color: #666; margin: 10px 0 20px }
+#comments .comment-form-author,
+#comments .comment-form-email,
+#comments .comment-form-website,
+#comments .comment-form-comment,
+#comments .comment-form-url { margin: 0 0 10px }
+#comments .comment-form-author input,
+#comments .comment-form-author input,
+#comments .comment-form-email input,
+#comments .comment-form-website input,
+#comments .comment-form-comment input,
+#comments .comment-form-url input { width: 50% }
+#comments #commentform label { display: block; margin-bottom: 3px; }
+#comments .form-allowed-tags { display: none }
+#comments span.required { color: #F00; font-size: 9px; position: relative; top: -4px; }
+
+/* Comments > Closed */
+.no-comments { margin-top: 40px; padding: 10px; background: #f7f7f7; border: 1px solid #eee; text-align: center; }
+.no-comments .fa { margin-right: 8px }
+
+/* Comments > Pagination */
+.comment-navigation a.page-numbers,
+.comment-navigation span.page-numbers { display: block; float: left; margin: 0 4px 4px 0; }
+
+/* Comments > JetPack */
+.comment-subscription-form { margin: 0px }
+.comment-subscription-form:after { clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden; }
+.comment-subscription-form input,
+.comment-subscription-form label { float: left; font-size: 0.846em; margin: 0px !important; margin-right: 5px !important; }
 
 /*--------------------------------------------------------------
 # Infinite scroll
