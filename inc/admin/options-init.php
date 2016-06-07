@@ -1185,6 +1185,13 @@
                 'default'  => '1'// 1 = on | 0 = off
             ),
             array(
+                'id'       => 'has-footer-reveal',
+                'type'     => 'checkbox',
+                'title'    => __( 'Footer Reveal', 'wpsp-redux-framework' ),
+                'desc'     => __( 'Enable the footer reveal style. The footer will be placed in a fixed postion and display on scroll. This setting is for the "Full-Width" layout only and desktops only.', 'wpsp-redux-framework' ),
+                'default'  => '0'// 1 = on | 0 = off
+            ),
+            array(
                 'id'       => 'is-footer-widgets',
                 'type'     => 'checkbox',
                 'required' => array( 'has-footer', '=', '1' ),

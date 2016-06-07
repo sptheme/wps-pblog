@@ -92,6 +92,12 @@
 					self.stickyHeaderShrink();
 				}
 
+				// Footer Reveal => Must run before fixed footer!!!
+				self.footerRevealInit();
+
+				// Fixed Footer
+				self.fixedFooter();
+
 			} );
 
 			// Run on Window Resize
@@ -101,12 +107,21 @@
 					self.resizeUpdateConfig();
 					self.megaMenusWidth();
 					self.inlineHeaderLogo();
+					self.fixedFooter();
+					self.footerRevealInit();
+				}
+
+				// Window height change
+				if ( self.config.$window.height() != self.config.$windowHeight ) {
+					self.fixedFooter();
+					self.footerRevealInit();
 				}
 			} );
 
 			// Run on Scroll
 			self.config.$window.scroll( function() {
 				self.config.$windowTop = self.config.$window.scrollTop();
+				self.footerRevealScrollShow();
 			} );
 
 			// On orientation change
@@ -154,6 +169,16 @@
 			// Mobile menu style
 			if ( $( '#site-navigation-wrap' ).length ) {
 				this.config.$mobileMenuStyle = wpspLocalize.mobileMenuStyle;
+			}
+
+			// Check if fixed footer is enabled
+			if ( this.config.$body.hasClass( 'wpsp-has-fixed-footer' ) ) {
+				this.config.$hasFixedFooter = true;
+			}
+			
+			// Footer reveal
+			if ( $( '.footer-reveal' ).length && $( '#wrap' ).length && $( '#content' ).length ) {
+				this.config.$hasFooterReveal = true;
 			}
 
 			// Vertical header
@@ -1211,6 +1236,99 @@
 			// Add equal heights
 			$( '.equal-height-column, .match-height-row .match-height-content, .vcex-feature-box-match-height .vcex-match-height, .equal-height-content, .match-height-grid .match-height-content, .blog-entry-equal-heights .blog-entry-inner, .wpsp-vc-row-columns-match-height .wpsp-vc-column-wrapper' ).matchHeight();
 
+		},
+
+		/**
+		 * Footer Reveal Display on Load
+		 *
+		 * @since 1.0.0
+		 */
+		footerRevealInit: function() {
+
+			// Return if disabled
+			if ( ! this.config.$hasFooterReveal ) {
+				return;
+			}
+
+			// Declare main vars
+			var $showFooter         = false,
+				$windowHeight       = $( window ).height(),
+				$footerRevealHeight = $( '.footer-reveal' ).outerHeight();
+
+			// If window height is greater then the wrap height display footer
+			if ( $windowHeight > $( '#wrap' ).height() ) {
+				$showFooter = true;
+			}
+
+			// If window height is smaller then footer reveal display footer
+			if ( $windowHeight < $footerRevealHeight ) {
+				$showFooter = true;
+			}
+
+			// Display footer reveal since we can't properly perform the reveal
+			if ( $showFooter ) {
+				$( '.footer-reveal' ).show().toggleClass( 'footer-reveal footer-reveal-visible' );
+			}
+
+			// Add margin to the wrap div for the footer reveal
+			else {
+				
+				$( '#wrap' ).css( {
+					'margin-bottom': $footerRevealHeight
+				} );
+
+			}
+
+		},
+
+		/**
+		 * Footer Reveal Display on Scroll
+		 *
+		 * @since 1.0.0
+		 */
+		footerRevealScrollShow: function() {
+			if ( this.config.$hasFooterReveal ) {
+				if ( this.config.$windowTop > $( '#main' ).offset().top ) {
+					if ( ! $( '.footer-reveal' ).hasClass( 'wpsp-visible' ) ) {
+						$( '.footer-reveal' ).show().addClass( 'wpsp-visible' );
+					}
+				} else {
+					if ( $( '.footer-reveal' ).hasClass( 'wpsp-visible' ) ) {
+						$( '.footer-reveal' ).removeClass( 'wpsp-visible' ).hide();
+					}
+				}
+			}
+		},
+
+		/**
+		 * Set min height on main container to prevent issue with extra space below footer
+		 *
+		 * @since 1.0.0
+		 */
+		fixedFooter: function() {
+
+			// Return if disabled
+			if ( ! this.config.$hasFixedFooter ) {
+				return;
+			}
+
+			// Get main wrapper
+			var $main = $( '#main' );
+
+			// Make sure main exists
+			if ( $main.length ) {
+
+				// Set main vars
+				var $mainHeight = $( '#main' ).outerHeight(),
+					$htmlHeight = $( 'html' ).height();
+
+				// Check for footerReveal and add min height
+				var $minHeight = $mainHeight + ( this.config.$window.height() - $htmlHeight );
+
+				// Add min height
+				$main.css( 'min-height', $minHeight );
+
+			}
 		},
 
 		/**

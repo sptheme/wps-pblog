@@ -369,3 +369,25 @@ function wpsp_footer_bottom() {
 function wpsp_scroll_top() {
 	get_template_part( 'partials/scroll-top' );
 }
+
+/**
+ * Footer reaveal open code
+ *
+ * @since 1.0.0
+ */
+function wpsp_footer_reveal_open() {
+	if ( wpsp_get_redux( 'has-footer-reveal' ) ) {
+		get_template_part( 'partials/footer/footer-reveal-open' );
+	}
+}
+
+/**
+ * Footer reaveal close code
+ *
+ * @since 1.0.0
+ */
+function wpsp_footer_reveal_close() {
+	if ( wpsp_get_redux( 'has-footer-reveal' ) ) {
+		get_template_part( 'partials/footer/footer-reveal-close' );
+	}
+}

@@ -34,6 +34,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Footer
 	## Footer + Footer Widgets
 	## Back To Top Button
+	## Footer Reveal
 # Navigation
 	## Links
 	## Menus
@@ -702,6 +703,20 @@ body.has-overlay-header .wpsp-sticky-header-holder { background: none !important
 	visibility: visible; 
 	opacity: 1; 
 }
+
+/*--------------------------------------------------------------
+## Footer Reveal
+--------------------------------------------------------------*/
+.footer-has-reveal #site-header.overlay-header { background: none }
+@media only screen and (min-width: 960px) { 
+	.footer-reveal { display: block; visibility: hidden; opacity: 0; -moz-opacity: 0; -webkit-opacity: 0; z-index: 1; position: fixed; bottom: 0; left: 0; width: 100%; }
+	.footer-has-reveal #content { position: relative; z-index: 2; background: #fff; }
+}
+@media only screen and (max-width: 959px) { 
+	body.footer-has-reveal #wrap { margin-bottom: 0 !important }
+}
+.footer-reveal.wpsp-visible { visibility: visible; opacity: 1; -moz-opacity: 1; -webkit-opacity: 1; }
+
 
 /*--------------------------------------------------------------
 # Navigation

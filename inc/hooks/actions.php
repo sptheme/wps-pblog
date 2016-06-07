@@ -73,6 +73,7 @@ add_action( 'wpsp_hook_wrap_bottom', 'wpsp_footer' );
 
 /* Footer > Before
 -------------------------------------------------------------------------------*/
+add_action( 'wpsp_hook_footer_before', 'wpsp_footer_reveal_open', 0 );
 add_action( 'wpsp_hook_footer_before', 'wpsp_footer_callout' );
 
 /* Footer > Inner
@@ -82,6 +83,7 @@ add_action( 'wpsp_hook_footer_inner', 'wpsp_footer_widgets' );
 /* Footer > After
 -------------------------------------------------------------------------------*/
 add_action( 'wpsp_hook_footer_after', 'wpsp_footer_bottom' );
+add_action( 'wpsp_hook_footer_after', 'wpsp_footer_reveal_close', 99 );
 
 /* WP_Footer
 -------------------------------------------------------------------------------*/
