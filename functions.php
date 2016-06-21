@@ -298,6 +298,9 @@ class WPSP_Theme_Setup {
 		wp_enqueue_script( 'wpsp-sliderpro', $dir .'vendors/jquery.sliderPro.js', array( 'jquery' ), '1.2.5', true );
 		wp_enqueue_script( 'wpsp-sliderpro-customthumbnails', $dir .'vendors/jquery.sliderProCustomThumbnails.js', array( 'jquery' ), false, true );
 
+		// Magnific Popup
+		wp_enqueue_script( 'wpsp-magnific-popup', $dir .'vendors/jquery.magnific-popup.min.js', array( 'jquery' ), $theme_version, true );
+
 		// Custom Selects
 		wp_enqueue_script( 'wpsp-custom-select', $dir .'vendors/jquery.customSelect.js', array( 'jquery' ), $theme_version, true );
 
@@ -397,6 +400,7 @@ class WPSP_Theme_Setup {
 		//Enabling Local Web Fonts
 		wp_enqueue_style( 'local-fonts-english', get_template_directory_uri() . '/fonts/custom-fonts.css' );
 		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/fonts/font-awesome/css/font-awesome.min.css' );
+		wp_enqueue_style( 'magnific-popup', WPSP_CSS_DIR_URI . 'magnific-popup.css' );
 	}
 
 	/**
