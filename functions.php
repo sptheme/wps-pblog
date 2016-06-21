@@ -298,6 +298,9 @@ class WPSP_Theme_Setup {
 		wp_enqueue_script( 'wpsp-sliderpro', $dir .'vendors/jquery.sliderPro.js', array( 'jquery' ), '1.2.5', true );
 		wp_enqueue_script( 'wpsp-sliderpro-customthumbnails', $dir .'vendors/jquery.sliderProCustomThumbnails.js', array( 'jquery' ), false, true );
 
+		// Custom Selects
+		wp_enqueue_script( 'wpsp-custom-select', $dir .'vendors/jquery.customSelect.js', array( 'jquery' ), $theme_version, true );
+
 		// Tooltips
 		wp_enqueue_script( 'wpsp-tipsy', $dir .'vendors/tipsy.js', array( 'jquery' ), $theme_version, true );
 

@@ -72,6 +72,7 @@
 				self.menuSearch();
 				self.backTopLink();
 				self.archiveMasonryGrids();
+				self.customSelects();
 			} );
 
 			// Run on Window Load
@@ -1330,6 +1331,25 @@
 			} );
 
 		   
+		},
+
+		/**
+		 * Custom Selects
+		 *
+		 * @since 1.0.0
+		 */
+		customSelects: function() {
+
+			// Custom selects based on wpspLocalize array
+			$( wpspLocalize.customSelects ).customSelect( {
+				customClass: 'theme-select'
+			} );
+
+			// WooCommerce
+			if ( $.fn.select2 !== undefined ) {
+				$( '#calc_shipping_country' ).select2();
+			}
+
 		},
 
 		/**
