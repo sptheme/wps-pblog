@@ -14,6 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $attachments = rwmb_meta( 'wpsp_format_gallery_album', array('type' => 'image_advanced', 'size' => 'thumb-landscape') ); ?>
 
+<?php if ( $attachments ) : ?>
 <div id="post-media" class="clear">
 
 	<div class="gallery-format-post-slider">
@@ -49,4 +50,5 @@ $attachments = rwmb_meta( 'wpsp_format_gallery_album', array('type' => 'image_ad
 	</div> <!-- .gallery-format-post-slider -->
 
 </div> <!-- #post-media -->
+<?php endif; ?>
 
