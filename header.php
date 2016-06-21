@@ -33,6 +33,6 @@
 
 		<?php wpsp_hook_content_before(); ?>
 
-		<div id="content" class="site-content container clear">
+		<div id="content" class="site-content">
 
 			<?php wpsp_hook_content_top(); ?>
