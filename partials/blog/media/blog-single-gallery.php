@@ -12,28 +12,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } 
 
-$photos_meta = rwmb_meta( 'wpsp_format_gallery_album', array('type' => 'image_advanced', 'size' => 'thumb-landscape') );
-$photo_col = wpsp_get_redux('post-gallery-format-cols');
-// Add Standard Classes
-$classes   = 'col ';
-$classes .= wpsp_grid_class( $photo_col ); 
-
-// Overlay style
-$overlay = wpsp_get_redux( 'media-gallery-overlay' ); ?>
+$attachments = rwmb_meta( 'wpsp_format_gallery_album', array('type' => 'image_advanced', 'size' => 'thumb-landscape') ); ?>
 
 <div id="post-media" class="clear">
-	<div class="gallery wpsp-row clearfix">
-	<?php foreach ( $photos_meta as $photo ) : ?>
-		<div class="<?php echo $classes; ?>">
-			<div class="blog-entry-media entry-media <?php echo wpsp_overlay_classes( $overlay ); ?>">
-				<a href="<?php echo $photo['full_url'];?>" rel="bookmark" title="<?php echo $photo['title'];?>">
-					<img src="<?php echo $photo['url'];?>">
-					<?php wpsp_overlay( 'inside_link', $overlay ); ?>
-				</a>
-				<?php wpsp_overlay( 'outside_link', $overlay ); ?>
-			</div>
-		</div>
-	<?php endforeach; ?>
-	</div>
+
+	<div class="gallery-format-post-slider">
+
+		<div class="wpsp-slider-preloaderimg">
+			<?php
+			// Display first image as a placeholder while the others load
+			wpsp_get_blog_entry_thumbnail(); ?>
+		</div><!-- .wpsp-slider-preloaderimg -->
+
+		<div class="wpsp-slider slider-pro" <?php wpsp_blog_slider_data_atrributes(); ?>>
+
+			<div class="wpsp-slider-slides sp-slides">
+
+			<?php foreach ( $attachments as $attachment ) : ?>
+				<div class="wpsp-slider-slide sp-slide">
+					<a href="<?php echo $attachment['full_url'];?>" rel="bookmark" title="<?php echo $attachment['title'];?>" class="wpsp-lightbox-group-item">
+						<img src="<?php echo $attachment['url'];?>">
+					</a>
+				</div> <!-- .sp-slide -->
+			<?php endforeach; ?>
+
+			</div> <!-- .sp-slides -->
+
+			<div class="wpsp-slider-thumbnails sp-thumbnails">
+				<?php foreach ( $attachments as $attachment ) : ?>
+					<img src="<?php echo $attachment['url'];?>" class="wpsp-slider-thumbnail sp-thumbnail">
+				<?php endforeach; ?>
+			</div> <!-- .sp-thumbnails -->
+
+		</div> <!-- .slider-pro -->
+
+	</div> <!-- .gallery-format-post-slider -->
+
 </div> <!-- #post-media -->
 

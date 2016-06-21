@@ -294,6 +294,10 @@ class WPSP_Theme_Setup {
 		// Leaner modal used for search/woo modals: @todo: Replace with CSS+light js
 		wp_enqueue_script( 'wpsp-leanner-modal', $dir .'vendors/leanner-modal.js', array( 'jquery' ), $theme_version, true );
 
+		// Slider Pro
+		wp_enqueue_script( 'wpsp-sliderpro', $dir .'vendors/jquery.sliderPro.js', array( 'jquery' ), '1.2.5', true );
+		wp_enqueue_script( 'wpsp-sliderpro-customthumbnails', $dir .'vendors/jquery.sliderProCustomThumbnails.js', array( 'jquery' ), false, true );
+
 		// Tooltips
 		wp_enqueue_script( 'wpsp-tipsy', $dir .'vendors/tipsy.js', array( 'jquery' ), $theme_version, true );
 

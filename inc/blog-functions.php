@@ -756,3 +756,36 @@ function wpsp_author_has_social() {
 
 }
 endif;
+
+
+/*-------------------------------------------------------------------------------*/
+/* [ Slider ]
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Returns data attributes for the blog gallery slider
+ *
+ * @since 1.0.0
+ * @return array
+ */
+function wpsp_blog_slider_data_atrributes() {
+
+	// Define main vars
+	$attributes                      = array();
+	$data                            = '';
+	$attributes['auto-play']         = 'false';
+	$attributes['buttons']           = 'false';
+	$attributes['fade']              = 'true';
+	$attributes['loop']              = 'true';
+	$attributes['thumbnails-height'] = '60';
+	$attributes['thumbnails-width']  = '60';
+
+	// Apply filters for child theming
+	$attributes = apply_filters( 'wpsp_blog_slider_data_atrributes', $attributes );
+
+	// Turn array into HTML
+	foreach ( $attributes as $key => $val ) {
+		echo ' data-'. esc_attr( $key ) .'="'. esc_attr( $val ) .'"';
+	}
+
+}
