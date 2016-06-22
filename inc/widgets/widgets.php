@@ -125,6 +125,8 @@ if ( $footer_widgets ) {
 if ( ! function_exists( 'wpsp_sidebar_primary' ) ) :	
 function wpsp_sidebar_primary() {
 	
+	$sidebar = 'sidebar';
+
 	// Set sidebar based on page
 	if ( is_home() && wpsp_get_redux('sidebar-global') ) $sidebar = wpsp_get_redux('sidebar-global');
 
@@ -153,11 +155,6 @@ function wpsp_sidebar_primary() {
 		// Get meta
 		$meta = get_post_meta($post->ID,'wpsp_sidebar_primary',true);
 		if ( $meta ) { $sidebar = $meta; }
-	}
-
-	// Never show empty sidebar
-	if ( ! is_active_sidebar( $sidebar ) ) {
-		$sidebar = 'sidebar';
 	}
 
 	// Return sidebar
