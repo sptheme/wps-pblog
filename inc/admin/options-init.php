@@ -1773,14 +1773,6 @@
                 'default'  => 'inherit',
             ),
             array(
-                'id'       => 'sidebar-portfolio-single-post',
-                'type'     => 'select',
-                'data'     => 'sidebar',
-                'title'    => __( 'Single', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Sidebar for portfolio single post', 'wpsp-redux-framework' ),
-                'desc'     => __( 'Other sidebar will override this option if they are set', 'wpsp-redux-framework' ),
-            ),
-            array(
                 'id'       => 'portfolio-next-prev',
                 'type'     => 'checkbox',
                 'title'    => __( 'Next & Previous Links', 'wpsp-redux-framework' ),
