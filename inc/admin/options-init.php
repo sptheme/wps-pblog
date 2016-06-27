@@ -1866,13 +1866,6 @@
                 'default'  => 'inherit',
             ),
             array(
-                'id'       => 'sidebar-portfolio-archive',
-                'type'     => 'select',
-                'data'     => 'sidebar',
-                'title'    => __( 'Sidebar archive', 'wpsp-redux-framework' ),
-                'subtitle' => __( 'Sidebar for archive page', 'wpsp-redux-framework' ),
-            ),
-            array(
                 'id'       => 'portfolio-archive-grid-style',
                 'type'     => 'select',
                 'title'    => __( 'Grid style', 'wpsp-redux-framework' ),

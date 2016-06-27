@@ -183,9 +183,6 @@ function wpsp_layout_class() {
 		elseif ( is_single() && ( wpsp_get_redux('single-layout') !='inherit' ) ) $layout = wpsp_get_redux('single-layout');
 		elseif ( is_page() && ( wpsp_get_redux('page-layout') !='inherit' ) ) $layout = wpsp_get_redux('page-layout');
 
-		// Else check for custom post
-		elseif ( is_singular('portfolio') && ( wpsp_get_redux('portfolio-single-layout') !='inherit' ) ) $layout = wpsp_get_redux('portfolio-single-layout');
-
 		// Else get global option
 		else $layout = wpsp_get_redux( 'layout-global' );
 	}
@@ -195,10 +192,6 @@ function wpsp_layout_class() {
 	elseif ( is_archive() && ( wpsp_get_redux('archive-layout') !='inherit' ) ) $layout = wpsp_get_redux('archive-layout');
 	elseif ( is_search() && ( wpsp_get_redux('search-layout') !='inherit' ) ) $layout = wpsp_get_redux('search-layout');
 	elseif ( is_404() && ( wpsp_get_redux('404-layout') !='inherit' ) ) $layout = wpsp_get_redux('404-layout');
-
-	// Custom taxonomy layout
-	elseif ( is_tax('portfolio_category') && wpsp_get_redux('portfolio-archive-layout') !='inherit' ) $sidebar = wpsp_get_redux('portfolio-archive-layout');
-	elseif ( is_tax('portfolio_tag') && wpsp_get_redux('portfolio-archive-layout') !='inherit' ) $sidebar = wpsp_get_redux('portfolio-archive-layout');
 
 	// Global option
 	else $layout = wpsp_get_redux( 'layout-global' );
@@ -220,7 +213,7 @@ function wpsp_layout_option_body_class( $classes ) {
 	$classes[] = wpsp_layout_class();
 	return $classes;
 }
-add_filter( 'body_class', 'wpsp_layout_option_body_class' );	
+//add_filter( 'body_class', 'wpsp_layout_option_body_class' );	
 endif;
 
 /**
