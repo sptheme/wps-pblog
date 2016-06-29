@@ -301,6 +301,9 @@ class WPSP_Theme_Setup {
 		// Magnific Popup
 		wp_enqueue_script( 'wpsp-magnific-popup', $dir .'vendors/jquery.magnific-popup.min.js', array( 'jquery' ), $theme_version, true );
 
+		// Carousels
+		wp_enqueue_script( 'wpsp-owl-carousel', $dir .'vendors/owl.carousel.js', array( 'jquery' ), $theme_version, true );
+
 		// Custom Selects
 		wp_enqueue_script( 'wpsp-custom-select', $dir .'vendors/jquery.customSelect.js', array( 'jquery' ), $theme_version, true );
 

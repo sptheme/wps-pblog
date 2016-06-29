@@ -74,6 +74,7 @@
 				self.archiveMasonryGrids();
 				self.customSelects();
 				self.magnificPopup();
+				self.owlCarousel();
 			} );
 
 			// Run on Window Load
@@ -1238,6 +1239,57 @@
 			
 			// Add equal heights
 			$( '.equal-height-column, .match-height-row .match-height-content, .vcex-feature-box-match-height .vcex-match-height, .equal-height-content, .match-height-grid .match-height-content, .blog-entry-equal-heights .blog-entry-inner, .wpsp-vc-row-columns-match-height .wpsp-vc-column-wrapper' ).matchHeight();
+
+		},
+
+		/**
+		 * OwlCarousel
+		 *
+		 * @since 1.0.0
+		 */
+		owlCarousel: function() {
+
+			var self = this;
+			
+			$( '.wpsp-carousel' ).each( function() {
+
+				var $this = $( this ),
+					$data = $this.data();
+
+				$this.owlCarousel( {
+					animateIn          : false,
+					animateOut         : false,
+					lazyLoad           : false,
+					smartSpeed         : self.parseData( $data.smartSpeed, wpspLocalize.carouselSpeed ),
+					rtl                : self.config.$isRTL,
+					dots               : $data.dots,
+					nav                : $data.nav,
+					items              : $data.items,
+					slideBy            : $data.slideby,
+					center             : $data.center,
+					loop               : $data.loop,
+					margin             : $data.margin,
+					autoplay           : $data.autoplay,
+					autoplayTimeout    : $data.autoplayTimeout,
+					autoplayHoverPause : true,
+					navText            : [ '<span class="fa fa-chevron-left"><span>', '<span class="fa fa-chevron-right"></span>' ],
+					responsive         : {
+						0: {
+							items : $data.itemsMobilePortrait
+						},
+						480: {
+							items : $data.itemsMobileLandscape
+						},
+						768: {
+							items : $data.itemsTablet
+						},
+						960: {
+							items : $data.items
+						}
+					},
+				} );
+
+			} );
 
 		},
 

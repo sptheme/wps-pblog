@@ -127,6 +127,45 @@ function wpsp_get_esc_title() {
 endif;
 
 /**
+ * Escape attribute with fallback
+ *
+ * @since 1.0.0
+ */
+function wpsp_esc_attr( $val = null, $fallback = null ) {
+	if ( $val = esc_attr( $val ) ) {
+		return $val;
+	} else {
+		return $fallback;
+	}
+}
+
+/**
+ * Escape html with fallback
+ *
+ * @since 1.0.0
+ */
+function wpsp_esc_html( $val = null, $fallback = null ) {
+	if ( $val = esc_html( $val ) ) {
+		return $val;
+	} else {
+		return $fallback;
+	}
+}
+
+/**
+ * Sanitize numbers with fallback
+ *
+ * @since 1.0.0
+ */
+function wpsp_intval( $val = null, $fallback = null ) {
+	if ( $val = intval( $val ) ) {
+		return $val;
+	} else {
+		return $fallback;
+	}
+}
+
+/**
  * Get or generate excerpts
  *
  * @since 1.0.0
