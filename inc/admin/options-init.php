@@ -225,6 +225,32 @@
         'visible-tablet-portrait'  => esc_html__( 'Visible on Tablets: Portrait Only', 'wpsp-redux-framework' ),
     ) );
 
+    $in_transitions = apply_filters( 'wpsp_in_transitions',  array(
+        ''              => esc_html__( 'None', 'wpsp-redux-framework' ),
+        'fade-in'       => esc_html__( 'Fade In', 'wpsp-redux-framework' ),
+        'fade-in-up'    => esc_html__( 'Fade In Up', 'wpsp-redux-framework' ),
+        'fade-in-down'  => esc_html__( 'Fade In Down', 'wpsp-redux-framework' ),
+        'fade-in-left'  => esc_html__( 'Fade In Left', 'wpsp-redux-framework' ),
+        'fade-in-right' => esc_html__( 'Fade In Right', 'wpsp-redux-framework' ),
+        'rotate-in'     => esc_html__( 'Rotate In', 'wpsp-redux-framework' ),
+        'flip-in-x'     => esc_html__( 'Flip In X', 'wpsp-redux-framework' ),
+        'flip-in-y'     => esc_html__( 'Flip In Y', 'wpsp-redux-framework' ),
+        'zoom-in'       => esc_html__( 'Zoom In', 'wpsp-redux-framework' ),
+    ) );
+
+    $out_transitions = apply_filters( 'wpsp_in_transitions',  array(
+        ''               => esc_html__( 'None', 'wpsp-redux-framework' ),
+        'fade-out'       => esc_html__( 'Fade Out', 'wpsp-redux-framework' ),
+        'fade-out-up'    => esc_html__( 'Fade Out Up', 'wpsp-redux-framework' ),
+        'fade-out-down'  => esc_html__( 'Fade Out Down', 'wpsp-redux-framework' ),
+        'fade-out-left'  => esc_html__( 'Fade Out Left', 'wpsp-redux-framework' ),
+        'fade-out-right' => esc_html__( 'Fade Out Right', 'wpsp-redux-framework' ),
+        'rotate-out'     => esc_html__( 'Rotate Out', 'wpsp-redux-framework' ),
+        'flip-out-x'     => esc_html__( 'Flip Out X', 'wpsp-redux-framework' ),
+        'flip-out-y'     => esc_html__( 'Flip Out Y', 'wpsp-redux-framework' ),
+        'zoom-out'       => esc_html__( 'Zoom Out', 'wpsp-redux-framework' ),
+    ) );
+
     /*
      * ---> END OTHER VARIABLE
      */
@@ -396,6 +422,49 @@
             ),
         )
     ) );
+    // Page Animation
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Page Animations', 'wpsp-redux-framework' ),
+        'id'         => 'page-animations',
+        'subsection' => true,
+        'desc'       => __( 'You must save your options and refresh your live site to preview changes to this setting.', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'page-animation-in',
+                'type'     => 'select',
+                'title'    => __( 'In Animation', 'wpsp-redux-framework' ),
+                'options'  => $in_transitions,
+            ),
+            array(
+                'id'       => 'page-animation-out',
+                'type'     => 'select',
+                'title'    => __( 'Out Animation', 'wpsp-redux-framework' ),
+                'options'  => $out_transitions,
+            ),
+            array(
+                'id'       => 'page-animation-loading',
+                'type'     => 'text',
+                'title'    => __( 'Loading Text', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^a-zA-Z_ -]/s', 
+                    'replacement' => 'Allow only text'
+                ),
+                'default'  => '',
+            ),
+            array(
+                'id'       => 'page-animation-speed',
+                'type'     => 'text',
+                'title'    => __( 'Speed', 'wpsp-redux-framework' ),
+                'validate' => 'preg_replace',
+                'preg'     => array(
+                    'pattern'     => '/[^0-9]/s',
+                    'replacement' => 'Allow only number'
+                ),
+                'default'  => '400',
+            ),
+        )
+    ) );   
     // General > Error 404
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Error 404', 'wpsp-redux-framework' ),

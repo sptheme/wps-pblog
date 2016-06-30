@@ -145,6 +145,7 @@ class WPSP_Theme_Setup {
 	 */
 	public static function wpsp_addons() {
 		require_once( WPSP_INC_DIR .'addons/widget-areas.php' );
+		require_once( WPSP_INC_DIR .'addons/page-animations.php' ); //TODO: Function working not properly
 	}
 
 	/**
@@ -380,6 +381,8 @@ class WPSP_Theme_Setup {
 		if ( 'five' == $header_style ) {
 			$localize_array['headerFiveSplitOffset'] = 1;
 		}
+
+		$localize_array = apply_filters( 'wpsp_localize_array', $localize_array );
 
 		wp_localize_script( 'wpsp-custom', 'wpspLocalize', $localize_array );
 	}

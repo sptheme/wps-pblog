@@ -65,6 +65,7 @@
 			// Run on document ready
 			self.config.$document.on( 'ready', function() {
 				self.initUpdateConfig();
+				self.pageAnimations();
 				self.superFish();
 				self.megaMenusWidth();
 				self.mobileMenu();
