@@ -58,7 +58,7 @@ if ( ! function_exists( 'wpsp_pagination' ) ) :
 				'base'      => str_replace( $big, '%#%', html_entity_decode( get_pagenum_link( $big ) ) ),
 				'format'    => $format,
 				'current'   => max( 1, $current_page ),
-				'wpspblog'     => $total,
+				'total'     => $total,
 				'mid_size'  => $mid_size,
 				'type'      => 'list',
 				'prev_text' => '<span class="'. $prev_arrow .'"></span>',
