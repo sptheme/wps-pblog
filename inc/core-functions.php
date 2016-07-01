@@ -223,7 +223,7 @@ function wpsp_get_excerpt( $args = array() ) {
 	// Display password protected notice
 	if ( $post->post_password ) :
 
-		$output = esc_html__( 'This is a password protected post.', 'learninginstitute' );
+		$output = esc_html__( 'This is a password protected post.', 'wpspblog' );
 		$output = apply_filters( 'wpsp_password_protected_excerpt', $output );
 		$output = '<p>'. $output .'</p>';
 		return $output;
@@ -288,7 +288,7 @@ function wpsp_get_excerpt( $args = array() ) {
 	// Add readmore link to output if enabled
 	if ( $readmore ) :
 
-		$read_more_text = isset( $args['read_more_text'] ) ? $args['read_more_text'] : esc_html__( 'Read more', 'learninginstitute' );
+		$read_more_text = isset( $args['read_more_text'] ) ? $args['read_more_text'] : esc_html__( 'Read more', 'wpspblog' );
 		$output .= '<a href="'. get_permalink( $post_id ) .'" title="'.$read_more_text .'" rel="bookmark" class="wpsp-readmore theme-button">'. $read_more_text .' <span class="wpsp-readmore-rarr">&rarr;</span></a>';
 
 	endif;
@@ -438,7 +438,7 @@ if ( is_admin() && apply_filters( 'wpsp_dashboard_thumbnails', true ) ) :
 
 	if ( ! function_exists( 'wpsp_posts_columns' ) ) {
 		function wpsp_posts_columns( $defaults ){
-			$defaults['wpsp_post_thumbs'] = esc_html__( 'Featured Image', 'poshedition' );
+			$defaults['wpsp_post_thumbs'] = esc_html__( 'Featured Image', 'wpspblog' );
 			return $defaults;
 		}
 	}
@@ -732,7 +732,7 @@ function wpsp_social_share_style() {
  */
 function wpsp_social_share_heading() {
     $heading = wpsp_get_translated_theme_mod( 'social_share_heading' );
-    $heading = $heading ? $heading : esc_html__( 'Please Share This', 'wpsp-blog-text-textdomain' );
+    $heading = $heading ? $heading : esc_html__( 'Please Share This', 'wpspblog' );
     return apply_filters( 'wpsp_social_share_heading', $heading );
 }
 
@@ -1138,16 +1138,16 @@ endif;
 if ( ! function_exists('wpsp_image_crop_locations') ) :
 function wpsp_image_crop_locations() {
 	return array(
-		''              => esc_html__( 'Default', 'wpsp-blog-text-textdomain' ),
-		'left-top'      => esc_html__( 'Top Left', 'wpsp-blog-text-textdomain' ),
-		'right-top'     => esc_html__( 'Top Right', 'wpsp-blog-text-textdomain' ),
-		'center-top'    => esc_html__( 'Top Center', 'wpsp-blog-text-textdomain' ),
-		'left-center'   => esc_html__( 'Center Left', 'wpsp-blog-text-textdomain' ),
-		'right-center'  => esc_html__( 'Center Right', 'wpsp-blog-text-textdomain' ),
-		'center-center' => esc_html__( 'Center Center', 'wpsp-blog-text-textdomain' ),
-		'left-bottom'   => esc_html__( 'Bottom Left', 'wpsp-blog-text-textdomain' ),
-		'right-bottom'  => esc_html__( 'Bottom Right', 'wpsp-blog-text-textdomain' ),
-		'center-bottom' => esc_html__( 'Bottom Center', 'wpsp-blog-text-textdomain' ),
+		''              => esc_html__( 'Default', 'wpspblog' ),
+		'left-top'      => esc_html__( 'Top Left', 'wpspblog' ),
+		'right-top'     => esc_html__( 'Top Right', 'wpspblog' ),
+		'center-top'    => esc_html__( 'Top Center', 'wpspblog' ),
+		'left-center'   => esc_html__( 'Center Left', 'wpspblog' ),
+		'right-center'  => esc_html__( 'Center Right', 'wpspblog' ),
+		'center-center' => esc_html__( 'Center Center', 'wpspblog' ),
+		'left-bottom'   => esc_html__( 'Bottom Left', 'wpspblog' ),
+		'right-bottom'  => esc_html__( 'Bottom Right', 'wpspblog' ),
+		'center-bottom' => esc_html__( 'Bottom Center', 'wpspblog' ),
 	);
 }
 endif;
@@ -1160,18 +1160,18 @@ endif;
 if ( ! function_exists('wpsp_image_hovers') ) :
 function wpsp_image_hovers() {
 	return apply_filters( 'wpsp_image_hovers', array(
-		''             => esc_html__( 'Default', 'wpsp-blog-textdomain' ),
-		'opacity'      => esc_html__( 'Opacity', 'wpsp-blog-textdomain' ),
-		'grow'         => esc_html__( 'Grow', 'wpsp-blog-textdomain' ),
-		'shrink'       => esc_html__( 'Shrink', 'wpsp-blog-textdomain' ),
-		'side-pan'     => esc_html__( 'Side Pan', 'wpsp-blog-textdomain' ),
-		'vertical-pan' => esc_html__( 'Vertical Pan', 'wpsp-blog-textdomain' ),
-		'tilt'         => esc_html__( 'Tilt', 'wpsp-blog-textdomain' ),
-		'blurr'        => esc_html__( 'Normal - Blurr', 'wpsp-blog-textdomain' ),
-		'blurr-invert' => esc_html__( 'Blurr - Normal', 'wpsp-blog-textdomain' ),
-		'sepia'        => esc_html__( 'Sepia', 'wpsp-blog-textdomain' ),
-		'fade-out'     => esc_html__( 'Fade Out', 'wpsp-blog-textdomain' ),
-		'fade-in'      => esc_html__( 'Fade In', 'wpsp-blog-textdomain' ),
+		''             => esc_html__( 'Default', 'wpspblog' ),
+		'opacity'      => esc_html__( 'Opacity', 'wpspblog' ),
+		'grow'         => esc_html__( 'Grow', 'wpspblog' ),
+		'shrink'       => esc_html__( 'Shrink', 'wpspblog' ),
+		'side-pan'     => esc_html__( 'Side Pan', 'wpspblog' ),
+		'vertical-pan' => esc_html__( 'Vertical Pan', 'wpspblog' ),
+		'tilt'         => esc_html__( 'Tilt', 'wpspblog' ),
+		'blurr'        => esc_html__( 'Normal - Blurr', 'wpspblog' ),
+		'blurr-invert' => esc_html__( 'Blurr - Normal', 'wpspblog' ),
+		'sepia'        => esc_html__( 'Sepia', 'wpspblog' ),
+		'fade-out'     => esc_html__( 'Fade Out', 'wpspblog' ),
+		'fade-in'      => esc_html__( 'Fade In', 'wpspblog' ),
 	) );
 }
 endif;

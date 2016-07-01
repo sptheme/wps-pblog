@@ -16,7 +16,7 @@ $footer_headings  = $footer_headings ? $footer_headings : 'div';
 
 // Main Sidebar
 register_sidebar( array(
-	'name'          => esc_html__( 'Main Sidebar', 'wpsp-blog-textdomain' ),
+	'name'          => esc_html__( 'Main Sidebar', 'wpspblog' ),
 	'id'            => 'sidebar',
 	'before_widget' => '<div class="widget %2$s clear">',
 	'after_widget'  => '</div>',
@@ -27,7 +27,7 @@ register_sidebar( array(
 // Pages Sidebar
 if ( wpsp_get_redux( 'pages-custom-sidebar', true ) ) {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Pages Sidebar', 'wpsp-blog-textdomain' ),
+		'name'          => esc_html__( 'Pages Sidebar', 'wpspblog' ),
 		'id'            => 'pages_sidebar',
 		'before_widget' => '<div class="widget %2$s clear">',
 		'after_widget'  => '</div>',
@@ -39,7 +39,7 @@ if ( wpsp_get_redux( 'pages-custom-sidebar', true ) ) {
 // Search Results Sidebar
 if ( wpsp_get_redux( 'is-search-custom-sidebar', true ) ) {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Search Results Sidebar', 'wpsp-blog-textdomain' ),
+		'name'          => esc_html__( 'Search Results Sidebar', 'wpspblog' ),
 		'id'            => 'search_sidebar',
 		'before_widget' => '<div class="widget %2$s clear">',
 		'after_widget'  => '</div>',
@@ -60,7 +60,7 @@ if ( $footer_widgets ) {
 	
 	// Footer 1
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer Column 1', 'wpsp-blog-textdomain' ),
+		'name'          => esc_html__( 'Footer Column 1', 'wpspblog' ),
 		'id'            => 'footer_one',
 		'before_widget' => '<div class="footer-widget %2$s clear">',
 		'after_widget'  => '</div>',
@@ -71,7 +71,7 @@ if ( $footer_widgets ) {
 	// Footer 2
 	if ( $footer_columns > '1' ) {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Column 2', 'wpsp-blog-textdomain' ),
+			'name'          => esc_html__( 'Footer Column 2', 'wpspblog' ),
 			'id'            => 'footer_two',
 			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
@@ -83,7 +83,7 @@ if ( $footer_widgets ) {
 	// Footer 3
 	if ( $footer_columns > '2' ) {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Column 3', 'wpsp-blog-textdomain' ),
+			'name'          => esc_html__( 'Footer Column 3', 'wpspblog' ),
 			'id'            => 'footer_three',
 			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
@@ -95,7 +95,7 @@ if ( $footer_widgets ) {
 	// Footer 4
 	if ( $footer_columns > '3' ) {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Column 4', 'wpsp-blog-textdomain' ),
+			'name'          => esc_html__( 'Footer Column 4', 'wpspblog' ),
 			'id'            => 'footer_four',
 			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
@@ -107,7 +107,7 @@ if ( $footer_widgets ) {
 	// Footer 5
 	if ( $footer_columns > '4' ) {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Column 5', 'wpsp-blog-textdomain' ),
+			'name'          => esc_html__( 'Footer Column 5', 'wpspblog' ),
 			'id'            => 'footer_five',
 			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',

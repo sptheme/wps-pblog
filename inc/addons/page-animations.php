@@ -99,7 +99,7 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 
 			// Loading text
 			$text = wpsp_get_redux( 'page_animation_loading' );
-			$text = $text ? $text : esc_html__( 'Loading...', 'wpsp-blog-textdomain' );
+			$text = $text ? $text : esc_html__( 'Loading...', 'wpspblog' );
 			$array['pageAnimationLoadingText'] = $text;
 
 	
@@ -138,16 +138,16 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 		 */
 		public static function in_transitions() {
 			return array(
-				''              => esc_html__( 'None', 'wpsp-blog-textdomain' ),
-				'fade-in'       => esc_html__( 'Fade In', 'wpsp-blog-textdomain' ),
-				'fade-in-up'    => esc_html__( 'Fade In Up', 'wpsp-blog-textdomain' ),
-				'fade-in-down'  => esc_html__( 'Fade In Down', 'wpsp-blog-textdomain' ),
-				'fade-in-left'  => esc_html__( 'Fade In Left', 'wpsp-blog-textdomain' ),
-				'fade-in-right' => esc_html__( 'Fade In Right', 'wpsp-blog-textdomain' ),
-				'rotate-in'     => esc_html__( 'Rotate In', 'wpsp-blog-textdomain' ),
-				'flip-in-x'     => esc_html__( 'Flip In X', 'wpsp-blog-textdomain' ),
-				'flip-in-y'     => esc_html__( 'Flip In Y', 'wpsp-blog-textdomain' ),
-				'zoom-in'       => esc_html__( 'Zoom In', 'wpsp-blog-textdomain' ),
+				''              => esc_html__( 'None', 'wpspblog' ),
+				'fade-in'       => esc_html__( 'Fade In', 'wpspblog' ),
+				'fade-in-up'    => esc_html__( 'Fade In Up', 'wpspblog' ),
+				'fade-in-down'  => esc_html__( 'Fade In Down', 'wpspblog' ),
+				'fade-in-left'  => esc_html__( 'Fade In Left', 'wpspblog' ),
+				'fade-in-right' => esc_html__( 'Fade In Right', 'wpspblog' ),
+				'rotate-in'     => esc_html__( 'Rotate In', 'wpspblog' ),
+				'flip-in-x'     => esc_html__( 'Flip In X', 'wpspblog' ),
+				'flip-in-y'     => esc_html__( 'Flip In Y', 'wpspblog' ),
+				'zoom-in'       => esc_html__( 'Zoom In', 'wpspblog' ),
 			);
 		}
 
@@ -160,16 +160,16 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 		 */
 		public static function out_transitions() {
 			return array(
-				''               => esc_html__( 'None', 'wpsp-blog-textdomain' ),
-				'fade-out'       => esc_html__( 'Fade Out', 'wpsp-blog-textdomain' ),
-				'fade-out-up'    => esc_html__( 'Fade Out Up', 'wpsp-blog-textdomain' ),
-				'fade-out-down'  => esc_html__( 'Fade Out Down', 'wpsp-blog-textdomain' ),
-				'fade-out-left'  => esc_html__( 'Fade Out Left', 'wpsp-blog-textdomain' ),
-				'fade-out-right' => esc_html__( 'Fade Out Right', 'wpsp-blog-textdomain' ),
-				'rotate-out'     => esc_html__( 'Rotate Out', 'wpsp-blog-textdomain' ),
-				'flip-out-x'     => esc_html__( 'Flip Out X', 'wpsp-blog-textdomain' ),
-				'flip-out-y'     => esc_html__( 'Flip Out Y', 'wpsp-blog-textdomain' ),
-				'zoom-out'       => esc_html__( 'Zoom Out', 'wpsp-blog-textdomain' ),
+				''               => esc_html__( 'None', 'wpspblog' ),
+				'fade-out'       => esc_html__( 'Fade Out', 'wpspblog' ),
+				'fade-out-up'    => esc_html__( 'Fade Out Up', 'wpspblog' ),
+				'fade-out-down'  => esc_html__( 'Fade Out Down', 'wpspblog' ),
+				'fade-out-left'  => esc_html__( 'Fade Out Left', 'wpspblog' ),
+				'fade-out-right' => esc_html__( 'Fade Out Right', 'wpspblog' ),
+				'rotate-out'     => esc_html__( 'Rotate Out', 'wpspblog' ),
+				'flip-out-x'     => esc_html__( 'Flip Out X', 'wpspblog' ),
+				'flip-out-y'     => esc_html__( 'Flip Out Y', 'wpspblog' ),
+				'zoom-out'       => esc_html__( 'Zoom Out', 'wpspblog' ),
 			);
 		}
 
@@ -181,7 +181,7 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 		 * @since 1.0.0
 		 */
 		public function register_strings( $strings ) {
-			$strings['page_animation_loading'] = esc_html__( 'Loading...', 'wpsp-blog-textdomain' );
+			$strings['page_animation_loading'] = esc_html__( 'Loading...', 'wpspblog' );
 			return $strings;
 		}
 
@@ -192,7 +192,7 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 		 */
 		public function loading_text( $css ) {
 			$text = wpsp_get_redux( 'page-animation-loading' );
-			$text = $text ? $text : esc_html__( 'Loading...', 'wpsp-blog-textdomain' );
+			$text = $text ? $text : esc_html__( 'Loading...', 'wpspblog' );
 			$css .= '/*PAGE ANIMATIONS*/.animsition-loading{content:"'. $text .'";}';
 			return $css;
 		}

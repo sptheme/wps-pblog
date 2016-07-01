@@ -51,7 +51,7 @@ add_action( 'admin_head', 'wpsp_adminfavicon' );
  * Remove wordpress link on admin login logo
  */
 function wpsp_remove_link_on_admin_login_info() {
-     return  get_bloginfo('url');
+     return  esc_url( home_url() );
 }
 add_filter('login_headerurl', 'wpsp_remove_link_on_admin_login_info');
 

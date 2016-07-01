@@ -20,7 +20,7 @@ if ( has_nav_menu( $menu_location ) ) : ?>
 
 	<div id="wpsp-mobile-menu-fixed-top" class="clear wpsp-hidden">
 		<div class="container clear">
-			<a href="#mobile-menu" class="mobile-menu-toggle"><?php echo apply_filters( 'wpsp_mobile_menu_open_button_text', '<span class="fa fa-navicon"></span>' ); ?><span class="wpsp-text"><?php echo wpsp_get_redux( 'mobile-menu-toggle-text', esc_html__( 'Menu', 'wpsp-blog-textdomain' ) ); ?></span></a>
+			<a href="#mobile-menu" class="mobile-menu-toggle"><?php echo apply_filters( 'wpsp_mobile_menu_open_button_text', '<span class="fa fa-navicon"></span>' ); ?><span class="wpsp-text"><?php echo wpsp_get_redux( 'mobile-menu-toggle-text', esc_html__( 'Menu', 'wpspblog' ) ); ?></span></a>
 		</div><!-- .container -->
 	</div><!-- #mobile-menu -->
 

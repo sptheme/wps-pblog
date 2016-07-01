@@ -48,22 +48,22 @@ if ( ! function_exists( 'wpsp_overlay' ) ) {
  */
 function wpsp_overlay_styles_array( $style = NULL ) {
 	$array = array(
-		''                              => esc_html__( 'None', 'wpsp_admin' ),
-		'hover-button'                  => esc_html__( 'Hover Button', 'wpsp_admin' ),
-		'magnifying-hover'              => esc_html__( 'Magnifying Glass Hover', 'wpsp_admin' ),
-		'plus-hover'                    => esc_html__( 'Plus Icon Hover', 'wpsp_admin' ),
-		'plus-two-hover'                => esc_html__( 'Plus Icon #2 Hover', 'wpsp_admin' ),
-		'plus-three-hover'              => esc_html__( 'Plus Icon #3 Hover', 'wpsp_admin' ),
-		'title-bottom'                  => esc_html__( 'Title Bottom', 'wpsp_admin' ),
-		'title-bottom-see-through'      => esc_html__( 'Title Bottom See Through', 'wpsp_admin' ),
-		'title-excerpt-hover'           => esc_html__( 'Title + Excerpt Hover', 'wpsp_admin' ),
-		'title-category-hover'          => esc_html__( 'Title + Category Hover', 'wpsp_admin' ),
-		'title-category-visible'        => esc_html__( 'Title + Category Visible', 'wpsp_admin' ),
-		'title-date-hover'              => esc_html__( 'Title + Date Hover', 'wpsp_admin' ),
-		'title-date-visible'            => esc_html__( 'Title + Date Visible', 'wpsp_admin' ),
-		'slideup-title-white'           => esc_html__( 'Slide-Up Title White', 'wpsp_admin' ),
-		'slideup-title-black'           => esc_html__( 'Slide-Up Title Black', 'wpsp_admin' ),
-		'category-tag'                  => esc_html__( 'Category Tag', 'wpsp_admin' ),
+		''                              => esc_html__( 'None', 'wpspblog' ),
+		'hover-button'                  => esc_html__( 'Hover Button', 'wpspblog' ),
+		'magnifying-hover'              => esc_html__( 'Magnifying Glass Hover', 'wpspblog' ),
+		'plus-hover'                    => esc_html__( 'Plus Icon Hover', 'wpspblog' ),
+		'plus-two-hover'                => esc_html__( 'Plus Icon #2 Hover', 'wpspblog' ),
+		'plus-three-hover'              => esc_html__( 'Plus Icon #3 Hover', 'wpspblog' ),
+		'title-bottom'                  => esc_html__( 'Title Bottom', 'wpspblog' ),
+		'title-bottom-see-through'      => esc_html__( 'Title Bottom See Through', 'wpspblog' ),
+		'title-excerpt-hover'           => esc_html__( 'Title + Excerpt Hover', 'wpspblog' ),
+		'title-category-hover'          => esc_html__( 'Title + Category Hover', 'wpspblog' ),
+		'title-category-visible'        => esc_html__( 'Title + Category Visible', 'wpspblog' ),
+		'title-date-hover'              => esc_html__( 'Title + Date Hover', 'wpspblog' ),
+		'title-date-visible'            => esc_html__( 'Title + Date Visible', 'wpspblog' ),
+		'slideup-title-white'           => esc_html__( 'Slide-Up Title White', 'wpspblog' ),
+		'slideup-title-black'           => esc_html__( 'Slide-Up Title Black', 'wpspblog' ),
+		'category-tag'                  => esc_html__( 'Category Tag', 'wpspblog' ),
 	);
 	return apply_filters( 'wpsp_overlay_styles_array', $array );
 }

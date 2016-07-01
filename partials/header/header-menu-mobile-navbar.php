@@ -23,7 +23,7 @@ if ( has_nav_menu( $menu_location ) ) :
 
 	// Get menu text
 	$text = wpsp_get_translated_theme_mod( 'mobile_menu_toggle_text' );
-	$text = $text ? $text : esc_html__( 'Menu', 'wpsp-blog-textdomain' );
+	$text = $text ? $text : esc_html__( 'Menu', 'wpspblog' );
 	$text = apply_filters( 'wpsp_mobile_menu_navbar_open_text', $text ); ?>
 
 	<?php

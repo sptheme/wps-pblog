@@ -263,6 +263,6 @@ if ( ! function_exists( 'wpsp_portfolio_match_height' ) ) {
  */
 function wpsp_portfolio_related_heading() {
 	$heading = wpsp_get_translated_theme_mod( 'portfolio_related_title' );
-	$heading = $heading ? esc_html( $heading ) : esc_html__( 'Related Projects', 'wpsp-blog-textdomain' );
+	$heading = $heading ? esc_html( $heading ) : esc_html__( 'Related Projects', 'wpspblog' );
 	return $heading;
 }

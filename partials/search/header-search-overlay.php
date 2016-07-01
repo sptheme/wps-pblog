@@ -13,6 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 } ?>
 
 <section id="searchform-overlay" class="header-searchform-wrap clear">
-	<div id="searchform-overlay-title"><?php esc_html_e( 'Search', 'wpsp-blog-textdomain' ); ?></div>
+	<div id="searchform-overlay-title"><?php esc_html_e( 'Search', 'wpspblog' ); ?></div>
 	<?php get_search_form( true ); ?>
 </section><!-- #searchform-overlay -->

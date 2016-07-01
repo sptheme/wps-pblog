@@ -58,7 +58,7 @@ function wpsp_add_search_to_menu ( $items, $args ) {
 			$items .= '<span class="link-inner">';
 				$items .= '<span class="fa fa-search"></span>';
 				if ( 'six' == $header_style ) {
-					$text = esc_html__( 'Search', 'wpsp-blog-textdomain' );
+					$text = esc_html__( 'Search', 'wpspblog' );
 					$text = apply_filters( 'wpsp_header_search_text', $text );
 					$items .= '<span class="wpsp-menu-search-text">'. $text .'</span>';
 				}

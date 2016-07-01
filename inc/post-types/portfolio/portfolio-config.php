@@ -27,7 +27,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 
 			// Update vars
 			$this->label = get_option( 'portfolio_labels' );
-			$this->label = $this->label ? $this->label : _x( 'Portfolio', 'Portfolio Post Type Label', 'wpsp_admin' );
+			$this->label = $this->label ? $this->label : _x( 'Portfolio', 'Portfolio Post Type Label', 'wpspblog' );
 
 			// Adds the portfolio post type
 			add_action( 'init', array( $this, 'register_post_type' ), 0 );
@@ -87,7 +87,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 			// Get values and sanitize
 			$name             = $this->label;
 			$singular_name    = get_option( 'portfolio_singular_name' );
-			$singular_name    = $singular_name ? $singular_name : esc_html__( 'Portfolio Item', 'wpsp_admin' );
+			$singular_name    = $singular_name ? $singular_name : esc_html__( 'Portfolio Item', 'wpspblog' );
 			$slug  			  = get_option( 'portfolio_slug' );
 			$slug             = $slug ? $slug : 'portfolio-item';
 			$menu_icon        = get_option( 'portfolio_admin_icon' );
@@ -99,15 +99,15 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 				'labels' => array(
 					'name' => $name,
 					'singular_name' => $singular_name,
-					'add_new' => esc_html__( 'Add New', 'wpsp_admin' ),
-					'all_items' => esc_html__( 'All ' . $name, 'wpsp_admin' ),
-					'add_new_item' => esc_html__( 'Add New Item', 'wpsp_admin' ),
-					'edit_item' => esc_html__( 'Edit Item', 'wpsp_admin' ),
-					'new_item' => esc_html__( 'Add New Item', 'wpsp_admin' ),
-					'view_item' => esc_html__( 'View Item', 'wpsp_admin' ),
-					'search_items' => esc_html__( 'Search Items', 'wpsp_admin' ),
-					'not_found' => esc_html__( 'No Items Found', 'wpsp_admin' ),
-					'not_found_in_trash' => esc_html__( 'No Items Found In Trash', 'wpsp_admin' )
+					'add_new' => esc_html__( 'Add New', 'wpspblog' ),
+					'all_items' => esc_html__( 'All ' . $name, 'wpspblog' ),
+					'add_new_item' => esc_html__( 'Add New Item', 'wpspblog' ),
+					'edit_item' => esc_html__( 'Edit Item', 'wpspblog' ),
+					'new_item' => esc_html__( 'Add New Item', 'wpspblog' ),
+					'view_item' => esc_html__( 'View Item', 'wpspblog' ),
+					'search_items' => esc_html__( 'Search Items', 'wpspblog' ),
+					'not_found' => esc_html__( 'No Items Found', 'wpspblog' ),
+					'not_found_in_trash' => esc_html__( 'No Items Found In Trash', 'wpspblog' )
 				),
 				'public' => true,
 				'capability_type' => 'post',
@@ -145,7 +145,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 
 			// Define and sanitize options
 			$name = esc_html( get_option( 'portfolio_tag_labels' ) );
-			$name = $name ? $name : esc_html__( 'Portfolio Tags', 'wpsp_admin' );
+			$name = $name ? $name : esc_html__( 'Portfolio Tags', 'wpspblog' );
 			$slug = get_option( 'portfolio_tag_slug' );
 			$slug = $slug ? $slug : 'portfolio-tag';
 
@@ -155,18 +155,18 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 					'name' => $name,
 					'singular_name' => $name,
 					'menu_name' => $name,
-					'search_items' => esc_html__( 'Search','wpsp_admin' ),
-					'popular_items' => esc_html__( 'Popular', 'wpsp_admin' ),
-					'all_items' => esc_html__( 'All', 'wpsp_admin' ),
-					'parent_item' => esc_html__( 'Parent', 'wpsp_admin' ),
-					'parent_item_colon' => esc_html__( 'Parent', 'wpsp_admin' ),
-					'edit_item' => esc_html__( 'Edit', 'wpsp_admin' ),
-					'update_item' => esc_html__( 'Update', 'wpsp_admin' ),
-					'add_new_item' => esc_html__( 'Add New', 'wpsp_admin' ),
-					'new_item_name' => esc_html__( 'New', 'wpsp_admin' ),
-					'separate_items_with_commas' => esc_html__( 'Separate with commas', 'wpsp_admin' ),
-					'add_or_remove_items' => esc_html__( 'Add or remove', 'wpsp_admin' ),
-					'choose_from_most_used' => esc_html__( 'Choose from the most used', 'wpsp_admin' ),
+					'search_items' => esc_html__( 'Search','wpspblog' ),
+					'popular_items' => esc_html__( 'Popular', 'wpspblog' ),
+					'all_items' => esc_html__( 'All', 'wpspblog' ),
+					'parent_item' => esc_html__( 'Parent', 'wpspblog' ),
+					'parent_item_colon' => esc_html__( 'Parent', 'wpspblog' ),
+					'edit_item' => esc_html__( 'Edit', 'wpspblog' ),
+					'update_item' => esc_html__( 'Update', 'wpspblog' ),
+					'add_new_item' => esc_html__( 'Add New', 'wpspblog' ),
+					'new_item_name' => esc_html__( 'New', 'wpspblog' ),
+					'separate_items_with_commas' => esc_html__( 'Separate with commas', 'wpspblog' ),
+					'add_or_remove_items' => esc_html__( 'Add or remove', 'wpspblog' ),
+					'choose_from_most_used' => esc_html__( 'Choose from the most used', 'wpspblog' ),
 				),
 				'public' => true,
 				'show_in_nav_menus' => true,
@@ -196,7 +196,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 
 			// Define and sanitize options
 			$name = esc_html( get_option( 'portfolio_cat_labels' ) );
-			$name = $name ? $name : esc_html__( 'Portfolio Categories', 'wpsp_admin' );
+			$name = $name ? $name : esc_html__( 'Portfolio Categories', 'wpspblog' );
 			$slug = get_option( 'portfolio_cat_slug' );
 			$slug = $slug ? $slug : 'portfolio-category';
 
@@ -206,18 +206,18 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 					'name' => $name,
 					'singular_name' => $name,
 					'menu_name' => $name,
-					'search_items' => esc_html__( 'Search','wpsp_admin' ),
-					'popular_items' => esc_html__( 'Popular', 'wpsp_admin' ),
-					'all_items' => esc_html__( 'All', 'wpsp_admin' ),
-					'parent_item' => esc_html__( 'Parent', 'wpsp_admin' ),
-					'parent_item_colon' => esc_html__( 'Parent', 'wpsp_admin' ),
-					'edit_item' => esc_html__( 'Edit', 'wpsp_admin' ),
-					'update_item' => esc_html__( 'Update', 'wpsp_admin' ),
-					'add_new_item' => esc_html__( 'Add New', 'wpsp_admin' ),
-					'new_item_name' => esc_html__( 'New', 'wpsp_admin' ),
-					'separate_items_with_commas' => esc_html__( 'Separate with commas', 'wpsp_admin' ),
-					'add_or_remove_items' => esc_html__( 'Add or remove', 'wpsp_admin' ),
-					'choose_from_most_used' => esc_html__( 'Choose from the most used', 'wpsp_admin' ),
+					'search_items' => esc_html__( 'Search','wpspblog' ),
+					'popular_items' => esc_html__( 'Popular', 'wpspblog' ),
+					'all_items' => esc_html__( 'All', 'wpspblog' ),
+					'parent_item' => esc_html__( 'Parent', 'wpspblog' ),
+					'parent_item_colon' => esc_html__( 'Parent', 'wpspblog' ),
+					'edit_item' => esc_html__( 'Edit', 'wpspblog' ),
+					'update_item' => esc_html__( 'Update', 'wpspblog' ),
+					'add_new_item' => esc_html__( 'Add New', 'wpspblog' ),
+					'new_item_name' => esc_html__( 'New', 'wpspblog' ),
+					'separate_items_with_commas' => esc_html__( 'Separate with commas', 'wpspblog' ),
+					'add_or_remove_items' => esc_html__( 'Add or remove', 'wpspblog' ),
+					'choose_from_most_used' => esc_html__( 'Choose from the most used', 'wpspblog' ),
 				),
 				'public' => true,
 				'show_in_nav_menus' => true,
@@ -243,10 +243,10 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 		 */
 		public static function edit_columns( $columns ) {
 			if ( taxonomy_exists( 'portfolio_category' ) ) {
-				$columns['portfolio_category'] = esc_html__( 'Category', 'wpsp_admin' );
+				$columns['portfolio_category'] = esc_html__( 'Category', 'wpspblog' );
 			}
 			if ( taxonomy_exists( 'portfolio_tag' ) ) {
-				$columns['portfolio_tag']      = esc_html__( 'Tags', 'wpsp_admin' );
+				$columns['portfolio_tag']      = esc_html__( 'Tags', 'wpspblog' );
 			}
 			return $columns;
 		}
@@ -332,8 +332,8 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 		public function add_page() {
 			$wpsp_portfolio_editor = add_submenu_page(
 				'edit.php?post_type=portfolio',
-				esc_html__( 'Post Type Editor', 'wpsp_admin' ),
-				esc_html__( 'Post Type Editor', 'wpsp_admin' ),
+				esc_html__( 'Post Type Editor', 'wpspblog' ),
+				esc_html__( 'Post Type Editor', 'wpspblog' ),
 				'administrator',
 				'wpsp-portfolio-editor',
 				array( $this, 'create_admin_page' )
@@ -413,7 +413,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 			add_settings_error(
 				'wpsp_portfolio_editor_page_notices',
 				esc_attr( 'settings_updated' ),
-				esc_html__( 'Settings saved and rewrite rules flushed.', 'wpsp_admin' ),
+				esc_html__( 'Settings saved and rewrite rules flushed.', 'wpspblog' ),
 				'updated'
 			);
 
@@ -429,12 +429,12 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 		 */
 		public static function create_admin_page() { ?>
 			<div class="wrap">
-				<h2><?php esc_html_e( 'Post Type Editor', 'wpsp_admin' ); ?></h2>
+				<h2><?php esc_html_e( 'Post Type Editor', 'wpspblog' ); ?></h2>
 				<form method="post" action="options.php">
 				<?php settings_fields( 'wpsp_portfolio_options' ); ?>
 				<table class="form-table">
 					<tr valign="top">
-						<th scope="row"><?php esc_html_e( 'Admin Icon', 'wpsp_admin' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Admin Icon', 'wpspblog' ); ?></th>
 						<td>
 							<?php
 							// Mod
@@ -453,7 +453,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 						</td>
 					</tr>
 					<tr valign="top">
-						<th scope="row"><?php esc_html_e( 'Enable Custom Sidebar', 'total' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Enable Custom Sidebar', 'wpspblog' ); ?></th>
 						<?php
 						// Get checkbox value
 						$mod = get_option( 'portfolio_custom_sidebar', 'on' );
@@ -461,7 +461,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 						<td><input type="checkbox" name="wpsp_portfolio_editor[portfolio_custom_sidebar]" value="<?php echo esc_attr( $mod ); ?>" <?php checked( $mod, 'on' ); ?> /></td>
 					</tr>
 					<tr valign="top">
-						<th scope="row"><?php esc_html_e( 'Include In Search', 'total' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Include In Search', 'wpspblog' ); ?></th>
 						<?php
 						// Get checkbox value
 						$mod = get_option( 'portfolio_search', 'on' );
@@ -469,15 +469,15 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 						<td><input type="checkbox" name="wpsp_portfolio_editor[portfolio_search]" value="<?php echo esc_attr( $mod ); ?>" <?php checked( $mod, 'on' ); ?> /></td>
 					</tr>
 					<tr valign="top">
-						<th scope="row"><?php esc_html_e( 'Post Type: Name', 'wpsp_admin' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Post Type: Name', 'wpspblog' ); ?></th>
 						<td><input type="text" name="wpsp_portfolio_editor[portfolio_labels]" value="<?php echo get_option( 'portfolio_labels' ); ?>" /></td>
 					</tr>
 					<tr valign="top">
-						<th scope="row"><?php esc_html_e( 'Post Type: Singular Name', 'wpsp_admin' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Post Type: Singular Name', 'wpspblog' ); ?></th>
 						<td><input type="text" name="wpsp_portfolio_editor[portfolio_singular_name]" value="<?php echo get_option( 'portfolio_singular_name' ); ?>" /></td>
 					</tr>
 					<tr valign="top" id="wpsp-tags-enable">
-						<th scope="row"><?php esc_html_e( 'Enable Tags', 'wpsp_admin' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Enable Tags', 'wpspblog' ); ?></th>
 						<?php
 						// Get checkbox value
 						$mod = get_option( 'portfolio_tags', 'on' );
@@ -485,15 +485,15 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 						<td><input type="checkbox" name="wpsp_portfolio_editor[portfolio_tags]" value="<?php echo esc_attr( $mod ); ?>" <?php checked( $mod, 'on' ); ?> /></td>
 					</tr>
 					<tr valign="top" id="wpsp-tags-label">
-						<th scope="row"><?php esc_html_e( 'Tags: Label', 'wpsp_admin' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Tags: Label', 'wpspblog' ); ?></th>
 						<td><input type="text" name="wpsp_portfolio_editor[portfolio_tag_labels]" value="<?php echo get_option( 'portfolio_tag_labels' ); ?>" /></td>
 					</tr>
 					<tr valign="top" id="wpsp-tags-slug">
-						<th scope="row"><?php esc_html_e( 'Tags: Slug', 'wpsp_admin' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Tags: Slug', 'wpspblog' ); ?></th>
 						<td><input type="text" name="wpsp_portfolio_editor[portfolio_tag_slug]" value="<?php echo get_option( 'portfolio_tag_slug' ); ?>" /></td>
 					</tr>
 					<tr valign="top" id="wpsp-categories-enable">
-						<th scope="row"><?php esc_html_e( 'Enable Categories', 'wpsp_admin' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Enable Categories', 'wpspblog' ); ?></th>
 						<?php
 						// Get checkbox value
 						$mod = get_option( 'portfolio_categories', 'on' );
@@ -501,11 +501,11 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 						<td><input type="checkbox" name="wpsp_portfolio_editor[portfolio_categories]" value="<?php echo esc_attr( $mod ); ?>" <?php checked( $mod, 'on' ); ?> /></td>
 					</tr>
 					<tr valign="top" id="wpsp-categories-label">
-						<th scope="row"><?php esc_html_e( 'Categories: Label', 'wpsp_admin' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Categories: Label', 'wpspblog' ); ?></th>
 						<td><input type="text" name="wpsp_portfolio_editor[portfolio_cat_labels]" value="<?php echo get_option( 'portfolio_cat_labels' ); ?>" /></td>
 					</tr>
 					<tr valign="top" id="wpsp-categories-slug">
-						<th scope="row"><?php esc_html_e( 'Categories: Slug', 'wpsp_admin' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Categories: Slug', 'wpspblog' ); ?></th>
 						<td><input type="text" name="wpsp_portfolio_editor[portfolio_cat_slug]" value="<?php echo get_option( 'portfolio_cat_slug' ); ?>" /></td>
 					</tr>
 					
@@ -587,7 +587,7 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 
 			// Register custom sidebar
 			register_sidebar( array(
-				'name'          => $post_type_name .' '. esc_html__( 'Sidebar', 'wpsp_admin' ),
+				'name'          => $post_type_name .' '. esc_html__( 'Sidebar', 'wpspblog' ),
 				'id'            => 'portfolio_sidebar',
 				'description'   => '',
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',

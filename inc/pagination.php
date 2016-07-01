@@ -58,7 +58,7 @@ if ( ! function_exists( 'wpsp_pagination' ) ) :
 				'base'      => str_replace( $big, '%#%', html_entity_decode( get_pagenum_link( $big ) ) ),
 				'format'    => $format,
 				'current'   => max( 1, $current_page ),
-				'wpsp-blog-textdomain'     => $total,
+				'wpspblog'     => $total,
 				'mid_size'  => $mid_size,
 				'type'      => 'list',
 				'prev_text' => '<span class="'. $prev_arrow .'"></span>',
@@ -91,10 +91,10 @@ if ( ! function_exists( 'wpsp_pagejump' ) ) :
 		if ( 1 != $pages ) {
 		$output .= '<div class="page-jump clear">';
 			$output .= '<div class="alignleft newer-posts">';
-				$output .= get_previous_posts_link( '&larr; '. esc_html__( 'Newer Posts', 'wpsp-blog-textdomain' ) );
+				$output .= get_previous_posts_link( '&larr; '. esc_html__( 'Newer Posts', 'wpspblog' ) );
 			$output .= '</div>';
 			$output .= '<div class="alignright older-posts">';
-				$output .= get_next_posts_link( esc_html__( 'Older Posts', 'wpsp-blog-textdomain' ) .' &rarr;' );
+				$output .= get_next_posts_link( esc_html__( 'Older Posts', 'wpspblog' ) .' &rarr;' );
 			$output .= '</div>';
 		$output .= '</div>';
 		}
@@ -123,17 +123,17 @@ if ( ! function_exists( 'wpsp_infinite_scroll' ) ) :
 		}
 		
 		// Localize loading text
-		$is_params = array( 'msgText' => esc_html__( 'Loading...', 'wpsp-blog-textdomain' ) );
+		$is_params = array( 'msgText' => esc_html__( 'Loading...', 'wpspblog' ) );
 		wp_localize_script( 'wpsp-infinitescroll', 'wpspInfiniteScroll', $is_params );  
 		
 		// Output pagination HTML
 		$output = '';
 		$output .= '<div class="infinite-scroll-nav clear">';
 			$output .= '<div class="alignleft newer-posts">';
-				$output .= get_previous_posts_link('&larr; '. esc_html__( 'Newer Posts', 'wpsp-blog-textdomain' ) );
+				$output .= get_previous_posts_link('&larr; '. esc_html__( 'Newer Posts', 'wpspblog' ) );
 			$output .= '</div>';
 			$output .= '<div class="alignright older-posts">';
-				$output .= get_next_posts_link( esc_html__( 'Older Posts', 'wpsp-blog-textdomain' ) .' &rarr;');
+				$output .= get_next_posts_link( esc_html__( 'Older Posts', 'wpspblog' ) .' &rarr;');
 			$output .= '</div>';
 		$output .= '</div>';
 

@@ -45,7 +45,7 @@ if ( 'custom_text' == wpsp_get_redux( 'blog-single-header', 'custom_text' ) ) {
 		<?php endif; ?>
 
 		<?php if ( $key == 'comments' && $value == '1' && comments_open() && ! post_password_required() ): ?>
-			<li class="meta-comments comment-scroll"><span class="fa fa-comment-o"></span><?php comments_popup_link( esc_html__( '0 Comments', 'total' ), esc_html__( '1 Comment',  'total' ), esc_html__( '% Comments', 'total' ), 'comments-link' ); ?></li>
+			<li class="meta-comments comment-scroll"><span class="fa fa-comment-o"></span><?php comments_popup_link( esc_html__( '0 Comments', 'wpspblog' ), esc_html__( '1 Comment',  'wpspblog' ), esc_html__( '% Comments', 'wpspblog' ), 'comments-link' ); ?></li>
 		<?php endif; ?>
 
 	<?php endforeach; ?>
