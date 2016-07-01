@@ -91,10 +91,10 @@ if ( ! function_exists( 'wpsp_pagejump' ) ) :
 		if ( 1 != $pages ) {
 		$output .= '<div class="page-jump clear">';
 			$output .= '<div class="alignleft newer-posts">';
-				$output .= get_previous_posts_link( '&larr; '. esc_html__( 'Newer Posts', 'wpspblog' ) );
+				$output .= get_previous_posts_link( '&larr; '. esc_html__( 'Newer Posts', 'wpsp-blog' ) );
 			$output .= '</div>';
 			$output .= '<div class="alignright older-posts">';
-				$output .= get_next_posts_link( esc_html__( 'Older Posts', 'wpspblog' ) .' &rarr;' );
+				$output .= get_next_posts_link( esc_html__( 'Older Posts', 'wpsp-blog' ) .' &rarr;' );
 			$output .= '</div>';
 		$output .= '</div>';
 		}
@@ -123,17 +123,17 @@ if ( ! function_exists( 'wpsp_infinite_scroll' ) ) :
 		}
 		
 		// Localize loading text
-		$is_params = array( 'msgText' => esc_html__( 'Loading...', 'wpspblog' ) );
+		$is_params = array( 'msgText' => esc_html__( 'Loading...', 'wpsp-blog' ) );
 		wp_localize_script( 'wpsp-infinitescroll', 'wpspInfiniteScroll', $is_params );  
 		
 		// Output pagination HTML
 		$output = '';
 		$output .= '<div class="infinite-scroll-nav clear">';
 			$output .= '<div class="alignleft newer-posts">';
-				$output .= get_previous_posts_link('&larr; '. esc_html__( 'Newer Posts', 'wpspblog' ) );
+				$output .= get_previous_posts_link('&larr; '. esc_html__( 'Newer Posts', 'wpsp-blog' ) );
 			$output .= '</div>';
 			$output .= '<div class="alignright older-posts">';
-				$output .= get_next_posts_link( esc_html__( 'Older Posts', 'wpspblog' ) .' &rarr;');
+				$output .= get_next_posts_link( esc_html__( 'Older Posts', 'wpsp-blog' ) .' &rarr;');
 			$output .= '</div>';
 		$output .= '</div>';
 

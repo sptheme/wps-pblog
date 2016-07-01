@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Vars
 $text   = wpsp_get_translated_theme_mod( 'blog_entry_readmore_text' );
-$text   = $text ? $text : esc_html__( 'Read More', 'wpspblog' );
+$text   = $text ? $text : esc_html__( 'Read More', 'wpsp-blog' );
 
 // Apply filters for child theming
 $text = apply_filters( 'wpsp_post_readmore_link_text', $text );

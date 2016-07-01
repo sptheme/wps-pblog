@@ -42,7 +42,7 @@ if ( $content || ( wpsp_get_redux( 'is-main-search', true ) && 'two' == $header_
 
 			<div id="header-two-search" class="clear">
 				<form method="get" class="header-two-searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<input type="search" id="header-two-search-input" name="s" value="<?php esc_attr_e( 'search', 'wpspblog' ); ?>" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"/>
+					<input type="search" id="header-two-search-input" name="s" value="<?php esc_attr_e( 'search', 'wpsp-blog' ); ?>" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"/>
 					<button type="submit" value="" id="header-two-search-submit" />
 						<span class="fa fa-search"></span>
 					</button>

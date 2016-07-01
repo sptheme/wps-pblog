@@ -99,7 +99,7 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 
 			// Loading text
 			$text = wpsp_get_redux( 'page_animation_loading' );
-			$text = $text ? $text : esc_html__( 'Loading...', 'wpspblog' );
+			$text = $text ? $text : esc_html__( 'Loading...', 'wpsp-blog' );
 			$array['pageAnimationLoadingText'] = $text;
 
 	
@@ -138,16 +138,16 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 		 */
 		public static function in_transitions() {
 			return array(
-				''              => esc_html__( 'None', 'wpspblog' ),
-				'fade-in'       => esc_html__( 'Fade In', 'wpspblog' ),
-				'fade-in-up'    => esc_html__( 'Fade In Up', 'wpspblog' ),
-				'fade-in-down'  => esc_html__( 'Fade In Down', 'wpspblog' ),
-				'fade-in-left'  => esc_html__( 'Fade In Left', 'wpspblog' ),
-				'fade-in-right' => esc_html__( 'Fade In Right', 'wpspblog' ),
-				'rotate-in'     => esc_html__( 'Rotate In', 'wpspblog' ),
-				'flip-in-x'     => esc_html__( 'Flip In X', 'wpspblog' ),
-				'flip-in-y'     => esc_html__( 'Flip In Y', 'wpspblog' ),
-				'zoom-in'       => esc_html__( 'Zoom In', 'wpspblog' ),
+				''              => esc_html__( 'None', 'wpsp-blog' ),
+				'fade-in'       => esc_html__( 'Fade In', 'wpsp-blog' ),
+				'fade-in-up'    => esc_html__( 'Fade In Up', 'wpsp-blog' ),
+				'fade-in-down'  => esc_html__( 'Fade In Down', 'wpsp-blog' ),
+				'fade-in-left'  => esc_html__( 'Fade In Left', 'wpsp-blog' ),
+				'fade-in-right' => esc_html__( 'Fade In Right', 'wpsp-blog' ),
+				'rotate-in'     => esc_html__( 'Rotate In', 'wpsp-blog' ),
+				'flip-in-x'     => esc_html__( 'Flip In X', 'wpsp-blog' ),
+				'flip-in-y'     => esc_html__( 'Flip In Y', 'wpsp-blog' ),
+				'zoom-in'       => esc_html__( 'Zoom In', 'wpsp-blog' ),
 			);
 		}
 
@@ -160,16 +160,16 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 		 */
 		public static function out_transitions() {
 			return array(
-				''               => esc_html__( 'None', 'wpspblog' ),
-				'fade-out'       => esc_html__( 'Fade Out', 'wpspblog' ),
-				'fade-out-up'    => esc_html__( 'Fade Out Up', 'wpspblog' ),
-				'fade-out-down'  => esc_html__( 'Fade Out Down', 'wpspblog' ),
-				'fade-out-left'  => esc_html__( 'Fade Out Left', 'wpspblog' ),
-				'fade-out-right' => esc_html__( 'Fade Out Right', 'wpspblog' ),
-				'rotate-out'     => esc_html__( 'Rotate Out', 'wpspblog' ),
-				'flip-out-x'     => esc_html__( 'Flip Out X', 'wpspblog' ),
-				'flip-out-y'     => esc_html__( 'Flip Out Y', 'wpspblog' ),
-				'zoom-out'       => esc_html__( 'Zoom Out', 'wpspblog' ),
+				''               => esc_html__( 'None', 'wpsp-blog' ),
+				'fade-out'       => esc_html__( 'Fade Out', 'wpsp-blog' ),
+				'fade-out-up'    => esc_html__( 'Fade Out Up', 'wpsp-blog' ),
+				'fade-out-down'  => esc_html__( 'Fade Out Down', 'wpsp-blog' ),
+				'fade-out-left'  => esc_html__( 'Fade Out Left', 'wpsp-blog' ),
+				'fade-out-right' => esc_html__( 'Fade Out Right', 'wpsp-blog' ),
+				'rotate-out'     => esc_html__( 'Rotate Out', 'wpsp-blog' ),
+				'flip-out-x'     => esc_html__( 'Flip Out X', 'wpsp-blog' ),
+				'flip-out-y'     => esc_html__( 'Flip Out Y', 'wpsp-blog' ),
+				'zoom-out'       => esc_html__( 'Zoom Out', 'wpsp-blog' ),
 			);
 		}
 
@@ -181,7 +181,7 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 		 * @since 1.0.0
 		 */
 		public function register_strings( $strings ) {
-			$strings['page_animation_loading'] = esc_html__( 'Loading...', 'wpspblog' );
+			$strings['page_animation_loading'] = esc_html__( 'Loading...', 'wpsp-blog' );
 			return $strings;
 		}
 
@@ -192,7 +192,7 @@ if ( ! class_exists( 'WPSP_Page_Animations' ) ) {
 		 */
 		public function loading_text( $css ) {
 			$text = wpsp_get_redux( 'page-animation-loading' );
-			$text = $text ? $text : esc_html__( 'Loading...', 'wpspblog' );
+			$text = $text ? $text : esc_html__( 'Loading...', 'wpsp-blog' );
 			$css .= '/*PAGE ANIMATIONS*/.animsition-loading{content:"'. $text .'";}';
 			return $css;
 		}

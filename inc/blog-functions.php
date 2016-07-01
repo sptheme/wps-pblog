@@ -560,7 +560,7 @@ endif;
 if ( ! function_exists( 'wpsp_blog_related_heading' ) ) :
 function wpsp_blog_related_heading() {
 	$heading = wpsp_get_translated_theme_mod( 'blog_related_title' );
-	$heading = $heading ? $heading : esc_html__( 'Related Posts', 'wpspblog' );
+	$heading = $heading ? $heading : esc_html__( 'Related Posts', 'wpsp-blog' );
 	return $heading;
 }
 endif;

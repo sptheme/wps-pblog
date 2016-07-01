@@ -223,7 +223,7 @@ function wpsp_get_excerpt( $args = array() ) {
 	// Display password protected notice
 	if ( $post->post_password ) :
 
-		$output = esc_html__( 'This is a password protected post.', 'wpspblog' );
+		$output = esc_html__( 'This is a password protected post.', 'wpsp-blog' );
 		$output = apply_filters( 'wpsp_password_protected_excerpt', $output );
 		$output = '<p>'. $output .'</p>';
 		return $output;
@@ -288,7 +288,7 @@ function wpsp_get_excerpt( $args = array() ) {
 	// Add readmore link to output if enabled
 	if ( $readmore ) :
 
-		$read_more_text = isset( $args['read_more_text'] ) ? $args['read_more_text'] : esc_html__( 'Read more', 'wpspblog' );
+		$read_more_text = isset( $args['read_more_text'] ) ? $args['read_more_text'] : esc_html__( 'Read more', 'wpsp-blog' );
 		$output .= '<a href="'. get_permalink( $post_id ) .'" title="'.$read_more_text .'" rel="bookmark" class="wpsp-readmore theme-button">'. $read_more_text .' <span class="wpsp-readmore-rarr">&rarr;</span></a>';
 
 	endif;
@@ -438,7 +438,7 @@ if ( is_admin() && apply_filters( 'wpsp_dashboard_thumbnails', true ) ) :
 
 	if ( ! function_exists( 'wpsp_posts_columns' ) ) {
 		function wpsp_posts_columns( $defaults ){
-			$defaults['wpsp_post_thumbs'] = esc_html__( 'Featured Image', 'wpspblog' );
+			$defaults['wpsp_post_thumbs'] = esc_html__( 'Featured Image', 'wpsp-blog' );
 			return $defaults;
 		}
 	}
@@ -732,7 +732,7 @@ function wpsp_social_share_style() {
  */
 function wpsp_social_share_heading() {
     $heading = wpsp_get_translated_theme_mod( 'social_share_heading' );
-    $heading = $heading ? $heading : esc_html__( 'Please Share This', 'wpspblog' );
+    $heading = $heading ? $heading : esc_html__( 'Please Share This', 'wpsp-blog' );
     return apply_filters( 'wpsp_social_share_heading', $heading );
 }
 
@@ -1138,16 +1138,16 @@ endif;
 if ( ! function_exists('wpsp_image_crop_locations') ) :
 function wpsp_image_crop_locations() {
 	return array(
-		''              => esc_html__( 'Default', 'wpspblog' ),
-		'left-top'      => esc_html__( 'Top Left', 'wpspblog' ),
-		'right-top'     => esc_html__( 'Top Right', 'wpspblog' ),
-		'center-top'    => esc_html__( 'Top Center', 'wpspblog' ),
-		'left-center'   => esc_html__( 'Center Left', 'wpspblog' ),
-		'right-center'  => esc_html__( 'Center Right', 'wpspblog' ),
-		'center-center' => esc_html__( 'Center Center', 'wpspblog' ),
-		'left-bottom'   => esc_html__( 'Bottom Left', 'wpspblog' ),
-		'right-bottom'  => esc_html__( 'Bottom Right', 'wpspblog' ),
-		'center-bottom' => esc_html__( 'Bottom Center', 'wpspblog' ),
+		''              => esc_html__( 'Default', 'wpsp-blog' ),
+		'left-top'      => esc_html__( 'Top Left', 'wpsp-blog' ),
+		'right-top'     => esc_html__( 'Top Right', 'wpsp-blog' ),
+		'center-top'    => esc_html__( 'Top Center', 'wpsp-blog' ),
+		'left-center'   => esc_html__( 'Center Left', 'wpsp-blog' ),
+		'right-center'  => esc_html__( 'Center Right', 'wpsp-blog' ),
+		'center-center' => esc_html__( 'Center Center', 'wpsp-blog' ),
+		'left-bottom'   => esc_html__( 'Bottom Left', 'wpsp-blog' ),
+		'right-bottom'  => esc_html__( 'Bottom Right', 'wpsp-blog' ),
+		'center-bottom' => esc_html__( 'Bottom Center', 'wpsp-blog' ),
 	);
 }
 endif;
@@ -1160,18 +1160,18 @@ endif;
 if ( ! function_exists('wpsp_image_hovers') ) :
 function wpsp_image_hovers() {
 	return apply_filters( 'wpsp_image_hovers', array(
-		''             => esc_html__( 'Default', 'wpspblog' ),
-		'opacity'      => esc_html__( 'Opacity', 'wpspblog' ),
-		'grow'         => esc_html__( 'Grow', 'wpspblog' ),
-		'shrink'       => esc_html__( 'Shrink', 'wpspblog' ),
-		'side-pan'     => esc_html__( 'Side Pan', 'wpspblog' ),
-		'vertical-pan' => esc_html__( 'Vertical Pan', 'wpspblog' ),
-		'tilt'         => esc_html__( 'Tilt', 'wpspblog' ),
-		'blurr'        => esc_html__( 'Normal - Blurr', 'wpspblog' ),
-		'blurr-invert' => esc_html__( 'Blurr - Normal', 'wpspblog' ),
-		'sepia'        => esc_html__( 'Sepia', 'wpspblog' ),
-		'fade-out'     => esc_html__( 'Fade Out', 'wpspblog' ),
-		'fade-in'      => esc_html__( 'Fade In', 'wpspblog' ),
+		''             => esc_html__( 'Default', 'wpsp-blog' ),
+		'opacity'      => esc_html__( 'Opacity', 'wpsp-blog' ),
+		'grow'         => esc_html__( 'Grow', 'wpsp-blog' ),
+		'shrink'       => esc_html__( 'Shrink', 'wpsp-blog' ),
+		'side-pan'     => esc_html__( 'Side Pan', 'wpsp-blog' ),
+		'vertical-pan' => esc_html__( 'Vertical Pan', 'wpsp-blog' ),
+		'tilt'         => esc_html__( 'Tilt', 'wpsp-blog' ),
+		'blurr'        => esc_html__( 'Normal - Blurr', 'wpsp-blog' ),
+		'blurr-invert' => esc_html__( 'Blurr - Normal', 'wpsp-blog' ),
+		'sepia'        => esc_html__( 'Sepia', 'wpsp-blog' ),
+		'fade-out'     => esc_html__( 'Fade Out', 'wpsp-blog' ),
+		'fade-in'      => esc_html__( 'Fade In', 'wpsp-blog' ),
 	) );
 }
 endif;

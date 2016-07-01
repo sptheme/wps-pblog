@@ -170,7 +170,7 @@ class WPSP_Theme_Setup {
 		add_editor_style( array( 'css/editor-style.css', str_replace( ',', '%2C', $font_url ) ) );
 
 		// Load text domain
-		load_theme_textdomain( 'wpspblog', WPSP_THEME_DIR .'/languages' );
+		load_theme_textdomain( 'wpsp-blog', WPSP_THEME_DIR .'/languages' );
 
 		// Get globals
 		global $content_width;
@@ -182,11 +182,11 @@ class WPSP_Theme_Setup {
 
 		// Array of theme menus
 		$menus = apply_filters( 'wpsp_nav_menus', array(
-			'topbar_menu'     => esc_html__( 'Top Bar', 'wpspblog' ),
-			'main_menu'       => esc_html__( 'Main', 'wpspblog' ),
-			'mobile_menu_alt' => esc_html__( 'Mobile Menu Alternative', 'wpspblog' ),
-			'mobile_menu'     => esc_html__( 'Mobile Icons', 'wpspblog' ),
-			'footer_menu'     => esc_html__( 'Footer', 'wpspblog' ),
+			'topbar_menu'     => esc_html__( 'Top Bar', 'wpsp-blog' ),
+			'main_menu'       => esc_html__( 'Main', 'wpsp-blog' ),
+			'mobile_menu_alt' => esc_html__( 'Mobile Menu Alternative', 'wpsp-blog' ),
+			'mobile_menu'     => esc_html__( 'Mobile Icons', 'wpsp-blog' ),
+			'footer_menu'     => esc_html__( 'Footer', 'wpsp-blog' ),
 		) );
 
 		// Register navigation menus

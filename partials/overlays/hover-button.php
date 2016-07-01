@@ -26,7 +26,7 @@ $link = ! empty( $args['overlay_link'] ) ? $args['overlay_link'] : $link;
 $link = apply_filters( 'wpsp_hover_button_overlay_link', $link );
 
 // Define text
-$text = ! empty( $args['overlay_button_text'] ) ? $args['overlay_button_text'] : _x( 'View Post', 'Overlay Button Text', 'wpspblog' );
+$text = ! empty( $args['overlay_button_text'] ) ? $args['overlay_button_text'] : _x( 'View Post', 'Overlay Button Text', 'wpsp-blog' );
 $text = ( 'post_title' == $text ) ? get_the_title() : $text;
 $text = apply_filters( 'wpsp_hover_button_overlay_text', $text );
 

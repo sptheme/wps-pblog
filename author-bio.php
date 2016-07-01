@@ -39,7 +39,7 @@ extract( $data ); ?>
 
 		<div class="author-bio-avatar">
 
-			<a href="<?php echo esc_url( $posts_url ); ?>" title="<?php esc_attr_e( 'Visit Author Page', 'wpspblog' ); ?>">
+			<a href="<?php echo esc_url( $posts_url ); ?>" title="<?php esc_attr_e( 'Visit Author Page', 'wpsp-blog' ); ?>">
 				<?php
 				// Display author avatar
 				echo wpsp_sanitize_data( $avatar, 'img' ); ?>
@@ -52,7 +52,7 @@ extract( $data ); ?>
 	<div class="author-bio-content clear">
 
 		<h4 class="author-bio-title">
-			<a href="<?php echo esc_url( $posts_url ); ?>" title="<?php esc_attr_e( 'Visit Author Page', 'wpspblog' ); ?>">
+			<a href="<?php echo esc_url( $posts_url ); ?>" title="<?php esc_attr_e( 'Visit Author Page', 'wpsp-blog' ); ?>">
 				<?php echo strip_tags( $author_name ); ?>
 			</a>
 		</h4><!-- .author-bio-title -->

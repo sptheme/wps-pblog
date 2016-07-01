@@ -8,7 +8,7 @@
  */ ?>
 
 <form method="get" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-	<input type="search" class="field" name="s" placeholder="<?php echo esc_html__( 'Search', 'wpspblog' ); ?>" />
+	<input type="search" class="field" name="s" placeholder="<?php echo esc_html__( 'Search', 'wpsp-blog' ); ?>" />
 	<?php if ( defined( 'ICL_LANGUAGE_CODE' ) ) { ?>
 		<input type="hidden" name="lang" value="<?php echo( ICL_LANGUAGE_CODE ); ?>"/>
 	<?php } ?>
