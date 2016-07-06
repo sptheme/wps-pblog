@@ -5,7 +5,7 @@
  * These functions are used throughout the theme and must be loaded
  * early on.
  *
- * @package Habitat Cambodia
+ * @package WPSP_Blog
  */
 
 /*-------------------------------------------------------------------------------*/

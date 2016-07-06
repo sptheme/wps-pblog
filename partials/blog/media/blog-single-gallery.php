@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package Habitat Cambodia
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly

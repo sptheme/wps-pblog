@@ -50,6 +50,9 @@ class WPSP_Theme_Setup {
 		// Add custom post types supports
 		add_action( 'after_setup_theme', array( $this, 'wpsp_add_custom_post_type' ), 3 );
 
+		// Add custom shortcodes supports
+		add_action( 'after_setup_theme', array( $this, 'wpsp_shortcodes' ), 4 );
+
 		// Setup theme => add_theme_support, register_nav_menus, load_theme_textdomain, etc
 		// Must run on 10 priority or else child theme locale will be overritten
 		add_action( 'after_setup_theme', array( $this, 'theme_setup' ), 10 );
@@ -156,6 +159,14 @@ class WPSP_Theme_Setup {
 	public static function wpsp_add_custom_post_type() {
 		require_once( WPSP_INC_DIR . 'post-types/post-types-helpers.php' );
 		require_once( WPSP_INC_DIR . 'post-types/portfolio/portfolio-config.php' );
+	}
+
+	/**
+	 * Add custom shortcode support
+	 *
+	 */
+	public static function wpsp_shortcodes() {
+		require_once( WPSP_INC_DIR . 'shortcodes/shortcodes.php' );
 	}
 
 	/**

@@ -2,7 +2,7 @@
 /**
  * Magnifying Hover Overlay
  *
- * @package Habitat Cambodia
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly

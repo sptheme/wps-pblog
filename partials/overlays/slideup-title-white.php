@@ -2,7 +2,7 @@
 /**
  * Slide Up Title White Overlay
  *
- * @package Habitat Cambodia
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
