@@ -295,7 +295,6 @@ function wpsp_post_layout() {
 	global $post;
 
 	// Define variables
-	$class  = 'right-sidebar';
 	$meta   = get_post_meta( $post->ID, 'wpsp_layout', true );
 
 	// Check meta first to override and return (prevents filters from overriding meta)
@@ -369,12 +368,10 @@ function wpsp_post_layout() {
 
 	// All else
 	else {
-		$class = wpsp_get_redux( 'layout-global', 'right-sidebar' );
-	}
-
-	// Class should never be empty
-	if ( empty( $class ) ) {
-		$class = wpsp_get_redux( 'layout-global', 'right-sidebar' );
+		// Class should never be empty
+		if ( empty( $class ) ) {
+			$class = wpsp_get_redux( 'layout-global' );
+		}
 	}
 
 	// Apply filters and return
