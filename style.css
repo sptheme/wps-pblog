@@ -673,6 +673,13 @@ body.has-overlay-header .wpsp-sticky-header-holder { background: none !important
 #footer-copyright { font-size: 0.923em; font-weight: 400; }
 #footer-copyright p:last-child { margin: 0 }
 
+/* Footer > Social */
+#footer-bottom-menu { position: absolute; right: 0; top: 50%; margin-top: -20px; height: 40px; line-height: 40px; }
+#footer-bottom-menu ul { list-style: none; margin: 0; }
+#footer-bottom-menu ul li { float: left; margin-left: 20px; }
+#footer-bottom-menu ul li:first-child { margin-left: 0 }
+#footer-bottom-menu ul li .fa { margin-right: 7px }
+
 /*--------------------------------------------------------------
 ## Back To Top Button
 --------------------------------------------------------------*/
