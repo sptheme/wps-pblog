@@ -28,6 +28,7 @@
 				$windowTop              : $( window ).scrollTop(),
 				$body                   : $( 'body' ),
 				$mobileMenuBreakpoint   : 960,
+				$wpAdminBar             : null,
 				$siteHeader             : null,
 				$siteHeaderHeight       : 0,
 				$siteHeaderTop          : 0,
@@ -153,6 +154,12 @@
 			// Local scroll speed
 			if ( wpspLocalize.localScrollSpeed ) {
 				this.config.$localScrollSpeed = parseInt( wpspLocalize.localScrollSpeed );
+			}
+
+			// Define Wp admin bar
+			var $wpAdminBar = $( '#wpadminbar' );
+			if ( $wpAdminBar.length ) {
+				this.config.$wpAdminBar = $wpAdminBar;
 			}
 
 			// Define header
@@ -1626,7 +1633,7 @@
 
 			// Add wp toolbar
 			if ( $( '#wpadminbar' ).length ) {
-				$offSet = parseInt( $offSet ) + 32;
+				$offSet = parseInt( $offSet ) + parseInt( $( '#wpadminbar' ).outerHeight() );
 			}
 
 			// Return offset
