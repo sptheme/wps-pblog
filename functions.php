@@ -50,9 +50,6 @@ class WPSP_Theme_Setup {
 		// Add custom post types supports
 		add_action( 'after_setup_theme', array( $this, 'wpsp_configs' ), 3 );
 
-		// Add custom shortcodes supports
-		add_action( 'after_setup_theme', array( $this, 'wpsp_shortcodes' ), 4 );
-
 		// Setup theme => add_theme_support, register_nav_menus, load_theme_textdomain, etc
 		// Must run on 10 priority or else child theme locale will be overritten
 		add_action( 'after_setup_theme', array( $this, 'theme_setup' ), 10 );
