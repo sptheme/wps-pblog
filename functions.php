@@ -48,7 +48,7 @@ class WPSP_Theme_Setup {
 		add_action( 'after_setup_theme', array( $this, 'wpsp_addons' ), 2 );
 
 		// Add custom post types supports
-		add_action( 'after_setup_theme', array( $this, 'wpsp_add_custom_post_type' ), 3 );
+		add_action( 'after_setup_theme', array( $this, 'wpsp_configs' ), 3 );
 
 		// Add custom shortcodes supports
 		add_action( 'after_setup_theme', array( $this, 'wpsp_shortcodes' ), 4 );
@@ -156,16 +156,11 @@ class WPSP_Theme_Setup {
 	 *
 	 * @since 1.0.0
 	 */
-	public static function wpsp_add_custom_post_type() {
+	public static function wpsp_configs() {
 		require_once( WPSP_INC_DIR . 'post-types/post-types-helpers.php' );
 		require_once( WPSP_INC_DIR . 'post-types/portfolio/portfolio-config.php' );
-	}
 
-	/**
-	 * Add custom shortcode support
-	 *
-	 */
-	public static function wpsp_shortcodes() {
+		//Add custom shortcode support
 		require_once( WPSP_INC_DIR . 'shortcodes/shortcodes.php' );
 	}
 
