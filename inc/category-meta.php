@@ -44,10 +44,11 @@ if ( ! class_exists( 'WPSP_Category_Meta' ) ) {
 			<th scope="row" valign="top"><label for="wpsp_term_layout"><?php esc_html_e( 'Layout', 'wpsp-blog' ); ?></label></th>
 			<td>
 				<select name="term_meta[wpsp_term_layout]">
-					<option value="" <?php selected( $layout ) ?>><?php esc_html_e( 'Default', 'wpsp-blog' ); ?></option>
+					<option value="inherit" <?php selected( $layout ) ?>><?php esc_html_e( 'Default', 'wpsp-blog' ); ?></option>
 					<option value="right-sidebar" <?php selected( $layout, 'right-sidebar' ) ?>><?php esc_html_e( 'Right Sidebar', 'wpsp-blog' ); ?></option>
 					<option value="left-sidebar" <?php selected( $layout, 'left-sidebar' ) ?>><?php esc_html_e( 'Left Sidebar', 'wpsp-blog' ); ?></option>
 					<option value="full-width" <?php selected( $layout, 'full-width' ) ?>><?php esc_html_e( 'Full Width', 'wpsp-blog' ); ?></option>
+					<option value="full-screen" <?php selected( $layout, 'full-screen' ) ?>><?php esc_html_e( 'Full Screen', 'wpsp-blog' ); ?></option>
 				</select>
 			</td>
 			</tr>

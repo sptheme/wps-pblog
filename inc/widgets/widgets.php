@@ -159,63 +159,6 @@ function wpsp_sidebar_primary() {
 endif;
 
 /**
- * Layout choice
- * 
- */
-if ( ! function_exists( 'wpsp_layout_class' ) ) :
-function wpsp_layout_class() {
-	// Default layout
-	$layout = 'right-sidebar';
-
-	// Check for page/post specific layout
-	if ( is_page() || is_single() ) {
-		// Reset post data
-		wp_reset_postdata();
-		global $post;
-		// Get meta
-		$meta = get_post_meta($post->ID,'wpsp_layout',true);
-		
-		// Get if set and not set to inherit
-		if ( isset($meta) && !empty($meta) && $meta != 'inherit' ) { $layout = $meta; }
-		
-		// Else check for page-global / single-global
-		elseif ( is_single() && ( wpsp_get_redux('single-layout') !='inherit' ) ) $layout = wpsp_get_redux('single-layout');
-		elseif ( is_page() && ( wpsp_get_redux('page-layout') !='inherit' ) ) $layout = wpsp_get_redux('page-layout');
-
-		// Else get global option
-		else $layout = wpsp_get_redux( 'layout-global' );
-	}
-
-	// Set layout based on page
-	elseif ( is_category() && ( wpsp_get_redux('category-layout') !='inherit' ) ) $layout = wpsp_get_redux('category-layout');
-	elseif ( is_archive() && ( wpsp_get_redux('archive-layout') !='inherit' ) ) $layout = wpsp_get_redux('archive-layout');
-	elseif ( is_search() && ( wpsp_get_redux('search-layout') !='inherit' ) ) $layout = wpsp_get_redux('search-layout');
-	elseif ( is_404() && ( wpsp_get_redux('404-layout') !='inherit' ) ) $layout = wpsp_get_redux('404-layout');
-
-	// Global option
-	else $layout = wpsp_get_redux( 'layout-global' );
-
-	// Apply filters for child theme editing
-	$layout = apply_filters( 'wpsp_layout_class', $layout );
-
-	// Return layout class
-	return $layout;
-}
-endif;
-
-/**
- * Add layout option in body class
- * 
- */
-if ( ! function_exists( 'wpsp_layout_option_body_class' ) ) :
-function wpsp_layout_option_body_class( $classes ) {
-	$classes[] = wpsp_layout_class();
-	return $classes;
-}
-//add_filter( 'body_class', 'wpsp_layout_option_body_class' );	
-endif;
-
-/**
  * Include all custom widgets
  *
  * @since   1.0.0

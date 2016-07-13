@@ -9,7 +9,7 @@
 
 ?>
 
-<?php if ( in_array( wpsp_layout_class(), array( 'full-screen', 'full-width' ) ) ) {
+<?php if ( in_array( wpsp_post_layout(), array( 'full-screen', 'full-width' ) ) ) {
 		return;
 	} ?>
 
