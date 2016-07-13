@@ -2029,8 +2029,12 @@
                 //Must provide key => value(array:title|img) pairs for radio options
                 'options'  => array(
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
@@ -2041,7 +2045,7 @@
                         'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
                     )
                 ),
-                'default'  => 'full-width',
+                'default'  => 'right-sidebar',
             ),
             array(
                 'id'       => 'is-responsive',

@@ -165,8 +165,7 @@ endif;
 if ( ! function_exists( 'wpsp_layout_class' ) ) :
 function wpsp_layout_class() {
 	// Default layout
-	$layout = 'full-width';
-	$default = 'right-sidebar';
+	$layout = 'right-sidebar';
 
 	// Check for page/post specific layout
 	if ( is_page() || is_single() ) {
