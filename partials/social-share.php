@@ -37,7 +37,7 @@ $summary = wpsp_get_excerpt( array(
 	'ignore_more_tag' => true,
 ) ); ?>
 
-<div class="wpsp-social-share-wrap clear">
+<div class="wpsp-social-share-wrap clear<?php if ( 'full-screen' == wpsp_post_layout() ) echo ' container'; ?>">
 
 	<?php
 	// Display heading if enabled
