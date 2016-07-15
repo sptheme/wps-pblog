@@ -13,11 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 } ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php $title_align = get_post_meta( get_the_ID(), 'wpsp_post_title_align', true ); ?>
-		<h1 class="entry-title" style="text-align:<?php echo $title_align; ?>"><?php the_title(); ?></h1>
-	</header><!-- .entry-header -->
-
 	<?php
 	// Check if page should display featured image
 	if ( has_post_thumbnail() && wpsp_get_redux( 'is-page-featured-image' ) ) : ?>
