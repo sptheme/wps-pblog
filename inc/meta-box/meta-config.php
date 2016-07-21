@@ -193,6 +193,7 @@
 				'id'    => $prefix . "post_title_background_color",
 				'desc'	=> __( 'Select color', 'wpsp-meta-box' ), 
 				'type'  => 'color',
+				'class' => 'post_title_background_color'
 			),
 			array(
 				'name'  => __( 'Title: Background Image', 'wpsp-meta-box' ), 
@@ -200,18 +201,21 @@
 				'desc'	=> __( 'Select a custom header image for your main title.', 'wpsp-meta-box' ), 
 				'type'  => 'image_advanced',
 				'max_file_uploads' => 1,
+				'class' => 'post_title_background_img'
 			),
 			array(
 				'name'  => __( 'Title: Background Height', 'wpsp-meta-box' ), 
 				'id'    => $prefix . "post_title_height",
 				'desc'	=> __( 'Select your custom height for your title background. Default is 400px.', 'wpsp-meta-box' ), 
 				'type'  => 'text',
+				'class' => 'post_title_height'
 			),
 			array(
 				'name'  => __( 'Title: Background Overlay', 'wpsp-meta-box' ), 
 				'id'    => $prefix . "post_title_background_overlay",
 				'desc'	=> __( 'Select an overlay for the title background.', 'wpsp-meta-box' ), 
 				'type'  => 'select',
+				'class' => 'post_title_background_overlay',
 				'options'     => array(
 					'' => __( 'None', 'wpsp-meta-box' ),
 					'dark' => __( 'Dark', 'wpsp-meta-box' ),
@@ -225,6 +229,7 @@
 				'id'    => $prefix . "post_title_background_overlay_opacity",
 				'desc'	=> __( 'Enter a custom opacity for your title background overlay.', 'wpsp-meta-box' ), 
 				'type'  => 'text',
+				'class' => 'post_title_background_overlay_opacity'
 			),
 			array(
 				'type' => 'heading',
